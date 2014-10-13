@@ -1,0 +1,155 @@
+.sidebar {
+  & > section {
+    margin-bottom: 20px;
+    display: block;
+    p.section-title {
+      //      clear: both;
+      //      display: block;
+      color: #777777;
+      font-weight: bold;
+      font-size: 17px;
+      border-bottom: #DDDDDD 2px solid;
+    }
+
+    &.hot-today {
+      ul {
+        list-style: none;
+        padding-left: 5px;
+
+        li {
+          &:before {
+            padding: 5px 5px 0;
+            content: "•";
+            color: #FD6631;
+            font-size: 20px;
+          }
+          &.line-2:before {
+            color: #F668CA;
+          }
+          &.line-3:before {
+            color: #7B72E9;
+          }
+          &.line-4:before {
+            color: #7B72E9;
+          }
+          &.line-5:before {
+            color: #50E3C2;
+          }
+          &.line-6:before {
+            color: #7ED321;
+          }
+          &.line-7:before {
+            color: #417505;
+          }
+        }
+      }
+    }
+
+    &.nodes {
+      min-height: 196px;
+      .list {
+        width: 100%;
+        & > div {
+          float: left;
+          width: 50%;
+
+          &.hot-nodes {
+
+          }
+          &.new-nodes ul li a {
+            margin: 0 5px 5px auto;
+            border-color: #7B72E9;
+          }
+
+          ul {
+            padding: 0;
+            list-style: none;
+            li {
+              a {
+                max-width: 100px;
+                text-align: center;
+                padding: 3px 5px 3px 5px;
+                margin: 0 auto 5px 5px;
+                display: block;
+                border: solid 1px #1B9AF7;
+                border-radius: 8px;
+                &:hover {
+                  text-decoration: none;
+                }
+              }
+
+            }
+          }
+
+        }
+      }
+    }
+
+    &.site-statistics {
+
+      .data {
+        color: #777777;
+        font-weight: bold;
+        span {
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+//// Sidebar
+//.sidebar {
+//  section {
+//    background-color: #fff;
+//    border-radius: 3px;
+//    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+//    border-bottom: 1px solid #e2e2e2;
+//
+//    &.user-info {
+//      $user-info-avatar-width-and-height: 75px;
+//      .avatar {
+//        width: $user-info-avatar-width-and-height;
+//        height: $user-info-avatar-width-and-height;
+//        margin: 0 auto;
+//        img {
+//          width: $user-info-avatar-width-and-height;
+//          height: $user-info-avatar-width-and-height;
+//        }
+//      }
+//      .username {
+//        text-align: center;
+//        font-size: 16px;
+//      }
+//      .user-meta {
+//        margin-bottom: 45px;
+//        .column {
+//          float: left;
+//          width: 33%;
+//          &:last-child {
+//            width: 34%;
+//          }
+//          a {
+//            text-align: center;
+//            display: block;
+//            border-right: 1px solid #C0C0C0;
+//            &.without-border {
+//              border: none;
+//            }
+//            &:hover {
+//              text-decoration: none;
+//            }
+//          }
+//        }
+//      }
+//    }
+//
+//    .cell {
+//      padding: 10px;
+//      &.with-bottom-border {
+//        border-bottom: 1px solid #e2e2e2;
+//      }
+//    }
+//  }
+//
+//}

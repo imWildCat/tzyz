@@ -1,0 +1,52 @@
+.navbar.navbar-custom {
+  $navbar-normal-bg-color: #22292C;
+
+  background-color: $navbar-normal-bg-color;
+  border: none;
+  border-radius: 0;
+
+  .navbar-brand {
+    color: #ffffff;
+    &:hover {
+      color: lightblue;
+    }
+  }
+
+  .navbar-toggle {
+    border-color: #ddd;
+    &:hover, &:focus {
+      background-color: #ddd;
+    }
+    .icon-bar {
+      background-color: #888;
+    }
+  }
+
+  ul.nav.navbar-nav li {
+    &.active a {
+      background-color: #000000;
+    }
+    a {
+      color: #ffffff;
+      background-color: $navbar-normal-bg-color;
+      &:hover {
+        color: lightblue;
+        background-color: #000000;
+      }
+      &:focus {
+        background-color: #000000;
+      }
+    }
+
+    ul.dropdown-menu {
+      background-color: $navbar-normal-bg-color;
+      border-color: $navbar-normal-bg-color;
+
+      li.divider {
+        background-color: #ddd;
+      }
+    }
+  }
+
+}
+

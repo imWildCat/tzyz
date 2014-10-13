@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>滕州一中校友会</title>
+
+  <!--<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
+  <!--<link href="//cdn.bootcss.com/normalize/3.0.1/normalize.css" rel="stylesheet">-->
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!--<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>-->
+  <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  <%= render 'layouts/shim' %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%= csrf_meta_tags %>
+
+</head>
+<body>
+<%= render 'layouts/header' %>
+<div class="container">
+  <%= render 'layouts/alert' %>
+
+  <div class="row">
+    <div class="col-md-9">
+      <%= yield %>
+    </div>
+
+    <div class="col-md-3">
+      <% if content_for?(:sidebar) %>
+          <%= yield(:sidebar) %>
+      <% else %>
+          <div>No sidebar here.</div>
+      <% end %>
+    </div>
+  </div>
+
+  <%= render 'layouts/footer' %>
+
+  <%= debug(params) if Rails.env.development? %>
+</div>
+</body>
+</html>

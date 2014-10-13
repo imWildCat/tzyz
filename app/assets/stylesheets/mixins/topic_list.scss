@@ -1,0 +1,72 @@
+.topic-list {
+  .thread {
+    border-bottom: $normal-boder;
+    margin-bottom: 10px;
+    .avatar {
+      float: left;
+      padding: 10px;
+      width: 65px;
+      img {
+        $size: 45px;
+        width: $size;
+        height: $size;
+        border-radius: 8px;
+      }
+    }
+    .meta {
+      margin-left: 65px;
+      padding: 10px;
+      width: auto;
+      .title {
+        p {
+          font-size: 16px;
+          a {
+            color: #777777;
+          }
+        }
+      }
+      .info {
+        margin-top: -10px;
+        font-size: 12px;
+
+        @media screen and (max-width: 500px) {
+          margin-top: 10px;
+          .divider, .refresher-label, .refresher {
+            display: none;
+          }
+        }
+
+        .divider {
+          font-size: 16px;
+          color: #417505;
+        }
+        .node-name {
+          background-color: #F5F5F5;
+          padding: 5px;
+          border-radius: 5px;
+        }
+        a, span {
+          padding: 2px;
+        }
+      }
+      .title, .info {
+        margin-right: 45px;
+        width: auto;
+      }
+      .reply-count {
+        float: right;
+        width: 40px;
+        height: 65px;
+        span {
+          margin: 10px auto;
+          display: block;
+          border: solid 1px #417505;
+          border-radius: 99px;
+          min-width: 20px;
+          padding: 0 5px 0 5px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

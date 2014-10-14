@@ -1,7 +1,7 @@
 zh-CN:
   simple_form:
-    "yes": 'Yes'
-    "no": 'No'
+    "yes": '是'
+    "no": '否'
     required:
       text: 'required'
       mark: '*'

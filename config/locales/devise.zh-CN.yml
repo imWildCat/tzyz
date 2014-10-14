@@ -40,7 +40,7 @@ zh-CN:
         signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
         signed_up_but_unconfirmed: "一封确认邮件已经发送到了您的邮箱，请打开邮件内的链接以激活您的帐号。"
         update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
-        updated: "Your account has been updated successfully."
+        updated: "密码修改成功。"
     sessions:
       signed_in: "登录成功。"
       signed_out: "注销成功。"

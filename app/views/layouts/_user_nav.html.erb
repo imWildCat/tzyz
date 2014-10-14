@@ -2,7 +2,7 @@
   <%= render_list class: 'nav navbar-nav navbar-right', id: 'userbar' do |li|
     if current_user
       li << '<a href="#">消息 <span class="badge alert-danger">23</span></a>'
-      li << link_to('修改资料', edit_user_registration_path)
+      li << link_to('修改密码', edit_user_registration_path)
       li << link_to('注销', destroy_user_session_path, method: 'delete')
     else
       @is_current_reg_path = (request.path == new_user_registration_path) ? 'active' : ''

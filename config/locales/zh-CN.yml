@@ -14,3 +14,9 @@
             password:
               blank: 密码不能为空。
               too_short: 密码太短，最少为6位。
+            reset_password_token:
+              invalid: "无效，可能是因为您的密码找回链接存在问题，我们暂时无法重置您的密码。请重新发送密码找回邮件。"
+            confirmation_token:
+              invalid: "不正确，可能是因为您的注册邮件链接存在问题，我们暂时无法确认您的邮箱地址。请重新发送注册确认邮件。"
+            unlock_token:
+              invalid: "不正确，可能是因为您的解锁邮件链接存在问题，我们暂时无法解锁您的帐号。请重新发送解锁邮件。"

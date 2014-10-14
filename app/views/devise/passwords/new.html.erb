@@ -1,15 +1,17 @@
-<h2>Forgot your password?</h2>
+<% title '密码找回' %>
+<h2>密码找回</h2>
+<%= simple_form_for resource, url: password_path(resource_name), as: resource_name,
+                    wrapper_mappings: {
+                            boolean: :vertical_boolean
+                    } do |f| %>
+    <%= f.error_notification %>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+    <%= f.input :email, placeholder: '请输入您的 Email' %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
+    <%= f.button :submit ,'发送密码找回邮件', class:'btn btn-primary float-right' %>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
+<% content_for :sidebar do %>
+    <%= render 'devise/shared/links' %>
+<% end %>

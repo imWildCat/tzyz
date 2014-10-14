@@ -23,15 +23,8 @@
         </li>
 
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="#">消息 <span class="badge alert-danger">23</span></a>
-        </li>
-        <li class=""><%= link_to('登录', new_user_session_path) %>
-        </li>
-        <li<% if request.path == new_user_registration_path %> class="active"<% end %>><%= link_to('注册', new_user_registration_path) %>
-        </li>
-      </ul>
+      <%= render 'layouts/user_nav' %>
+
     </div>
     <!-- /.navbar-collapse -->
   </div>

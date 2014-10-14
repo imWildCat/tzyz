@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>滕州一中校友会</title>
-
+  <% if content_for?(:title) %>
+      <%= yield(:title) %>
+  <% else %>
+      <title>滕州一中校友会</title>
+  <% end %>
   <!--<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
   <!--<link href="//cdn.bootcss.com/normalize/3.0.1/normalize.css" rel="stylesheet">-->
 

@@ -3,35 +3,35 @@
 zh-CN:
   devise:
     confirmations:
-      confirmed: "您的 Email 地址已被确认。"
-      send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
+      confirmed: "Email 地址已被确认，您可以正常登录了。"
+      send_instructions: "一封确认邮件已经发送到了您的邮箱，请打开邮件内的链接以激活您的帐号。"
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
     failure:
-      already_authenticated: "You are already signed in."
+      already_authenticated: "您已登录。"
       inactive: "Your account is not activated yet."
-      invalid: "Invalid %{authentication_keys} or password."
-      locked: "Your account is locked."
-      last_attempt: "You have one more attempt before your account is locked."
-      not_found_in_database: "Invalid %{authentication_keys} or password."
+      invalid: 'Email 或者密码错误。' # "Invalid %{authentication_keys} or password."
+      locked: "因为密码错误次数太多，为了您的帐号安全，它已被锁定。"
+      last_attempt: "您还有一次机会尝试您的密码，下次错误将导致您的帐号被锁定1小时（可通过 Email 解锁）。"
+      not_found_in_database: 'Email 或者密码错误。' # "Invalid %{authentication_keys} or password."
       timeout: "Your session expired. Please sign in again to continue."
-      unauthenticated: "You need to sign in or sign up before continuing."
-      unconfirmed: "You have to confirm your email address before continuing."
+      unauthenticated: "在继续之前，请登录或者注册一个帐号。"
+      unconfirmed: "您已注册，但是尚未验证您的邮箱。在继续之前，请确认您的邮箱地址。如果没有收到确认邮件，请点击右边相关链接。"
     mailer:
       confirmation_instructions:
         subject: "滕州一中校友会 注册确认"
       reset_password_instructions:
-        subject: "Reset password instructions"
+        subject: "滕州一中校友会 密码重置"
       unlock_instructions:
-        subject: "Unlock instructions"
+        subject: "滕州一中校友会 帐号解锁"
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
     passwords:
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
-      send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      send_instructions: "我们已经发送一封密码重置邮件到您的邮箱，请查收。"
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
-      updated: "Your password has been changed successfully. You are now signed in."
-      updated_not_active: "Your password has been changed successfully."
+      updated: "您的密码修改成功。 现在您已登录。"
+      updated_not_active: "您的密码修改成功。"
     registrations:
       user:
         destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
@@ -42,20 +42,20 @@ zh-CN:
         update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
         updated: "Your account has been updated successfully."
     sessions:
-      signed_in: "Signed in successfully."
-      signed_out: "Signed out successfully."
+      signed_in: "登录成功。"
+      signed_out: "注销成功。"
       already_signed_out: "Signed out successfully."
     unlocks:
-      send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
+      send_instructions: "您会很快收到一封解封邮件，请耐心等待。"
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
-      unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+      unlocked: "您的帐号已成功地解除锁定，您可以登录已继续。"
   errors:
     messages:
-      already_confirmed: "was already confirmed, please try signing in"
+      already_confirmed: "您的 Email 已经被确认，请直接登录。"
       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
-      expired: "has expired, please request a new one"
-      not_found: "not found"
-      not_locked: "was not locked"
+      expired: "已经过期，请重新发送邮件。"
+      not_found: "没有找到"
+      not_locked: "没有被锁定"
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"

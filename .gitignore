@@ -16,7 +16,7 @@
 /tmp
 
 # Ignore .idea
-.idea/*
+.idea/
 
 # Ignore public assets
 public/assets

@@ -1,4 +1,5 @@
-<h2>Resend unlock instructions</h2>
+<% title '重新发送解除锁定邮件' %>
+<h2>重新发送解除锁定邮件</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
   <%= f.error_notification %>
@@ -9,8 +10,10 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Resend unlock instructions" %>
+    <%= f.button :submit, '发送解除锁定邮件', class:'btn btn-primary float-right' %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<% content_for :sidebar do %>
+    <%= render 'devise/shared/links' %>
+<% end %>

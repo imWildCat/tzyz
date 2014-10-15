@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Node.create([
+                {
+                    name: '校友会',
+                    slug: 'tzyz-aa',
+                },
+                {
+                    name: '问与答',
+                    slug: 'qna',
+                }
+            ])

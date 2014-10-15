@@ -16,14 +16,12 @@ class User < ActiveRecord::Base
 
   def set_role(role)
     case role
-      when :pre_verified # User's email has not been verified.
-        self.role_id = 0
       when :common # Common role
         self.role_id = 1
       when :admin # Administrator
         self.role_id = 9
       else
-        self.role_id = 0
+        self.role_id = 1
     end
   end
 

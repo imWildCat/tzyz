@@ -5,11 +5,11 @@ class CreateUsers < ActiveRecord::Migration
       t.string :nickname, null: false, limit: 8
       # t.string :password_digest, null: false
 
-      t.integer :group_id, null: false, limit: 2, default: 1
-      t.integer :role_id, null: false, limit: 2, default: 0
+      t.integer :group_id, null: false, limit: 3, default: 1, unsigned: true
+      t.integer :role_id, null: false, limit: 3, default: 1, unsigned: true
 
-      t.integer :topics_count, null: false, default: 0
-      t.integer :replies_count, null: false, default: 0
+      t.integer :topics_count, null: false, default: 0, unsigned: true
+      t.integer :replies_count, null: false, default: 0, unsigned: true
 
       t.string :remember_token
 

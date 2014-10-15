@@ -1,8 +1,8 @@
-<p>您好 <%= @resource.nickname %>!</p>
+<%= render 'devise/mailer/shared_header' %>
 
 <p>你需要点击下面的链接以激活您的帐号:</p>
 
-<p><%= link_to '确认', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to confirmation_url(@resource, confirmation_token: @token), confirmation_url(@resource, confirmation_token: @token) %></p>
 
 
 <%= render 'devise/mailer/shared_footer' %>

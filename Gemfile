@@ -22,6 +22,8 @@ gem 'bootstrap-will_paginate', '0.0.9'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.16'
 
+gem 'activerecord-mysql-unsigned', '~> 0.2.0'
+
 # Forms
 gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 'master'
 # gem 'simple_form'

@@ -1,0 +1,100 @@
+<div class="single-topic">
+  <div class="topic">
+    <div class="meta">
+      <div class="info">
+        <div>
+          <a class="node-name" href="#">节点名</a>
+          <span class="glyphicon glyphicon-time"></span> <span class="time"><%= @topic.created_at %></span>
+          <span class="glyphicon glyphicon-eye-open"></span> <span class="click"><%= @topic.click_count %> 次点击</span>
+          <span class="glyphicon glyphicon-star-empty"></span> <span class="favourite">21 人收藏</span>
+          <span class="reply-count"><%= @topic.reply_count %></span>
+        </div>
+      </div>
+      <div class="author">
+        <div class="avatar">
+          <img src="<%= @topic.user.avatar_url %>" alt="avatar"/>
+        </div>
+        <div class="name"><a href="#"> <%= @topic.user.nickname %> </a></div>
+      </div>
+
+    </div>
+    <div class="title">
+      <h4><%= @topic.title %></h4>
+    </div>
+    <div class="content">
+      <%= @topic.content %>
+    </div>
+  </div>
+  <div class="toolbar">
+    <div class="item">
+      <a class="action" href="#">
+        <span class="glyphicon glyphicon-star-empty"></span>
+        <span>收藏</span>
+      </a>
+    </div>
+    <div class="item">
+      <a class="action" href="#">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        <span>感谢</span>
+      </a>
+    </div>
+    <div class="item float-right">
+      <a class="action" href="#">
+        <span class="glyphicon glyphicon-eye-close"></span>
+        <span>忽略主题</span>
+      </a>
+    </div>
+  </div>
+
+
+  <!--<div class="replies">-->
+    <!--@foreach ($replies as $reply)-->
+    <!--<div class="reply" id="position-{{{ $reply->position }}}">-->
+      <!--<div class="avatar">-->
+        <!--<img src="{{ $reply->author->avatarUrl() }}" alt="user-avatar-{{{ $reply->author->id }}}"/>-->
+      <!--</div>-->
+      <!--<div class="right-column">-->
+        <!--<div class="meta">-->
+          <!--<a class="author" href="#"> <span class="name">{{{ $reply->author->name }}}</span></a>-->
+          <!--<span class="time"> {{{ $reply->created_at }}}</span>-->
+          <!--<span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count">3</span></span>-->
+
+          <!--<div class="actions">-->
+            <!--<a class="action" href="#">-->
+              <!--<span class="glyphicon glyphicon-thumbs-up"></span>-->
+              <!--<span class="name">感谢</span>-->
+            <!--</a>-->
+            <!--<a class="action" href="#">-->
+              <!--<span class="glyphicon glyphicon-comment"></span>-->
+              <!--<span class="name">回复</span>-->
+            <!--</a>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="content">-->
+          <!--{{ nl2br(e($reply->content)) }}-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--@endforeach-->
+  <!--</div>-->
+  <!--<div class="row">-->
+    <!--<div class="col-md-12">-->
+      <!--{{ $replies->links() }}-->
+    <!--</div>-->
+    <!--<div class="col-md-12" id="reply-topic">-->
+      <!--<hr/>-->
+      <!--{{ Form::open(array('action' => array('TopicController@postReply', 'id' => $topic->id), 'role' => 'form'))-->
+      <!--}}-->
+      <!--<div class="form-group">-->
+        <!--<div class="form-group">-->
+          <!--{{ Form::label('content', Lang::get('topic.leave_reply')) }}-->
+          <!--<?php echo Form::textarea('content', null, array('class' => 'form-control',)) ?>-->
+        <!--</div>-->
+        <!--<button type="submit" class="btn btn-default">@lang('topic.reply')</button>-->
+      <!--</div>-->
+      <!--{{ Form::close() }}-->
+    <!--</div>-->
+  <!--</div>-->
+
+</div>

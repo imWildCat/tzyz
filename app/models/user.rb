@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
   validates :password, length: {minimum: 6}
 
+  has_many :topics, dependent: :destroy
+  has_many :replies, dependent: :destroy
 
   def set_role(role)
     case role
@@ -27,6 +29,10 @@ class User < ActiveRecord::Base
 
   def confirmation_url(resource, token)
     'http://test'
+  end
+
+  def avatar_url
+    'http://no_avatar'
   end
 
   # def send_devise_notification(notification, *args)

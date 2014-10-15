@@ -1,5 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
+
+
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_record/railtie"
@@ -13,6 +15,8 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+ENV.update YAML.load_file('config/application.yml')[Rails.env] rescue {}
+
 module Tzyz
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -20,7 +24,7 @@ module Tzyz
     # -- all .rb files in that directory are automatically loaded.
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
-    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
+    # Run "rake -D timer" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Beijing'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.

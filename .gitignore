@@ -22,4 +22,11 @@
 public/assets
 
 # Deployment
+Capfile
+config/deploy.rb
 config/deploy
+
+# Local configuration
+config/application.yml
+config/database.yml
+config/secrets.yml

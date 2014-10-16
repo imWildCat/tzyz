@@ -22,6 +22,8 @@ gem 'mysql2', '~> 0.3.16'
 
 gem 'activerecord-mysql-unsigned', '~> 0.2.0'
 
+gem 'paranoia', '~> 2.0.2'
+
 # Forms
 gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 'master'
 # gem 'simple_form'

@@ -4,9 +4,16 @@ class User < ActiveRecord::Base
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
+  # Relationships
+  has_many :messages, foreign_key: 'receiver_id', dependent: :destroy, class_name: 'Message'
+  # has_many :received_messages, through: :messages, source: :receiver
+  has_many :sent_messages, foreign_key: 'sender_id', class_name: 'Message'
+
+
   before_save {
     self.email = email.downcase
   }
+
 
   validates :nickname, presence: true, length: {minimum: 2, maximum: 8}, uniqueness: {case_sensitive: false}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

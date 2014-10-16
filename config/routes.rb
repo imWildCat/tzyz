@@ -3,14 +3,17 @@ Rails.application.routes.draw do
   get 'home/about'
 
   devise_for :users, path: 'account', controllers: {
-    registrations: :registrations,
-    sessions: :sessions
+      registrations: :registrations,
+      sessions: :sessions
   }
 
   resources :topics do
     resources :replies, only: [:create] # may need to implement edit/update/destroy later
   end
 
+
+
+  resource :user_profile, except: :new, except: [:new, :show, :destroy], controller: :user_profile
 
 
   # The priority is based upon order of creation: first created -> highest priority.

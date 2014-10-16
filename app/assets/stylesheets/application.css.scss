@@ -2,9 +2,6 @@
  *= require_self
  */
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
 @import "mixins/global";
 @import "mixins/top_menu";
 @import "mixins/sidebar";

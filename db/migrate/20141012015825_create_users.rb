@@ -1,9 +1,13 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
-      # t.string :email, null: false
+
+      ## Database authenticatable
+      t.string :email,              null: false, default: ''
+      t.string :encrypted_password, null: false, default: ''
+
       t.string :nickname, null: false, limit: 8
-      # t.string :password_digest, null: false
+
 
       t.integer :group_id, null: false, limit: 3, default: 1, unsigned: true
       t.integer :role_id, null: false, limit: 3, default: 1, unsigned: true

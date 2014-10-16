@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141015183315) do
+ActiveRecord::Schema.define(version: 20141016103504) do
+
+  create_table "messages", force: true do |t|
+    t.integer  "receiver_id",             unsigned: true
+    t.integer  "sender_id",               unsigned: true
+    t.boolean  "is_read",                                 default: false
+    t.string   "content",     limit: 511,                                 null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "deleted_at"
+  end
+
+  add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id", using: :btree
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
   create_table "node_categories", force: true do |t|
     t.string   "name",       limit: 15, null: false
@@ -59,7 +71,22 @@ ActiveRecord::Schema.define(version: 20141015183315) do
 
   add_index "topics", ["user_id", "last_modified_at"], name: "index_topics_on_user_id_and_last_modified_at", using: :btree
 
+  create_table "user_avatars", id: false, force: true do |t|
+    t.boolean "is_enabled", default: true, null: false
+    t.string  "ttk_url"
+  end
+
+  create_table "user_profiles", primary_key: "user_id", force: true do |t|
+    t.string "name",         limit: 15
+    t.string "city",         limit: 31
+    t.string "website"
+    t.string "weibo",        limit: 63
+    t.string "introduction"
+  end
+
   create_table "users", force: true do |t|
+    t.string   "email",                                            default: "", null: false
+    t.string   "encrypted_password",                               default: "", null: false
     t.string   "nickname",               limit: 8,                              null: false
     t.integer  "group_id",               limit: 3, unsigned: true, default: 1,  null: false
     t.integer  "role_id",                limit: 3, unsigned: true, default: 1,  null: false
@@ -68,8 +95,6 @@ ActiveRecord::Schema.define(version: 20141015183315) do
     t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                                            default: "", null: false
-    t.string   "encrypted_password",                               default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

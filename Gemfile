@@ -13,7 +13,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'turbolinks', '~> 2.3.0'
 gem 'jquery-turbolinks', '~> 2.0.2'
 gem 'bootstrap-sass', '~> 3.2.0.2'
-gem 'bootstrap_helper', '~> 4.2.3'
+# gem 'bootstrap_helper', '~> 4.2.3' # Removed for: https://ruby-china.org/topics/6720
 
 gem 'bcrypt-ruby', '3.1.5'
 gem 'will_paginate', '3.0.4'
@@ -23,7 +23,9 @@ gem 'bootstrap-will_paginate', '0.0.9'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.16'
 
+# gem 'protected_attributes', '~> 1.0.8'
 gem 'activerecord-mysql-unsigned', '~> 0.2.0'
+gem 'paranoia', '~> 2.0.2'
 
 # Forms
 gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 'master'

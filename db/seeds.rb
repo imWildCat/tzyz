@@ -22,34 +22,39 @@ default_node_categories.nodes.create([
     }
                                      ])
 
+if Rails.env == 'development'
+  @common_password = '123456'
+  User.create! :nickname => 'John Doe', :email => 'john@example.com', :role_id => 1, :password => @common_password, :password_confirmation => @common_password, :confirmed_at => '2014-10-16 08:59:37'
 
-admin = User.create(
-    nickname: 'admin',
-    email: 'admin@tzyz.com',
-    password: 'password',
-    confirmed_at: '2014-10-15 20:18:14',
-    confirmation_sent_at: '2014-10-15 20:18:13'
-)
+  admin = User.create(
+      nickname: 'admin',
+      email: 'admin@tzyz.com',
+      password: 'password',
+      confirmed_at: '2014-10-15 20:18:14',
+      confirmation_sent_at: '2014-10-15 20:18:13'
+  )
 
 
-qna_node = Node.find_by_slug('qna')
-(1..100).each do |count|
-  admin.topics.create(
+  qna_node = Node.find_by_slug('qna')
+  (1..100).each do |count|
+    admin.topics.create(
+        node_id: qna_node.id,
+        title: "Hello world!  --#{count}",
+        content: LOREM_IPSUM
+    )
+  end
+
+  t = admin.topics.create(
       node_id: qna_node.id,
-      title: "Hello world!  --#{count}",
-      content: LOREM_IPSUM
+      title: 'Hello world! --Reply test',
+      content: 'Reply me!'
   )
+
+  (1..100).each do |count|
+    t.replies.create(
+        user: admin,
+        content: "Reply test! ---#{count}"
+    )
+  end
 end
 
-t = admin.topics.create(
-    node_id: qna_node.id,
-    title: 'Hello world! --Reply test',
-    content: 'Reply me!'
-)
-
-(1..100).each do |count|
-  t.replies.create(
-      user: admin,
-      content: "Reply test! ---#{count}"
-  )
-end

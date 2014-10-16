@@ -31,19 +31,41 @@ ActiveRecord::Schema.define(version: 20141016011204) do
   end
 
   create_table "nodes", force: true do |t|
-    t.integer  "node_category_id",            unsigned: true,                 null: false
-    t.string   "name",             limit: 15,                                 null: false
-    t.string   "slug",             limit: 31,                                 null: false
+    t.string   "name",       limit: 15,                                 null: false
+    t.string   "slug",       limit: 31,                                 null: false
     t.string   "decription"
-    t.boolean  "need_login",                                  default: false, null: false
-    t.integer  "min_group",        limit: 3,  unsigned: true, default: 0,     null: false
-    t.integer  "min_role",         limit: 3,  unsigned: true, default: 0,     null: false
+    t.boolean  "need_login",                            default: false, null: false
+    t.integer  "min_group",  limit: 3,  unsigned: true, default: 0,     null: false
+    t.integer  "min_role",   limit: 3,  unsigned: true, default: 0,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "nodes", ["name"], name: "index_nodes_on_name", unique: true, using: :btree
   add_index "nodes", ["slug"], name: "index_nodes_on_slug", unique: true, using: :btree
+
+  create_table "replies", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "topic_id",   null: false
+    t.integer  "user_id",    null: false
+    t.text     "content",    null: false
+  end
+
+  add_index "replies", ["topic_id", "user_id"], name: "index_replies_on_topic_id_and_user_id", using: :btree
+
+  create_table "topics", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id",                                  null: false
+    t.string   "title",            limit: 127,             null: false
+    t.integer  "click_count",                  default: 0, null: false
+    t.integer  "reply_count",                  default: 0, null: false
+    t.text     "content",                                  null: false
+    t.datetime "last_modified_at"
+  end
+
+  add_index "topics", ["user_id", "last_modified_at"], name: "index_topics_on_user_id_and_last_modified_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "nickname",               limit: 8,                              null: false

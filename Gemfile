@@ -1,4 +1,4 @@
-source 'https://ruby.taobao.org'
+source 'https://rubygems.org'
 
 ruby '2.1.3'
 
@@ -17,6 +17,7 @@ gem 'bootstrap_helper', '~> 4.2.3'
 
 gem 'bcrypt-ruby', '3.1.5'
 gem 'will_paginate', '3.0.4'
+gem 'will_paginate-bootstrap', '1.0.1'
 gem 'bootstrap-will_paginate', '0.0.9'
 
 # Use mysql as the database for Active Record

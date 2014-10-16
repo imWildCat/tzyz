@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def avatar_url
-    'http://no_avatar'
+    '/assets/no_avatar.png'
   end
 
   # def send_devise_notification(notification, *args)

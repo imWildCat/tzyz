@@ -3,6 +3,7 @@ class CreateTopics < ActiveRecord::Migration
     create_table :topics do |t|
 
       t.timestamps
+      t.integer :node_id, null: false
       t.integer :user_id, null: false
       t.string  :title, null: false, limit: 127
       t.integer :click_count, null: false, default: 0

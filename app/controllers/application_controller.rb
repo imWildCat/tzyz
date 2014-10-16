@@ -4,4 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   layout 'application'
+
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
 end

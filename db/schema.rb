@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20141015183315) do
   create_table "topics", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "node_id",                                  null: false
     t.integer  "user_id",                                  null: false
     t.string   "title",            limit: 127,             null: false
     t.integer  "click_count",                  default: 0, null: false
@@ -59,20 +60,20 @@ ActiveRecord::Schema.define(version: 20141015183315) do
   add_index "topics", ["user_id", "last_modified_at"], name: "index_topics_on_user_id_and_last_modified_at", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "nickname",               limit: 8,              null: false
-    t.integer  "group_id",                         default: 1,  null: false
-    t.integer  "role_id",                          default: 0,  null: false
-    t.integer  "topics_count",                     default: 0,  null: false
-    t.integer  "replies_count",                    default: 0,  null: false
+    t.string   "nickname",               limit: 8,                              null: false
+    t.integer  "group_id",               limit: 3, unsigned: true, default: 1,  null: false
+    t.integer  "role_id",                limit: 3, unsigned: true, default: 1,  null: false
+    t.integer  "topics_count",                     unsigned: true, default: 0,  null: false
+    t.integer  "replies_count",                    unsigned: true, default: 0,  null: false
     t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                            default: "", null: false
-    t.string   "encrypted_password",               default: "", null: false
+    t.string   "email",                                            default: "", null: false
+    t.string   "encrypted_password",                               default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                    default: 0,  null: false
+    t.integer  "sign_in_count",                    unsigned: true, default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -80,7 +81,7 @@ ActiveRecord::Schema.define(version: 20141015183315) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.integer  "failed_attempts",                  default: 0,  null: false
+    t.integer  "failed_attempts",                  unsigned: true, default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
   end

@@ -7,11 +7,11 @@ Rails.application.routes.draw do
     sessions: :sessions
   }
 
-  resources :topic do
-
+  resources :topics do
+    resources :replies, only: [:create] # may need to implement edit/update/destroy later
   end
 
-  resources :replie
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -13,7 +13,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'turbolinks', '~> 2.3.0'
 gem 'jquery-turbolinks', '~> 2.0.2'
 gem 'bootstrap-sass', '~> 3.2.0.2'
-gem 'bootstrap_helper', '~> 4.2.3'
+# gem 'bootstrap_helper', '~> 4.2.3' # Removed for: https://ruby-china.org/topics/6720
 
 gem 'bcrypt-ruby', '3.1.5'
 gem 'will_paginate', '3.0.4'

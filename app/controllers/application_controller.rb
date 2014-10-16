@@ -3,5 +3,12 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  layout 'application'
+  protected
+  def check_login
+    unless current_user
+      flash[:warning] = '您必须登录后才能修改资料。'
+      redirect_to new_user_session_path
+    end
+
+  end
 end

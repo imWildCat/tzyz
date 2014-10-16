@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   get 'home/about'
 
   devise_for :users, path: 'account', controllers: {
-    registrations: :registrations,
-    sessions: :sessions
+      registrations: :registrations,
+      sessions: :sessions
   }
 
   resources :topic do
@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   end
 
   resources :replie
+
+  resource :user_profile, except: :new, except: [:new, :show, :destroy], controller: :user_profile
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

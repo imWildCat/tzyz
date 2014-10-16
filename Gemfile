@@ -22,8 +22,8 @@ gem 'bootstrap-will_paginate', '0.0.9'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.16'
 
+# gem 'protected_attributes', '~> 1.0.8'
 gem 'activerecord-mysql-unsigned', '~> 0.2.0'
-
 gem 'paranoia', '~> 2.0.2'
 
 # Forms

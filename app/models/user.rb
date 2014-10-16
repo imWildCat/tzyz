@@ -5,11 +5,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   # Relationships
+  #   - Message
   has_many :messages, foreign_key: 'receiver_id', dependent: :destroy, class_name: 'Message'
   # has_many :received_messages, through: :messages, source: :receiver
   has_many :sent_messages, foreign_key: 'sender_id', class_name: 'Message'
 
+  has_one :user_profile #, foreign_key: :id
 
+  #   - UserProfile
   before_save {
     self.email = email.downcase
   }

@@ -3,7 +3,7 @@ class Reply < ActiveRecord::Base
   belongs_to :user
 
   after_save do
-    self.topic.reply_count += 1
+    self.topic.replies_count += 1
     #self.topic.updated_at= self.created_at
     self.topic.save
   end

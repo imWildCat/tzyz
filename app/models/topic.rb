@@ -8,8 +8,8 @@ class Topic < ActiveRecord::Base
   end
 
 
-  def click_count_up
-    self.click_count += 1
+  def clicks_count_up
+    self.clicks_count += 1
     self.save
   end
 end

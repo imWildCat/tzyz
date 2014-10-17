@@ -8,7 +8,7 @@ GIT
       activemodel (~> 4.0)
 
 GEM
-  remote: https://rubygems.org/
+  remote: https://ruby.taobao.org/
   specs:
     actionmailer (4.1.6)
       actionpack (= 4.1.6)

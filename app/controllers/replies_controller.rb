@@ -19,7 +19,7 @@ include RepliesHelper
 
       if @reply.save
         flash[:success] = '回复成功！'
-        position = @topic.reply_count + 1
+        position = @topic.replies_count + 1
         page = get_page position
         redirect_to topic_path(:id => @topic.id, :anchor => "position-#{position}", :page => page)
         return

@@ -58,18 +58,19 @@ ActiveRecord::Schema.define(version: 20141016103504) do
   add_index "replies", ["topic_id", "user_id"], name: "index_replies_on_topic_id_and_user_id", using: :btree
 
   create_table "topics", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                               null: false
     t.integer  "node_id",                                  null: false
     t.integer  "user_id",                                  null: false
     t.string   "title",            limit: 127,             null: false
-    t.integer  "click_count",                  default: 0, null: false
-    t.integer  "reply_count",                  default: 0, null: false
+    t.integer  "clicks_count",                 default: 0, null: false
+    t.integer  "replies_count",                default: 0, null: false
     t.text     "content",                                  null: false
     t.datetime "last_modified_at"
+    t.datetime "last_replied_at"
   end
 
-  add_index "topics", ["user_id", "last_modified_at"], name: "index_topics_on_user_id_and_last_modified_at", using: :btree
+  add_index "topics", ["last_modified_at"], name: "index_topics_on_last_modified_at", using: :btree
+  add_index "topics", ["user_id"], name: "index_topics_on_user_id", using: :btree
 
   create_table "user_avatars", id: false, force: true do |t|
     t.boolean "is_enabled", default: true, null: false

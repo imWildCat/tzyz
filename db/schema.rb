@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20141016103504) do
     t.integer  "node_category_id",            unsigned: true,                 null: false
     t.string   "name",             limit: 15,                                 null: false
     t.string   "slug",             limit: 31,                                 null: false
-    t.string   "decription"
+    t.string   "description"
     t.boolean  "need_login",                                  default: false, null: false
     t.integer  "min_group",        limit: 3,  unsigned: true, default: 0,     null: false
     t.integer  "min_role",         limit: 3,  unsigned: true, default: 0,     null: false
@@ -58,19 +58,19 @@ ActiveRecord::Schema.define(version: 20141016103504) do
   add_index "replies", ["topic_id", "user_id"], name: "index_replies_on_topic_id_and_user_id", using: :btree
 
   create_table "topics", force: true do |t|
-    t.datetime "created_at",                               null: false
-    t.integer  "node_id",                                  null: false
-    t.integer  "user_id",                                  null: false
-    t.string   "title",            limit: 127,             null: false
-    t.integer  "clicks_count",                 default: 0, null: false
-    t.integer  "replies_count",                default: 0, null: false
-    t.text     "content",                                  null: false
-    t.datetime "last_modified_at"
+    t.datetime "created_at",                              null: false
+    t.integer  "node_id",                                 null: false
+    t.integer  "author_id",                               null: false
+    t.integer  "refresher_id",                            null: false
+    t.string   "title",           limit: 127,             null: false
+    t.integer  "clicks_count",                default: 0, null: false
+    t.integer  "replies_count",               default: 0, null: false
+    t.text     "content",                                 null: false
     t.datetime "last_replied_at"
   end
 
-  add_index "topics", ["last_modified_at"], name: "index_topics_on_last_modified_at", using: :btree
-  add_index "topics", ["user_id"], name: "index_topics_on_user_id", using: :btree
+  add_index "topics", ["author_id"], name: "index_topics_on_author_id", using: :btree
+  add_index "topics", ["last_replied_at"], name: "index_topics_on_last_replied_at", using: :btree
 
   create_table "user_avatars", id: false, force: true do |t|
     t.boolean "is_enabled", default: true, null: false

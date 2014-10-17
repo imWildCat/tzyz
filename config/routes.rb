@@ -7,13 +7,15 @@ Rails.application.routes.draw do
       sessions: :sessions
   }
 
-  resources :topics do
+  resources :topics, only: [:show] do
     resources :replies, only: [:create] # may need to implement edit/update/destroy later
   end
 
+  get 'node/:slug' => 'node#show', as: 'node'
 
 
-  resource :user_profile, except: :new, except: [:new, :show, :destroy], controller: :user_profile
+
+  resource :user_profile, except: [:new, :show, :destroy], controller: :user_profile
 
 
   # The priority is based upon order of creation: first created -> highest priority.

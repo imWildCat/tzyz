@@ -5,4 +5,9 @@ module ApplicationHelper
     title = page_title.to_s ? "#{ page_title.to_s} - #{site_name}" : site_name rescue 'SITE_NAME'
     content_for :title, content_tag('title', title, nil, false)
   end
+
+  def current_page
+    page = params[:page]
+    page.nil? ? 1 : page.to_i
+  end
 end

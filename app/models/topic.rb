@@ -1,15 +1,29 @@
 class Topic < ActiveRecord::Base
-  belongs_to :user
+
+  belongs_to :author, class_name: 'User'
+  belongs_to :node
 
   has_many :replies, dependent: :destroy
 
-  def author
-    self.user
+  before_create do
+    self.refresher_id = self.author_id
+    self.last_replied_at = Time.now
   end
 
+  def self.replies_per_page
+    20
+  end
 
   def clicks_count_up
     self.clicks_count += 1
     self.save
   end
+
+  # Caution
+  # Returns nil if refresher not found.
+  def refresher
+    User.find_by_id(self.refresher_id)
+  end
+
+
 end

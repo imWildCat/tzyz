@@ -1,6 +1,9 @@
 <div class="cat-tab">
   <ul>
     <li class="selected"><a href="#">全部</a></li>
+    <% @nodes.each do |n| %>
+        <li><%= link_to n.name, node_path(n.slug) %></li>
+    <% end %>
     <li><a href="#">创意</a></li>
     <li><a href="#">生活</a></li>
     <li><a href="#">城市</a></li>
@@ -60,4 +63,4 @@
   </div>
 </div>
 
-<%= render 'sidebar' %>
+<%= render '/share/sidebar' %>

@@ -18,6 +18,7 @@ default_node_categories.nodes.create([
     },
     {
         name: '问与答',
+        description: '一个更好的世界需要你持续地提出好问题。',
         slug: 'qna',
     }
                                      ])

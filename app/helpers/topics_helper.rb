@@ -1,7 +1,7 @@
 module TopicsHelper
 
   def get_first_position_in(page)
-    (page - 1) * 20 + 1
+    (page - 1) * Topic.replies_per_page + 1
   end
 
   def valid_click?

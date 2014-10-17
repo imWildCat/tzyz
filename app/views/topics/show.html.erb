@@ -1,9 +1,11 @@
+<% title @topic.title %>
+
 <div class="single-topic">
   <div class="topic">
     <div class="meta">
       <div class="info">
         <div>
-          <a class="node-name" href="#">节点名</a>
+          <%= link_to @topic.node.name, node_path(@topic.node.slug), class: 'node-name' %>
           <span class="glyphicon glyphicon-time"></span> <span class="time"><%= @topic.created_at %></span>
           <span class="glyphicon glyphicon-eye-open"></span> <span class="click"><%= @topic.clicks_count %> 次点击</span>
           <span class="glyphicon glyphicon-star-empty"></span> <span class="favourite">21 人收藏</span>
@@ -12,9 +14,9 @@
       </div>
       <div class="author">
         <div class="avatar">
-          <img src="<%= @topic.user.avatar_url %>" alt="avatar"/>
+          <img src="<%= @topic.author.avatar_url %>" alt="avatar"/>
         </div>
-        <div class="name"><a href="#"> <%= @topic.user.nickname %> </a></div>
+        <div class="name"><a href="#"> <%= @topic.author.nickname %> </a></div>
       </div>
 
     </div>

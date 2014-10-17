@@ -1,0 +1,45 @@
+<% title @node.name %>
+<div class="node-page">
+  <div class="node-meta">
+    <div class="new-topic">
+      <a href="#" class="btn btn-success">新话题</a>
+    </div>
+    <div class="left">
+      <span class="node-name"><%= @node.name %></span>
+      <span class="node-topic-count"><%= "#{@node.topics.count} 话题" %></span>
+      <!--may have a better way to deal with empty description-->
+      <p class="node-description"><%= @node.description.blank? ? '　' : @node.description %></p>
+    </div>
+  </div>
+
+  <div class="topic-list">
+    <% @topics.each do |t| %>
+        <div class="thread">
+          <div class="avatar">
+            <img src="<%= t.author.avatar_url %>" alt="avatar"/>
+          </div>
+          <div class="meta">
+            <div class="reply-count">
+              <span><%= t.replies_count %></span>
+            </div>
+            <div class="title">
+              <p><%= link_to t.title, t  %></p>
+            </div>
+            <div class="info">
+              <p>
+                <a class="author" href="#"><%= t.author.nickname %></a> <span class="divider">•</span>
+                <span class="time"><%= t.last_replied_at %></span> <span class="divider">•</span>
+                <span class="refresher-label">最后回复来自</span> <a class="refresher"><%= t.refresher.nickname %></a>
+              </p>
+            </div>
+          </div>
+        </div>
+    <% end %>
+
+
+
+    <!--@endforeach-->
+  </div>
+  <%= will_paginate @topics, renderer: BootstrapPagination::Rails %>
+</div>
+<%= render 'share/sidebar' %>

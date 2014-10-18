@@ -1,7 +1,9 @@
 /*
+ *= require bootstrap
  *= require_self
  */
 
+@import "mixins/normalize";
 @import "mixins/global";
 @import "mixins/top_menu";
 @import "mixins/sidebar";

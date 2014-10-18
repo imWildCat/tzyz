@@ -1,8 +1,8 @@
 class UserProfileController < ApplicationController
-  before_action :check_login, :check_profile
+  before_action :check_login
 
   def edit
-    @current_user_profile = current_user.user_profile
+    @current_user_profile = current_user.profile
   end
 
   def update
@@ -12,14 +12,9 @@ class UserProfileController < ApplicationController
   end
 
   protected
-  def check_profile
-    unless current_user.user_profile
-      current_user.create_user_profile.save
-    end
-  end
 
   def user_profile_params
-    params.require(:user_profile).permit(:name, :city)
+    params.require(:user_avatar).permit(:name, :city, :website, :weibo, :introduction)
   end
 
 end

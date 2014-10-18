@@ -11,12 +11,13 @@ class User < ActiveRecord::Base
   has_many :sent_messages, foreign_key: 'sender_id', class_name: 'Message'
 
   #   - UserProfile
-  has_one :user_profile #, foreign_key: :id
+  has_one :user_profile, foreign_key: :owner_id
+  #   - UserAvatar
+  has_one :user_avatar, foreign_key: :owner_id
 
   #   - Topic & Reply
   has_many :topics, dependent: :destroy, foreign_key: 'author_id'
   has_many :replies, dependent: :destroy, foreign_key: 'author_id'
-
 
 
   before_save do
@@ -28,7 +29,6 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
   validates :password, length: {minimum: 6}
-
 
 
   def set_role(role)
@@ -46,8 +46,35 @@ class User < ActiveRecord::Base
     'http://test'
   end
 
+  def profile
+    if user_profile.nil?
+      build_user_profile.save
+      user_profile
+    else
+        user_profile
+    end
+  end
+
+  # No caching
+  # @return [String]
+  def avatar
+    if user_avatar
+      user_avatar
+    else
+      build_user_avatar.save
+      user_avatar
+    end
+  end
+
+  # With caching
   def avatar_url
-    '/assets/no_avatar.png'
+    Rails.cache.fetch(avatar_cache_key, expires_in: 1.days) do
+      avatar.url
+    end
+  end
+
+  def delete_cached_avatar_url
+    Rails.cache.delete(avatar_cache_key)
   end
 
   # def send_devise_notification(notification, *args)
@@ -55,6 +82,9 @@ class User < ActiveRecord::Base
   # end
 
   private
+  def avatar_cache_key
+    "user_#{id}_avatar_url"
+  end
 
 
 end

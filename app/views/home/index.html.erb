@@ -16,6 +16,36 @@
   </ul>
 </div>
 <div class="topic-list of-index">
+
+  <% cache('index_topic_list_view', expires_in: 30.seconds) do %>
+      <% @topics.each do |t| %>
+          <div class="thread">
+            <div class="avatar">
+              <%= image_tag(t.author.avatar_url, alt: 'avatar') %>
+            </div>
+            <div class="meta">
+              <div class="reply-count">
+                <span><%= t.replies_count %></span>
+              </div>
+
+              <div class="title">
+                <p><%= link_to t.title, t %></p>
+              </div>
+              <div class="info">
+                <p>
+                  <a class="node-name" href="#"><%= t.node.name %></a> <span class="divider">•</span>
+                  <%= link_to t.author.nickname, t.author, class: 'author' %>
+                  <span class="divider">•</span>
+                  <span class="time"><%= t.last_replied_at %></span> <span class="divider">•</span>
+                  <span class="refresher-label">最后回复来自</span>
+                  <%= link_to t.refresher.nickname, t.refresher, class: 'author' %>
+                </p>
+              </div>
+            </div>
+          </div>
+      <% end %>
+  <% end %>
+
   <div class="thread">
     <div class="avatar">
       <img src="https://cdn.v2ex.com/avatar/08b0/ad8c/59231_normal.png?m=1395998555" alt="avatar">

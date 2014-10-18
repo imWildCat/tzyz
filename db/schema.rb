@@ -14,11 +14,11 @@
 ActiveRecord::Schema.define(version: 20141016103504) do
 
   create_table "messages", force: true do |t|
-    t.integer  "receiver_id",             unsigned: true
-    t.integer  "sender_id",               unsigned: true
-    t.boolean  "is_read",                                 default: false
-    t.string   "content",     limit: 511,                                 null: false
-    t.datetime "created_at",                                              null: false
+    t.integer  "receiver_id"
+    t.integer  "sender_id"
+    t.boolean  "is_read",                 default: false
+    t.string   "content",     limit: 511,                 null: false
+    t.datetime "created_at",                              null: false
     t.datetime "deleted_at"
   end
 
@@ -33,13 +33,13 @@ ActiveRecord::Schema.define(version: 20141016103504) do
   end
 
   create_table "nodes", force: true do |t|
-    t.integer  "node_category_id",            unsigned: true,                 null: false
-    t.string   "name",             limit: 15,                                 null: false
-    t.string   "slug",             limit: 31,                                 null: false
+    t.integer  "node_category_id",                            null: false
+    t.string   "name",             limit: 15,                 null: false
+    t.string   "slug",             limit: 31,                 null: false
     t.string   "description"
-    t.boolean  "need_login",                                  default: false, null: false
-    t.integer  "min_group",        limit: 3,  unsigned: true, default: 0,     null: false
-    t.integer  "min_role",         limit: 3,  unsigned: true, default: 0,     null: false
+    t.boolean  "need_login",                  default: false, null: false
+    t.integer  "min_group",        limit: 3,  default: 0,     null: false
+    t.integer  "min_role",         limit: 3,  default: 0,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -72,12 +72,13 @@ ActiveRecord::Schema.define(version: 20141016103504) do
   add_index "topics", ["author_id"], name: "index_topics_on_author_id", using: :btree
   add_index "topics", ["last_replied_at"], name: "index_topics_on_last_replied_at", using: :btree
 
-  create_table "user_avatars", id: false, force: true do |t|
-    t.boolean "is_enabled", default: true, null: false
+  create_table "user_avatars", primary_key: "owner_id", force: true do |t|
+    t.boolean "is_enabled",            default: true, null: false
+    t.string  "filename",   limit: 31
     t.string  "ttk_url"
   end
 
-  create_table "user_profiles", primary_key: "user_id", force: true do |t|
+  create_table "user_profiles", primary_key: "owner_id", force: true do |t|
     t.string "name",         limit: 15
     t.string "city",         limit: 31
     t.string "website"
@@ -86,20 +87,20 @@ ActiveRecord::Schema.define(version: 20141016103504) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                                            default: "", null: false
-    t.string   "encrypted_password",                               default: "", null: false
-    t.string   "nickname",               limit: 8,                              null: false
-    t.integer  "group_id",               limit: 3, unsigned: true, default: 1,  null: false
-    t.integer  "role_id",                limit: 3, unsigned: true, default: 1,  null: false
-    t.integer  "topics_count",                     unsigned: true, default: 0,  null: false
-    t.integer  "replies_count",                    unsigned: true, default: 0,  null: false
+    t.string   "email",                            default: "", null: false
+    t.string   "encrypted_password",               default: "", null: false
+    t.string   "nickname",               limit: 8,              null: false
+    t.integer  "group_id",               limit: 3, default: 1,  null: false
+    t.integer  "role_id",                limit: 3, default: 1,  null: false
+    t.integer  "topics_count",                     default: 0,  null: false
+    t.integer  "replies_count",                    default: 0,  null: false
     t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                    unsigned: true, default: 0,  null: false
+    t.integer  "sign_in_count",                    default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -107,7 +108,7 @@ ActiveRecord::Schema.define(version: 20141016103504) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.integer  "failed_attempts",                  unsigned: true, default: 0,  null: false
+    t.integer  "failed_attempts",                  default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
   end

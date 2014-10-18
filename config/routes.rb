@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   end
 
   get 'node/:slug' => 'nodes#show', as: 'node'
+  get 'user/:id' => 'user#show', as: 'user'
 
   resource :user_profile, except: [:new, :show, :destroy], controller: :user_profile
+  resource :user_avatar, only: :update, controller: :user_avatar
 
 
   # for instructions of routing, please check the office-site's guide

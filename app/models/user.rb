@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   #   - Topic & Reply
   has_many :topics, dependent: :destroy, foreign_key: 'author_id'
-  has_many :replies, dependent: :destroy
+  has_many :replies, dependent: :destroy, foreign_key: 'author_id'
 
 
 

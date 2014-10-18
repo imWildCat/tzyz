@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe NodeController do
+describe NodesController do
 
 end

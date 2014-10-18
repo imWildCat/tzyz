@@ -51,11 +51,11 @@ ActiveRecord::Schema.define(version: 20141016103504) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "topic_id",   null: false
-    t.integer  "user_id",    null: false
+    t.integer  "author_id",  null: false
     t.text     "content",    null: false
   end
 
-  add_index "replies", ["topic_id", "user_id"], name: "index_replies_on_topic_id_and_user_id", using: :btree
+  add_index "replies", ["topic_id", "author_id"], name: "index_replies_on_topic_id_and_author_id", using: :btree
 
   create_table "topics", force: true do |t|
     t.datetime "created_at",                              null: false

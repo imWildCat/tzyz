@@ -6,15 +6,13 @@ include RepliesHelper
     content = params[:reply][:content]
 
     if current_user
-      user = current_user
-
       if content.to_s.blank?
         flash[:error] = '回复内容为空，请输入您的内容。'
         redirect_to :back
         return
       end
 
-      @reply = Reply.new(topic_id: @topic.id, user_id: user.id,
+      @reply = Reply.new(topic_id: @topic.id, author_id: current_user.id,
                          content: content)
 
       if @reply.save

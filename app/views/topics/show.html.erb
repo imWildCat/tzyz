@@ -47,11 +47,10 @@
       </a>
     </div>
   </div>
-
-
   <div class="replies">
     <% position = get_first_position_in @page %>
     <% @replies.each do |r| %>
+
     <div class="reply" id="position-<%= position %>">
       <div class="avatar">
         <img src="<%= r.author.avatar_url %>" alt="user-avatar-<%= r.author.id %>"/>
@@ -62,13 +61,13 @@
           <span class="time"><%= r.created_at %></span>
           <span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count">3</span></span>
 
-          <div class="actions">
+          <div class="ACTIONS">
             <a class="action" href="#">
               <span class="glyphicon glyphicon-thumbs-up"></span>
               <span class="name">感谢</span>
             </a>
             <a class="action" href="#">
-              <span class="glyphicon glyphicon-comment"></span>
+              <span CLASS="glyphicon glyphicon-comment"></span>
               <span class="name">回复</span>
             </a>
           </div>
@@ -88,7 +87,7 @@
     </div>
     <div class="col-md-12" id="reply-topic">
       <hr/>
-      <%= form_for(@topic.replies.new, url: topic_replies_path(@topic), html: { role: 'form' }) do |f| %>
+      <%= form_for(@topic.replies.new, url: topic_reply_index_path(@topic), html: { role: 'form' }) do |f| %>
           <div class="form-group">
             <div class="form-group">
               <%= f.label :content, '发表回复'%>

@@ -45,15 +45,12 @@ if Rails.env == 'development'
     )
   end
 
-  t = admin.topics.create(
-      node_id: qna_node.id,
-      title: 'Hello world! --Reply test',
-      content: 'Reply me!'
-  )
+
+  t = Topic.first
 
   (1..100).each do |count|
     t.replies.create(
-        user: admin,
+        author: admin,
         content: "Reply test! ---#{count}"
     )
   end

@@ -10,6 +10,6 @@ require 'spec_helper'
 #     end
 #   end
 # end
-describe NodeHelper do
+describe NodesHelper do
   pending "add some examples to (or delete) #{__FILE__}"
 end

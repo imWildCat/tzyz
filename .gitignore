@@ -30,3 +30,8 @@ config/deploy
 config/application.yml
 config/database.yml
 config/secrets.yml
+
+public/images/avatars/*.png
+public/images/avatars/*.jpg
+public/images/avatars/*.jpeg
+public/images/avatars/*.gif

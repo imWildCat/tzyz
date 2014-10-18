@@ -11,7 +11,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
@@ -41,7 +41,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Set to :debug to see everything in the log.
   config.log_level = :debug
@@ -53,7 +53,8 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  #config.cache_store = :mem_cache_store
+  config.cache_store = :memory_store, {size: 256.megabytes}
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -68,14 +69,14 @@ Rails.application.configure do
   # config.action_mailer.default_options = {from: '滕州一中校友会 <tzyz_test_337@163.com>'}
   config.action_mailer.default_options = {from: 'tzyz_test_337@163.com'}
   config.action_mailer.smtp_settings = {
-      address:              'smtp.163.com',
-      port:                 25,
-      domain:               'example.com',
-      user_name:            'tzyz_test_337@163.com',
-      password:             '123456q',
-      authentication:       'plain',
-      enable_starttls_auto: false  }
-  config.action_mailer.default_url_options = { host: 'tengzhouyizhong.org', port: 80 }
+      address: 'smtp.163.com',
+      port: 25,
+      domain: 'example.com',
+      user_name: 'tzyz_test_337@163.com',
+      password: '123456q',
+      authentication: 'plain',
+      enable_starttls_auto: false}
+  config.action_mailer.default_url_options = {host: 'tengzhouyizhong.org', port: 80}
   ################
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
@@ -86,7 +87,7 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   # Disable automatic flushing of the log to improve performance.
-  # config.autoflush_log = false
+  config.autoflush_log = true
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new

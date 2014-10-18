@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
   has_many :replies, dependent: :destroy
 
 
-
   before_save do
     self.email = email.downcase
   end
@@ -30,7 +29,6 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
   validates :password, length: {minimum: 6}
-
 
 
   def set_role(role)
@@ -49,17 +47,17 @@ class User < ActiveRecord::Base
   end
 
   def profile
-    # TODO: Implement cache
     if user_profile.nil?
       build_user_profile.save
       user_profile
     else
-      user_profile
+        user_profile
     end
   end
 
+  # No caching
+  # @return [String]
   def avatar
-    # TODO: Implement cache
     if user_avatar
       user_avatar
     else
@@ -68,8 +66,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  # With caching
   def avatar_url
-    '/assets/no_avatar.png'
+    Rails.cache.fetch(avatar_cache_key, expires_in: 1.days) do
+      avatar.url
+    end
+  end
+
+  def delete_cached_avatar_url
+    Rails.cache.delete(avatar_cache_key)
   end
 
   # def send_devise_notification(notification, *args)
@@ -77,6 +82,9 @@ class User < ActiveRecord::Base
   # end
 
   private
+  def avatar_cache_key
+    "user_#{id}_avatar_url"
+  end
 
 
 end

@@ -12,7 +12,6 @@
                                                                                                     :cols => 3,
                                                                                                     :rows => 5,
                                                                                                     :maxlength => 255} %>
-
     </div>
     <div class="form-actions">
       <%= f.button :submit, '修改资料', class:'btn btn-primary float-right' %>
@@ -21,7 +20,7 @@
 
 <% content_for :sidebar do %>
 
-    <%= image_tag current_user.avatar.url, style: 'max-width: 150px' %>
+    <%= image_tag current_user.avatar.url, style: 'width: 150px; height:150px;' %>
     <%= form_for :user_avatar, url: user_avatar_path, :html => {:multipart => true, method: :put} do |f| %>
         <%= file_field_tag 'avatar' %>
         <%= f.submit '修改头像', class:'btn btn-primary', style:'margin-top: 30px;' %>

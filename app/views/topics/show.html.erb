@@ -16,7 +16,7 @@
         <div class="avatar">
           <%= image_tag(@topic.author.avatar.url) %>
         </div>
-        <div class="name"><a href="#"> <%= @topic.author.nickname %> </a></div>
+        <div class="name"><%= link_to "#{@topic.author.nickname}", @topic.author %></div>
       </div>
 
     </div>
@@ -58,7 +58,7 @@
       </div>
       <div class="right-column">
         <div class="meta">
-          <a class="author" href="#"><span class="name"><%= r.author.nickname %></span></a>
+          <span class="author" href="#"><%= link_to "#{r.author.nickname}", r.author, class: 'name' %></span>
           <span class="time"><%= r.created_at %></span>
           <span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count">3</span></span>
 

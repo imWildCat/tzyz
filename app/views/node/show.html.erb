@@ -16,7 +16,7 @@
     <% @topics.each do |t| %>
         <div class="thread">
           <div class="avatar">
-            <img src="<%= t.author.avatar_url %>" alt="avatar"/>
+            <%= image_tag t.author.avatar_url %>
           </div>
           <div class="meta">
             <div class="reply-count">
@@ -27,9 +27,12 @@
             </div>
             <div class="info">
               <p>
-                <a class="author" href="#"><%= t.author.nickname %></a> <span class="divider">•</span>
-                <span class="time"><%= t.last_replied_at %></span> <span class="divider">•</span>
-                <span class="refresher-label">最后回复来自</span> <a class="refresher"><%= t.refresher.nickname %></a>
+                <%= link_to t.author.nickname, t.author, class: 'author' %>
+                <span class="divider">•</span>
+                <span class="time"><%= t.last_replied_at %></span>
+                <span class="divider">•</span>
+                <span class="refresher-label">最后回复来自</span>
+                <%= link_to t.refresher.nickname, t.refresher, class: 'author' %>
               </p>
             </div>
           </div>

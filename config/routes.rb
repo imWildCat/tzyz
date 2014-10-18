@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   end
 
   get 'node/:slug' => 'node#show', as: 'node'
-
+  get 'user/:id' => 'user#show', as: 'user'
 
   resource :user_profile, except: [:new, :show, :destroy], controller: :user_profile
-  resource :user_avatar, only: [:edit, :update], controller: :user_avatar
+  resource :user_avatar, only: :update, controller: :user_avatar
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

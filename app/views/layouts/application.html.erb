@@ -6,19 +6,15 @@
   <% else %>
       <title>滕州一中校友会</title>
   <% end %>
-  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link href="http://cdn.bootcss.com/normalize/3.0.1/normalize.css" rel="stylesheet">
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
   <%= render 'layouts/shim' %>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <%= csrf_meta_tags %>
-
 </head>
 <body>
 <%= render 'layouts/header' %>

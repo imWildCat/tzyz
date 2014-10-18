@@ -1,0 +1,7 @@
+services:
+  mail: ""
+  tietuku: false
+  qiniu: false
+paths:
+  user_avatar: "avatars/"
+  no_user_avatar : "no_avatar.png"

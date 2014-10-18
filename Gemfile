@@ -4,6 +4,10 @@ ruby '2.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
+
+# Settings
+gem 'rails_config', '~> 0.4.2'
+
 # gem 'rails-bootstrap'
 gem 'sass-rails', '~> 4.0.3'
 # gem 'coffee-rails', '~> 4.0.0'
@@ -24,7 +28,7 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'mysql2', '~> 0.3.16'
 
 # gem 'protected_attributes', '~> 1.0.8'
-gem 'activerecord-mysql-unsigned', '~> 0.2.0'
+# There is many bugs in activerecord-mysql-unsigned, so don't use it
 gem 'paranoia', '~> 2.0.2'
 
 # Forms

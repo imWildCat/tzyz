@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
   has_many :sent_messages, foreign_key: 'sender_id', class_name: 'Message'
 
   #   - UserProfile
-  has_one :user_profile #, foreign_key: :id
+  has_one :user_profile, foreign_key: :owner_id
+  #   - UserAvatar
+  has_one :user_avatar, foreign_key: :owner_id
 
   #   - Topic & Reply
   has_many :topics, dependent: :destroy, foreign_key: 'author_id'
@@ -44,6 +46,26 @@ class User < ActiveRecord::Base
 
   def confirmation_url(resource, token)
     'http://test'
+  end
+
+  def profile
+    # TODO: Implement cache
+    if user_profile.nil?
+      build_user_profile.save
+      user_profile
+    else
+      user_profile
+    end
+  end
+
+  def avatar
+    # TODO: Implement cache
+    if user_avatar
+      user_avatar
+    else
+      build_user_avatar.save
+      user_avatar
+    end
   end
 
   def avatar_url

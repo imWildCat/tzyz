@@ -2,10 +2,11 @@ class CreateUserProfiles < ActiveRecord::Migration
   def change
     create_table :user_profiles, {
         :id => false,
-        :primary_key => :user_id
+        :primary_key => :owner_id
     } do |t|
 
-      t.primary_key :user_id
+      # t.primary_key :owner_id
+      t.primary_key :owner_id
       t.string :name, limit: 15
       t.string :city, limit: 31
       t.string :website, limit: 255

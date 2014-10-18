@@ -9,12 +9,22 @@
       <%= f.input :website, label: '个人网站', :input_html => {:maxlength => 255} %>
       <%= f.input :weibo, class: 'small', label: '微博' %>
       <%= f.input :introduction, label: '个人简介', placeholder: '最多 255 字', as: :text, :input_html => {class: 'test',
-                                                                                               :cols => 3,
-                                                                                            :rows => 5,
-                                                                                            :maxlength => 255} %>
+                                                                                                    :cols => 3,
+                                                                                                    :rows => 5,
+                                                                                                    :maxlength => 255} %>
 
     </div>
     <div class="form-actions">
       <%= f.button :submit, '修改资料', class:'btn btn-primary float-right' %>
     </div>
+<% end %>
+
+<% content_for :sidebar do %>
+
+    <%= image_tag current_user.avatar.url, style: 'max-width: 150px' %>
+    <%= form_for :user_avatar, url: user_avatar_path, :html => {:multipart => true, method: :put} do |f| %>
+        <%= file_field_tag 'avatar' %>
+        <%= f.submit '修改头像', class:'btn btn-primary', style:'margin-top: 30px;' %>
+    <% end %>
+
 <% end %>

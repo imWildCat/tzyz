@@ -14,7 +14,7 @@
       </div>
       <div class="author">
         <div class="avatar">
-          <img src="<%= @topic.author.avatar_url %>" alt="avatar"/>
+          <%= image_tag(@topic.author.avatar.url) %>
         </div>
         <div class="name"><a href="#"> <%= @topic.author.nickname %> </a></div>
       </div>
@@ -54,7 +54,7 @@
     <% @replies.each do |r| %>
     <div class="reply" id="position-<%= position %>">
       <div class="avatar">
-        <img src="<%= r.author.avatar_url %>" alt="user-avatar-<%= r.author.id %>"/>
+        <%= image_tag(r.author.avatar.url, alt:r.author.id) %>
       </div>
       <div class="right-column">
         <div class="meta">

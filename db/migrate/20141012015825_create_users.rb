@@ -1,6 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
+      # TODO: Find a way to implemnt unsigened column
 
       ## Database authenticatable
       t.string :email,              null: false, default: ''

@@ -25,5 +25,8 @@ class Topic < ActiveRecord::Base
     User.find_by_id(self.refresher_id)
   end
 
+  def last_page
+    self.replies_count / Topic.replies_per_page + 1
+  end
 
 end

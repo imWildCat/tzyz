@@ -17,9 +17,10 @@ include RepliesHelper
 
       if @reply.save
         flash[:success] = '回复成功！'
-        position = @topic.replies_count + 1
-        page = get_page position
-        redirect_to topic_path(:id => @topic.id, :anchor => "position-#{position}", :page => page)
+        #update replies_count for current instant of topic
+        @topic.replies_count += 1
+        page = @topic.last_page
+        redirect_to topic_path(:id => @topic.id, :anchor => "reply_#{@reply.id}", :page => page)
         return
       end
 

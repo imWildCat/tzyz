@@ -53,13 +53,13 @@
         font-size: 12px;
         float: right;
         width: 400px;
-        text-align:right;
+        text-align: right;
         color: $light-gray;
 
         @media screen and (max-width: 435px) {
           margin-top: 10px;
           width: 170px;
-          .glyphicon{
+          .glyphicon {
             display: none;
           }
         }
@@ -80,11 +80,17 @@
           min-width: 20px;
           padding: 0 10px 0 10px;
           text-align: center;
-          color:$text-gray;
+          color: $text-gray;
         }
       }
     }
     .title {
+      clear: both;
+      h3 {
+        margin-top: 0;
+      }
+    }
+    .content {
       clear: both;
     }
   }

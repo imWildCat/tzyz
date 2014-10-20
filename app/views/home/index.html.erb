@@ -33,7 +33,8 @@
               </div>
               <div class="info">
                 <p>
-                  <a class="node-name" href="#"><%= t.node.name %></a> <span class="divider">•</span>
+                  <%= link_to t.node.name, node_path(t.node.slug), class: 'node-name' %>
+                  <span class="divider">•</span>
                   <%= link_to t.author.nickname, t.author, class: 'author' %>
                   <span class="divider">•</span>
                   <span class="time"><%= t.last_replied_at %></span> <span class="divider">•</span>
@@ -83,7 +84,8 @@
       </div>
       <div class="info">
         <p>
-          <a class="node-name" href="#">美酒与美食</a> <span class="divider">•</span>
+          <a class="node-name" href="#">美酒与美食</a>
+          <span class="divider">•</span>
           <a class="author" href="#">Ritcer</a> <span class="divider">•</span>
           <span class="time">刚才</span> <span class="divider">•</span>
           <span class="refresher-label">最后回复来自</span> <a class="refresher">netpirate</a>
@@ -93,4 +95,4 @@
   </div>
 </div>
 
-<%= render '/share/sidebar' %>
+<%= render '/share/home_sidebar' %>

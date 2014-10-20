@@ -3,6 +3,9 @@
 <div class="single-topic">
 
   <div class="topic">
+    <div class="title">
+      <h3><%= @topic.title %></h3>
+    </div>
     <div class="meta">
       <div class="info">
         <div>
@@ -15,14 +18,11 @@
       </div>
       <div class="author">
         <div class="avatar">
-          <%= image_tag(@topic.author.avatar.url) %>
+          <%= image_tag(@topic.author.avatar_url) %>
         </div>
         <div class="name"><%= link_to "#{@topic.author.nickname}", @topic.author %></div>
       </div>
 
-    </div>
-    <div class="title">
-      <h4><%= @topic.title %></h4>
     </div>
     <div class="content">
       <%= @topic.content %>
@@ -54,14 +54,14 @@
     <% @replies.each do |r| %>
         <%= div_for(r) do %>
           <div class="avatar">
-            <%= image_tag(r.author.avatar.url, alt:r.author.id) %>
+            <%= image_tag(r.author.avatar_url, alt:r.author.id) %>
           </div>
           <div class="right-column">
             <div class="meta">
               <span class="author" href="#"><%= link_to "#{r.author.nickname}", r.author, class: 'name' %></span>
               <span class="time"><%= r.created_at %></span>
               <span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count">3</span></span>
-              <div class="ACTIONS">
+              <div class="actions">
                 <a class="action" href="#">
                   <span class="glyphicon glyphicon-thumbs-up"></span>
                   <span class="name">感谢</span>

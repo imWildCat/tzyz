@@ -1,5 +1,4 @@
 class RepliesController < ApplicationController
-include RepliesHelper
 
   def create
     @topic = Topic.find(params[:topic_id])

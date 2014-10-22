@@ -58,7 +58,7 @@
           </div>
           <div class="right-column">
             <div class="meta">
-              <span class="author" href="#"><%= link_to "#{r.author.nickname}", r.author, class: 'name' %></span>
+              <span class="author"><%= link_to "#{r.author.nickname}", r.author, class: 'name' %></span>
               <span class="time"><%= r.created_at %></span>
               <span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count">3</span></span>
               <div class="actions">
@@ -99,3 +99,5 @@
   </div>
 
 </div>
+
+<%= render 'share/home_sidebar' %>

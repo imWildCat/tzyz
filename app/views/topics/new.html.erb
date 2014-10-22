@@ -1,0 +1,25 @@
+<% title '创建新话题' %>
+<div class="new-topic">
+  <div class="header">
+    <%= link_to '校友会', root_path %>
+    <span class="chevron"> › </span>
+    <%= link_to @node.name, node_path(@node.slug) %>
+    <span class="chevron"> › </span>
+    创建新话题
+  </div>
+  <div class="new-topic-form col-sm-9 col-sm-offset-3">
+    <%= form_for @node.topics.new, url: topic_index_path, html: { role: 'form' } do |f|%>
+        <div class="form-group">
+          <div class="form-group">
+            <%= f.hidden_field :node_slug, value: @node.slug %>
+            <%= f.label :title, '标题'%>
+            <%= f.text_field :title, class: 'form-control' %>
+            <br>
+            <%= f.text_area :content, class: 'form-control', rows: 10 %>
+          </div>
+          <%= f.submit '发表', class: 'btn btn-default btn-success' %>
+        </div>
+    <% end %>
+  </div>
+</div>
+<% render 'share/home_sidebar' %>

@@ -10,18 +10,21 @@ LOREM_IPSUM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae
 
 
 default_node_categories = NodeCategory.create(name: '默认分类', slug: 'default')
-
-default_node_categories.nodes.create([
-    {
-        name: '校友会',
-        slug: 'tzyz-aa',
-    },
-    {
-        name: '问与答',
-        description: '一个更好的世界需要你持续地提出好问题。',
-        slug: 'qna',
-    }
-                                     ])
+#全部校友会问与答创意生活城市校园 科技海外Apple
+nodes = [
+    { name: '校友会', slug: 'tzyz' },
+    { name: '问与答', slug: 'qna', description: '一个更好的世界需要你持续地提出好问题'},
+    { name: '创意', slug: 'idea' },
+    { name: '生活', slug: 'life' },
+    { name: '城市', slug: 'city' },
+    { name: '校园', slug: 'campus' },
+    { name: '工作', slug: 'work' },
+    { name: '科技', slug: 'tech' },
+    { name: '品牌', slug: 'brand' },
+    { name: '海外', slug: 'oversea'},
+    { name: 'Apple', slug: 'apple' }
+]
+default_node_categories.nodes.create(nodes)
 
 if Rails.env == 'development'
   @common_password = '123456'

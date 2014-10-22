@@ -20,8 +20,8 @@ include ApplicationHelper
     t = params[:topic]
     if current_user
 
-      if t[:title].blank? or t[:content].blank?
-        flash[:error] = '标题或主题内容不能为空。'
+      if t[:title].blank?
+        flash[:error] = '标题不能为空。'
         return redirect_to :back
       end
 

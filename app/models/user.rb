@@ -80,6 +80,13 @@ class User < ActiveRecord::Base
     Rails.cache.delete(avatar_cache_key)
   end
 
+  # User ~ Notifications Service
+
+  # Fetching methods
+  def unread_notifications(page)
+    notifications.order('is_read ASC').order('id DESC').paginate(page: page, per_page: 20)
+  end
+
   def unread_notifications_count
     Rails.cache.fetch(unread_notifications_count_cache_key, expires_in: 30.minutes) do
       notifications.where(is_read: false).count

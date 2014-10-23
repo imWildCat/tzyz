@@ -6,6 +6,7 @@ class Notification < ActiveRecord::Base
 
   belongs_to :receiver, class_name: 'User'
 
+  # Creation methods
   def self.create_user_welcome(user)
     self.create(receiver: user, n_type: generate_type(:user_welcome))
   end

@@ -10,7 +10,7 @@
       <div class="info">
         <div>
           <%= link_to @topic.node.name, node_path(@topic.node.slug), class: 'node-name' %>
-          <span class="glyphicon glyphicon-time"></span> <span class="time"><%= @topic.created_at %></span>
+          <span class="glyphicon glyphicon-time"></span> <span class="time"><%= timeago(@topic.created_at) %></span>
           <span class="glyphicon glyphicon-eye-open"></span> <span class="click"><%= @topic.clicks_count %> 次点击</span>
           <span class="glyphicon glyphicon-star-empty"></span> <span class="favourite">21 人收藏</span>
           <span class="reply-count"><%= @topic.replies_count %></span>
@@ -58,7 +58,7 @@
           <div class="right-column">
             <div class="meta">
               <span class="author"><%= link_to "#{r.author.nickname}", r.author, class: 'name' %></span>
-              <span class="time"><%= r.created_at %></span>
+              <span class="time"><%= timeago(r.created_at) %></span>
               <span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count">3</span></span>
               <div class="actions">
                 <a class="action" href="#">

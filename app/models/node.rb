@@ -6,7 +6,7 @@ class Node < ActiveRecord::Base
 
   has_many :topics
 
-  def topics_per_page
+  def self.topics_per_page
     20
   end
 

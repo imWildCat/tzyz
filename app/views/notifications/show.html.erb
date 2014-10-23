@@ -29,6 +29,8 @@
       </div>
     </div>
   </div>
+
+  <%= will_paginate @notifications, renderer: BootstrapPagination::Rails %>
 </div>
 
 <%= render 'share/home_sidebar' %>

@@ -1,9 +1,11 @@
 class NotificationsController < ApplicationController
   before_action :check_login
 
+  include ApplicationHelper
+
   def show
     # Get notifications of current user
-    @notifications = current_user.notifications.order('is_read ASC').order('id DESC')
+    @notifications = current_user.unread_notifications(current_page)
 
     # Set them read
     @ids = []

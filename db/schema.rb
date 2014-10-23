@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016103504) do
+ActiveRecord::Schema.define(version: 20141022153715) do
+
+  create_table "admin_action_reasons", force: true do |t|
+    t.string "description", limit: 63
+  end
 
   create_table "messages", force: true do |t|
     t.integer  "receiver_id"
@@ -47,15 +51,31 @@ ActiveRecord::Schema.define(version: 20141016103504) do
   add_index "nodes", ["name"], name: "index_nodes_on_name", unique: true, using: :btree
   add_index "nodes", ["slug"], name: "index_nodes_on_slug", unique: true, using: :btree
 
+  create_table "notifications", force: true do |t|
+    t.integer  "receiver_id",                                null: false
+    t.integer  "n_type",           limit: 3,                 null: false
+    t.boolean  "is_read",                    default: false, null: false
+    t.integer  "reason_id"
+    t.integer  "related_user_id"
+    t.integer  "related_topic_id"
+    t.integer  "related_reply_id"
+    t.datetime "created_at",                                 null: false
+    t.datetime "deleted_at"
+  end
+
+  add_index "notifications", ["receiver_id"], name: "index_notifications_on_receiver_id", using: :btree
+
   create_table "replies", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "topic_id",   null: false
     t.integer  "author_id",  null: false
     t.text     "content",    null: false
+    t.datetime "deleted_at"
   end
 
-  add_index "replies", ["topic_id", "author_id"], name: "index_replies_on_topic_id_and_author_id", using: :btree
+  add_index "replies", ["author_id"], name: "index_replies_on_author_id", using: :btree
+  add_index "replies", ["deleted_at"], name: "index_replies_on_deleted_at", using: :btree
 
   create_table "topics", force: true do |t|
     t.datetime "created_at",                              null: false

@@ -30,7 +30,7 @@
               <p>
                 <%= link_to t.author.nickname, t.author, class: 'author' %>
                 <span class="divider">•</span>
-                <span class="time"><%= t.last_replied_at %></span>
+                <span class="time"><%= timeago(t.last_replied_at) %></span>
                 <span class="divider">•</span>
                 <span class="refresher-label">最后回复来自</span>
                 <%= link_to t.refresher.nickname, t.refresher, class: 'author' %>
@@ -44,6 +44,6 @@
 
     <!--@endforeach-->
   </div>
-  <%= will_paginate @topics, renderer: BootstrapPagination::Rails %>
+  <%= render_will_paginate @topics %>
 </div>
 <%= render 'share/home_sidebar' %>

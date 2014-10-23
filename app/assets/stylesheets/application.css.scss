@@ -1,10 +1,13 @@
 /*
  *= require bootstrap
  *= require_self
+ *= require jquery.timeago
  */
 
 @import "mixins/normalize";
 @import "mixins/global";
+
+
 @import "mixins/top_menu";
 @import "mixins/sidebar";
 @import "mixins/footer";
@@ -13,5 +16,7 @@
 @import "mixins/node";
 @import "mixins/topic";
 @import "mixins/topic_new";
-
 @import "mixins/notification";
+
+
+@import "notifications";

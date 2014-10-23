@@ -1,0 +1,13 @@
+<div class="media">
+  <!--<a class="pull-left" href="#">-->
+    <!--<img class="media-object" src="..." alt="...">-->
+  <!--</a>-->
+
+  <div class="media-body">
+    <p class="media-heading">
+      <span<% unless n.is_read %> class="bold"<% end %>> <%= u.nickname %> ， 感谢您注册 滕州一中校友会！</span>
+      <span class="time"><%= timeago(n.created_at) %></span>
+    </p>
+    请遵守社区规范，希望您享受在这个社区的美好时光 ： )
+  </div>
+</div>

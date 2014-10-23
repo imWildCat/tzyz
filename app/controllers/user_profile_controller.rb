@@ -14,7 +14,7 @@ class UserProfileController < ApplicationController
   protected
 
   def user_profile_params
-    params.require(:user_avatar).permit(:name, :city, :website, :weibo, :introduction)
+    params.require(:user_profile).permit(:name, :city, :website, :weibo, :introduction)
   end
 
 end

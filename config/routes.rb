@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   resource :user_profile, except: [:new, :show, :destroy], controller: :user_profile
   resource :user_avatar, only: :update, controller: :user_avatar
 
+  resource :notifications, only: :show
+  resource :messages, except: [:update, :edit]
+
 
   # for instructions of routing, please check the office-site's guide
   # http://guides.rubyonrails.org/routing.html

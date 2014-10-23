@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   protected
   def check_login
     unless current_user
-      flash[:warning] = '您必须登录后才能修改资料。'
+      flash[:warning] = '您必须登录后才能继续。'
       redirect_to new_user_session_path
     end
   end

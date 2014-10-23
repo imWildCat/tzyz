@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   # has_many :received_messages, through: :messages, source: :receiver
   has_many :sent_messages, foreign_key: 'sender_id', class_name: 'Message'
 
+  #   - Notification
+  has_many :notifications, foreign_key: 'receiver_id', dependent: :destroy
+
   #   - UserProfile
   has_one :user_profile, foreign_key: :owner_id
   #   - UserAvatar
@@ -51,7 +54,7 @@ class User < ActiveRecord::Base
       build_user_profile.save
       user_profile
     else
-        user_profile
+      user_profile
     end
   end
 
@@ -77,6 +80,17 @@ class User < ActiveRecord::Base
     Rails.cache.delete(avatar_cache_key)
   end
 
+  def unread_notifications_count
+    Rails.cache.fetch(unread_notifications_count_cache_key, expires_in: 30.minutes) do
+      notifications.where(is_read: false).count
+    end
+  end
+
+  def clear_cached_notifications
+    Rails.cache.delete(unread_notifications_count_cache_key)
+  end
+
+
   # def send_devise_notification(notification, *args)
   #     AccountMailer.send(notification, self, *args).deliver
   # end
@@ -84,6 +98,10 @@ class User < ActiveRecord::Base
   private
   def avatar_cache_key
     "user_#{id}_avatar_url"
+  end
+
+  def unread_notifications_count_cache_key
+    "user_#{id}_unread_notifications_count"
   end
 
 

@@ -6,6 +6,12 @@ module ApplicationHelper
     content_for :title, content_tag('title', title, nil, false)
   end
 
+  def timeago(time, options = {})
+    options[:class] = options[:class].blank? ? 'timeago' : [options[:class],'timeago'].join(' ')
+    options.merge!(title: time.iso8601)
+    content_tag(:abbr, '', class: options[:class], title: time.iso8601) if time
+  end
+
   def current_page
     page = params[:page]
     page.nil? ? 1 : page.to_i

@@ -1,10 +1,12 @@
 class Node < ActiveRecord::Base
 
+  attr_reader :topics_per_page
+
   belongs_to :node_category
 
   has_many :topics
 
-  def self.topics_per_page
+  def topics_per_page
     20
   end
 

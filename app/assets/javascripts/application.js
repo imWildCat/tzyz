@@ -12,6 +12,24 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.timeago
+//= require jquery.timeago.settings
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+
+// Rails 4: how to use $(document).ready() with turbo-links
+// http://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
+var readyCb;
+readyCb = function () {
+    console.log('ready cb called.');
+
+    // time ago
+    $('abbr.timeago').timeago()
+
+
+};
+
+$(document).ready(readyCb);
+$(document).on('page:load', readyCb);

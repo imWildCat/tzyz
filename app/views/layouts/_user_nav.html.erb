@@ -9,7 +9,7 @@
     </ul>
 <% else %>
     <ul class="nav navbar-nav navbar-right" id="userbar">
-      <li><a href="#">消息 <span class="badge alert-danger">23</span></a></li>
+      <li><a href="<%= notifications_path %>">提醒 <span class="badge alert-info"><%= current_user.unread_notifications_count %></span></a></li>
 
 
       <li>

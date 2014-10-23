@@ -1,0 +1,22 @@
+<% title '消息' %>
+<div class="notifications-tabs">
+  <ul id="tab-menu" class="nav nav-tabs" role="tablist">
+    <li><a href="<%= notifications_path %>" role="tab">通知</a></li>
+    <li class="active"><a href="#tab-messages" role="tab" data-toggle="tab">消息</a></li>
+  </ul>
+  <div id="tab-content" class="tab-content">
+    <div class="tab-pane fade " id="tab-notifications">
+
+    </div>
+    <div class="tab-pane fade active in" id="tab-messages">
+      <div class="panel panel-info">
+        <div class="panel-body">
+          尚未上线此功能
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'share/home_sidebar' %>

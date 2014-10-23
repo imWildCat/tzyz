@@ -1,22 +1,61 @@
 <% title '消息' %>
-<div class="notifications-tabs">
-  <ul id="tab-menu" class="nav nav-tabs" role="tablist">
-    <li><a href="<%= notifications_path %>" role="tab">通知</a></li>
-    <li class="active"><a href="#tab-messages" role="tab" data-toggle="tab">消息</a></li>
-  </ul>
-  <div id="tab-content" class="tab-content">
-    <div class="tab-pane fade " id="tab-notifications">
+<div id="notifications-page">
+  <div class="notifications-tabs">
+    <ul id="tab-menu" class="nav nav-tabs" role="tablist">
+      <li><a href="<%= notifications_path %>" role="tab">通知 <span class="badge alert-info"><%=  count_or_none current_user.unread_notifications_count %></span></a></li>
+      <li class="active"><a href="#tab-messages" role="tab" data-toggle="tab">消息 <span class="badge alert-info"><%=  count_or_none current_user.unread_messages_count %></span></a></li>
+    </ul>
+    <div id="tab-content" class="tab-content">
+      <div class="tab-pane fade " id="tab-notifications">
+        empty
+      </div>
+      <div class="tab-pane fade active in" id="tab-messages">
+        <div class="panel panel-info">
+          <div class="panel-body">
+            <% @messages.each do |m| %>
+                <div class="media">
+                  <a class="pull-left" href="<%= user_path(m.sender.id) %>">
 
-    </div>
-    <div class="tab-pane fade active in" id="tab-messages">
-      <div class="panel panel-info">
-        <div class="panel-body">
-          尚未上线此功能
-          <hr />
+                    <%= image_tag m.sender.avatar_url, class: 'media-object' %>
+                  </a>
+
+                  <div class="media-body">
+                    <p class="media-heading">
+                      <span
+                      <% unless m.is_read %> class="bold"<% end %>> <%= m.sender.nickname %> </span>
+                      <span class="time"><%= timeago(m.created_at) %></span>
+                    </p>
+                    <%= m.content %>
+                    <div class="media">
+                      <a class="pull-left" href="#">
+                        <%= image_tag current_user.avatar_url, class: 'media-object' %>
+                      </a>
+
+                      <div class="media-body msg-reply-form">
+                        <!--<h4 class="media-heading">回复</h4>-->
+                        <%= form_for Message.new, url: messages_path, html: {:role => 'form'} do |f| %>
+                            <%= f.hidden_field :receiver_id, value: m.sender_id %>
+
+                            <%= f.text_area :content, class: 'form-control', rows: 2 %>
+                            <div class="form-actions">
+                              <%= f.submit '回复', class: 'btn btn-default btn-success float-right' %>
+                            </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<%= render_will_paginate @messages %>
+
 <%= render 'share/home_sidebar' %>
+
+<% title '通知' %>

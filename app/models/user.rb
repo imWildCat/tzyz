@@ -69,22 +69,49 @@ class User < ActiveRecord::Base
     end
   end
 
-  # With caching
+
+  # Magic properties - which mostly contain data with caching
+
   def avatar_url
     Rails.cache.fetch(avatar_cache_key, expires_in: 1.days) do
       avatar.url
     end
   end
 
-  def delete_cached_avatar_url
-    Rails.cache.delete(avatar_cache_key)
+  def unread_notifications(page = 1)
+    @notifications = notifications.order(is_read: :asc, id: :desc).paginate(page: page, per_page: 15)
+    # Set them read
+    @ids = []
+    @notifications.each do |n|
+      unless n.is_read
+        @ids.append(n.id)
+      end
+    end
+    if @ids.count > 0
+      Notification.where(:id => @ids).update_all(is_read:true)
+    end
+
+    # Clear cache
+    clear_cached_notifications
+    @notifications
   end
 
-  # User ~ Notifications Service
+  def unread_messages(page = 1)
+    @messages = messages.order(is_read: :asc, id: :desc).paginate(page: page, per_page: 10)
+    # Set them read
+    @ids = []
+    @messages.each do |m|
+      unless m.is_read
+        @ids.append(m.id)
+      end
+    end
+    if @ids.count > 0
+      Message.where(:id => @ids).update_all(is_read: true)
+    end
 
-  # Fetching methods
-  def unread_notifications(page)
-    notifications.order('is_read ASC').order('id DESC').paginate(page: page, per_page: 20)
+    # Clear cache
+    clear_cached_messages
+    @messages
   end
 
   def unread_notifications_count
@@ -93,8 +120,24 @@ class User < ActiveRecord::Base
     end
   end
 
+  def unread_messages_count
+    Rails.cache.fetch(unread_messages_count_cache_key, expires_in: 30.minutes) do
+      messages.where(is_read: false).count
+    end
+  end
+
+  # Caching clear methods
+
+  def delete_cached_avatar_url
+    Rails.cache.delete(avatar_cache_key)
+  end
+
   def clear_cached_notifications
     Rails.cache.delete(unread_notifications_count_cache_key)
+  end
+
+  def clear_cached_messages
+    Rails.cache.delete(unread_messages_count_cache_key)
   end
 
 
@@ -103,12 +146,18 @@ class User < ActiveRecord::Base
   # end
 
   private
+
+  # Caching keys
   def avatar_cache_key
     "user_#{id}_avatar_url"
   end
 
   def unread_notifications_count_cache_key
     "user_#{id}_unread_notifications_count"
+  end
+
+  def unread_messages_count_cache_key
+    "user_#{id}_unread_messages_count"
   end
 
 

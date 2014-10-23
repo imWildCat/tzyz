@@ -3,6 +3,7 @@ class Message < ActiveRecord::Base
   acts_as_paranoid
 
   before_create :created_at_timestamp
+  before_save :clear_receiver_cache
   validate :receiver_and_sender_not_same
 
   belongs_to :receiver, class_name: 'User'
@@ -11,6 +12,10 @@ class Message < ActiveRecord::Base
   protected
   def created_at_timestamp
     self.created_at = current_time_from_proper_timezone
+  end
+
+  def clear_receiver_cache
+    receiver.clear_cached_messages
   end
 
   def receiver_and_sender_not_same

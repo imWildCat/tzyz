@@ -44,6 +44,6 @@
 
     <!--@endforeach-->
   </div>
-  <%= will_paginate @topics, renderer: BootstrapPagination::Rails %>
+  <%= render_will_paginate @topics %>
 </div>
 <%= render 'share/home_sidebar' %>

@@ -57,5 +57,9 @@ if Rails.env == 'development'
         content: "Reply test! ---#{count}"
     )
   end
+
+  # Welcome notification
+  Notification.create_user_welcome(User.first)
+
 end
 

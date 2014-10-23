@@ -7,9 +7,22 @@ module ApplicationHelper
   end
 
   def timeago(time, options = {})
-    options[:class] = options[:class].blank? ? 'timeago' : [options[:class],'timeago'].join(' ')
+    options[:class] = options[:class].blank? ? 'timeago' : [options[:class], 'timeago'].join(' ')
     options.merge!(title: time.iso8601)
     content_tag(:abbr, '', class: options[:class], title: time.iso8601) if time
+  end
+
+  def render_will_paginate(resources)
+    # TODO: add support for options
+    will_paginate resources, renderer: BootstrapPagination::Rails
+  end
+
+  def count_or_none(count)
+    if count > 0
+      count
+    else
+      ''
+    end
   end
 
   def current_page

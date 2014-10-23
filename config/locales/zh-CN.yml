@@ -25,3 +25,6 @@
               invalid: "不正确，可能是因为您的注册邮件链接存在问题，我们暂时无法确认您的邮箱地址。请重新发送注册确认邮件。"
             unlock_token:
               invalid: "不正确，可能是因为您的解锁邮件链接存在问题，我们暂时无法解锁您的帐号。请重新发送解锁邮件。"
+  will_paginate:
+    previous_label: "上一页"
+    next_label: "下一页"

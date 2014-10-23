@@ -10,4 +10,13 @@ module ApplicationHelper
     page = params[:page]
     page.nil? ? 1 : page.to_i
   end
+
+  def not_login(m = '请登录后再进行操作')
+    if current_user
+      nil
+    else
+      flash[:warning] = m
+      redirect_to new_user_session_path
+    end
+  end
 end

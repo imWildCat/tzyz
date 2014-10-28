@@ -18,6 +18,8 @@ class Notification < ActiveRecord::Base
 
   def clear_target_user_cache
     receiver.clear_cached_notifications
+    # Notice: mush return true!
+    true
   end
 
   def self.generate_type(type)

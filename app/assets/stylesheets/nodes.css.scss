@@ -1,3 +1,27 @@
 // Place all the styles related to the node controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.node-page {
+  .node-meta {
+    border-bottom: solid 1px #dddddd;
+    margin-bottom: 10px;
+
+    & > .new-topic {
+      width: 70px;
+      float: right;
+    }
+
+    & > .left {
+      margin-right: 75px;
+      width: auto;
+      .node-name {
+        font-weight: bold;
+      }
+      .node-topic-count, .node-description {
+        font-size: 12px;
+        color: #999999;
+      }
+    }
+  }
+}

@@ -2,21 +2,20 @@
  *= require bootstrap
  *= require_self
  *= require jquery.timeago
+ *= require normalize
  */
 
-@import "mixins/normalize";
 @import "mixins/global";
-
 
 @import "mixins/top_menu";
 @import "mixins/sidebar";
 @import "mixins/footer";
 @import "mixins/topic_list";
 @import "mixins/index";
-@import "mixins/node";
-@import "mixins/topic";
-@import "mixins/topic_new";
-@import "mixins/notification";
 
 
+@import "custom_simple_form";
+@import "nodes";
 @import "notifications";
+@import "sessions";
+@import "topics";

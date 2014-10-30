@@ -1,29 +1,38 @@
 <% title '修改资料' %>
-<h1>修改资料</h1>
-<%= simple_form_for(@current_user_profile, as: :user_profile, url: user_profile_path,
-                    html: {method: :put}) do |f| %>
-    <%= f.error_notification %>
-    <div class="form-inputs">
-      <%= f.input :name, label: '姓名' %>
-      <%= f.input :city, label: '城市' %>
-      <%= f.input :website, label: '个人网站', :input_html => {:maxlength => 255} %>
-      <%= f.input :weibo, class: 'small', label: '微博' %>
-      <%= f.input :introduction, label: '个人简介', placeholder: '最多 255 字', as: :text, :input_html => {class: 'test',
-                                                                                                    :cols => 3,
-                                                                                                    :rows => 5,
-                                                                                                    :maxlength => 255} %>
-    </div>
-    <div class="form-actions">
-      <%= f.button :submit, '修改资料', class:'btn btn-primary float-right' %>
-    </div>
-<% end %>
+<div class="panel panel-info">
+  <div class="panel-heading"><h3 class="panel-title">修改资料</h3></div>
+  <div class="panel-body">
+    <%= simple_form_for(@current_user_profile, as: :user_profile, url: user_profile_path,
+                        html: {method: :put}) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :name, label: '姓名' %>
+          <%= f.input :city, label: '城市' %>
+          <%= f.input :website, label: '个人网站', :input_html => {:maxlength => 255} %>
+          <%= f.input :weibo, class: 'small', label: '微博' %>
+          <%= f.input :introduction, label: '个人简介', placeholder: '最多 255 字', as: :text, :input_html => {class: 'test',
+                                                                                                        :cols => 3,
+                                                                                                        :rows => 5,
+                                                                                                        :maxlength => 255} %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, '修改资料', class: 'btn btn-primary float-right' %>
+        </div>
+    <% end %>
+  </div>
+</div>
 
 <% content_for :sidebar do %>
 
-    <%= image_tag current_user.avatar.url, style: 'width: 150px; height:150px;' %>
-    <%= form_for :user_avatar, url: user_avatar_path, :html => {:multipart => true, method: :put} do |f| %>
-        <%= file_field_tag 'avatar' %>
-        <%= f.submit '修改头像', class:'btn btn-primary', style:'margin-top: 30px;' %>
-    <% end %>
+    <div class="panel panel-info">
+      <div class="panel-heading"><h3 class="panel-title">头像</h3></div>
+      <div class="panel-body">
+        <%= image_tag current_user.avatar.url, style: 'width: 150px; height:150px;' %>
+        <%= form_for :user_avatar, url: user_avatar_path, :html => {:multipart => true, method: :put} do |f| %>
+            <%= file_field_tag 'avatar' %>
+            <%= f.submit '修改头像', class: 'btn btn-primary float-right', style: 'margin-top: 30px;' %>
+        <% end %>
+      </div>
+    </div>
 
 <% end %>

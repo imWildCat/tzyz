@@ -20,6 +20,10 @@
                 <% end %>
                 <hr/>
             <% end %>
+
+            <% if @notifications.count == 0 %>
+            目前尚无通知。
+            <% end %>
           </div>
         </div>
 

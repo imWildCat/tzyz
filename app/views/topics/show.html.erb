@@ -52,29 +52,30 @@
   <div class="replies">
     <% @replies.each do |r| %>
         <%= div_for(r) do %>
-          <div class="avatar">
-            <%= image_tag(r.author.avatar_url, alt:r.author.id) %>
-          </div>
-          <div class="right-column">
-            <div class="meta">
-              <span class="author"><%= link_to "#{r.author.nickname}", r.author, class: 'name' %></span>
-              <span class="time"><%= timeago(r.created_at) %></span>
-              <span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count">3</span></span>
-              <div class="actions">
-                <a class="action" href="#">
-                  <span class="glyphicon glyphicon-thumbs-up"></span>
-                  <span class="name">感谢</span>
-                </a>
-                <a class="action" href="#">
-                  <span CLASS="glyphicon glyphicon-comment"></span>
-                  <span class="name">回复</span>
-                </a>
+            <div class="avatar">
+              <%= image_tag(r.author.avatar_url, alt: r.author.id) %>
+            </div>
+            <div class="right-column">
+              <div class="meta">
+                <span class="author"><%= link_to "#{r.author.nickname}", r.author, class: 'name' %></span>
+                <span class="time"><%= timeago(r.created_at) %></span>
+                <span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count">3</span></span>
+
+                <div class="actions">
+                  <a class="action" href="#">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                    <span class="name">感谢</span>
+                  </a>
+                  <a class="action" href="#">
+                    <span CLASS="glyphicon glyphicon-comment"></span>
+                    <span class="name">回复</span>
+                  </a>
+                </div>
+              </div>
+              <div class="content">
+                <%= r.content %>
               </div>
             </div>
-            <div class="content">
-              <%= r.content  %>
-            </div>
-          </div>
         <% end %>
     <% end %>
   </div>
@@ -84,16 +85,21 @@
       <%= will_paginate @replies, renderer: BootstrapPagination::Rails %>
     </div>
     <div class="col-md-12" id="reply-topic">
-      <hr/>
-      <%= form_for(@topic.replies.new, url: topic_reply_index_path(@topic), html: { role: 'form' }) do |f| %>
-          <div class="form-group">
-            <div class="form-group">
-              <%= f.label :content, '发表回复'%>
-              <%= f.text_area :content, class: 'form-control', clos: '50', rows: '10' %>
-            </div>
-            <%= f.submit '回复', class: 'btn btn-default' %>
-          </div>
-      <% end %>
+       <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">发表回复</h3>
+        </div>
+        <div class="panel-body">
+          <%= form_for(@topic.replies.new, url: topic_reply_index_path(@topic), html: {role: 'form'}) do |f| %>
+              <div class="form-group">
+                <div class="form-group">
+                  <%= f.text_area :content, class: 'form-control', clos: '50', rows: '10' %>
+                </div>
+                <%= f.submit '回复', class: 'btn btn-success float-right' %>
+              </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -1,25 +1,30 @@
 <% title '修改密码' %>
-<h2>修改密码</h2>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">修改密码</h3>
+  </div>
+  <div class="panel-body">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
+        <%= f.error_notification %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+        <div class="form-inputs">
+          <% # f.input :email, required: true, autofocus: true  %>
 
-  <div class="form-inputs">
-    <% # f.input :email, required: true, autofocus: true %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <%= f.input :current_password, label: '当前密码', placeholder: '我们需要您输入当前密码以确认', required: true %>
+          <%= f.input :password, label: '新密码', autocomplete: 'off', required: true %>
+          <%= f.input :password_confirmation, label: '新密码确认', required: true %>
+
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, '更新资料', class: 'btn btn-primary float-right' %>
+        </div>
     <% end %>
-
-    <%= f.input :current_password, label: '当前密码', placeholder:'我们需要您输入当前密码以确认', required: true %>
-    <%= f.input :password, label: '新密码', autocomplete: 'off', required: true %>
-    <%= f.input :password_confirmation, label: '新密码确认', required: true %>
-
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, '更新资料', class:'btn btn-primary float-right' %>
-  </div>
-<% end %>
-
-<% # link_to '返回', :back %>
+<% # link_to '返回', :back  %>

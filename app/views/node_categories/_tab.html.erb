@@ -1,0 +1,8 @@
+<div class="cat-tab">
+  <ul>
+    <li class="<%= tab_selected 'home' %>"><a href="<%= root_path %>">全部</a></li>
+    <% @node_categories.each do |ng| %>
+        <li class="<%= tab_selected ng.slug %>"><%= link_to ng.name, node_category_path(ng.slug) %></li>
+    <% end %>
+  </ul>
+</div>

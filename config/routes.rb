@@ -26,6 +26,10 @@ Rails.application.routes.draw do
   # resources :node_category, only: :show, controller: 'node_categories'
   get 'node_category/:slug' => 'node_categories#show', as: 'node_category'
 
+  # sidekiq - monitoring
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
 
   # for instructions of routing, please check the office-site's guide
   # http://guides.rubyonrails.org/routing.html

@@ -31,6 +31,11 @@ gem 'mysql2', '~> 0.3.16'
 # There is many bugs in activerecord-mysql-unsigned, so don't use it
 gem 'paranoia', '~> 2.0.2'
 
+# Background Task
+gem 'sidekiq', '~> 3.2.6'
+# sidekiq - Monitoring
+gem 'sinatra', '>= 1.3.0', :require => nil
+
 # Forms
 gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 'master'
 # gem 'simple_form'
@@ -66,6 +71,7 @@ group :development, :test do
   gem 'capistrano-rails', '~> 1.1.2'
   gem 'capistrano-bundler', '~> 1.1.3'
   gem 'capistrano3-puma', '~> 0.8.1'
+
 end
 
 group :test do

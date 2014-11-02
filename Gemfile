@@ -24,6 +24,9 @@ gem 'bcrypt-ruby', '3.1.5'
 gem 'will_paginate-bootstrap', '1.0.1'
 gem 'bootstrap-will_paginate', '0.0.9'
 
+# Google, YouTube, and Medium like slim progress bars
+gem 'nprogress-rails', '~> 0.1.6.3'
+
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.16'
 
@@ -76,6 +79,7 @@ group :development, :test do
   gem 'capistrano-rails', '~> 1.1.2'
   gem 'capistrano-bundler', '~> 1.1.3'
   gem 'capistrano3-puma', '~> 0.8.1'
+  gem 'capistrano-sidekiq', '~> 0.3.8'
 
 end
 

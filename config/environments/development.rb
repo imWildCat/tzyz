@@ -46,7 +46,15 @@ Rails.application.configure do
 
   # Use a different cache store in development.
   #config.cache_store = :mem_cache_store
-  config.cache_store = :memory_store, { size: 128.megabytes }
+
+  # config.gem 'redis-store', :lib => 'redis-store'
+  # require 'redis-store' # HACK
+  config.cache_store = :redis_store, {
+      :host => Rails.application.secrets.redis_server,
+      :port => Rails.application.secrets.redis_port,
+      :db => Rails.application.secrets.redis_db_num,
+      :namespace => Rails.application.secrets.redis_namespace_prefix + 'cache'}
+
   # config.cache_store = :file_store, 'tmp/cache'
 
   # Raises error for missing translations

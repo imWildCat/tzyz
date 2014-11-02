@@ -35,3 +35,6 @@ public/images/avatars/*.png
 public/images/avatars/*.jpg
 public/images/avatars/*.jpeg
 public/images/avatars/*.gif
+
+# newrelic
+config/newrelic.yml

@@ -31,10 +31,15 @@ gem 'mysql2', '~> 0.3.16'
 # There is many bugs in activerecord-mysql-unsigned, so don't use it
 gem 'paranoia', '~> 2.0.2'
 
+# redis store for cache
+gem 'redis-rails', '~> 4.0.0'
+
 # Background Task
 gem 'sidekiq', '~> 3.2.6'
 # sidekiq - Monitoring
 gem 'sinatra', '>= 1.3.0', :require => nil
+# Scheduled Jobs
+# gem 'whenever', '~> 0.9.4', :require => false
 
 # Forms
 gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 'master'
@@ -72,6 +77,11 @@ group :development, :test do
   gem 'capistrano-bundler', '~> 1.1.3'
   gem 'capistrano3-puma', '~> 0.8.1'
 
+end
+
+group :production do
+  # Monitoring
+  gem 'newrelic_rpm'
 end
 
 group :test do

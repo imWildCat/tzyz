@@ -22,11 +22,12 @@
       <div class="list">
         <div class="hot-nodes">
           <ul>
-            <li><a href="#">奇思妙想</a></li>
-            <li><a href="#">问与答</a></li>
-            <li><a href="#">摄影</a></li>
-            <li><a href="#">分享发现</a></li>
-            <li><a href="#">自言自语</a></li>
+            <%
+               @hot_nodes = hot_nodes
+               @hot_nodes.each do |n|
+            %>
+                <li><%= link_to n.name, node_path(n.slug) %></li>
+            <% end %>
           </ul>
 
         </div>
@@ -36,9 +37,7 @@
               @new_nodes = Node.order(created_at: :desc).limit(5)
               @new_nodes.each do |n|
             %>
-                    <li>
-                      <%= link_to n.name, node_path(n.slug) %>
-                    </li>
+                    <li><%= link_to n.name, node_path(n.slug) %></li>
                 <% end end %>
           </ul>
         </div>

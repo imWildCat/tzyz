@@ -7,7 +7,7 @@ include ApplicationHelper
     id = params[:id]
     page = current_page
     @topic = Topic.find(id)
-    @replies = @topic.show(page, valid_click?)
+    @replies = @topic.show(page, valid_click_for_topic?(@topic.id))
   end
 
   def new

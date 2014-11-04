@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20141022153715) do
     t.datetime "deleted_at"
   end
 
+  add_index "messages", ["is_read"], name: "index_messages_on_is_read", using: :btree
   add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id", using: :btree
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(version: 20141022153715) do
     t.datetime "deleted_at"
   end
 
+  add_index "notifications", ["is_read"], name: "index_notifications_on_is_read", using: :btree
   add_index "notifications", ["receiver_id"], name: "index_notifications_on_receiver_id", using: :btree
 
   create_table "replies", force: true do |t|

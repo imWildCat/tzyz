@@ -1,7 +1,7 @@
 class CreateNotifications < ActiveRecord::Migration
   def change
     create_table :notifications do |t|
-      t.belongs_to :receiver, index: true, null: false
+      t.belongs_to :receiver, null: false
       t.integer :n_type, limit: 3, null: false
       t.boolean :is_read, null: false, default: false
       t.belongs_to :reason

@@ -2,8 +2,10 @@
 <div id="notifications-page">
   <div class="notifications-tabs">
     <ul id="tab-menu" class="nav nav-tabs" role="tablist">
-      <li><a href="<%= notifications_path %>" role="tab">通知 <span class="badge alert-info"><%=  count_or_none current_user.unread_notifications_count %></span></a></li>
-      <li class="active"><a href="#tab-messages" role="tab" data-toggle="tab">消息 <span class="badge alert-info"><%=  count_or_none current_user.unread_messages_count %></span></a></li>
+      <li><a href="<%= notifications_path %>" role="tab">通知
+        <span class="badge alert-info"><%= count_or_none current_user.unread_notifications_count %></span></a></li>
+      <li class="active"><a href="#tab-messages" role="tab" data-toggle="tab">消息
+        <span class="badge alert-info"><%= count_or_none current_user.unread_messages_count %></span></a></li>
     </ul>
     <div id="tab-content" class="tab-content">
       <div class="tab-pane fade " id="tab-notifications">
@@ -12,6 +14,9 @@
       <div class="tab-pane fade active in" id="tab-messages">
         <div class="panel panel-info">
           <div class="panel-body">
+            <% if @messages.count == 0 %>
+                目前尚无私信。
+            <% end %>
             <% @messages.each do |m| %>
                 <div class="media">
                   <a class="pull-left" href="<%= user_path(m.sender.id) %>">
@@ -45,7 +50,7 @@
                     </div>
                   </div>
                 </div>
-                <hr />
+                <hr/>
             <% end %>
           </div>
         </div>
@@ -56,6 +61,6 @@
 
 <%= render_will_paginate @messages %>
 
-<%= render 'share/home_sidebar' %>
+<%= render 'shared/home_sidebar' %>
 
 <% title '通知' %>

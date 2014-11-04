@@ -7,19 +7,23 @@
     <span class="chevron"> › </span>
     创建新话题
   </div>
-  <div class="new-topic-form col-sm-9 col-sm-offset-3">
-    <%= form_for @node.topics.new, url: topic_index_path, html: { role: 'form' } do |f|%>
-        <div class="form-group">
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title">创建新话题</h3>
+    </div>
+    <div class="panel-body">
+      <%= form_for @node.topics.new, url: topic_index_path, html: {role: 'form'} do |f| %>
           <div class="form-group">
-            <%= f.hidden_field :node_slug, value: @node.slug %>
-            <%= f.label :title, '标题'%>
-            <%= f.text_field :title, class: 'form-control' %>
-            <br>
-            <%= f.text_area :content, class: 'form-control', rows: 10 %>
-          </div>
-          <%= f.submit '发表', class: 'btn btn-default btn-success' %>
-        </div>
-    <% end %>
+            <div class="form-group">
+              <%= f.hidden_field :node_slug, value: @node.slug %>
+              <%= f.text_field :title, class: 'form-control', placeholder: '标题' %>
+              <br>
+              <%= f.text_area :content, class: 'form-control', placeholder: '内容', rows: 10 %>
+            </div>
+            <%= f.submit '发表', class: 'btn btn-success float-right' %>
+          </div>qq
+      <% end %>
+    </div>
   </div>
 </div>
-<% render 'share/home_sidebar' %>
+<% render 'shared/home_sidebar' %>

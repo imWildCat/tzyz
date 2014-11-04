@@ -1,0 +1,29 @@
+<div class="topic-list">
+      <% @topics.each do |t| %>
+          <div class="thread">
+            <div class="avatar">
+              <%= image_tag(t.author.avatar_url, alt: 'avatar') %>
+            </div>
+            <div class="meta">
+              <div class="reply-count">
+                <span><%= t.replies_count %></span>
+              </div>
+
+              <div class="title">
+                <p><%= link_to t.title, t %></p>
+              </div>
+              <div class="info">
+                <p>
+                  <%= link_to t.node.name, node_path(t.node.slug), class: 'node-name' %>
+                  <span class="divider">•</span>
+                  <%= link_to t.author.nickname, t.author, class: 'author' %>
+                  <span class="divider">•</span>
+                  <span class="time"><%= timeago(t.last_replied_at) %></span> <span class="divider">•</span>
+                  <span class="refresher-label">最后回复来自</span>
+                  <%= link_to t.refresher.nickname, t.refresher, class: 'author' %>
+                </p>
+              </div>
+            </div>
+          </div>
+      <% end %>
+</div>

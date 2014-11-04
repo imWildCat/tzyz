@@ -24,12 +24,25 @@ gem 'bcrypt-ruby', '3.1.5'
 gem 'will_paginate-bootstrap', '1.0.1'
 gem 'bootstrap-will_paginate', '0.0.9'
 
+# Google, YouTube, and Medium like slim progress bars
+gem 'nprogress-rails', '~> 0.1.6.3'
+
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.16'
 
 # gem 'protected_attributes', '~> 1.0.8'
 # There is many bugs in activerecord-mysql-unsigned, so don't use it
 gem 'paranoia', '~> 2.0.2'
+
+# redis store for cache
+gem 'redis-rails', '~> 4.0.0'
+
+# Background Task
+gem 'sidekiq', '~> 3.2.6'
+# sidekiq - Monitoring
+gem 'sinatra', '>= 1.3.0', :require => nil
+# Scheduled Jobs
+# gem 'whenever', '~> 0.9.4', :require => false
 
 # Forms
 gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 'master'
@@ -66,6 +79,13 @@ group :development, :test do
   gem 'capistrano-rails', '~> 1.1.2'
   gem 'capistrano-bundler', '~> 1.1.3'
   gem 'capistrano3-puma', '~> 0.8.1'
+  gem 'capistrano-sidekiq', '~> 0.3.8'
+
+end
+
+group :production do
+  # Monitoring
+  gem 'newrelic_rpm'
 end
 
 group :test do

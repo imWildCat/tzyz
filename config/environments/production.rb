@@ -54,7 +54,11 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   #config.cache_store = :mem_cache_store
-  config.cache_store = :memory_store, {size: 256.megabytes}
+  config.cache_store = :redis_store, {
+      :host => Rails.application.secrets.redis_server,
+      :port => Rails.application.secrets.redis_port,
+      :db => Rails.application.secrets.redis_db_num,
+      :namespace => Rails.application.secrets.redis_namespace_prefix + 'cache'}
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"

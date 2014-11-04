@@ -1,0 +1,17 @@
+:concurrency: 5
+:pidfile: tmp/pids/sidekiq.pid
+
+:queues:
+    - default
+    - [statistics, 9]
+    - [email, 2]
+    - [ios, 5]
+    - [android, 5]
+
+development:
+  :concurrency: 5
+staging:
+  :concurrency: 10
+production:
+  :concurrency: 20
+  :logfile: log/sidekiq.log

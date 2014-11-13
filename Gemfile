@@ -42,7 +42,7 @@ gem 'sidekiq', '~> 3.2.6'
 # sidekiq - Monitoring
 gem 'sinatra', '>= 1.3.0', :require => nil
 # Scheduled Jobs
-# gem 'whenever', '~> 0.9.4', :require => false
+gem 'whenever', '~> 0.9.4', :require => false
 
 # Forms
 gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 'master'

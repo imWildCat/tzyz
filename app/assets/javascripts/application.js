@@ -20,6 +20,13 @@
 //= require bootstrap
 //= require_tree .
 
+// nprogress
+
+NProgress.configure({
+    showSpinner: false,
+    ease: 'ease',
+    speed: 500
+});
 
 // Rails 4: how to use $(document).ready() with turbo-links
 // http://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links

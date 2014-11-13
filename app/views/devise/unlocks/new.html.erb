@@ -1,18 +1,24 @@
 <% title '重新发送解除锁定邮件' %>
-<h2>重新发送解除锁定邮件</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-  <%= f.full_error :unlock_token %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">重新发送解除锁定邮件</h3>
   </div>
+  <div class="panel-body">
 
-  <div class="form-actions">
-    <%= f.button :submit, '发送解除锁定邮件', class:'btn btn-primary float-right' %>
+    <%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: {method: :post}) do |f| %>
+        <%= f.error_notification %>
+        <%= f.full_error :unlock_token %>
+
+        <div class="form-inputs">
+          <%= f.input :email, required: true, autofocus: true %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, '发送解除锁定邮件', class: 'btn btn-primary float-right' %>
+        </div>
+    <% end %>
   </div>
-<% end %>
+</div>
 
 <% content_for :sidebar do %>
     <%= render 'devise/shared/links' %>

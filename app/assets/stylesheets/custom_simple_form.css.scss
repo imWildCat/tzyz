@@ -1,6 +1,8 @@
 form.simple_form {
   label.col-sm-3 {
-    width: 16%;
+    @media (min-width: 768px) {
+      width: 16%;
+    }
   }
   abbr[title="required"] {
     display: none;

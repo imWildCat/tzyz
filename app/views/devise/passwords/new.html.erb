@@ -1,15 +1,21 @@
 <% title '密码找回' %>
-<h2>密码找回</h2>
-<%= simple_form_for resource, url: password_path(resource_name), as: resource_name,
-                    wrapper_mappings: {
-                            boolean: :vertical_boolean
-                    } do |f| %>
-    <%= f.error_notification %>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">密码找回</h3>
+  </div>
+  <div class="panel-body">
+    <%= simple_form_for resource, url: password_path(resource_name), as: resource_name,
+                        wrapper_mappings: {
+                                boolean: :vertical_boolean
+                        } do |f| %>
+        <%= f.error_notification %>
 
-    <%= f.input :email, placeholder: '请输入您的 Email' %>
+        <%= f.input :email, placeholder: '请输入您的 Email' %>
 
-    <%= f.button :submit ,'发送密码找回邮件', class:'btn btn-primary float-right' %>
-<% end %>
+        <%= f.button :submit, '发送密码找回邮件', class: 'btn btn-primary float-right' %>
+    <% end %>
+  </div>
+</div>
 
 
 <% content_for :sidebar do %>

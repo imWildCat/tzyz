@@ -33,11 +33,22 @@ class Topic < ActiveRecord::Base
     self.replies_count / Topic.replies_per_page + 1
   end
 
-  def show(page, valid_click)
+  def show(page, valid_click_or_not)
     raise ActionController::RoutingError.new('Not Found') unless have_page?(page)
-    clicks_count_up if valid_click
+    clicks_count_up if valid_click_or_not
     self.replies.order(created_at:
                            :desc).paginate(page: page,
                                            per_page: Topic.replies_per_page)
+  end
+
+  def valid_click_by_user?(user_id)
+    key = 'clicked_t_' + self.id.to_s
+    if user_id
+      return false if self.author.id == user_id
+      return false unless session[key].nil?
+    end
+    session[key] = true
+    true
+    #need to add more
   end
 end

@@ -1,15 +1,19 @@
 <% content_for :sidebar do %>
 
     <section class="hot-today">
-      <p class="section-title">今日热议</p>
+      <p class="section-title">本周热议</p>
       <ul>
-        <li class="line-1"><a href="#">有人刷煎蛋的吗？官方客户端太丑..写了个第三方客户端。上两张图先</a></li>
-        <li class="line-2"><a href="#">熬夜是不是会上瘾？</a></li>
-        <li class="line-3"><a href="#">昨天去北京某某公司的“面试”经过</a></li>
-        <li class="line-4"><a href="#">HTTPS 真会影响网站加载速度？</a></li>
-        <li class="line-5"><a href="#">回复时候，人肉加入被回复者的内容，可倡议？</a></li>
-        <li class="line-6"><a href="#">毕业工作三个月，觉得不适应，是走是留？</a></li>
-        <li class="line-7"><a href="#">HTTPS 真会影响网站加载速度？</a></li>
+        <% hot_topics = Rails.cache.read('hot_topics')
+           i = 1
+           unless hot_topics.nil?
+             hot_topics.each do |t|
+        %>
+                <li class="line-<%= i %>"><%= link_to t.title, topic_path(t.id) %></li>
+            <%
+               ++i
+               end
+               end
+            %>
       </ul>
     </section>
 

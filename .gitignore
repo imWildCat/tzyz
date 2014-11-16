@@ -22,8 +22,6 @@
 public/assets
 
 # Deployment
-Capfile
-config/deploy.rb
 config/deploy
 
 # Local configuration

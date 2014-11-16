@@ -8,6 +8,10 @@ This is the project of the official site of Alumni Association of Tengzhou No.1 
 3. Run sidekiq: `bundle exec sidekiq -C config/sidekiq.yml` (and you could view
 `http://localhost:3000/sidekiq/queues` to view the monitor)
 
+# Naming conventions
+- Node Categories: use plural for countable nouns, eg. schools, interests
+- Node: use singular for countable nouns, eg. doctor, programmer
+
 # TODO
 You could find all the TODOs right here: [https://github.com/imWildCat/tzyz/labels/enhancement](https://github.com/imWildCat/tzyz/labels/enhancement) (Issues labelled enhancement).
 

@@ -11,7 +11,7 @@ set :rbenv_ruby, '2.1.3'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/home/server_admin/tzyz_production/'
+set :deploy_to, '/home/server_admin/tzyz_production'
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -32,7 +32,7 @@ set :linked_files, %w{config/database.yml config/application.yml config/secrets.
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploadsexample}
 
 # Default value for default_env is {}
-# set :default_env, { path: '$HOME/.rbenv/shims/:$PATH' }
+set :default_env, {path: '$HOME/.rbenv/shims/:$PATH'}
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
@@ -45,18 +45,31 @@ namespace :worker do
   desc 'Run Hot Nodes worker'
   task :hot_nodes do
     on roles(:app) do
-      # TODO: `bundle exec...` would lead to an error. Find why
-      execute "cd #{deploy_to}current; ~/.rbenv/shims/bundle exec script/sidekiq_pusher.rb HotNodesWorker"
+      within "#{deploy_to}/current" do
+        execute :bundle, :exec, 'script/sidekiq_pusher.rb HotNodesWorker'
+      end
     end
   end
 
   desc 'Run Hot Topics worker'
   task :hot_topics do
     on roles(:app) do
-      execute "cd #{deploy_to}current; ~/.rbenv/shims/bundle exec script/sidekiq_pusher.r HotTopicsWorker"
+      within "#{deploy_to}/current" do
+        execute :bundle, :exec, 'script/sidekiq_pusher.rb HotTopicsWorker'
+      end
     end
   end
+end
 
+namespace :db do
+  desc 'Seed the database'
+  task :seed do
+    on roles(:app) do
+      within "#{deploy_to}current" do
+        execute 'RAILS_ENV=production', :bundle, :exec, :rake, 'db:seed'
+      end
+    end
+  end
 end
 
 namespace :deploy do

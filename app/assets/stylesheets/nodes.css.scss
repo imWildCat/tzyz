@@ -2,6 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#all-nodes {
+  .list {
+    .category {
+      .category-meta {
+
+      }
+      .nodes {
+        a {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
 .node-page {
   .node-meta {
     border-bottom: solid 1px #dddddd;

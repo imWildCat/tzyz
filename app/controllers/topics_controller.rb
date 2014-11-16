@@ -6,14 +6,18 @@ include ApplicationHelper
   def show
     id = params[:id]
     page = current_page
-    @topic = Topic.find(id)
+    @topic = Topic.includes(:node).find(id)
     @replies = @topic.show(page, valid_click_for_topic?(@topic.id))
+
+    add_breadcrumb @topic.node.name, node_path(@topic.node.slug)
+    add_breadcrumb @topic.title
+    add_breadcrumb '阅读话题'
   end
 
   def new
+    add_breadcrumb '创建新话题'
     return if not_login('您尚未登录，请登录后再发表主题。')
     @node = Node.find_by_slug(params[:slug]) or not_found
-    render('new')
   end
 
   def create

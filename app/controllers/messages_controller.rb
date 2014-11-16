@@ -2,6 +2,8 @@ class MessagesController < ApplicationController
   before_action :check_login
 
   def show
+    add_breadcrumb '个人中心'
+    add_breadcrumb '消息'
     @messages = current_user.unread_messages
   end
 

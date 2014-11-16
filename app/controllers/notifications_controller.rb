@@ -4,6 +4,8 @@ class NotificationsController < ApplicationController
   include ApplicationHelper
 
   def show
+    add_breadcrumb '个人中心'
+    add_breadcrumb '系统通知'
     # Get notifications of current user
     @notifications = current_user.unread_notifications(current_page)
 

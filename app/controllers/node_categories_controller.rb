@@ -14,8 +14,10 @@ class NodeCategoriesController < ApplicationController
     @node_categories = NodeCategory.cached_cats
     @topics = Rails.cache.fetch("node_category_#{@slug}_topics_page_#{@page}", expires_in: 20.seconds) do
       @node_category.topics(page: current_page)
-
     end
+
+    add_breadcrumb '节点分类'
+    add_breadcrumb @node_category.name
 
   end
 end

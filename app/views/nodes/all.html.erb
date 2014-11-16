@@ -1,0 +1,20 @@
+<% title '节点' %>
+<div id="all-nodes">
+  <h1>节点导航</h1>
+
+  <div class="list">
+    <% @node_categories.each do |node_category| %>
+        <div class="category">
+          <div class="category-meta"><h3><%= node_category.name %></h3></div>
+          <div class="nodes">
+            <% node_category.nodes.each do |n| %>
+            <%= link_to n.name, node_path(n.slug) %>
+            <% end %>
+          </div>
+          <hr />
+        </div>
+    <% end %>
+
+  </div>
+
+</div>

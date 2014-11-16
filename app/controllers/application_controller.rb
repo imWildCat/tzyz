@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   after_action :store_location
 
+  add_breadcrumb '首页', :root_path
+
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   def not_found

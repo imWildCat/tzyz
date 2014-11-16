@@ -1,5 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def new
+    add_breadcrumb '注册'
+    super
+  end
+
   def create
     build_resource(sign_up_params)
 
@@ -25,6 +30,13 @@ class RegistrationsController < Devise::RegistrationsController
       end
       respond_with resource
     end
+  end
+
+  def edit
+    add_breadcrumb '个人中心'
+    add_breadcrumb '修改密码'
+
+    super
   end
 
   # PUT /resource

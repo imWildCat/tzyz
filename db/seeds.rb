@@ -47,7 +47,7 @@ if Rails.env == 'development'
   (1..100).each do |count|
     admin.topics.create(
         node_id: qna_node.id,
-        title: "Hello world!  --#{count}",
+        title: "Hello world!  -- #{count}",
         content: LOREM_IPSUM
     )
   end

@@ -35,9 +35,9 @@ readyCb = function () {
     console.log('ready cb called.');
 
     // time ago
-    $('abbr.timeago').timeago()
+    $('abbr.timeago').timeago();
 
-
+    $('.breadcrumb li').last().addClass('active');
 };
 
 $(document).ready(readyCb);

@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     self.email = email.downcase
   end
 
+  after_create do
+    Notification::create_user_welcome(self)
+  end
+
 
   validates :nickname, presence: true, length: {minimum: 2, maximum: 8}, uniqueness: {case_sensitive: false}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

@@ -2,6 +2,8 @@ class UserProfileController < ApplicationController
   before_action :check_login
 
   def edit
+    add_breadcrumb '个人中心'
+    add_breadcrumb '修改资料'
     @current_user_profile = current_user.profile
   end
 

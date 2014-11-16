@@ -4,7 +4,6 @@ class RepliesController < ApplicationController
     topic = Topic.find(params[:topic_id])
     content = params[:reply][:content]
     quoted_reply_id = params[:quoted_reply_id].to_i
-    quoted_reply = Reply.find(quoted_reply_id)
 
     if current_user
       if content.to_s.blank?
@@ -18,8 +17,9 @@ class RepliesController < ApplicationController
       reply.position = topic.replies_count + 1
 
       # Handle quoted reply
-      if quoted_reply_id > 0 and quoted_reply.topic_id == topic.id
-        reply.quoted_reply = quoted_reply
+      if quoted_reply_id > 0
+        quoted_reply = Reply.find(quoted_reply_id)
+        reply.quoted_reply = quoted_reply if quoted_reply.topic_id == topic.id
       end
 
       if reply.save

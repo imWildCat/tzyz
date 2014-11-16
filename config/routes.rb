@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get 'node/:slug' => 'nodes#show', as: 'node'
   get 'node/:slug/new' => 'topics#new', as: 'new_topic'
+  get 'nodes' => 'nodes#all', as: 'all_nodes'
 
   get 'user/:id' => 'user#show', as: 'user'
 

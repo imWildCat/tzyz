@@ -36,9 +36,9 @@ class Topic < ActiveRecord::Base
   def show(page, valid_click_or_not)
     raise ActionController::RoutingError.new('Not Found') unless have_page?(page)
     clicks_count_up if valid_click_or_not
-    self.replies.order(created_at:
-                           :desc).paginate(page: page,
-                                           per_page: Topic.replies_per_page)
+    self.replies.includes(:author, quoted_reply: [ :author ]).order(created_at:
+                                                   :asc).paginate(page: page,
+                                                                   per_page: Topic.replies_per_page)
   end
 
   def valid_click_by_user?(user_id)

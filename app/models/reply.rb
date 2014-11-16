@@ -9,4 +9,8 @@ class Reply < ActiveRecord::Base
     self.topic.save
   end
 
+  # Relationships
+  # - Reply to
+  belongs_to :quoted_reply, class_name: 'Reply'
+
 end

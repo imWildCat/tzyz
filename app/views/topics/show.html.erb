@@ -66,12 +66,27 @@
                     <span class="glyphicon glyphicon-thumbs-up"></span>
                     <span class="name">感谢</span>
                   </a>
-                  <a class="action" href="#">
-                    <span CLASS="glyphicon glyphicon-comment"></span>
-                    <span class="name">回复</span>
+                  <a class="action quote-reply" data-id="<%= r.id %>" href="#">
+                    <span class="glyphicon glyphicon-comment"></span>
+                    <span>回复</span>
                   </a>
                 </div>
               </div>
+              <% unless r.quoted_reply.nil? %>
+                  <div class="quoted-reply">
+                    <blockquote>
+
+                      <p class="quoted-reply-meta">
+                        引用 <%= link_to r.quoted_reply.author.nickname, r.quoted_reply.author %>
+                        在 <span class="time"><%= timeago(r.quoted_reply.created_at) %></span> 的回复:
+                      </p>
+
+                      <div class="content">
+                        <%= r.quoted_reply.content %>
+                      </div>
+                    </blockquote>
+                  </div>
+              <% end %>
               <div class="content">
                 <%= r.content %>
               </div>
@@ -84,16 +99,31 @@
     <div class="col-md-12">
       <%= will_paginate @replies, renderer: BootstrapPagination::Rails %>
     </div>
-    <div class="col-md-12" id="reply-topic">
-       <div class="panel panel-success">
+    <div class="col-md-12" id="reply-form">
+      <div class="panel panel-success">
         <div class="panel-heading">
           <h3 class="panel-title">发表回复</h3>
         </div>
         <div class="panel-body">
+          <div class="quoted-reply in-reply-form" style="display: none">
+            <blockquote>
+              <p class="quoted-reply-meta">
+                引用 <span class="author"></span>
+                在 <span class="time"></span> 的回复:
+                <a class="cancel float-right" href="#">取消</a>
+              </p>
+
+              <div class="content">
+
+              </div>
+            </blockquote>
+          </div>
+
           <%= form_for(@topic.replies.new, url: topic_reply_index_path(@topic), html: {role: 'form'}) do |f| %>
               <div class="form-group">
                 <div class="form-group">
                   <%= f.text_area :content, class: 'form-control', clos: '50', rows: '10' %>
+                  <input name="quoted_reply_id" type="hidden" value="" />
                 </div>
                 <%= f.submit '回复', class: 'btn btn-success float-right' %>
               </div>

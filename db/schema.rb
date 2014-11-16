@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141102030020) do
+ActiveRecord::Schema.define(version: 20141022153715) do
 
   create_table "admin_action_reasons", force: true do |t|
     t.string "description", limit: 63
@@ -70,24 +70,16 @@ ActiveRecord::Schema.define(version: 20141102030020) do
   create_table "replies", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "topic_id",   null: false
-    t.integer  "author_id",  null: false
-    t.text     "content",    null: false
+    t.integer  "topic_id",        null: false
+    t.integer  "author_id",       null: false
+    t.integer  "quoted_reply_id"
+    t.text     "content",         null: false
+    t.integer  "position",        null: false
     t.datetime "deleted_at"
   end
 
   add_index "replies", ["author_id"], name: "index_replies_on_author_id", using: :btree
   add_index "replies", ["deleted_at"], name: "index_replies_on_deleted_at", using: :btree
-
-  create_table "statistics", id: false, force: true do |t|
-    t.integer "type",       null: false
-    t.integer "related_id"
-    t.integer "value"
-  end
-
-  add_index "statistics", ["type", "related_id"], name: "index_statistics_on_type_and_related_id", unique: true, using: :btree
-  add_index "statistics", ["type"], name: "index_statistics_on_type", using: :btree
-  add_index "statistics", ["value"], name: "index_statistics_on_value", using: :btree
 
   create_table "topics", force: true do |t|
     t.datetime "created_at",                              null: false

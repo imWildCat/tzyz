@@ -4,7 +4,9 @@ class CreateReplies < ActiveRecord::Migration
       t.timestamps
       t.belongs_to :topic, null: false
       t.belongs_to :author, null: false
+      t.belongs_to :quoted_reply, null: true
       t.text :content, null: false
+      t.integer :position, null: false
       t.datetime :deleted_at
     end
     add_index :replies, :author_id

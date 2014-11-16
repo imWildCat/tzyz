@@ -10,7 +10,7 @@
         %>
                 <li class="line-<%= i %>"><%= link_to t.title, topic_path(t.id) %></li>
             <%
-               ++i
+               i = i + 1
                end
                end
             %>

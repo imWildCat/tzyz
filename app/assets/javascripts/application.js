@@ -42,3 +42,13 @@ readyCb = function () {
 
 $(document).ready(readyCb);
 $(document).on('page:load', readyCb);
+
+
+// Plugin
+jQuery.fn.extend({
+    scrollToMe: function (duration) {
+        duration = duration || 200
+        var x = jQuery(this).offset().top - 100;
+        jQuery('html,body').animate({scrollTop: x}, duration);
+    }
+});

@@ -56,10 +56,20 @@ if Rails.env == 'development'
   t = Topic.first
 
   (1..100).each do |count|
-    t.replies.create(
-        author: admin,
-        content: "Reply test! ---#{count}"
-    )
+    unless count == 2
+      t.replies.create(
+          author: admin,
+          content: "Reply test! --- #{count}",
+          position: count,
+      )
+    else
+      t.replies.create(
+          author: admin,
+          content: "Reply test! --- #{count}, this is a reply with quoted reply!",
+          position: count,
+          quoted_reply_id: 1
+      )
+    end
   end
 
   # Welcome notification

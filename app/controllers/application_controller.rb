@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :force_ssl_request
   after_action :store_location
 
   add_breadcrumb '首页', :root_path
@@ -29,6 +30,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def force_ssl_request
+    if request.ssl? or Rails.env == 'development' or request.post?
+      return true
+    elsif current_user or force_ssl_path?
+      force_ssl_redirect
+      # redirect_to url_for params.merge({:protocol => 'https://'})
+      return false
+    end
+  end
+
   private
   def store_location
     if (request.path != new_user_session_path &&
@@ -41,6 +52,11 @@ class ApplicationController < ActionController::Base
         !request.xhr?)
       store_location_for(:user, request.fullpath)
     end
+  end
+
+  def force_ssl_path?
+    request.path == new_user_session_path or request.path == user_registration_path or
+        request.path == new_user_unlock_path or request.path == new_user_confirmation_path
   end
 
 end

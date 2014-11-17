@@ -12,9 +12,9 @@
           <% # link_to @topic.node.name, node_path(@topic.node.slug), class: 'node-name' %>
           <span class="glyphicon glyphicon-time"></span> <span class="time"><%= timeago(@topic.created_at) %></span>
           <span class="glyphicon glyphicon-eye-open"></span> <span class="click"><%= @topic.clicks_count %>
-           <span class="label">次点击</span></span>
+           <span class="item">次点击</span></span>
           <span class="glyphicon glyphicon-star-empty"></span> <span class="favourite">21 <span
-        class="label">人收藏</span></span>
+        class="item">人收藏</span></span>
           <span class="reply-count"><%= @topic.replies_count %></span>
         </div>
       </div>

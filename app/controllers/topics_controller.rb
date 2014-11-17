@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
 
-include TopicsHelper
-include ApplicationHelper
+  include TopicsHelper
+  include ApplicationHelper
 
   def show
     id = params[:id]

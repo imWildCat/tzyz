@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get 'node/:slug' => 'nodes#show', as: 'node'
   get 'node/:slug/new' => 'topics#new', as: 'new_topic'
-  get 'nodes' => 'nodes#all', as: 'all_nodes'
+
 
   get 'user/:id' => 'user#show', as: 'user'
 
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   # resources :node_category, only: :show, controller: 'node_categories'
   get 'node_category/:slug' => 'node_categories#show', as: 'node_category'
+  get 'nodes' => 'node_categories#all', as: 'all_nodes'
 
   # sidekiq - monitoring
   require 'sidekiq/web'

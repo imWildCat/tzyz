@@ -67,6 +67,10 @@
           margin-left: 55px;
         }
 
+        @media screen and (max-width: 435px) {
+          width: 150px;
+        }
+
       }
       .info {
         font-size: 12px;
@@ -77,17 +81,17 @@
 
         @media screen and (max-width: 435px) {
           margin-top: 10px;
-          width: 170px;
-          .glyphicon {
+          width: 150px;
+          .label {
             display: none;
           }
         }
 
-        .node-name {
-          background-color: #F5F5F5;
-          padding: 5px;
-          border-radius: 5px;
-        }
+//        .node-name {
+//          background-color: #F5F5F5;
+//          padding: 5px;
+//          border-radius: 5px;
+//        }
         .time, .click, .favourite {
           margin-right: 5px;
         }

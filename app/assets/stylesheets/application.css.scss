@@ -13,10 +13,10 @@
 @import "mixins/sidebar";
 @import "mixins/footer";
 @import "mixins/topic_list";
-@import "mixins/index";
+@import "mixins/custom_simple_form";
 
-
-@import "custom_simple_form";
+@import "home";
+@import "node_categories";
 @import "nodes";
 @import "notifications";
 @import "sessions";

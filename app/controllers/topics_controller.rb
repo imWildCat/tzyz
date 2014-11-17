@@ -15,9 +15,10 @@ include ApplicationHelper
   end
 
   def new
-    add_breadcrumb '创建新话题'
     return if not_login('您尚未登录，请登录后再发表主题。')
     @node = Node.find_by_slug(params[:slug]) or not_found
+    add_breadcrumb @node.name, node_path(@node.slug)
+    add_breadcrumb '创建新话题'
   end
 
   def create

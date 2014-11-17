@@ -20,4 +20,12 @@ class NodeCategoriesController < ApplicationController
     add_breadcrumb @node_category.name
 
   end
+
+  def all
+    add_breadcrumb '节点列表'
+    @node_categories = Rails.cache.fetch('all_categories', expires_in: 1.day) do
+      NodeCategory::includes(:nodes).all
+    end
+  end
+
 end

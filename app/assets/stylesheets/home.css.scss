@@ -1,3 +1,31 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.cat-tab {
+  border-bottom: solid 1px #DDD;
+  height: 31px;
+  @media screen and (max-width: 539px) {
+    height: 62px;
+  }
+  ul {
+    float: left;
+    display: block;
+    list-style: none;
+    padding-left: 0;
+    li {
+      display: block;
+      float: left;
+      margin: auto 10px auto 10px;
+      &.selected {
+        font-weight: bold;
+        a {
+          color: #222;
+        }
+      }
+      a {
+        font-size: 15px;
+      }
+    }
+  }
+}

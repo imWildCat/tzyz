@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def force_ssl_request
-    if request.ssl? or Rails.env == 'development' or request.post?
+    if request.ssl? or Rails.env.development? or request.post?
       return true
     elsif current_user or force_ssl_path?
       force_ssl_redirect

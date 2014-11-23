@@ -10,7 +10,7 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
-  <%= render 'layouts/shim' %>
+  <%= render 'layouts/app/shim' %>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -38,9 +38,9 @@
 
 </head>
 <body>
-<%= render 'layouts/header' %>
+<%= render 'layouts/app/header' %>
 <div class="container">
-  <%= render 'layouts/alert' %>
+  <%= render 'layouts/app/alert' %>
   <div class="row">
     <div class="col-md-9">
 
@@ -64,7 +64,7 @@
     </div>
   </div>
 
-  <%= render 'layouts/footer' %>
+  <%= render 'layouts/app/footer' %>
 
   <%= debug(params) if Rails.env.development? %>
 </div>

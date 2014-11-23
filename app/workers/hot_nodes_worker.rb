@@ -4,12 +4,10 @@ class HotNodesWorker
   sidekiq_options :queue => :statistics, :retry => 5
 
   def perform
-    logger.info('HotNodesWorker')
-
     candidates = Node.all
     statistics = []
     candidates.each do |c|
-      count = Topic.where(:node => c).count
+      count = Topic.where(:node => c).count.to_i
       statistics.push({
           :node => c,
           :count => count,

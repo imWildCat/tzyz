@@ -42,11 +42,13 @@
         }
         .node-name {
           background-color: #F5F5F5;
-          padding: 5px;
+          padding: 3px 5px 3px 5px;
           border-radius: 5px;
+          margin: 0 0 3px 0;
         }
         a, span {
           padding: 2px;
+          display: inline-block;
         }
       }
       .title, .info {

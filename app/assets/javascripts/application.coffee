@@ -18,6 +18,7 @@
 #= require nprogress
 #= require nprogress-turbolinks
 #= require bootstrap
+#= require remarkable
 #= require_tree .
 
 # nprogress

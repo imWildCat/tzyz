@@ -42,14 +42,15 @@ class ApplicationController < ActionController::Base
 
   private
   def store_location
-    if (request.path != new_user_session_path &&
-        request.path != new_user_registration_path &&
-        request.path != new_user_password_path &&
-        request.path != edit_user_password_path &&
-        request.path != user_confirmation_path &&
-        request.path != new_user_confirmation_path &&
-        request.path != destroy_user_session_path &&
-        !request.xhr?)
+    if (request.path != new_user_session_path and
+        request.path != new_user_registration_path and
+        request.path != new_user_password_path and
+        request.path != edit_user_password_path and
+        request.path != user_confirmation_path and
+        request.path != new_user_confirmation_path and
+        request.path != destroy_user_session_path and
+        !request.xhr? and
+        !request.post?)
       store_location_for(:user, request.fullpath)
     end
   end

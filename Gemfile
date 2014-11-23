@@ -1,5 +1,6 @@
 #source 'https://rubygems.org'
 source 'https://ruby.taobao.org'
+source 'https://rails-assets.org'
 ruby '2.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -37,6 +38,11 @@ gem 'paranoia', '~> 2.0.2'
 
 # redis store for cache
 gem 'redis-rails', '~> 4.0.0'
+
+# Markdown editor
+gem 'codemirror-rails', '~> 4.8'
+# Markdown parser
+gem 'rails-assets-remarkable'
 
 # Background Task
 gem 'sidekiq', '~> 3.2.6'

@@ -4,6 +4,7 @@
 
 ready = ->
   setUpQuotedReply()
+  setUpMarkdownSupport()
 
 $(document).ready ready
 $(document).on 'page:load', ready
@@ -11,7 +12,7 @@ $(document).on 'page:load', ready
 setUpQuotedReply = ->
   # Handle quote reply action
   $('.replies .action.quote-reply').click ->
-    reply_id = $(this).attr('data-id')
+    reply_id = $(@).attr('data-id')
     quoted_reply = $('#reply_' + reply_id)
 
     # Handle the UI
@@ -31,4 +32,14 @@ setUpQuotedReply = ->
     $('#reply-form input[name="quoted_reply_id"]').val('')
     $('#reply-form .quoted-reply').hide()
     return false
+
+setUpMarkdownSupport = ->
+  md = new Remarkable()
+  md.set(
+    linkify: true,
+    breaks: true
+  )
+  # TODO: add support for tables
+  $('.single-topic .content').each (index, element) =>
+    $(element).html(md.render($(element).html()))
 

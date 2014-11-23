@@ -25,9 +25,7 @@
         <div class="name"><%= link_to "#{@topic.author.nickname}", @topic.author %></div>
       </div>
     </div>
-    <div class="content">
-      <%= @topic.content %>
-    </div>
+    <div class="content"><%= @topic.content %></div>
   </div>
 
   <div class="toolbar">
@@ -89,9 +87,7 @@
                     </blockquote>
                   </div>
               <% end %>
-              <div class="content">
-                <%= r.content %>
-              </div>
+              <div class="content"><%= r.content %></div>
             </div>
         <% end %>
     <% end %>

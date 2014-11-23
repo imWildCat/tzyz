@@ -1,5 +1,6 @@
 .navbar.navbar-custom {
-  $navbar-normal-bg-color: #222225;
+  $navbar-normal-bg-color: #4A90E2;
+  $navbar-active-bg-color: #0666c5;
 
   background-color: $navbar-normal-bg-color;
   border: none;
@@ -15,36 +16,34 @@
   .navbar-toggle {
     border-color: #ddd;
     &:hover, &:focus {
-      background-color: #ddd;
+      background-color: $navbar-active-bg-color;
     }
     .icon-bar {
-      background-color: #888;
+      background-color: #ffffff;
     }
   }
 
   ul.nav.navbar-nav li {
     &.active a {
-      background-color: #000000;
+      background-color: $navbar-active-bg-color;
+    }
+    .caret {
+      border-top-color: #ffffff;
+      border-bottom-color: #ffffff;
     }
     a {
       color: #ffffff;
       background-color: $navbar-normal-bg-color;
       &:hover {
-        color: lightblue;
-        background-color: #000000;
+        background-color: $navbar-active-bg-color;
       }
       &:focus {
-        background-color: #000000;
+        background-color: $navbar-active-bg-color;
       }
     }
 
     ul.dropdown-menu {
       background-color: $navbar-normal-bg-color;
-      border-color: $navbar-normal-bg-color;
-
-      li.divider {
-        background-color: #ddd;
-      }
     }
   }
 

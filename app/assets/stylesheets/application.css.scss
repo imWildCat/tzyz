@@ -3,9 +3,11 @@
  *= require bootstrap
  *= require_self
  *= require jquery.timeago
- *= require nprogress
- *= require nprogress-bootstrap
  */
+
+$nprogress-color: #FD971D;
+@import 'nprogress';
+@import 'nprogress-bootstrap';
 
 @import "mixins/global";
 

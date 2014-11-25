@@ -1,8 +1,9 @@
 class RepliesController < ApplicationController
+  include ApplicationHelper
 
   def create
     topic = Topic.find(params[:topic_id])
-    content = params[:content]
+    content = sanitizer(params[:content])
     quoted_reply_id = params[:quoted_reply_id].to_i
 
     if current_user

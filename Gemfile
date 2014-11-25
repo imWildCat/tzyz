@@ -41,8 +41,8 @@ gem 'redis-rails', '~> 4.0.0'
 
 # Markdown editor
 gem 'rails-assets-pen', '~> 0.0.3'
-# Markdown parser
-# gem 'rails-assets-remarkable'
+# HTML and CSS sanitizer
+gem 'sanitize', '~> 3.0.3'
 
 # Background Task
 gem 'sidekiq', '~> 3.2.6'

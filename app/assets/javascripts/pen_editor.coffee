@@ -7,8 +7,9 @@ setUpMarkdownSupport = ->
     debug: false,
     list: [
       'blockquote', 'h2', 'h3', 'p', 'insertorderedlist', 'insertunorderedlist',
-      'indent', 'outdent', 'bold', 'italic', 'underline', 'createlink'
-    ]
+      'bold', 'italic', 'underline', 'createlink'
+    ],
+    stay: false
   }
 
   # create editor

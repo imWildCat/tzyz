@@ -29,9 +29,8 @@ class TopicsController < ApplicationController
       flash[:error] = '标题不能为空。'
       return redirect_to :back
     end
-
     node = Node.find_by_slug(t[:node_slug]) or not_found
-    topic = node.topics.new(title: t[:title], author_id: current_user.id, content: params[:content])
+    topic = node.topics.new(title: t[:title], author_id: current_user.id, content: sanitizer(params[:content]))
 
     if topic.save
       flash[:success] = '主题发表成功。'

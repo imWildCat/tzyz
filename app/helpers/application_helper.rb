@@ -12,6 +12,11 @@ module ApplicationHelper
     content_tag(:abbr, '', class: options[:class], title: time.iso8601) if time
   end
 
+  def sanitizer(html)
+    Sanitize.fragment(html, :elements => %w(div blockquote a h2 h3 br hr p ol ul li b i u),
+                      :attributes => {:a => %w(href), :img => %w(src)})
+  end
+
   def render_will_paginate(resources)
     # TODO: add support for options
     will_paginate resources, renderer: BootstrapPagination::Rails

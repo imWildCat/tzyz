@@ -4,7 +4,6 @@
 
 ready = ->
   setUpQuotedReply()
-  setUpMarkdownSupport()
 
 $(document).ready ready
 $(document).on 'page:load', ready
@@ -32,31 +31,5 @@ setUpQuotedReply = ->
     $('#reply-form input[name="quoted_reply_id"]').val('')
     $('#reply-form .quoted-reply').hide()
     return false
-
-setUpMarkdownSupport = ->
-#  # remarkable
-#  md = new Remarkable()
-#  md.set(
-#    linkify: true,
-#    breaks: true,
-#    typographer: true,
-#  )
-#  # TODO: add support for tables and blockquotes
-#  $('.single-topic .content, .md-content').each (index, element) =>
-#    $(element).html(md.render($(element).html()))
-
-  # pen: markdown editor
-  # config
-  options = {
-    editor: document.querySelector('[data-toggle="pen"]'),
-    debug: true,
-    list: [
-      'insertimage', 'blockquote', 'h2', 'h3', 'p', 'code', 'insertorderedlist', 'insertunorderedlist', 'inserthorizontalrule',
-      'indent', 'outdent', 'bold', 'italic', 'underline', 'createlink'
-    ]
-  }
-
-  # create editor
-  pen = window.pen = new Pen(options);
 
 

@@ -2,9 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.header{
+.header {
   margin-bottom: 15px;
-  .chevron{
+  .chevron {
     font-weight: 500;
     font-family: "Lucida Grande";
   }
@@ -13,6 +13,21 @@
 .single-topic {
   .quoted-reply-meta {
     font-size: 12px;
+  }
+}
+
+.new-topic {
+  .pen-outlet {
+    border: 1px solid #cccccc;
+    margin: 10px 0;
+    padding: 6px 12px;
+    border-radius: 4px;
+    .pen {
+      min-height: 150px;
+      @media screen and (max-width: 620px) {
+        min-height: inherit;
+      }
+    }
   }
 }
 
@@ -87,11 +102,11 @@
           }
         }
 
-//        .node-name {
-//          background-color: #F5F5F5;
-//          padding: 5px;
-//          border-radius: 5px;
-//        }
+        //        .node-name {
+        //          background-color: #F5F5F5;
+        //          padding: 5px;
+        //          border-radius: 5px;
+        //        }
         .time, .click, .favourite {
           margin-right: 5px;
         }

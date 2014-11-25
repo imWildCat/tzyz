@@ -7,7 +7,9 @@
   cursor: text;
 }
 
-.pen{
+.pen, .pen-menu, .pen-input, .pen textarea {
+  font: inherit;
+
   h2, h3 {
     margin-top: 0;
   }

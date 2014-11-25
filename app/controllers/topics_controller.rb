@@ -31,7 +31,7 @@ class TopicsController < ApplicationController
     end
 
     node = Node.find_by_slug(t[:node_slug]) or not_found
-    topic = node.topics.new(title: t[:title], author_id: current_user.id, content: t[:content])
+    topic = node.topics.new(title: t[:title], author_id: current_user.id, content: params[:content])
 
     if topic.save
       flash[:success] = '主题发表成功。'

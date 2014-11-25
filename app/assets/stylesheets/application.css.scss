@@ -1,6 +1,7 @@
 /*
  *= require normalize
  *= require bootstrap
+ *= require pen
  *= require_self
  *= require jquery.timeago
  */
@@ -16,6 +17,7 @@ $nprogress-color: #FD971D;
 @import "mixins/footer";
 @import "mixins/topic_list";
 @import "mixins/custom_simple_form";
+@import "mixins/pen";
 
 @import "home";
 @import "node_categories";

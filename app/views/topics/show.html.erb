@@ -9,10 +9,10 @@
     <div class="meta">
       <div class="info">
         <div>
-          <% # link_to @topic.node.name, node_path(@topic.node.slug), class: 'node-name' %>
+          <% # link_to @topic.node.name, node_path(@topic.node.slug), class: 'node-name'  %>
           <span class="glyphicon glyphicon-time"></span> <span class="time"><%= timeago(@topic.created_at) %></span>
           <span class="glyphicon glyphicon-eye-open"></span> <span class="click"><%= @topic.clicks_count %>
-           <span class="item">次点击</span></span>
+          <span class="item">次点击</span></span>
           <span class="glyphicon glyphicon-star-empty"></span> <span class="favourite">21 <span
         class="item">人收藏</span></span>
           <span class="reply-count"><%= @topic.replies_count %></span>
@@ -25,7 +25,7 @@
         <div class="name"><%= link_to "#{@topic.author.nickname}", @topic.author %></div>
       </div>
     </div>
-    <div class="content"><%= @topic.content %></div>
+    <div class="content pen"><%= @topic.content.html_safe %></div>
   </div>
 
   <div class="toolbar">
@@ -81,13 +81,13 @@
                         在 <span class="time"><%= timeago(r.quoted_reply.created_at) %></span> 的回复:
                       </p>
 
-                      <div class="content">
-                        <%= r.quoted_reply.content %>
+                      <div class="content pen">
+                        <%= r.quoted_reply.content.html_safe %>
                       </div>
                     </blockquote>
                   </div>
               <% end %>
-              <div class="content"><%= r.content %></div>
+              <div class="content pen"><%= r.content.html_safe %></div>
             </div>
         <% end %>
     <% end %>
@@ -117,11 +117,13 @@
             </blockquote>
           </div>
 
-          <%= form_for(@topic.replies.new, url: topic_reply_index_path(@topic), html: {role: 'form'}) do |f| %>
+          <%= form_for(@topic.replies.new, url: topic_reply_index_path(@topic), html: {role: 'form', class:
+                                                 'pen-form'}) do |f| %>
               <div class="form-group">
                 <div class="form-group">
-                  <%= f.text_area :content, class: 'form-control', clos: '50', rows: '10' %>
-                  <input name="quoted_reply_id" type="hidden" value="" />
+                  <div data-toggle="pen" data-placeholder="请输入回复内容..."></div>
+                  <input name="content" type="hidden" value=""/>
+                  <input name="quoted_reply_id" type="hidden" value=""/>
                 </div>
                 <%= f.submit '回复', class: 'btn btn-success float-right' %>
               </div>

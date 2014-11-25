@@ -18,7 +18,9 @@
 #= require nprogress
 #= require nprogress-turbolinks
 #= require bootstrap
-#= require remarkable
+#= require pen.js
+#= require pen/markdown
+#= require pen_editor
 #= require_tree .
 
 # nprogress

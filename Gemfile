@@ -40,9 +40,9 @@ gem 'paranoia', '~> 2.0.2'
 gem 'redis-rails', '~> 4.0.0'
 
 # Markdown editor
-gem 'codemirror-rails', '~> 4.8'
+gem 'rails-assets-pen', '~> 0.0.3'
 # Markdown parser
-gem 'rails-assets-remarkable'
+# gem 'rails-assets-remarkable'
 
 # Background Task
 gem 'sidekiq', '~> 3.2.6'

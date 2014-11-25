@@ -1,0 +1,14 @@
+.pen-placeholder:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: attr(data-placeholder);
+  color: #999;
+  cursor: text;
+}
+
+.pen{
+  h2, h3 {
+    margin-top: 0;
+  }
+}

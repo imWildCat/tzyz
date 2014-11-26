@@ -39,7 +39,11 @@
     </div>
     <div class="item">
         <span class="glyphicon glyphicon-thumbs-up"></span>
-        <a href="#">感谢</a>
+      <% if is_topic_appreciated_by_current @topic %>
+          <span>已感谢</span>
+      <% else %>
+          <%= link_to '感谢', topic_appreciation_index_path(@topic.id), method: :post %>
+      <% end %>
     </div>
     <div class="item float-right">
       <a class="action" href="#">

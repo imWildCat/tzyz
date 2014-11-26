@@ -11,11 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126105457) do
+ActiveRecord::Schema.define(version: 20141126143852) do
 
   create_table "admin_action_reasons", force: true do |t|
     t.string "description", limit: 63
   end
+
+  create_table "appreciations", force: true do |t|
+    t.integer "user_id",  null: false, unsigned: true
+    t.integer "topic_id", null: false, unsigned: true
+  end
+
+  add_index "appreciations", ["topic_id"], name: "index_appreciations_on_topic_id", using: :btree
+  add_index "appreciations", ["user_id", "topic_id"], name: "index_appreciations_on_user_id_and_topic_id", unique: true, using: :btree
+  add_index "appreciations", ["user_id"], name: "index_appreciations_on_user_id", using: :btree
 
   create_table "favorite_topics", force: true do |t|
     t.integer "user_id",  null: false, unsigned: true

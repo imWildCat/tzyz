@@ -141,14 +141,7 @@
       display: inline-block;
       width: 80px;
       margin-right: 20px;
-      a {
-        font-size: 12px;
-        text-decoration: none;
-      }
-      .glyphicon {
-        color: $text-gray;
-        top: 2px;
-      }
+
       &.float-right {
         margin-right: 0;
         width: 80px;
@@ -183,6 +176,18 @@
           padding: 5px 5px 20px 20px;
         }
       }
+    }
+  }
+
+  .toolbar, .actions {
+    a, span {
+      color: $text-gray;
+      font-size: 12px;
+      text-decoration: none;
+    }
+    .glyphicon {
+      color: $text-gray;
+      top: 2px;
     }
   }
 }

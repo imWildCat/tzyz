@@ -10,8 +10,11 @@ Rails.application.routes.draw do
   # - Topics & Replies
   resources :topic, only: [:show, :create], controller: 'topics' do
     resources :reply, only: [:create], controller: 'replies' # may need to implement destroy later
+    # favorite
     resources :favorite_topic, only: [:create], controller: 'favorite_topics'
     delete 'cancel_favorite' => 'favorite_topics#destroy', as: 'favorite_topic'
+    # appreciation
+    resources :appreciation, only: [:create], controller: 'appreciations'
   end
 
   get 'node/:slug' => 'nodes#show', as: 'node'

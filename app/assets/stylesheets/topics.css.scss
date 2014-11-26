@@ -46,12 +46,12 @@
     }
   }
 
-  a.action {
-    font-size: 12px;
-    &:hover {
-      text-decoration: none;
-    }
-  }
+//  a.action {
+//    font-size: 12px;
+//    &:hover {
+//      text-decoration: none;
+//    }
+//  }
 
   .author .name {
     font-size: 16px;
@@ -139,8 +139,16 @@
     width: 100%;
     .item {
       display: inline-block;
-      width: 60px;
+      width: 80px;
       margin-right: 20px;
+      a {
+        font-size: 12px;
+        text-decoration: none;
+      }
+      .glyphicon {
+        color: $text-gray;
+        top: 2px;
+      }
       &.float-right {
         margin-right: 0;
         width: 80px;

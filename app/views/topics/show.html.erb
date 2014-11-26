@@ -13,7 +13,7 @@
           <span class="glyphicon glyphicon-time"></span> <span class="time"><%= timeago(@topic.created_at) %></span>
           <span class="glyphicon glyphicon-eye-open"></span> <span class="click"><%= @topic.clicks_count %>
           <span class="item">次点击</span></span>
-          <span class="glyphicon glyphicon-star-empty"></span> <span class="favourite">21 <span
+          <span class="glyphicon glyphicon-star-empty"></span> <span class="favourite"><%= @topic.favorites_count %> <span
         class="item">人收藏</span></span>
           <span class="reply-count"><%= @topic.replies_count %></span>
         </div>
@@ -30,16 +30,16 @@
 
   <div class="toolbar">
     <div class="item">
-      <a class="action" href="#">
         <span class="glyphicon glyphicon-star-empty"></span>
-        <span>收藏</span>
-      </a>
+      <% if is_topic_favorited_by_current @topic %>
+            <%= link_to '取消收藏', topic_favorite_topic_path(@topic.id), method: :delete %>
+          <% else %>
+          <%= link_to '收藏', topic_favorite_topic_index_path(@topic.id), method: :post %>
+      <% end %>
     </div>
     <div class="item">
-      <a class="action" href="#">
         <span class="glyphicon glyphicon-thumbs-up"></span>
-        <span>感谢</span>
-      </a>
+        <a href="#">感谢</a>
     </div>
     <div class="item float-right">
       <a class="action" href="#">

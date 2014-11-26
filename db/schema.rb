@@ -11,15 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022153715) do
+ActiveRecord::Schema.define(version: 20141126105457) do
 
   create_table "admin_action_reasons", force: true do |t|
     t.string "description", limit: 63
   end
 
+  create_table "favorite_topics", force: true do |t|
+    t.integer "user_id",  null: false, unsigned: true
+    t.integer "topic_id", null: false, unsigned: true
+  end
+
+  add_index "favorite_topics", ["topic_id"], name: "index_favorite_topics_on_topic_id", using: :btree
+  add_index "favorite_topics", ["user_id", "topic_id"], name: "index_favorite_topics_on_user_id_and_topic_id", unique: true, using: :btree
+  add_index "favorite_topics", ["user_id"], name: "index_favorite_topics_on_user_id", using: :btree
+
   create_table "messages", force: true do |t|
-    t.integer  "receiver_id"
-    t.integer  "sender_id"
+    t.integer  "receiver_id",                                          unsigned: true
+    t.integer  "sender_id",                                            unsigned: true
     t.boolean  "is_read",                 default: false
     t.string   "content",     limit: 511,                 null: false
     t.datetime "created_at",                              null: false
@@ -38,13 +47,13 @@ ActiveRecord::Schema.define(version: 20141022153715) do
   end
 
   create_table "nodes", force: true do |t|
-    t.integer  "node_category_id",                            null: false
+    t.integer  "node_category_id",                            null: false, unsigned: true
     t.string   "name",             limit: 15,                 null: false
     t.string   "slug",             limit: 31,                 null: false
     t.string   "description"
     t.boolean  "need_login",                  default: false, null: false
-    t.integer  "min_group",        limit: 3,  default: 0,     null: false
-    t.integer  "min_role",         limit: 3,  default: 0,     null: false
+    t.integer  "min_group",        limit: 3,  default: 0,     null: false, unsigned: true
+    t.integer  "min_role",         limit: 3,  default: 0,     null: false, unsigned: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,11 +79,11 @@ ActiveRecord::Schema.define(version: 20141022153715) do
   create_table "replies", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "topic_id",        null: false
-    t.integer  "author_id",       null: false
-    t.integer  "quoted_reply_id"
+    t.integer  "topic_id",        null: false, unsigned: true
+    t.integer  "author_id",       null: false, unsigned: true
+    t.integer  "quoted_reply_id",              unsigned: true
     t.text     "content",         null: false
-    t.integer  "position",        null: false
+    t.integer  "position",        null: false, unsigned: true
     t.datetime "deleted_at"
   end
 
@@ -82,14 +91,16 @@ ActiveRecord::Schema.define(version: 20141022153715) do
   add_index "replies", ["deleted_at"], name: "index_replies_on_deleted_at", using: :btree
 
   create_table "topics", force: true do |t|
-    t.datetime "created_at",                              null: false
-    t.integer  "node_id",                                 null: false
-    t.integer  "author_id",                               null: false
-    t.integer  "refresher_id",                            null: false
-    t.string   "title",           limit: 127,             null: false
-    t.integer  "clicks_count",                default: 0, null: false
-    t.integer  "replies_count",               default: 0, null: false
-    t.text     "content",                                 null: false
+    t.datetime "created_at",                                  null: false
+    t.integer  "node_id",                                     null: false, unsigned: true
+    t.integer  "author_id",                                   null: false, unsigned: true
+    t.integer  "refresher_id",                                null: false, unsigned: true
+    t.string   "title",               limit: 127,             null: false
+    t.integer  "clicks_count",                    default: 0, null: false, unsigned: true
+    t.integer  "replies_count",                   default: 0, null: false, unsigned: true
+    t.integer  "favorites_count",                 default: 0, null: false, unsigned: true
+    t.integer  "appreciations_count",             default: 0, null: false, unsigned: true
+    t.text     "content",                                     null: false
     t.datetime "last_replied_at"
   end
 
@@ -114,17 +125,17 @@ ActiveRecord::Schema.define(version: 20141022153715) do
     t.string   "email",                            default: "", null: false
     t.string   "encrypted_password",               default: "", null: false
     t.string   "nickname",               limit: 8,              null: false
-    t.integer  "group_id",               limit: 3, default: 1,  null: false
-    t.integer  "role_id",                limit: 3, default: 1,  null: false
-    t.integer  "topics_count",                     default: 0,  null: false
-    t.integer  "replies_count",                    default: 0,  null: false
+    t.integer  "group_id",               limit: 3, default: 1,  null: false, unsigned: true
+    t.integer  "role_id",                limit: 3, default: 1,  null: false, unsigned: true
+    t.integer  "topics_count",                     default: 0,  null: false, unsigned: true
+    t.integer  "replies_count",                    default: 0,  null: false, unsigned: true
     t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                    default: 0,  null: false
+    t.integer  "sign_in_count",                    default: 0,  null: false, unsigned: true
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -132,7 +143,7 @@ ActiveRecord::Schema.define(version: 20141022153715) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.integer  "failed_attempts",                  default: 0,  null: false
+    t.integer  "failed_attempts",                  default: 0,  null: false, unsigned: true
     t.string   "unlock_token"
     t.datetime "locked_at"
   end

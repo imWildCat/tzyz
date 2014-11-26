@@ -72,8 +72,6 @@ if Rails.env == 'development'
     end
   end
 
-  # Welcome notification
-  Notification.create_user_welcome(User.first)
 
 end
 

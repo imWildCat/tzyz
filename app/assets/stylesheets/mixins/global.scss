@@ -1,11 +1,19 @@
 // Global
 
+// Global constants
+//   - Colors
+$light-gray: #aaaaaa;
+$text-gray: #778087;
+
+//   - Layouts
+$normal-boder: solid 1px #dddddd;
+
 body {
 //  background: #f0f0f0 asset_url("noise.gif") repeat -70% 0;
 }
 
 a {
-  color: #778087;
+  color: $text-gray;
   &:hover {
     color: #333;
   }
@@ -31,10 +39,3 @@ span.time {
   color:#808080;
 }
 
-// Global constants
-//   - Colors
-$light-gray: #aaaaaa;
-$text-gray: #778087;
-
-//   - Layouts
-$normal-boder: solid 1px #dddddd;

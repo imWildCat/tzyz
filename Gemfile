@@ -32,6 +32,8 @@ gem 'nprogress-rails', '~> 0.1.6.3'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.16'
 
+gem 'activerecord-mysql-unsigned', '~> 0.3.1'
+
 # gem 'protected_attributes', '~> 1.0.8'
 # There is many bugs in activerecord-mysql-unsigned, so don't use it
 gem 'paranoia', '~> 2.0.2'

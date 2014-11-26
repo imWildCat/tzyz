@@ -13,7 +13,8 @@ setUpMarkdownSupport = ->
   }
 
   # create editor
-  pen = window.pen = new Pen(options);
+  if $('[data-toggle="pen"]').length > 0
+    pen = window.pen = new Pen(options);
 
   # placeholder
   $('div[data-toggle="pen"]').html('')

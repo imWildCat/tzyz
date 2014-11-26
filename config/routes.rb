@@ -3,13 +3,15 @@ Rails.application.routes.draw do
   get 'home/about'
 
   devise_for :users, path: 'account', controllers: {
-      registrations: :registrations,
-      sessions: :sessions
-  }
+                       registrations: :registrations,
+                       sessions: :sessions
+                   }
 
-  #  -Topics & Replies
+  # - Topics & Replies
   resources :topic, only: [:show, :create], controller: 'topics' do
     resources :reply, only: [:create], controller: 'replies' # may need to implement destroy later
+    resources :favorite_topic, only: [:create], controller: 'favorite_topics'
+    delete 'cancel_favorite' => 'favorite_topics#destroy', as: 'favorite_topic'
   end
 
   get 'node/:slug' => 'nodes#show', as: 'node'

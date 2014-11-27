@@ -2,6 +2,8 @@ class FavoriteTopic < ActiveRecord::Base
   after_create :delete_cache_key, :refresh_topic_count
   after_destroy :delete_cache_key, :refresh_topic_count
 
+  belongs_to :topic
+
   def self.make(user: nil, topic: nil)
     find_or_initialize_by(user_id: user.id, topic_id: topic.id).save
   end
@@ -19,6 +21,9 @@ class FavoriteTopic < ActiveRecord::Base
     end
   end
 
+  def self.paginated_topics_for_page(user, page = 1)
+    where(user_id: user.id).includes(:topic).order(id: :desc).paginate(page: page, per_page: Node.topics_per_page)
+  end
 
   protected
 

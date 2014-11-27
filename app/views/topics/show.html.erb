@@ -8,14 +8,27 @@
     </div>
     <div class="meta">
       <div class="info">
-        <div>
-          <% # link_to @topic.node.name, node_path(@topic.node.slug), class: 'node-name'    %>
-          <span class="glyphicon glyphicon-time"></span> <span class="time"><%= timeago(@topic.created_at) %></span>
-          <span class="glyphicon glyphicon-eye-open"></span> <span class="click"><%= @topic.clicks_count %>
-          <span class="item">次点击</span></span>
-          <span class="glyphicon glyphicon-star-empty"></span> <span class="favourite"><%= @topic.favorites_count %>
-          <span
-          class="item">人收藏</span></span>
+        <div class="line-1">
+          <div>
+            <span class="glyphicon glyphicon-time"></span>
+            <span class="time"><%= timeago(@topic.created_at) %></span>
+          </div>
+          <div>
+            <span class="glyphicon glyphicon-eye-open"></span>
+            <span class="item"><%= @topic.clicks_count %> <span class="note">次点击</span></span>
+          </div>
+          <div>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            <span class="item"><%= @topic.favorites_count %> <span class="note">人收藏</span></span>
+          </div>
+          <% if @topic.appreciations_count != 0  %>
+          <div>
+            <span class="glyphicon glyphicon-heart"></span>
+            <span class="item"><%= @topic.appreciations_count %> <span class="note">人感谢</span></span>
+          </div>
+          <% end %>
+        </div>
+        <div class="line-2">
           <span class="reply-count"><%= @topic.replies_count %></span>
         </div>
       </div>
@@ -32,7 +45,7 @@
   <div class="toolbar">
     <div class="item">
       <span class="glyphicon glyphicon-star-empty"></span>
-      <% if is_topic_favorited_by_current @topic %>
+      <% if topic_favorited_by_current? @topic %>
           <%= link_to '取消收藏', topic_favorite_topic_path(@topic.id), method: :delete %>
       <% else %>
           <%= link_to '收藏', topic_favorite_topic_index_path(@topic.id), method: :post %>
@@ -65,7 +78,7 @@
                 <span class="author"><%= link_to "#{r.author.nickname}", r.author, class: 'name' %></span>
                 <span class="time"><%= timeago(r.created_at) %></span>
                 <% if r.appreciations_count > 0 %>
-                    <span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count"><%=  r.appreciations_count %></span></span>
+                    <span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count"><%= r.appreciations_count %></span></span>
                 <% end %>
 
                 <div class="actions">

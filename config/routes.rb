@@ -25,6 +25,9 @@ Rails.application.routes.draw do
 
   resource :user_profile, except: [:new, :show, :destroy], controller: :user_profile
   resource :user_avatar, only: :update, controller: :user_avatar
+  scope :account do
+    get 'favorites' => 'favorite_topics#show', as: 'account_favorite_topic'
+  end
 
   resource :notifications, only: :show
   resource :messages, except: [:update, :edit]

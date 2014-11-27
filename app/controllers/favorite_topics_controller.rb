@@ -1,5 +1,7 @@
 class FavoriteTopicsController < ApplicationController
-  before_action :check_login, only: [:create]
+  include ApplicationHelper
+
+  before_action :check_login
 
   def create
     topic = Topic::find(params[:topic_id]) || not_found
@@ -27,4 +29,16 @@ class FavoriteTopicsController < ApplicationController
       redirect_to :back
     end
   end
+
+  def show
+    @favorites = FavoriteTopic::paginated_topics_for_page(current_user, current_page)
+    @topics = []
+    @favorites.each do |f|
+      @topics.append(f.topic)
+    end
+
+    add_breadcrumb '个人中心'
+    add_breadcrumb '我的收藏'
+  end
+
 end

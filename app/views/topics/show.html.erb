@@ -9,12 +9,13 @@
     <div class="meta">
       <div class="info">
         <div>
-          <% # link_to @topic.node.name, node_path(@topic.node.slug), class: 'node-name'  %>
+          <% # link_to @topic.node.name, node_path(@topic.node.slug), class: 'node-name'    %>
           <span class="glyphicon glyphicon-time"></span> <span class="time"><%= timeago(@topic.created_at) %></span>
           <span class="glyphicon glyphicon-eye-open"></span> <span class="click"><%= @topic.clicks_count %>
           <span class="item">次点击</span></span>
-          <span class="glyphicon glyphicon-star-empty"></span> <span class="favourite"><%= @topic.favorites_count %> <span
-        class="item">人收藏</span></span>
+          <span class="glyphicon glyphicon-star-empty"></span> <span class="favourite"><%= @topic.favorites_count %>
+          <span
+          class="item">人收藏</span></span>
           <span class="reply-count"><%= @topic.replies_count %></span>
         </div>
       </div>
@@ -30,19 +31,19 @@
 
   <div class="toolbar">
     <div class="item">
-        <span class="glyphicon glyphicon-star-empty"></span>
+      <span class="glyphicon glyphicon-star-empty"></span>
       <% if is_topic_favorited_by_current @topic %>
-            <%= link_to '取消收藏', topic_favorite_topic_path(@topic.id), method: :delete %>
-          <% else %>
+          <%= link_to '取消收藏', topic_favorite_topic_path(@topic.id), method: :delete %>
+      <% else %>
           <%= link_to '收藏', topic_favorite_topic_index_path(@topic.id), method: :post %>
       <% end %>
     </div>
     <div class="item">
-        <span class="glyphicon glyphicon-thumbs-up"></span>
-      <% if is_topic_appreciated_by_current @topic %>
+      <span class="glyphicon glyphicon-thumbs-up"></span>
+      <% if topic_appreciated_by_current? @topic %>
           <span>已感谢</span>
       <% else %>
-          <%= link_to '感谢', topic_appreciation_index_path(@topic.id), method: :post %>
+          <%= link_to '感谢', topic_appreciate_path(@topic.id), method: :post %>
       <% end %>
     </div>
     <div class="item float-right">
@@ -63,13 +64,19 @@
               <div class="meta">
                 <span class="author"><%= link_to "#{r.author.nickname}", r.author, class: 'name' %></span>
                 <span class="time"><%= timeago(r.created_at) %></span>
-                <span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count">3</span></span>
+                <% if r.appreciations_count > 0 %>
+                    <span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count"><%=  r.appreciations_count %></span></span>
+                <% end %>
 
                 <div class="actions">
-                  <a class="action" href="#">
+                  <span class="action" href="#">
                     <span class="glyphicon glyphicon-thumbs-up"></span>
-                    <span class="name">感谢</span>
-                  </a>
+                    <% if reply_appreciated_by_current? r %>
+                        <span>已感谢</span>
+                    <% else %>
+                        <%= link_to '感谢', topic_topic_reply_appreciate_path(@topic, r), method: :post %>
+                    <% end %>
+                  </span>
                   <a class="action quote-reply" data-id="<%= r.id %>" href="#">
                     <span class="glyphicon glyphicon-comment"></span>
                     <span>回复</span>
@@ -119,7 +126,7 @@
 
               </div>
             </blockquote>
-            <hr />
+            <hr/>
           </div>
 
           <%= form_for(@topic.replies.new, url: topic_reply_index_path(@topic), html: {role: 'form', class:

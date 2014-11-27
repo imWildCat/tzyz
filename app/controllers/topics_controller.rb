@@ -40,4 +40,16 @@ class TopicsController < ApplicationController
       redirect_to :back
     end
   end
+
+  def appreciate
+    topic = Topic::find(params[:topic_id]) || not_found
+    if topic.is_appreciated_by_user current_user
+      flash[:warning] = '您已经感谢过本主题了。'
+      redirect_to :back
+    else
+      topic.appreciations.make current_user
+      flash[:warning] = '已经发送对本主题的感谢。'
+      redirect_to :back
+    end
+  end
 end

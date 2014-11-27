@@ -19,6 +19,7 @@ class FavoriteTopic < ActiveRecord::Base
     end
   end
 
+
   protected
 
   def self.cache_key(user_id, topic_id)
@@ -32,9 +33,7 @@ class FavoriteTopic < ActiveRecord::Base
   end
 
   def delete_cache_key
-    Rails.cache.delete "is_favcorited_for_user_#{user_id}_topic_#{topic_id}"
-    # FIXME：If use the following line, no method error occurs:
-    # Rails.cache.delete self.cache_key(user_id, topic_id)
+    Rails.cache.delete FavoriteTopic::cache_key(user_id, topic_id)
   end
 
 end

@@ -4,7 +4,7 @@ source 'https://rails-assets.org'
 ruby '2.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '4.1.8'
 
 # Settings
 gem 'rails_config', '~> 0.4.2'
@@ -32,6 +32,7 @@ gem 'nprogress-rails', '~> 0.1.6.3'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.16'
 
+# ActiveRecord or Migration support
 gem 'activerecord-mysql-unsigned', '~> 0.3.1'
 
 # gem 'protected_attributes', '~> 1.0.8'

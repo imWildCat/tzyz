@@ -14,7 +14,7 @@ class RepliesController < ApplicationController
       end
 
       reply = Reply.new(topic_id: topic.id, author_id: current_user.id,
-                         content: content)
+                        content: content)
       reply.position = topic.replies_count + 1
 
       # Handle quoted reply
@@ -37,6 +37,18 @@ class RepliesController < ApplicationController
 
     else #didn't sign in
       flash[:error] = '您尚未登陆，请登陆后再发表回复。'
+      redirect_to :back
+    end
+  end
+
+  def appreciate
+    reply = Reply::find(params[:reply_id]) || not_found
+    if reply.is_appreciated_by_user current_user
+      flash[:warning] = '您已经感谢过本回复了。'
+      redirect_to :back
+    else
+      reply.appreciations.make current_user
+      flash[:warning] = '已经发送对本回复的感谢。'
       redirect_to :back
     end
   end

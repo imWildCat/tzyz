@@ -1,9 +1,11 @@
 class Topic < ActiveRecord::Base
-
   belongs_to :author, class_name: 'User'
   belongs_to :node
 
   has_many :replies, dependent: :destroy
+
+  has_many :appreciations, -> { where appreciative_type: 0 }, foreign_key: 'appreciative_id'
+  # appreciative_type of Topic is 0
 
   before_create do
     self.refresher_id = self.author_id
@@ -12,6 +14,12 @@ class Topic < ActiveRecord::Base
 
   def self.replies_per_page
     20
+  end
+
+  def is_appreciated_by_user(user)
+    Rails.cache.fetch(Appreciation.build_cache_key(user_id: user.id, topic_id: self.id), expires_in: 7.days) do
+      appreciations.where(user_id: user.id).count > 0
+    end
   end
 
   def clicks_count_up
@@ -36,9 +44,9 @@ class Topic < ActiveRecord::Base
   def show(page, valid_click_or_not)
     raise ActionController::RoutingError.new('Not Found') unless have_page?(page)
     clicks_count_up if valid_click_or_not
-    self.replies.includes(:author, quoted_reply: [ :author ]).order(created_at:
-                                                   :asc).paginate(page: page,
-                                                                   per_page: Topic.replies_per_page)
+    self.replies.includes(:author, quoted_reply: [:author]).order(created_at:
+                                                                      :asc).paginate(page: page,
+                                                                                     per_page: Topic.replies_per_page)
   end
 
   def valid_click_by_user?(user_id)

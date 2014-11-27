@@ -1,39 +1,42 @@
 class Appreciation < ActiveRecord::Base
-  after_create :delete_cache_key, :refresh_topic_count
-  after_destroy :delete_cache_key, :refresh_topic_count
+  enum appreciative_type: %w(Topic Reply)
 
-  def self.make(user: nil, topic: nil)
-    find_or_initialize_by(user_id: user.id, topic_id: topic.id).save
-  end
+  after_save :delete_cache_key, :refresh_count
+  after_destroy :delete_cache_key, :refresh_count
 
-  def self.is_appreciated(user: nil, topic: nil)
-    is_new_topic = topic.created_at > 30.days.ago
+  belongs_to :appreciative, polymorphic: true
 
-    # If is new topic, try cache
-    if is_new_topic
-      return Rails.cache.fetch(self.cache_key(user.id, topic.id), expires_in: 1.day) do
-        find_by user_id: user.id, topic_id: topic
-      end
-    else
-      return find_by user_id: user.id, topic_id: topic
-    end
+  def self.make(user)
+    appreciation = self.new(user_id: user.id)
+    appreciation.save
   end
 
   protected
 
-  def self.cache_key(user_id, topic_id)
-    "is_application_for_user_#{user_id}_topic_#{topic_id}"
+  def self.build_cache_key(user_id: nil, topic_id: nil, reply_id: nil?)
+    return nil if user_id.nil?
+    return "is_appreciated_topic[#{topic_id}]_u[#{user_id}]" unless topic_id.nil?
+    return "is_appreciated_reply[#{reply_id}]_u[#{user_id}]" unless reply_id.nil?
+    nil
   end
 
-  def refresh_topic_count
-    topic = Topic.find topic_id
-    topic.appreciations_count = Appreciation::where('topic_id = ?', topic_id).count
-    topic.save
+  def refresh_count
+    if appreciative_type == 'Topic' # Topic
+      topic = Topic.find appreciative_id
+      topic.appreciations_count = topic.appreciations.count
+      topic.save
+    elsif appreciative_type == 'Reply' # Reply
+      reply = Reply.find appreciative_id
+      reply.appreciations_count = reply.appreciations.count
+      reply.save
+    end
   end
 
   def delete_cache_key
-    Rails.cache.delete "is_application_for_user_#{user_id}_topic_#{topic_id}"
-    # FIXME：If use the following line, no method error occurs:
-    # Rails.cache.delete self.cache_key(user_id, topic_id)
+    if appreciative_type == 'Topic' # Topic
+      Rails.cache.delete Appreciation::build_cache_key(user_id: user_id, topic_id: appreciative_id)
+    elsif appreciative_type == 'Reply' # Reply
+      Rails.cache.delete Appreciation::build_cache_key(user_id: user_id, reply_id: appreciative_id)
+    end
   end
 end

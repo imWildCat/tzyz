@@ -60,7 +60,7 @@
     width: auto;
   }
 
-  .time, .appreciation {
+  .time, .appreciation, .appreciation-sent {
     color: $light-gray;
     font-size: 12px;
   }
@@ -105,8 +105,6 @@
         .line-1 > div {
           float: right;
           margin-left: 5px;
-
-
         }
 
         .line-2 {
@@ -171,6 +169,10 @@
             width: 150px;
             float: right;
             text-align: right;
+
+            @media screen and (min-width: 620px) {
+              display: none;
+            }
             .action {
               margin-left: 10px;
             }
@@ -182,6 +184,11 @@
           padding-bottom: 20px;
         }
       }
+      &:hover {
+        .meta .actions {
+            display: block;
+        }
+      }
     }
   }
 
@@ -190,10 +197,15 @@
       color: $text-gray;
       font-size: 12px;
       text-decoration: none;
+      &.inactive {
+        color: $light-gray;
+      }
     }
     .glyphicon {
       color: $text-gray;
       top: 2px;
     }
   }
+
+
 }

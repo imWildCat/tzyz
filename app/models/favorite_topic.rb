@@ -1,5 +1,5 @@
 class FavoriteTopic < ActiveRecord::Base
-  after_create :delete_cache_key, :refresh_topic_count
+  after_save :delete_cache_key, :refresh_topic_count
   after_destroy :delete_cache_key, :refresh_topic_count
 
   belongs_to :topic

@@ -48,7 +48,7 @@ class TopicsController < ApplicationController
       redirect_to :back
     else
       topic.appreciations.make current_user
-      flash[:warning] = '已经发送对本主题的感谢。'
+      flash[:success] = '已经发送对本主题的感谢。'
       redirect_to :back
     end
   end

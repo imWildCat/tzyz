@@ -21,11 +21,11 @@
             <span class="glyphicon glyphicon-star-empty"></span>
             <span class="item"><%= @topic.favorites_count %> <span class="note">人收藏</span></span>
           </div>
-          <% if @topic.appreciations_count != 0  %>
-          <div>
-            <span class="glyphicon glyphicon-heart"></span>
-            <span class="item"><%= @topic.appreciations_count %> <span class="note">人感谢</span></span>
-          </div>
+          <% if @topic.appreciations_count != 0 %>
+              <div>
+                <span class="glyphicon glyphicon-heart"></span>
+                <span class="item"><%= @topic.appreciations_count %> <span class="note">人感谢</span></span>
+              </div>
           <% end %>
         </div>
         <div class="line-2">
@@ -54,7 +54,7 @@
     <div class="item">
       <span class="glyphicon glyphicon-thumbs-up"></span>
       <% if topic_appreciated_by_current? @topic %>
-          <span>已感谢</span>
+          <span class="inactive">已感谢</span>
       <% else %>
           <%= link_to '感谢', topic_appreciate_path(@topic.id), method: :post %>
       <% end %>
@@ -79,17 +79,19 @@
                 <span class="time"><%= timeago(r.created_at) %></span>
                 <% if r.appreciations_count > 0 %>
                     <span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count"><%= r.appreciations_count %></span></span>
+                    <% if reply_appreciated_by_current? r %>
+                        <span class="appreciation-sent">已感谢</span>
+                    <% end %>
                 <% end %>
 
                 <div class="actions">
-                  <span class="action" href="#">
+                  <% unless reply_appreciated_by_current? r %>
+                      <span class="action" href="#">
                     <span class="glyphicon glyphicon-thumbs-up"></span>
-                    <% if reply_appreciated_by_current? r %>
-                        <span>已感谢</span>
-                    <% else %>
                         <%= link_to '感谢', topic_topic_reply_appreciate_path(@topic, r), method: :post %>
-                    <% end %>
-                  </span>
+                            </span>
+                  <% end %>
+
                   <a class="action quote-reply" data-id="<%= r.id %>" href="#">
                     <span class="glyphicon glyphicon-comment"></span>
                     <span>回复</span>
@@ -98,8 +100,7 @@
               </div>
               <% unless r.quoted_reply.nil? %>
                   <div class="quoted-reply">
-                    <blockquote>
-
+                    <blockquote class="pen">
                       <p class="quoted-reply-meta">
                         引用 <%= link_to r.quoted_reply.author.nickname, r.quoted_reply.author %>
                         在 <span class="time"><%= timeago(r.quoted_reply.created_at) %></span> 的回复:

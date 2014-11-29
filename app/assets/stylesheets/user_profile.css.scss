@@ -1,3 +1,42 @@
 // Place all the styles related to the UserProfile controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#edit_user_profile {
+  .form-group, .item {
+    clear: both;
+    width: 60%;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+  .gender {
+    span {
+      margin-left: 20px;
+    }
+  }
+  div.item {
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    margin: 5px 0 5px 0;
+    padding: 5px;
+    .icon {
+      float: left;
+      height: 25px;
+      width: 25px;
+      img {
+        height: 25px;
+        width: 25px;
+      }
+    }
+    .input-outline {
+      margin-left: 25px;
+      padding-left: 5px;
+      input {
+        width: 100%;
+        border: none;
+        color: $dark-text-gray;
+      }
+    }
+  }
+}

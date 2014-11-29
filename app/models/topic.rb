@@ -9,7 +9,6 @@ class Topic < ActiveRecord::Base
 
   before_create do
     self.refresher_id = self.author_id
-    self.last_replied_at = Time.now
   end
 
   def self.replies_per_page

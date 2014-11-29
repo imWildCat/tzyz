@@ -1,2 +1,44 @@
-<h1><%= @user.nickname %></h1>
-<p>Find me in app/views/user/show.html.erb</p>
+<% user_profile = @user.profile %>
+<div id="user-info-page">
+  <h1><%= @user.nickname %></h1>
+
+  <div class="avatar"><%= image_tag(@user.avatar_url, alt: @user.id) %></div>
+  <div class="meta">
+    <p><strong><%= user_profile.headline %></strong></p>
+
+    <p>第 <%= @user.id %> 位会员</p>
+  </div>
+  <table>
+    <tbody>
+    <% @social_list = user_social_list(user_profile) #[{ :icon => 'qq', :value=> 'dsa' }]  %>
+    <% @social_list.each do |social_item| %>
+        <tr>
+          <th><%= image_tag "social_icons/#{social_item[:icon]}.png", class: 'icon' %></th>
+          <td><%= social_item[:value] %></td>
+        </tr>
+    <% end %>
+
+    </tbody>
+  </table>
+
+  <div class="meta">
+    <table>
+      <tbody>
+      <tr>
+        <th>注册时间：</th>
+        <td><span class="time"><%= timeago(@user.created_at) unless @user.created_at.nil? %></span></td>
+      </tr>
+      <tr>
+        <th>上次登录：</th>
+        <td><span class="time"><%= timeago(@user.last_sign_in_at) unless @user.last_sign_in_at.nil? %></span></td>
+      </tr>
+      </tbody>
+    </table>
+    <div>
+      <p><strong>个人简介：</strong></p>
+      <%= (user_profile.introduction.nil? or user_profile.introduction.empty?) ? '这个人很懒，什么都没有写。' : user_profile.introduction %>
+    </div>
+  </div>
+</div>
+
+

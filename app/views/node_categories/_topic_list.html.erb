@@ -18,7 +18,7 @@
                   <span class="divider">•</span>
                   <%= link_to t.author.nickname, t.author, class: 'author' %>
                   <span class="divider">•</span>
-                  <span class="time"><%= timeago(t.last_replied_at) %></span> <span class="divider">•</span>
+                  <span class="time"><%= timeago(t.updated_at) %></span> <span class="divider">•</span>
                   <span class="refresher-label">最后回复来自</span>
                   <%= link_to t.refresher.nickname, t.refresher, class: 'refresher' %>
 

@@ -8,15 +8,26 @@ class UserProfileController < ApplicationController
   end
 
   def update
+    profile_data = user_profile_params
+
+    unless profile_data.nil?
+      unless profile_data[:gender] == 'true' or profile_data[:gender] == 'false'
+        profile_data[:gender] = nil
+      end
+    end
+
+    puts profile_data
+    current_user.user_profile.update(profile_data)
     flash[:success] = '资料修改成功。'
-    current_user.user_profile.update(user_profile_params)
     redirect_to edit_user_profile_path
   end
 
   protected
 
   def user_profile_params
-    params.require(:user_profile).permit(:name, :city, :website, :weibo, :introduction)
+    params.require(:user_profile).permit(:name, :gender, :headline, :field, :university, :company, :city, :website,
+                                         :email, :qq, :weibo, :wechat, :linkedin, :zhihu, :douban, :renren,
+                                         :introduction)
   end
 
 end

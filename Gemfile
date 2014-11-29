@@ -4,7 +4,7 @@ source 'https://rails-assets.org'
 ruby '2.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.8'
+gem 'rails', '~> 4.2.0.rc1'
 
 # Settings
 gem 'rails_config', '~> 0.4.2'
@@ -83,7 +83,19 @@ group :development, :test do
   gem 'rspec-rails', '2.13.1'
   gem 'ruby-debug-ide', '~> 0.4.22'
   gem 'debase'
+  gem 'bullet', '~> 4.14.0'
 
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+
+  # TODO: use the following gems to combine social icons:
+  # gem 'sprite-factory', '1.4.1', require: false
+  # gem 'chunky_png', '1.2.8', require: false
+
+  # campistrano
   gem 'capistrano', '~> 3.2.1'
   gem 'capistrano-rbenv', '~> 2.0.2'
   gem 'capistrano-rails', '~> 1.1.2'

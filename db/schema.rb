@@ -102,7 +102,6 @@ ActiveRecord::Schema.define(version: 20141126143852) do
   add_index "replies", ["deleted_at"], name: "index_replies_on_deleted_at", using: :btree
 
   create_table "topics", force: true do |t|
-    t.datetime "created_at",                                  null: false
     t.integer  "node_id",                                     null: false, unsigned: true
     t.integer  "author_id",                                   null: false, unsigned: true
     t.integer  "refresher_id",                                null: false, unsigned: true
@@ -112,11 +111,11 @@ ActiveRecord::Schema.define(version: 20141126143852) do
     t.integer  "favorites_count",                 default: 0, null: false, unsigned: true
     t.integer  "appreciations_count",             default: 0, null: false, unsigned: true
     t.text     "content",                                     null: false
-    t.datetime "last_replied_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "topics", ["author_id"], name: "index_topics_on_author_id", using: :btree
-  add_index "topics", ["last_replied_at"], name: "index_topics_on_last_replied_at", using: :btree
 
   create_table "user_avatars", primary_key: "owner_id", force: true do |t|
     t.boolean "is_enabled",            default: true, null: false
@@ -125,11 +124,23 @@ ActiveRecord::Schema.define(version: 20141126143852) do
   end
 
   create_table "user_profiles", primary_key: "owner_id", force: true do |t|
-    t.string "name",         limit: 15
-    t.string "city",         limit: 31
-    t.string "website"
-    t.string "weibo",        limit: 63
-    t.string "introduction"
+    t.boolean "gender"
+    t.string  "name",         limit: 15
+    t.string  "headline",     limit: 63
+    t.integer "field",        limit: 3,   unsigned: true
+    t.string  "university",   limit: 63
+    t.string  "company",      limit: 63
+    t.string  "city",         limit: 31
+    t.string  "website",      limit: 127
+    t.string  "email",        limit: 127
+    t.integer "qq",                       unsigned: true
+    t.string  "weibo",        limit: 63
+    t.string  "wechat",       limit: 31
+    t.string  "linkedin",     limit: 127
+    t.string  "zhihu",        limit: 31
+    t.string  "douban",       limit: 31
+    t.string  "renren",       limit: 31
+    t.string  "introduction"
   end
 
   create_table "users", force: true do |t|

@@ -1,7 +1,7 @@
 class Reply < ActiveRecord::Base
 
   belongs_to :topic
-  belongs_to :author, class_name: 'User'
+  belongs_to :author, class_name: 'User', touch: true
   has_many :appreciations, -> { where appreciative_type: 1 }, foreign_key: 'appreciative_id'
   # appreciative_type of Reply is 1, the following line is not working correctly:
   # has_many :appreciations, as: :appreciative
@@ -9,7 +9,6 @@ class Reply < ActiveRecord::Base
   after_save do
     self.topic.replies_count += 1
     self.topic.refresher_id = self.author_id
-    self.topic.last_replied_at = Time.now
     self.topic.save
   end
 

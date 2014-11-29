@@ -9,7 +9,7 @@ class NodeCategory < ActiveRecord::Base
   end
 
   def topics(per_page: 20, page: 1)
-    Topic.where(:node => nodes).order(last_replied_at: :desc).paginate(page: page, per_page: per_page)
+    Topic.where(:node => nodes).order(updated_at: :desc).paginate(page: page, per_page: per_page)
   end
 
   # No use

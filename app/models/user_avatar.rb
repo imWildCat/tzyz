@@ -1,6 +1,6 @@
 class UserAvatar < ActiveRecord::Base
 
-  belongs_to :owner, class_name: 'User', foreign_key: :owner_id
+  belongs_to :owner, class_name: 'User', foreign_key: :owner_id, touch: true
 
   def url
     return Settings.paths.no_user_avatar unless is_enabled

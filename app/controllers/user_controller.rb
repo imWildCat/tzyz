@@ -1,6 +1,6 @@
 class UserController < ApplicationController
 
-  before_action :check_login, only: [:show]
+  # before_action :check_login, only: [:show]
 
   def show
     id = params[:id]

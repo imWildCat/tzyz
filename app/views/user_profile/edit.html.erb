@@ -7,14 +7,108 @@
         <%= f.error_notification %>
         <div class="form-inputs">
           <%= f.input :name, label: '姓名' %>
+
+         <p class="gender">
+           <strong>性别: </strong>
+           <%= f.collection_radio_buttons :gender, [[false, '女'], [true, '男'], [nil, '保密']], :first, :last %>
+         </p>
+
+          <%= f.input :headline, placeholder: '如 “医生，兼职摄影师，偶尔旅游”', label: '一句话介绍' %>
+          <%= f.input :field, label: '所在行业' %>
+          <%= f.input :company, label: '公司' %>
+          <%= f.input :university, label: '大学' %>
           <%= f.input :city, label: '城市' %>
-          <%= f.input :website, label: '个人网站', :input_html => {:maxlength => 255} %>
-          <%= f.input :weibo, class: 'small', label: '微博' %>
-          <%= f.input :introduction, label: '个人简介', placeholder: '最多 255 字', as: :text, :input_html => {class: 'test',
-                                                                                                        :cols => 3,
-                                                                                                        :rows => 5,
-                                                                                                        :maxlength => 255} %>
+
+          <p><strong>社交：</strong></p>
+
+          <div class="item">
+            <div class="icon">
+              <%= image_tag 'social_icons/website.png' %>
+            </div>
+            <div class="input-outline">
+              <%= f.input_field :website, placeholder: '个人网站，如 http://wildcat.io', :input_html => {:maxlength => 127} %>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="icon">
+              <%= image_tag 'social_icons/email.png' %>
+            </div>
+            <div class="input-outline">
+              <%= f.input_field :email, placeholder: 'Email， 例如: lihua@qq.com' %>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="icon">
+              <%= image_tag 'social_icons/wechat.png' %>
+            </div>
+            <div class="input-outline">
+              <%= f.input_field :wechat, placeholder: '微信号' %>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="icon">
+              <%= image_tag 'social_icons/qq.png' %>
+            </div>
+            <div class="input-outline">
+              <%= f.input_field :qq, placeholder: 'QQ' %>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="icon">
+              <%= image_tag 'social_icons/weibo.png' %>
+            </div>
+            <div class="input-outline">
+              <%= f.input_field :weibo, placeholder: '微博昵称，如 WildCat92' %>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="icon">
+              <%= image_tag 'social_icons/linkedin.png' %>
+            </div>
+            <div class="input-outline">
+              <%= f.input_field :linkedin, placeholder: 'Linkedin 个人首页地址' %>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="icon">
+              <%= image_tag 'social_icons/zhihu.png' %>
+            </div>
+            <div class="input-outline">
+              <%= f.input_field :zhihu, placeholder: '知乎昵称，如 fenng' %>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="icon">
+              <%= image_tag 'social_icons/douban.png' %>
+            </div>
+            <div class="input-outline">
+              <%= f.input_field :douban, placeholder: '豆瓣昵称' %>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="icon">
+              <%= image_tag 'social_icons/renren.png' %>
+            </div>
+            <div class="input-outline">
+              <%= f.input_field :renren, placeholder: '如人人个人网址为 www.renren.com/lihua ，填写 lihua' %>
+            </div>
+          </div>
+
+
+          <%= f.input :introduction, label: '个人简介', placeholder: '最多 255 字', as: :text, :input_html => {:cols => 3, :rows => 5, :maxlength => 255} %>
         </div>
+        <p class="description">
+          注： 只有登录用户才可以查看您的资料。
+        </p>
+
         <div class="form-actions">
           <%= f.button :submit, '修改资料', class: 'btn btn-primary float-right' %>
         </div>

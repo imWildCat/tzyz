@@ -1,0 +1,4 @@
+<div id="user-info-page">
+  <%= render partial: 'topic_list', locals: {topics: @topics} %>
+  <%= render_will_paginate @topics %>
+</div>

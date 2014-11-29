@@ -1,0 +1,21 @@
+<div class="topic-list">
+  <% if topics.empty? %>
+  <p>没有找到相关话题。</p>
+  <% end %>
+  <% topics.each do |t| %>
+      <div class="thread">
+        <div class="meta">
+          <div class="reply-count">
+            <span><%= t.replies_count %></span>
+          </div>
+          <div class="title"><%= link_to t.title, t %></div>
+          <div class="info">
+            <%= link_to t.node.name, node_path(t.node.slug), class: 'node-name' %>
+            <span class="time">创建于 <%= timeago(t.created_at) %></span>
+            <span class="refresher-label">最后回复来自</span>
+            <%= link_to t.refresher.nickname, t.refresher %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>

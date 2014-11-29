@@ -1,6 +1,7 @@
 class Topic < ActiveRecord::Base
-  belongs_to :author, class_name: 'User'
   belongs_to :node
+  belongs_to :author, class_name: 'User'
+  belongs_to :refresher, class_name: 'User'
 
   has_many :replies, dependent: :destroy
 

@@ -22,6 +22,12 @@ Rails.application.routes.draw do
 
 
   get 'user/:id' => 'user#show', as: 'user'
+  resources :user do
+    member do
+      get 'topics' => 'user#topics'
+      get 'replies' => 'user#replies'
+    end
+  end
 
   resource :user_profile, except: [:new, :show, :destroy], controller: :user_profile
   resource :user_avatar, only: :update, controller: :user_avatar

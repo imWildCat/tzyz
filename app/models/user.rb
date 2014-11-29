@@ -53,6 +53,19 @@ class User < ActiveRecord::Base
     'http://test'
   end
 
+  def recent_topics(page, per_page = 10)
+    Rails.cache.fetch("user_#{id}_topics_#{updated_at}_n_#{page}_p_#{per_page}", expires_in: 30.minutes) do
+      topics.order(updated_at: :desc).includes(:refresher, :node).paginate(page: page,
+                                                                   per_page: per_page)
+    end
+  end
+
+  def recent_replies(page, per_page = 10)
+    Rails.cache.fetch("user_#{id}_replies_#{updated_at}_n_#{page}_p_#{per_page}", expires_in: 30.minutes) do
+      replies.order(created_at: :desc).includes(:topic => :author).paginate(page: page, per_page: per_page)
+    end
+  end
+
   def profile
     if user_profile.nil?
       build_user_profile.save
@@ -92,7 +105,7 @@ class User < ActiveRecord::Base
       end
     end
     if @ids.count > 0
-      Notification.where(:id => @ids).update_all(is_read:true)
+      Notification.where(:id => @ids).update_all(is_read: true)
     end
 
     # Clear cache

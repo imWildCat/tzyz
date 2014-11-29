@@ -6,7 +6,7 @@
   <div class="meta">
     <p><strong><%= user_profile.headline %></strong></p>
 
-    <p>第 <%= @user.id %> 位会员</p>
+    <p>第 <%= @user.id %> 位用户</p>
   </div>
   <table>
     <tbody>
@@ -37,6 +37,18 @@
     <div>
       <p><strong>个人简介：</strong></p>
       <%= (user_profile.introduction.nil? or user_profile.introduction.empty?) ? '这个人很懒，什么都没有写。' : user_profile.introduction %>
+    </div>
+  </div>
+
+  <hr />
+  <div class="activities">
+    <div>
+      <p><strong>最近发布的话题（<%= link_to '查看更多', topics_user_path(@user) %>）：</strong></p>
+      <%= render partial: 'topic_list', locals: {topics: @topics} %>
+    </div>
+    <div>
+      <p><strong>最近发布的回复（<%= link_to '查看更多', replies_user_path(@user) %>）：</strong></p>
+      <%= render partial: 'reply_list', locals: {replies: @replies} %>
     </div>
   </div>
 </div>

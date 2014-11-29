@@ -1,0 +1,4 @@
+<div id="user-info-page">
+  <%= render partial: 'reply_list', locals: {replies: @replies} %>
+  <%= render_will_paginate @replies %>
+</div>

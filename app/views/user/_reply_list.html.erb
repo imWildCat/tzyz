@@ -1,0 +1,17 @@
+<div class="reply-list">
+  <% if replies.empty? %>
+      <p>没有找到相关回复。</p>
+  <% end %>
+  <% replies.each do |r| %>
+      <div class="reply">
+        <p class="meta">
+          在 <span class="time"><%= timeago(r.created_at) %></span>
+          <span>回复了 <%= link_to r.author.nickname, r.author %> 创建的话题《<%= link_to r.topic.title, r.topic %>》：</span>
+        </p>
+        <blockquote>
+          <%= r.content %>
+        </blockquote>
+        <hr />
+      </div>
+  <% end %>
+</div>

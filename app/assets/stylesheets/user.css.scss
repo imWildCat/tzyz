@@ -4,13 +4,24 @@
 
 #user-info-page {
   > h1, .meta {
-//    margin-left: 25px;
+    //    margin-left: 25px;
   }
   .avatar {
     float: right;
     img {
       width: 60px;
       height: 60px;
+    }
+  }
+
+  .topic-list {
+    .meta {
+      margin-left: 0;
+      width: auto;
+      .info {
+        margin: 0;
+        width: 100%;
+      }
     }
   }
 

@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20141126143852) do
   end
 
   create_table "appreciations", force: true do |t|
-    t.integer "user_id",                     null: false, unsigned: true
-    t.integer "appreciative_id",             null: false, unsigned: true
+    t.integer "user_id",           limit: 4, null: false, unsigned: true
+    t.integer "appreciative_id",   limit: 4, null: false, unsigned: true
     t.integer "appreciative_type", limit: 1, null: false, unsigned: true
   end
 
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20141126143852) do
   add_index "appreciations", ["user_id"], name: "index_appreciations_on_user_id", using: :btree
 
   create_table "favorite_topics", force: true do |t|
-    t.integer "user_id",  null: false, unsigned: true
-    t.integer "topic_id", null: false, unsigned: true
+    t.integer "user_id",  limit: 4, null: false, unsigned: true
+    t.integer "topic_id", limit: 4, null: false, unsigned: true
   end
 
   add_index "favorite_topics", ["topic_id"], name: "index_favorite_topics_on_topic_id", using: :btree
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(version: 20141126143852) do
   add_index "favorite_topics", ["user_id"], name: "index_favorite_topics_on_user_id", using: :btree
 
   create_table "messages", force: true do |t|
-    t.integer  "receiver_id",                                          unsigned: true
-    t.integer  "sender_id",                                            unsigned: true
-    t.boolean  "is_read",                 default: false
+    t.integer  "receiver_id", limit: 4,                                unsigned: true
+    t.integer  "sender_id",   limit: 4,                                unsigned: true
+    t.boolean  "is_read",     limit: 1,   default: false
     t.string   "content",     limit: 511,                 null: false
     t.datetime "created_at",                              null: false
     t.datetime "deleted_at"
@@ -57,13 +57,13 @@ ActiveRecord::Schema.define(version: 20141126143852) do
   end
 
   create_table "nodes", force: true do |t|
-    t.integer  "node_category_id",                            null: false, unsigned: true
-    t.string   "name",             limit: 15,                 null: false
-    t.string   "slug",             limit: 31,                 null: false
-    t.string   "description"
-    t.boolean  "need_login",                  default: false, null: false
-    t.integer  "min_group",        limit: 3,  default: 0,     null: false, unsigned: true
-    t.integer  "min_role",         limit: 3,  default: 0,     null: false, unsigned: true
+    t.integer  "node_category_id", limit: 4,                   null: false, unsigned: true
+    t.string   "name",             limit: 15,                  null: false
+    t.string   "slug",             limit: 31,                  null: false
+    t.string   "description",      limit: 255
+    t.boolean  "need_login",       limit: 1,   default: false, null: false
+    t.integer  "min_group",        limit: 3,   default: 0,     null: false, unsigned: true
+    t.integer  "min_role",         limit: 3,   default: 0,     null: false, unsigned: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -72,13 +72,13 @@ ActiveRecord::Schema.define(version: 20141126143852) do
   add_index "nodes", ["slug"], name: "index_nodes_on_slug", unique: true, using: :btree
 
   create_table "notifications", force: true do |t|
-    t.integer  "receiver_id",                                null: false
+    t.integer  "receiver_id",      limit: 4,                 null: false
     t.integer  "n_type",           limit: 3,                 null: false
-    t.boolean  "is_read",                    default: false, null: false
-    t.integer  "reason_id"
-    t.integer  "related_user_id"
-    t.integer  "related_topic_id"
-    t.integer  "related_reply_id"
+    t.boolean  "is_read",          limit: 1, default: false, null: false
+    t.integer  "reason_id",        limit: 4
+    t.integer  "related_user_id",  limit: 4
+    t.integer  "related_topic_id", limit: 4
+    t.integer  "related_reply_id", limit: 4
     t.datetime "created_at",                                 null: false
     t.datetime "deleted_at"
   end
@@ -87,14 +87,13 @@ ActiveRecord::Schema.define(version: 20141126143852) do
   add_index "notifications", ["receiver_id"], name: "index_notifications_on_receiver_id", using: :btree
 
   create_table "replies", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "topic_id",                        null: false, unsigned: true
-    t.integer  "author_id",                       null: false, unsigned: true
-    t.integer  "quoted_reply_id",                              unsigned: true
-    t.text     "content",                         null: false
-    t.integer  "position",                        null: false, unsigned: true
-    t.integer  "appreciations_count", default: 0, null: false, unsigned: true
+    t.integer  "topic_id",            limit: 4,                 null: false, unsigned: true
+    t.integer  "author_id",           limit: 4,                 null: false, unsigned: true
+    t.integer  "quoted_reply_id",     limit: 4,                              unsigned: true
+    t.text     "content",             limit: 65535,             null: false
+    t.integer  "position",            limit: 4,                 null: false, unsigned: true
+    t.integer  "appreciations_count", limit: 4,     default: 0, null: false, unsigned: true
+    t.datetime "created_at",                                    null: false
     t.datetime "deleted_at"
   end
 
@@ -102,15 +101,15 @@ ActiveRecord::Schema.define(version: 20141126143852) do
   add_index "replies", ["deleted_at"], name: "index_replies_on_deleted_at", using: :btree
 
   create_table "topics", force: true do |t|
-    t.integer  "node_id",                                     null: false, unsigned: true
-    t.integer  "author_id",                                   null: false, unsigned: true
-    t.integer  "refresher_id",                                null: false, unsigned: true
-    t.string   "title",               limit: 127,             null: false
-    t.integer  "clicks_count",                    default: 0, null: false, unsigned: true
-    t.integer  "replies_count",                   default: 0, null: false, unsigned: true
-    t.integer  "favorites_count",                 default: 0, null: false, unsigned: true
-    t.integer  "appreciations_count",             default: 0, null: false, unsigned: true
-    t.text     "content",                                     null: false
+    t.integer  "node_id",             limit: 4,                 null: false, unsigned: true
+    t.integer  "author_id",           limit: 4,                 null: false, unsigned: true
+    t.integer  "refresher_id",        limit: 4,                 null: false, unsigned: true
+    t.string   "title",               limit: 127,               null: false
+    t.integer  "clicks_count",        limit: 4,     default: 0, null: false, unsigned: true
+    t.integer  "replies_count",       limit: 4,     default: 0, null: false, unsigned: true
+    t.integer  "favorites_count",     limit: 4,     default: 0, null: false, unsigned: true
+    t.integer  "appreciations_count", limit: 4,     default: 0, null: false, unsigned: true
+    t.text     "content",             limit: 65535,             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -118,55 +117,55 @@ ActiveRecord::Schema.define(version: 20141126143852) do
   add_index "topics", ["author_id"], name: "index_topics_on_author_id", using: :btree
 
   create_table "user_avatars", primary_key: "owner_id", force: true do |t|
-    t.boolean "is_enabled",            default: true, null: false
+    t.boolean "is_enabled", limit: 1,   default: true, null: false
     t.string  "filename",   limit: 31
-    t.string  "ttk_url"
+    t.string  "ttk_url",    limit: 255
   end
 
   create_table "user_profiles", primary_key: "owner_id", force: true do |t|
-    t.boolean "gender"
     t.string  "name",         limit: 15
+    t.boolean "gender",       limit: 1
     t.string  "headline",     limit: 63
-    t.integer "field",        limit: 3,   unsigned: true
-    t.string  "university",   limit: 63
+    t.string  "field",        limit: 15
     t.string  "company",      limit: 63
+    t.string  "university",   limit: 63
     t.string  "city",         limit: 31
     t.string  "website",      limit: 127
     t.string  "email",        limit: 127
-    t.integer "qq",                       unsigned: true
+    t.integer "qq",           limit: 4,   unsigned: true
     t.string  "weibo",        limit: 63
     t.string  "wechat",       limit: 31
     t.string  "linkedin",     limit: 127
     t.string  "zhihu",        limit: 31
     t.string  "douban",       limit: 31
     t.string  "renren",       limit: 31
-    t.string  "introduction"
+    t.string  "introduction", limit: 255
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                            default: "", null: false
-    t.string   "encrypted_password",               default: "", null: false
-    t.string   "nickname",               limit: 8,              null: false
-    t.integer  "group_id",               limit: 3, default: 1,  null: false, unsigned: true
-    t.integer  "role_id",                limit: 3, default: 1,  null: false, unsigned: true
-    t.integer  "topics_count",                     default: 0,  null: false, unsigned: true
-    t.integer  "replies_count",                    default: 0,  null: false, unsigned: true
-    t.string   "remember_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "nickname",               limit: 8,                null: false
+    t.integer  "group_id",               limit: 3,   default: 1,  null: false, unsigned: true
+    t.integer  "role_id",                limit: 3,   default: 1,  null: false, unsigned: true
+    t.integer  "topics_count",           limit: 4,   default: 0,  null: false, unsigned: true
+    t.integer  "replies_count",          limit: 4,   default: 0,  null: false, unsigned: true
+    t.string   "remember_token",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "reset_password_token"
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                    default: 0,  null: false, unsigned: true
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false, unsigned: true
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.integer  "failed_attempts",                  default: 0,  null: false, unsigned: true
-    t.string   "unlock_token"
+    t.integer  "failed_attempts",        limit: 4,   default: 0,  null: false, unsigned: true
+    t.string   "unlock_token",           limit: 255
     t.datetime "locked_at"
   end
 

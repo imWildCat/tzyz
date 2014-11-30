@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   # Relationships
-  #   - Message
+  # - Message
   has_many :messages, foreign_key: 'receiver_id', dependent: :destroy, class_name: 'Message'
   # has_many :received_messages, through: :messages, source: :receiver
   has_many :sent_messages, foreign_key: 'sender_id', class_name: 'Message'
@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   has_many :topics, dependent: :destroy, foreign_key: 'author_id'
   has_many :replies, dependent: :destroy, foreign_key: 'author_id'
 
+  has_many :fortune_alterations
 
   before_save do
     self.email = email.downcase
@@ -35,7 +36,7 @@ class User < ActiveRecord::Base
   validates :nickname, presence: true, length: {minimum: 2, maximum: 8}, uniqueness: {case_sensitive: false}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
-  validates :password, length: {minimum: 6}
+  validates :password, length: {minimum: 6}, if: :password_changed?
 
 
   def set_role(role)
@@ -47,6 +48,10 @@ class User < ActiveRecord::Base
       else
         self.role_id = 1
     end
+  end
+
+  def password_changed?
+    !(password.nil? && password_confirmation.nil?)
   end
 
   def confirmation_url(resource, token)

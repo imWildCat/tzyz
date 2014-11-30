@@ -13,6 +13,8 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :group_id, null: false, limit: 3, default: 1, unsigned: true
       t.integer :role_id, null: false, limit: 3, default: 1, unsigned: true
 
+      t.integer :fortune, null: false, default: 0, unsigned: true
+
       t.integer :topics_count, null: false, default: 0, unsigned: true
       t.integer :replies_count, null: false, default: 0, unsigned: true
 

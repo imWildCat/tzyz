@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126143852) do
+ActiveRecord::Schema.define(version: 20141130044827) do
 
   create_table "admin_action_reasons", force: true do |t|
     t.string "description", limit: 63
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(version: 20141126143852) do
   add_index "favorite_topics", ["topic_id"], name: "index_favorite_topics_on_topic_id", using: :btree
   add_index "favorite_topics", ["user_id", "topic_id"], name: "index_favorite_topics_on_user_id_and_topic_id", unique: true, using: :btree
   add_index "favorite_topics", ["user_id"], name: "index_favorite_topics_on_user_id", using: :btree
+
+  create_table "fortune_alterations", force: true do |t|
+    t.integer  "user_id",                limit: 4
+    t.integer  "quantity",               limit: 4,  default: 0, null: false
+    t.integer  "reason",                 limit: 3,              null: false, unsigned: true
+    t.integer  "fortune_alterable_id",   limit: 4,                           unsigned: true
+    t.string   "fortune_alterable_type", limit: 31
+    t.datetime "created_at",                                    null: false
+  end
+
+  add_index "fortune_alterations", ["user_id"], name: "index_fortune_alterations_on_user_id", using: :btree
 
   create_table "messages", force: true do |t|
     t.integer  "receiver_id", limit: 4,                                unsigned: true
@@ -122,6 +133,11 @@ ActiveRecord::Schema.define(version: 20141126143852) do
     t.string  "ttk_url",    limit: 255
   end
 
+  create_table "user_login_histories", force: true do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_profiles", primary_key: "owner_id", force: true do |t|
     t.string  "name",         limit: 15
     t.boolean "gender",       limit: 1
@@ -148,6 +164,7 @@ ActiveRecord::Schema.define(version: 20141126143852) do
     t.string   "nickname",               limit: 8,                null: false
     t.integer  "group_id",               limit: 3,   default: 1,  null: false, unsigned: true
     t.integer  "role_id",                limit: 3,   default: 1,  null: false, unsigned: true
+    t.integer  "fortune",                limit: 4,   default: 0,  null: false, unsigned: true
     t.integer  "topics_count",           limit: 4,   default: 0,  null: false, unsigned: true
     t.integer  "replies_count",          limit: 4,   default: 0,  null: false, unsigned: true
     t.string   "remember_token",         limit: 255

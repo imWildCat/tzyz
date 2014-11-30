@@ -2,15 +2,15 @@ class Topic < ActiveRecord::Base
   belongs_to :node
   belongs_to :author, class_name: 'User'
   belongs_to :refresher, class_name: 'User'
-
   has_many :replies, dependent: :destroy
-
   has_many :appreciations, as: :appreciative
-  # appreciative_type of Topic is 0
+  has_many :fortune_alterations, as: :fortune_alterable
 
   before_create do
     self.refresher_id = self.author_id
   end
+
+  after_create :perform_new_topic_fortune_alteration
 
   def self.replies_per_page
     20
@@ -31,6 +31,10 @@ class Topic < ActiveRecord::Base
   # Returns nil if refresher not found.
   def refresher
     User.find_by_id(self.refresher_id)
+  end
+
+  def perform_new_topic_fortune_alteration
+    fortune_alterations.new(user: author, reason: :new_topic).save
   end
 
   def have_page?(page)

@@ -31,45 +31,37 @@ data['categories'].each do |c|
 end
 
 if Rails.env == 'development'
-  @common_password = '123456'
-  User.create! :nickname => 'John Doe', :email => 'john@example.com', :role_id => 1, :password => @common_password, :password_confirmation => @common_password, :confirmed_at => '2014-10-16 08:59:37'
+  common_password = '123456'
+  admin = User.create! :nickname => '管理员', :email => 'admin@tzyz.com', :role_id => 1, :password => common_password, :password_confirmation => common_password, :confirmed_at => '2014-10-16 08:59:37', :fortune => 2000
 
-  admin = User.create(
-      nickname: 'admin',
-      email: 'admin@tzyz.com',
-      password: 'password',
+  User.create(
+      nickname: '李华',
+      email: 'lihua@tzyz.com',
+      password: common_password,
       confirmed_at: '2014-10-15 20:18:14',
-      confirmation_sent_at: '2014-10-15 20:18:13'
+      confirmation_sent_at: '2014-10-15 20:18:13',
+      :fortune => 2000
   )
 
 
-  qna_node = Node.find_by_slug('qna')
-  (1..100).each do |count|
-    admin.topics.create(
-        node_id: qna_node.id,
+  100.times do |count|
+    random_user = User.find(rand(1..User.count))
+    random_user.topics.create(
+        node_id: rand(1..Node.count),
         title: "Hello world!  -- #{count}",
         content: LOREM_IPSUM
     )
   end
 
 
-  t = Topic.first
-
-  (1..100).each do |count|
-    unless count == 2
-      t.replies.create(
-          author: admin,
-          content: "Reply test! --- #{count}",
-          position: count,
-      )
-    else
-      t.replies.create(
-          author: admin,
-          content: "Reply test! --- #{count}, this is a reply with quoted reply!",
-          position: count,
-          quoted_reply_id: 1
-      )
-    end
+  99.times do |count|
+    random_topic = Topic.find(rand(1..Topic.count))
+    random_user = User.find(rand(1..User.count))
+    random_topic.replies.create(
+        author: random_user,
+        content: "Reply test! --- #{count}, this is a reply with quoted reply!",
+        position: random_topic.replies_count + 1,
+    )
   end
 
 

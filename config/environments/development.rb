@@ -53,7 +53,10 @@ Rails.application.configure do
       :host => Rails.application.secrets.redis_server,
       :port => Rails.application.secrets.redis_port,
       :db => Rails.application.secrets.redis_db_num,
-      :namespace => Rails.application.secrets.redis_namespace_prefix + 'cache'}
+      :namespace => Rails.application.secrets.redis_namespace_prefix + 'cache',
+      :expires_in => 24.hours,
+      :compress => true
+  }
 
   # config.cache_store = :file_store, 'tmp/cache'
 

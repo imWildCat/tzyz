@@ -58,7 +58,10 @@ Rails.application.configure do
       :host => Rails.application.secrets.redis_server,
       :port => Rails.application.secrets.redis_port,
       :db => Rails.application.secrets.redis_db_num,
-      :namespace => Rails.application.secrets.redis_namespace_prefix + 'cache'}
+      :namespace => Rails.application.secrets.redis_namespace_prefix + 'cache',
+      :expires_in => 24.hours,
+      :compress => true
+  }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -81,6 +84,7 @@ Rails.application.configure do
       authentication: 'plain',
       enable_starttls_auto: false}
   config.action_mailer.default_url_options = {host: 'tengzhouyizhong.org', port: 80}
+  # TODO: aysnc mail
   ################
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

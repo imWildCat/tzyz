@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     member do
       get 'topics' => 'user#topics'
       get 'replies' => 'user#replies'
+      # TODO: the following route should be just for current user
+      get 'fortune_alterations' => 'fortune_alterations#show'
     end
   end
 

@@ -1,0 +1,33 @@
+// Place all the styles related to the FortuneAlterations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.fortune {
+  color: $dark-text-gray;
+  img {
+    height: 15px;
+    width: 15px;
+  }
+}
+
+#user-balance-page {
+  .align-center {
+    text-align: center;
+  }
+  .align-right {
+    text-align: right;
+  }
+  table {
+    td, th {
+      font-size: 13px;
+      .red {
+        color: #ff0000;
+        font-weight: bold;
+      }
+      .green {
+        color: #008000;
+        font-weight: bold;
+      }
+    }
+  }
+}

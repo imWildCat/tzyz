@@ -74,8 +74,8 @@ gem 'puma', '2.6.0'
 
 # User System
 gem 'devise', '~> 3.4.0'
-# RBAC
-gem 'cancan', '~> 1.6.10'
+# Authorization System
+gem 'pundit', '~> 0.3.0'
 
 group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

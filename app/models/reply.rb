@@ -1,7 +1,6 @@
 class Reply < ActiveRecord::Base
 
   # Relationships
-
   belongs_to :topic
   belongs_to :author, class_name: 'User', touch: true
   has_many :appreciations, as: :appreciative
@@ -27,11 +26,11 @@ class Reply < ActiveRecord::Base
   def perform_new_reply_fortune_alterations
     # Cost
     fortune_alterations.new(user_id: author_id, reason: :new_reply).save
-    # For author of topic(if it is not the author of reply)
-    topic.fortune_alterations.new(user_id: topic.author_id, reason: :topic_replied).save unless topic.author_id ==
+    # For author of topic(if it is not the author of reply AND the object creating this alteration is reply, not
+    # topic, in order to tracking)
+    fortune_alterations.new(user_id: topic.author_id, reason: :topic_replied).save unless topic.author_id ==
         author_id
   end
-
 
 
 end

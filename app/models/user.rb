@@ -28,9 +28,7 @@ class User < ActiveRecord::Base
     self.email = email.downcase
   end
 
-  after_create do
-    Notification::create_user_welcome(self)
-  end
+  after_create :send_welcome_notification, :perform_new_user_fortune_alteration
 
 
   validates :nickname, presence: true, length: {minimum: 2, maximum: 8}, uniqueness: {case_sensitive: false}
@@ -58,17 +56,25 @@ class User < ActiveRecord::Base
     'http://test'
   end
 
-  def recent_topics(page, per_page = 10)
+  def recent_topics(page, per_page = 10) # With Caching
     Rails.cache.fetch("user_#{id}_topics_#{updated_at}_n_#{page}_p_#{per_page}", expires_in: 30.minutes) do
       topics.order(updated_at: :desc).includes(:refresher, :node).paginate(page: page,
-                                                                   per_page: per_page)
+                                                                           per_page: per_page)
     end
   end
 
-  def recent_replies(page, per_page = 10)
+  def recent_replies(page, per_page = 10) # With Caching
     Rails.cache.fetch("user_#{id}_replies_#{updated_at}_n_#{page}_p_#{per_page}", expires_in: 30.minutes) do
       replies.order(created_at: :desc).includes(:topic => :author).paginate(page: page, per_page: per_page)
     end
+  end
+
+  def recent_fortune_alterations(page, per_page = 20) # No caching
+    fortune_alterations.order(id: :desc).paginate(page: page, per_page: per_page)
+  end
+
+  def display_name
+    nickname
   end
 
   def profile
@@ -166,6 +172,15 @@ class User < ActiveRecord::Base
   # def send_devise_notification(notification, *args)
   #     AccountMailer.send(notification, self, *args).deliver
   # end
+
+  protected
+  def send_welcome_notification
+    Notification::create_user_welcome(self)
+  end
+
+  def perform_new_user_fortune_alteration
+    FortuneAlteration.new(reason: :new_user, user: self).save
+  end
 
   private
 

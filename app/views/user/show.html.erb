@@ -7,17 +7,19 @@
     <p><strong><%= user_profile.headline %></strong></p>
 
     <p>第 <%= @user.id %> 位用户</p>
+
+    <p><%= fortune_to_coins(@user.fortune) %></p>
   </div>
+
   <table>
     <tbody>
-    <% @social_list = user_social_list(user_profile) #[{ :icon => 'qq', :value=> 'dsa' }]  %>
+    <% @social_list = user_social_list(user_profile) #[{ :icon => 'qq', :value=> 'dsa' }]   %>
     <% @social_list.each do |social_item| %>
         <tr>
           <th><%= image_tag "social_icons/#{social_item[:icon]}.png", class: 'icon' %></th>
           <td><%= social_item[:value] %></td>
         </tr>
     <% end %>
-
     </tbody>
   </table>
 
@@ -40,7 +42,7 @@
     </div>
   </div>
 
-  <hr />
+  <hr/>
   <div class="activities">
     <div>
       <p><strong>最近发布的话题（<%= link_to '查看更多', topics_user_path(@user) %>）：</strong></p>

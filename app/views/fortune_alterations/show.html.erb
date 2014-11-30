@@ -1,0 +1,29 @@
+<% title '账户余额' %>
+<div id="user-balance-page">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="time">时间</th>
+      <th class="hidden-xs">类型</th>
+      <th class="align-center">数额</th>
+      <th>余额</th>
+      <th class="align-right">详情</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @fortune_alterations.each do |fa| %>
+        <tr>
+          <td><span class="time"><%= timeago fa.created_at %></span></td>
+          <td class="hidden-xs"><%= fortune_alteration_reason_to_s(fa) %></td>
+          <td class="align-center">
+            <span class="<% if fa.quantity > 0 %>green<% else %>red<% end %>">
+              <%= fa.quantity %></span></td>
+          <td><%= fortune_to_coins(fa.balance) %></td>
+          <td class="align-right"><%= fortune_alteration_to_des(fa) %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= render_will_paginate @fortune_alterations %>
+</div>

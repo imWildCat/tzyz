@@ -43,13 +43,13 @@ class RepliesController < ApplicationController
 
   def appreciate
     reply = Reply::find(params[:reply_id]) || not_found
-    if reply.is_appreciated_by_user current_user
-      flash[:warning] = '您已经感谢过本回复了。'
+    if reply.appreciations.make current_user
+      flash[:success] = '已经发送对本回复的感谢。'
       redirect_to :back
     else
-      reply.appreciations.make current_user
-      flash[:success] = '已经发送对本回复的感谢。'
+      flash[:error] = '操作失败，您不能对自己的回复发送感谢。'
       redirect_to :back
     end
   end
+
 end

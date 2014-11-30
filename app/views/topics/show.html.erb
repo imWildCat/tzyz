@@ -51,14 +51,16 @@
           <%= link_to '收藏', topic_favorite_topic_index_path(@topic.id), method: :post %>
       <% end %>
     </div>
-    <div class="item">
-      <span class="glyphicon glyphicon-thumbs-up"></span>
-      <% if topic_appreciated_by_current? @topic %>
-          <span class="inactive">已感谢</span>
-      <% else %>
-          <%= link_to '感谢', topic_appreciate_path(@topic.id), method: :post %>
-      <% end %>
-    </div>
+    <% unless @topic.author_id == current_user.id %>
+        <div class="item">
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+          <% if topic_appreciated_by_current? @topic %>
+              <span class="inactive">已感谢</span>
+          <% else %>
+              <%= link_to '感谢', topic_appreciate_path(@topic.id), method: :post %>
+          <% end %>
+        </div>
+    <% end %>
     <div class="item float-right">
       <a class="action" href="#">
         <span class="glyphicon glyphicon-eye-close"></span>
@@ -85,17 +87,18 @@
                 <% end %>
 
                 <div class="actions">
-                  <% unless reply_appreciated_by_current? r %>
+                  <% unless r.author_id == current_user.id %>
+                      <% unless reply_appreciated_by_current? r %>
                       <span class="action" href="#">
                     <span class="glyphicon glyphicon-thumbs-up"></span>
                         <%= link_to '感谢', topic_topic_reply_appreciate_path(@topic, r), method: :post %>
                             </span>
-                  <% end %>
-
+                      <% end %>
                   <a class="action quote-reply" data-id="<%= r.id %>" href="#">
                     <span class="glyphicon glyphicon-comment"></span>
                     <span>回复</span>
                   </a>
+                  <% end %>
                 </div>
               </div>
               <% unless r.quoted_reply.nil? %>

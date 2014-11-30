@@ -1,11 +1,16 @@
 class Appreciation < ActiveRecord::Base
+  after_create :perform_appreciation_fortune_alterations
   after_save :delete_cache_key, :refresh_count
   after_destroy :delete_cache_key, :refresh_count
 
+  belongs_to :user
   belongs_to :appreciative, polymorphic: true
+  has_many :fortune_alterations, as: :fortune_alterable
 
   def self.make(user)
     appreciation = self.new(user_id: user.id)
+    return false if appreciation.appreciative.is_appreciated_by_user user
+    return false if appreciation.appreciative.author_id == user.id
     appreciation.save
   end
 
@@ -35,6 +40,16 @@ class Appreciation < ActiveRecord::Base
       Rails.cache.delete Appreciation::build_cache_key(user_id: user_id, topic_id: appreciative_id)
     elsif appreciative_type == 'Reply' # Reply
       Rails.cache.delete Appreciation::build_cache_key(user_id: user_id, reply_id: appreciative_id)
+    end
+  end
+
+  def perform_appreciation_fortune_alterations
+    if appreciative_type == 'Topic'
+      fortune_alterations.new(user_id: appreciative.author_id, reason: :topic_appreciated).save
+      fortune_alterations.new(user_id: user_id, reason: :send_topic_appreciation).save
+    elsif appreciative_type == 'Reply'
+      fortune_alterations.new(user_id: appreciative.author_id, reason: :reply_appreciated).save
+      fortune_alterations.new(user_id: user_id, reason: :send_reply_appreciation).save
     end
   end
 end

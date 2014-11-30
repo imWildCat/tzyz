@@ -1,2 +1,6 @@
-<%= render 'node_categories/topic_list' %>
+<% if @topics.empty? %>
+    <p>您还没有收藏任何话题。</p>
+<% else %>
+    <%= render 'node_categories/topic_list' %>
+<% end %>
 <%= render_will_paginate @favorites %>

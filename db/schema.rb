@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20141130044827) do
   create_table "fortune_alterations", force: true do |t|
     t.integer  "user_id",                limit: 4
     t.integer  "quantity",               limit: 4,  default: 0, null: false
+    t.integer  "balance",                limit: 4,  default: 0, null: false
     t.integer  "reason",                 limit: 3,              null: false, unsigned: true
     t.integer  "fortune_alterable_id",   limit: 4,                           unsigned: true
     t.string   "fortune_alterable_type", limit: 31

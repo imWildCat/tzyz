@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 20141126143852) do
   end
 
   create_table "appreciations", force: true do |t|
-    t.integer "user_id",           limit: 4, null: false, unsigned: true
-    t.integer "appreciative_id",   limit: 4, null: false, unsigned: true
-    t.integer "appreciative_type", limit: 1, null: false, unsigned: true
+    t.integer "user_id",           limit: 4,  null: false, unsigned: true
+    t.integer "appreciative_id",   limit: 4,  null: false, unsigned: true
+    t.string  "appreciative_type", limit: 31, null: false
   end
 
   add_index "appreciations", ["appreciative_id", "appreciative_type"], name: "index_appreciations_on_appreciative_id_and_appreciative_type", using: :btree

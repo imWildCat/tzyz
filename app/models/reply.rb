@@ -2,7 +2,7 @@ class Reply < ActiveRecord::Base
 
   belongs_to :topic
   belongs_to :author, class_name: 'User', touch: true
-  has_many :appreciations, -> { where appreciative_type: 1 }, foreign_key: 'appreciative_id'
+  has_many :appreciations, as: :appreciative
   # appreciative_type of Reply is 1, the following line is not working correctly:
   # has_many :appreciations, as: :appreciative
 

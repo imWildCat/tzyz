@@ -1,6 +1,4 @@
 class Appreciation < ActiveRecord::Base
-  enum appreciative_type: %w(Topic Reply)
-
   after_save :delete_cache_key, :refresh_count
   after_destroy :delete_cache_key, :refresh_count
 

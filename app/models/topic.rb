@@ -5,7 +5,7 @@ class Topic < ActiveRecord::Base
 
   has_many :replies, dependent: :destroy
 
-  has_many :appreciations, -> { where appreciative_type: 0 }, foreign_key: 'appreciative_id'
+  has_many :appreciations, as: :appreciative
   # appreciative_type of Topic is 0
 
   before_create do

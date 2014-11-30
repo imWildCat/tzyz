@@ -51,7 +51,7 @@
   <div class="row">
     <div class="col-md-9">
 
-      <% unless request.path == root_path or "#{controller_name}.#{action_name}" == 'node_categories.show' #breadcrumb    %>
+      <% unless request.path == root_path or "#{controller_name}.#{action_name}" == 'node_categories.show' #breadcrumb      %>
           <ol class="breadcrumb">
             <%= render_breadcrumbs :tag => :li, :separator => '' %>
           </ol>
@@ -73,7 +73,20 @@
 
   <%= render 'layouts/app/footer' %>
 
-  <%= debug(params) if Rails.env.development? %>
+  <% if Rails.env.development? %>
+      <div>
+        <hr/>
+        <strong>Debug:</strong>
+      </div>
+
+      <%= debug(params) %>
+      <div style="height: 150px;">
+        web console placeholder
+      </div>
+      <%= console %>
+  <% end %>
+
+
 </div>
 </body>
 </html>

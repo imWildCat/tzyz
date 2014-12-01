@@ -51,7 +51,7 @@
           <%= link_to '收藏', topic_favorite_topic_index_path(@topic.id), method: :post %>
       <% end %>
     </div>
-    <% unless @topic.author_id == current_user.id %>
+    <% unless current_user_or_not_login?(@topic.author_id) %>
         <div class="item">
           <span class="glyphicon glyphicon-thumbs-up"></span>
           <% if topic_appreciated_by_current? @topic %>
@@ -87,7 +87,7 @@
                 <% end %>
 
                 <div class="actions">
-                  <% unless r.author_id == current_user.id %>
+                  <% unless current_user_or_not_login?(r.author_id) %>
                       <% unless reply_appreciated_by_current? r %>
                       <span class="action" href="#">
                     <span class="glyphicon glyphicon-thumbs-up"></span>

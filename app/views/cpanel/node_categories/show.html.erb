@@ -1,0 +1,51 @@
+<section class="content-header">
+  <h1>
+    节点分类
+    <small>这里管理节点分类。</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> 管理面板</a></li>
+    <li class="active">节点分类</li>
+  </ol>
+</section>
+
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">所有节点分类</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table class="table table-bordered table-hover">
+            <tbody>
+            <tr>
+              <th style="width: 10px">#</th>
+              <th>分类名称</th>
+              <th>slug</th>
+              <th>创建时间</th>
+              <th style="width: 50px">操作</th>
+            </tr>
+            <% @node_categories.each do |nc| %>
+                <tr>
+                  <td><%= nc.id %>.</td>
+                  <td><%= nc.name %></td>
+                  <td><%= nc.slug %></td>
+                  <td><%= nc.created_at %></td>
+                  <td>
+                    <a href="#">编辑</a>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+          <%= render_will_paginate @node_categories, css_class:'pagination-sm no-margin pull-right' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -26,8 +26,6 @@ Rails.application.routes.draw do
     member do
       get 'topics' => 'user#topics'
       get 'replies' => 'user#replies'
-      # TODO: the following route should be just for current user
-      get 'fortune_alterations' => 'fortune_alterations#show'
     end
   end
 
@@ -35,6 +33,7 @@ Rails.application.routes.draw do
   resource :user_avatar, only: :update, controller: :user_avatar
   scope :account do
     get 'favorites' => 'favorite_topics#show', as: 'account_favorite_topic'
+    get 'fortune_alterations' => 'fortune_alterations#show'
   end
 
   resource :notifications, only: :show
@@ -47,6 +46,12 @@ Rails.application.routes.draw do
   # sidekiq - monitoring
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
+
+  # Control Panel
+  namespace :cpanel do
+    root to: 'home#index'
+    resource :node_categories, only: [:show]
+  end
 
 
   # for instructions of routing, please check the office-site's guide

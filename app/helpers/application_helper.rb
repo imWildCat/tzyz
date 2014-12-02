@@ -16,9 +16,9 @@ module ApplicationHelper
     Sanitize.fragment(html, :elements => %w(div blockquote a h2 h3 br hr p ol ul li b i u img), :attributes => {'a' => %w(href), 'img' => %w(src)})
   end
 
-  def render_will_paginate(resources)
+  def render_will_paginate(resources, css_class: '')
     # TODO: add support for options
-    will_paginate resources, renderer: BootstrapPagination::Rails
+    will_paginate resources, renderer: BootstrapPagination::Rails, class: css_class
   end
 
   def count_or_none(count)

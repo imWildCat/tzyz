@@ -20,8 +20,21 @@
 #= require bootstrap
 #= require pen.js
 #= require pen/markdown
+# File in project:
+#= require fortune_alterations
+#= require home
+#= require messages
+#= require node_categories
+#= require nodes
+#= require notifications
 #= require pen_editor
-#= require_tree .
+#= require registrations
+#= require replies
+#= require sessions
+#= require topics
+#= require user_profile
+#= require users
+#= require_self
 
 # nprogress
 NProgress.configure({

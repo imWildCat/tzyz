@@ -1,0 +1,78 @@
+<aside class="left-side sidebar-offcanvas" style="min-height: 1954px;">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+      <div class="pull-left image">
+        <%= image_tag current_user.avatar_url, class: 'img-circle', alt: 'User Image' %>
+      </div>
+      <div class="pull-left info">
+        <p>Hello, <%= current_user.display_name %></p>
+
+        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+      </div>
+    </div>
+    <!-- search form -->
+    <!--<form action="#" method="get" class="sidebar-form">-->
+      <!--<div class="input-group">-->
+        <!--<input type="text" name="q" class="form-control" placeholder="Search...">-->
+                            <!--<span class="input-group-btn">-->
+                                <!--<button type="submit" name="seach" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>-->
+                            <!--</span>-->
+      <!--</div>-->
+    <!--</form>-->
+    <!-- /.search form -->
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu">
+      <li class="<%= class_active(cpanel_root_path) %>">
+        <a href="<%= cpanel_root_path %>">
+          <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="treeview <%= class_active(cpanel_node_categories_path) %>">
+        <a href="#">
+          <i class="fa fa-th"></i>
+          <span>节点</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<%= class_active(cpanel_node_categories_path) %>"><a href="<%= cpanel_node_categories_path %>" style=""><i class="fa fa-angle-double-right"></i>
+            节点分类</a></li>
+        </ul>
+      </li>
+
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-users"></i>
+          <span>用户</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="pages/UI/general.html" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i> General</a></li>
+          <li><a href="pages/UI/icons.html" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i> Icons</a></li>
+          <li><a href="pages/UI/buttons.html" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
+          <li><a href="pages/UI/sliders.html" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
+          <li><a href="pages/UI/timeline.html" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-bars"></i> <span>话题</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="pages/forms/general.html" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
+          <li><a href="pages/forms/advanced.html" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
+          <li><a href="pages/forms/editors.html" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i> Editors</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="<%= root_path %>">
+          <i class="fa fa-chevron-circle-left"></i> <span>返回前台</span>
+        </a>
+      </li>
+
+    </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>

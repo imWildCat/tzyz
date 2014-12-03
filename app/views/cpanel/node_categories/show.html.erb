@@ -1,7 +1,7 @@
 <section class="content-header">
   <h1>
     节点分类
-    <small>这里管理节点分类。</small>
+    <small>目前总数为 <%= NodeCategory.count %> 个。</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> 管理面板</a></li>
@@ -25,16 +25,18 @@
               <th>分类名称</th>
               <th>slug</th>
               <th>创建时间</th>
+              <th>上次修改</th>
               <th style="width: 50px">操作</th>
             </tr>
             <% @node_categories.each do |nc| %>
                 <tr>
                   <td><%= nc.id %>.</td>
-                  <td><%= nc.name %></td>
+                  <td><%= link_to nc.name, node_category_path(nc.slug) %></td>
                   <td><%= nc.slug %></td>
                   <td><%= nc.created_at %></td>
+                  <td><%= timeago nc.updated_at %></td>
                   <td>
-                    <a href="#">编辑</a>
+                    <%= link_to '编辑', edit_cpanel_node_category_path(nc) %>
                   </td>
                 </tr>
             <% end %>

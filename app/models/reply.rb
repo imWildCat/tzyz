@@ -5,15 +5,25 @@ class Reply < ActiveRecord::Base
   belongs_to :author, class_name: 'User', touch: true
   has_many :appreciations, as: :appreciative
   has_many :fortune_alterations, as: :fortune_alterable
+  has_many :notifications, as: :notifiable
+
   # - Reply to
   belongs_to :quoted_reply, class_name: 'Reply'
 
-  after_create :topic_replies_count_plus, :perform_new_reply_fortune_alterations
+  after_create :topic_replies_count_plus, :perform_new_reply_fortune_alterations, :perform_new_reply_notification
 
   def is_appreciated_by_user(user)
     Rails.cache.fetch(Appreciation.build_cache_key(user_id: user.id, reply_id: self.id), expires_in: 7.days) do
       appreciations.where(user_id: user.id).count > 0
     end
+  end
+
+  def reply_anchor
+    "reply_#{self.id}"
+  end
+
+  def reply_page
+    (self.position - 1) / Topic.replies_per_page + 1
   end
 
   protected
@@ -32,5 +42,11 @@ class Reply < ActiveRecord::Base
         author_id
   end
 
+  def perform_new_reply_notification
+    if self.author_id != self.topic.author_id
+      self.notifications.create(receiver_id: topic.author_id,
+                                n_type: Notification::TYPE[:replied])
+    end
+  end
 
 end

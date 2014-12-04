@@ -180,6 +180,8 @@
         }
 
         .content {
+          word-wrap: break-word;
+          word-break: normal;
           border-bottom: $normal-boder;
           padding-bottom: 20px;
         }

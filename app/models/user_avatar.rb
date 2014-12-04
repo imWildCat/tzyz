@@ -9,6 +9,10 @@ class UserAvatar < ActiveRecord::Base
     Settings.paths.no_user_avatar
   end
 
+  def self.no_user_avatar_url
+    Settings.paths.no_user_avatar
+  end
+
   def remove_file
     if !filename.nil?
       # TODO: Remove file in CDN

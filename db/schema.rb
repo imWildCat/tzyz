@@ -84,14 +84,13 @@ ActiveRecord::Schema.define(version: 20141130044827) do
   add_index "nodes", ["slug"], name: "index_nodes_on_slug", unique: true, using: :btree
 
   create_table "notifications", force: true do |t|
-    t.integer  "receiver_id",      limit: 4,                 null: false
-    t.integer  "n_type",           limit: 3,                 null: false
-    t.boolean  "is_read",          limit: 1, default: false, null: false
-    t.integer  "reason_id",        limit: 4
-    t.integer  "related_user_id",  limit: 4
-    t.integer  "related_topic_id", limit: 4
-    t.integer  "related_reply_id", limit: 4
-    t.datetime "created_at",                                 null: false
+    t.integer  "receiver_id",     limit: 4,                   null: false
+    t.integer  "n_type",          limit: 3,                   null: false
+    t.boolean  "is_read",         limit: 1,   default: false, null: false
+    t.integer  "reason_id",       limit: 4
+    t.integer  "notifiable_id",   limit: 4
+    t.string   "notifiable_type", limit: 255
+    t.datetime "created_at",                                  null: false
     t.datetime "deleted_at"
   end
 

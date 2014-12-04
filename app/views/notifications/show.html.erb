@@ -10,20 +10,7 @@
       <div class="tab-pane fade active in" id="tab-notifications">
         <div class="panel panel-warning">
           <div class="panel-body" id="notification-list">
-
-            <% @notifications.each do |n| %>
-                <% case n.n_type %>
-            <% when 9 then %>
-                    <%= render 'notifications/types/user_welcome', {:n => n, :u => current_user} %>
-                <% else %>
-                    (未知通知)
-                <% end %>
-                <hr/>
-            <% end %>
-
-            <% if @notifications.count == 0 %>
-            目前尚无通知。
-            <% end %>
+            <%= render 'notifications/notification_list' %>
           </div>
         </div>
 

@@ -1,0 +1,20 @@
+<% if @notifications.count == 0 %>
+  目前尚无通知。
+<% end %>
+<% @notifications.each do |n| %>
+  <div class="media notification">
+    <a class="pull-left" href="#">
+      <%= notification_image n %>
+    </a>
+    <div class="media-body content">
+      <p class="media-heading">
+        <span<% unless n.is_read %> class="bold"<% end %>>
+          <%= notification_title n %>
+        </span>
+        <span class="time"><%= timeago(n.created_at) %></span>
+      </p>
+      <%= notification_content n %>
+    </div>
+  </div>
+  <hr/>
+<% end %>

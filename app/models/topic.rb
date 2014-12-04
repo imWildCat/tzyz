@@ -5,6 +5,7 @@ class Topic < ActiveRecord::Base
   has_many :replies, dependent: :destroy
   has_many :appreciations, as: :appreciative
   has_many :fortune_alterations, as: :fortune_alterable
+  has_many :notifications, as: :notifiable
 
   before_create do
     self.refresher_id = self.author_id
@@ -42,7 +43,7 @@ class Topic < ActiveRecord::Base
   end
 
   def last_page
-    self.replies_count / Topic.replies_per_page + 1
+    (self.replies_count - 1) / Topic.replies_per_page + 1
   end
 
   def show(page, valid_click_or_not)

@@ -5,9 +5,10 @@ class CreateNotifications < ActiveRecord::Migration
       t.integer :n_type, limit: 3, null: false
       t.boolean :is_read, null: false, default: false, unsigned: true
       t.belongs_to :reason
-      t.belongs_to :related_user
-      t.belongs_to :related_topic
-      t.belongs_to :related_reply
+      # t.belongs_to :related_user
+      # t.belongs_to :related_topic
+      # t.belongs_to :related_reply
+      t.references :notifiable, polymorphic: true
       t.datetime :created_at, null: false
       t.datetime :deleted_at
     end

@@ -5,6 +5,10 @@
  *= require admin-lte
  */
 
+.alert {
+  margin-bottom: 0!important;
+}
+
 .skin-black {
   .navbar {
     background-color: #d0d0d0;

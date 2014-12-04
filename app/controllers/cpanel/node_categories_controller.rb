@@ -10,8 +10,13 @@ class Cpanel::NodeCategoriesController < Cpanel::ApplicationController
   end
 
   def update
-    node_category = params.require(:node_category).permit(:name, :slug)
-    if NodeCategory.update params[:id], node_category
+    node_category_new_data = params.require(:node_category).permit(:name, :slug)
+    node_category = NodeCategory.find params[:id]
+    node_category.assign_attributes node_category_new_data
+
+    generate_changes_history(node_category)
+
+    if node_category.save
       flash[:success] = '节点分类更新成功。'
     else
       flash[:error] = '更新失败，请联系开发组。'

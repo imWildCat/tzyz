@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141130044827) do
+ActiveRecord::Schema.define(version: 20141204093125) do
 
   create_table "admin_action_reasons", force: true do |t|
     t.string "description", limit: 63
@@ -47,6 +47,17 @@ ActiveRecord::Schema.define(version: 20141130044827) do
   end
 
   add_index "fortune_alterations", ["user_id"], name: "index_fortune_alterations_on_user_id", using: :btree
+
+  create_table "management_histories", force: true do |t|
+    t.integer  "user_id",         limit: 4,   null: false, unsigned: true
+    t.integer  "manageable_id",   limit: 4,                unsigned: true
+    t.string   "manageable_type", limit: 31
+    t.string   "field_changed",   limit: 31
+    t.integer  "action_type",     limit: 3,   null: false, unsigned: true
+    t.string   "old_value",       limit: 255
+    t.string   "new_value",       limit: 255
+    t.datetime "created_at",                  null: false
+  end
 
   create_table "messages", force: true do |t|
     t.integer  "receiver_id", limit: 4,                                unsigned: true

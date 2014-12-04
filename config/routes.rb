@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   namespace :cpanel do
     root to: 'home#index'
     resource :node_categories, only: [:show]
+    resources :node_categories, only: [:edit, :update]
   end
 
 

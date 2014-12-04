@@ -6,7 +6,6 @@
   <%= stylesheet_link_tag 'cpanel' %>
   <%= javascript_include_tag 'application' %>
 
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body class="skin-black wysihtml5-supported pace-done">
@@ -15,9 +14,9 @@
 <div class="wrapper row-offcanvas row-offcanvas-left" style="min-height: 912px;">
   <%= render 'cpanel/shared/side_bar' %>
   <aside class="right-side">
+    <%= render 'cpanel/shared/alert' %>
     <%= yield %>
   </aside>
-
 </div>
 
 <%= javascript_include_tag 'cpanel' %>

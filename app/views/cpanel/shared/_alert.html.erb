@@ -1,7 +1,12 @@
+<% if flash.count > 0 %>
+    <div class="pad margin no-print">
 <% flash.each do |key, value| %>
     <div class="alert alert-<% case key when 'notice' then %>info<% when 'alert' then %>danger<% when 'success' then %>success<% when 'error' then %>danger<% else %>info alert-<%= key %><% end %> alert-dismissible" role="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
       class="sr-only">Close</span></button>
+      <i class="fa fa-info"></i>
       <%= value %>
+    </div>
+<% end %>
     </div>
 <% end %>

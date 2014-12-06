@@ -45,7 +45,7 @@ class Reply < ActiveRecord::Base
   def perform_new_reply_notification
     if self.author_id != self.topic.author_id
       self.notifications.create(receiver_id: topic.author_id,
-                                n_type: Notification::TYPE[:replied])
+                                n_type: :replied)
     end
   end
 

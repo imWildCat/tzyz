@@ -12,11 +12,10 @@ module NotificationsHelper
 
   def notification_image(notification)
     case notification.n_type
-      when Notification::TYPE[:replied],
-           Notification::TYPE[:at_in_reply]
+      when 'replied','at_in_reply'
         reply = notification.notifiable
         image_tag reply.author.avatar.url
-      when Notification::TYPE[:at_in_topic]
+      when 'at_in_topic'
         topic = notification.notifiable
         image_tag topic.author.avatar_url
       else
@@ -26,28 +25,28 @@ module NotificationsHelper
 
   def notification_title(notification)
     case notification.n_type
-      when Notification::TYPE[:replied]
+      when 'replied'
         reply = notification.notifiable
         output = "#{link_to(reply.author.nickname, reply.author)} 回复了你的主题：
                   #{link_to(reply.topic.title, topic_path(reply.topic, anchor: reply.reply_anchor, page: reply.reply_page))}"
-      when Notification::TYPE[:at_in_reply]
+      when 'at_in_reply'
         reply = notification.notifiable
         output = "#{link_to(reply.author.nickname, reply.author)} 在
                   #{link_to(reply.topic.title, topic_path(reply.topic, anchor: reply.reply_anchor, page: reply.reply_page))}
                   主题的回复中提到了你"
-      when Notification::TYPE[:at_in_topic]
+      when 'at_in_topic'
         topic = notification.notifiable
         output = "#{link_to(topic.author.nickname, topic.author)} 在主题 #{link_to(topic.title, topic)} 中提到了你"
-      when Notification::TYPE[:reply_deleted]
+      when 'reply_deleted'
         reply = notification.notifiable
         output = "你在主题 #{link_to(reply.topic.title, reply.topic)} 中的回复已被管理员删除"
-      when Notification::TYPE[:topic_deleted]
+      when 'topic_deleted'
         topic = notification.notifiable
         output = "你的主题 #{link_to(topic.title, topic)} 已被管理员删除"
-      when Notification::TYPE[:topic_locked]
+      when 'topic_locked'
         topic = notification.notifiable
         output = "你的主题 #{link_to(topic.title, topic)} 已被管理员锁定"
-      when Notification::TYPE[:user_welcome]
+      when 'user_welcome'
         output = "#{current_user.nickname}，感谢您注册 滕州一中校友会"
       # when Notification::TYPE[:topic_limited]
       else
@@ -68,17 +67,17 @@ module NotificationsHelper
       #     Notification::TYPE[:topic_locked]
       #   topic = notification.notifiable
       #   output = strip_and_cut topic.content
-      when Notification::TYPE[:replied],
-           Notification::TYPE[:at_in_reply],
-           Notification::TYPE[:reply_deleted],
-           Notification::TYPE[:at_in_topic],
-           Notification::TYPE[:topic_locked]
+      when 'replied',
+           'at_in_reply',
+           'reply_deleted',
+           'at_in_topic',
+           'topic_locked'
         output = strip_and_cut notification.notifiable.content
-      when Notification::TYPE[:topic_deleted],
-           Notification::TYPE[:reply_deleted]
+      when 'topic_deleted',
+           'reply_deleted'
         output = deleted_content strip_and_cut(notification.notifiable.content)
       # when Notification::TYPE[:topic_limited]
-      when Notification::TYPE[:user_welcome]
+      when 'user_welcome'
         output = '请遵守社区规范，希望您享受在这个社区的美好时光 : )'
       else
         output = ''

@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   has_many :fortune_alterations
 
-  has_many :management_histories, as: :manageable
+  has_many :management_logs, as: :manageable
 
   before_save do
     self.email = email.downcase
@@ -52,6 +52,10 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 6}, if: :password_changed?
   validates :group, presence: true
   validates :role, presence: true
+
+  def to_s
+    "用户：#{display_name}"
+  end
 
   def self.group_name_for(group_key)
     case group_key
@@ -100,8 +104,8 @@ class User < ActiveRecord::Base
 
   def recent_topics(page, per_page = 10) # With Caching
     Rails.cache.fetch("user_#{id}_topics_#{updated_at}_n_#{page}_p_#{per_page}", expires_in: 30.minutes) do
-      topics.order(updated_at: :desc).includes(:refresher, :nodes).paginate(page: page,
-                                                                            per_page: per_page)
+      topics.order(updated_at: :desc).includes(:refresher, :node).paginate(page: page,
+                                                                            per_page: per_page).to_a
     end
   end
 

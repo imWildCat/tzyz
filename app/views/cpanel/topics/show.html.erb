@@ -1,0 +1,60 @@
+<section class="content-header">
+  <h1>
+    话题
+    <small>目前总数为 <%= Topic.count %> 个。</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> 管理面板</a></li>
+    <li>话题</li>
+    <li class="active">列表</li>
+  </ol>
+</section>
+
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">所有话题</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table class="table table-bordered table-hover">
+            <tbody>
+            <tr>
+              <th style="width: 10px">#</th>
+              <th>标题</th>
+              <th>作者</th>
+              <th>点击 / 回复</th>
+              <th>发布时间</th>
+              <th>上次更新</th>
+              <th style="width: 50px">操作</th>
+            </tr>
+            <% @topics.each do |t| %>
+                <tr>
+                  <td><%= t.id %>.</td>
+                  <%
+                     title_plus = ''
+                     title_plus = " （<span style=\"color:red;\">#{Topic::status_name_for t.status}</span>）".html_safe unless t.status == 'normal'
+                  %>
+                  <td><%= link_to t.title, topic_path(t) %><%= title_plus %></td>
+                  <td><%= link_to t.author.display_name, t.author %></td>
+                  <td><%= t.clicks_count %> / <%= t.replies_count %></td>
+                  <td><%= t.created_at %></td>
+                  <td><%= link_to t.refresher.display_name, t.refresher %> <<%= timeago t.updated_at %>></td>
+                  <td>
+                    <%= link_to '编辑', edit_cpanel_topic_path(t) %>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+          <%= render_will_paginate @topics, css_class: 'pagination-sm no-margin pull-right' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

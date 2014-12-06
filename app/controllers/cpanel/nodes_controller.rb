@@ -16,7 +16,7 @@ class Cpanel::NodesController < Cpanel::ApplicationController
 
     if new_node.valid?
       flash[:success] = '创建成功。'
-      generate_creating_history(new_node)
+      generate_creating_log(new_node)
     else
       flash[:error] = '创建失败，可能是因为包含已有内容。'
     end
@@ -31,7 +31,7 @@ class Cpanel::NodesController < Cpanel::ApplicationController
     node_new_data = params.require(:node).permit(:node_category_id, :name, :slug)
     node = Node.find params[:id]
 
-    node.assign_attributes_with_history node_new_data, current_user
+    node.assign_attributes_with_log node_new_data, current_user
 
     if node.save
       flash[:success] = '节点更新成功。'

@@ -62,19 +62,23 @@
           </li>
         </ul>
       </li>
-      <li class="treeview">
+      <li class="treeview <%= class_active_start_with(cpanel_topics_path) %>">
         <a href="#">
           <i class="fa fa-bars"></i> <span>话题</span>
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li><a href="pages/forms/general.html" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i>
-            General Elements</a></li>
-          <li><a href="pages/forms/advanced.html" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i>
-            Advanced Elements</a></li>
-          <li><a href="pages/forms/editors.html" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i>
-            Editors</a></li>
+          <li class="<%= class_active_start_with(cpanel_topics_path) %>">
+            <a href="<%= cpanel_topics_path %>">
+              <i class="fa fa-angle-double-right"></i>
+            话题列表</a>
+          </li>
         </ul>
+      </li>
+      <li class="<%= class_active_start_with(cpanel_management_logs_path) %>">
+        <a href="<%= cpanel_management_logs_path %>">
+          <i class="fa fa-film"></i> <span>管理日志</span>
+        </a>
       </li>
       <li>
         <a href="<%= root_path %>">

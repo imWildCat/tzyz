@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20141204093125) do
 
   add_index "fortune_alterations", ["user_id"], name: "index_fortune_alterations_on_user_id", using: :btree
 
-  create_table "management_histories", force: true do |t|
+  create_table "management_logs", force: true do |t|
     t.integer  "user_id",         limit: 4,   null: false, unsigned: true
     t.integer  "manageable_id",   limit: 4,                unsigned: true
     t.string   "manageable_type", limit: 31
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 20141204093125) do
   create_table "topics", force: true do |t|
     t.integer  "node_id",             limit: 4,                 null: false, unsigned: true
     t.integer  "author_id",           limit: 4,                 null: false, unsigned: true
+    t.integer  "status",              limit: 4,     default: 1, null: false
     t.integer  "refresher_id",        limit: 4,                 null: false, unsigned: true
     t.string   "title",               limit: 127,               null: false
     t.integer  "clicks_count",        limit: 4,     default: 0, null: false, unsigned: true
@@ -135,11 +136,14 @@ ActiveRecord::Schema.define(version: 20141204093125) do
     t.integer  "favorites_count",     limit: 4,     default: 0, null: false, unsigned: true
     t.integer  "appreciations_count", limit: 4,     default: 0, null: false, unsigned: true
     t.text     "content",             limit: 65535,             null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.datetime "priority",                                      null: false
   end
 
   add_index "topics", ["author_id"], name: "index_topics_on_author_id", using: :btree
+  add_index "topics", ["priority"], name: "index_topics_on_priority", using: :btree
+  add_index "topics", ["status"], name: "index_topics_on_status", using: :btree
 
   create_table "user_avatars", primary_key: "owner_id", force: true do |t|
     t.boolean "is_enabled", limit: 1,   default: true, null: false

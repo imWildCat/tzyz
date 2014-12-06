@@ -16,7 +16,7 @@ class Cpanel::NodeCategoriesController < Cpanel::ApplicationController
 
     if new_node_category.valid?
       flash[:success] = '创建成功。'
-      generate_creating_history(new_node_category)
+      generate_creating_log(new_node_category)
     else
       flash[:error] = '创建失败，可能是因为包含已有内容。'
     end
@@ -30,7 +30,7 @@ class Cpanel::NodeCategoriesController < Cpanel::ApplicationController
   def update
     node_category_new_data = params.require(:node_category).permit(:name, :slug)
     node_category = NodeCategory.find params[:id]
-    node_category.assign_attributes_with_history node_category_new_data, current_user
+    node_category.assign_attributes_with_log node_category_new_data, current_user
 
     if node_category.save
       flash[:success] = '节点分类更新成功。'

@@ -13,7 +13,7 @@ class Cpanel::UsersController < Cpanel::ApplicationController
     user_new_data = params.require(:user).permit(:nickname, :email, :group)
     user = User.find params[:id]
 
-    user.assign_attributes_with_history user_new_data, current_user
+    user.assign_attributes_with_log user_new_data, current_user
 
     if user.save
       flash[:success] = '用户修改成功。'

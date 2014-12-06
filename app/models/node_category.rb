@@ -1,10 +1,14 @@
 class NodeCategory < ActiveRecord::Base
 
   has_many :nodes
-  has_many :management_histories, as: :manageable
+  has_many :management_logs, as: :manageable
 
   validates :name, uniqueness: {case_sensitive: false}, presence: true
   validates :slug, uniqueness: {case_sensitive: false}, presence: true
+
+  def to_s
+    "节点分类：#{name}"
+  end
 
   def self.cached_cats
     Rails.cache.fetch('node_categories', expires_in: 6.hours) do

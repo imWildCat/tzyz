@@ -1,4 +1,14 @@
 class Topic < ActiveRecord::Base
+
+  TOPIC_STATUS = {
+      deleted: -10,
+      locked: -1,
+      normal: 1,
+      top_marked: 9
+  }
+
+  enum status: TOPIC_STATUS
+
   belongs_to :node
   belongs_to :author, class_name: 'User'
   belongs_to :refresher, class_name: 'User'
@@ -6,9 +16,34 @@ class Topic < ActiveRecord::Base
   has_many :appreciations, as: :appreciative
   has_many :fortune_alterations, as: :fortune_alterable
   has_many :notifications, as: :notifiable
+  has_many :management_logs, as: :manageable
+
+  def to_s
+    "话题：《#{title}》"
+  end
+
+  def self.status_name_for(status_key)
+    case status_key
+      when 'deleted'
+        return '删除'
+      when 'locked'
+        return '锁定'
+      when 'normal'
+        return '正常'
+      when 'top_marked'
+        return '置顶'
+      else
+        return '未知'
+    end
+  end
+
+  def status_name
+    Topic::status_name_for status
+  end
 
   before_create do
     self.refresher_id = self.author_id
+    self.priority = Time.now
   end
 
   after_create :perform_new_topic_fortune_alteration

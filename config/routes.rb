@@ -59,6 +59,11 @@ Rails.application.routes.draw do
     # User
     resource :users, only: [:show]
     resources :users, only: [:edit, :update]
+    # Topic
+    resource :topics, only: [:show]
+    resources :topics, only: [:edit, :update]
+    # Management Logs
+    resource :management_logs, only: [:show]
   end
 
 

@@ -1,6 +1,6 @@
-class CreateManagementHistories < ActiveRecord::Migration
+class CreateManagementLogs < ActiveRecord::Migration
   def change
-    create_table :management_histories do |t|
+    create_table :management_logs do |t|
       t.belongs_to :user, null: false, unsigned: true
       t.integer :manageable_id, unsigned: true
       t.string :manageable_type, limit: 31

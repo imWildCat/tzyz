@@ -1,0 +1,51 @@
+<section class="content-header">
+  <h1>
+    管理日志
+    <small>目前总数为 <%= ManagementLog.count %> 个。</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> 管理面板</a></li>
+    <li class="active">管理日志</li>
+  </ol>
+</section>
+
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">管理日志</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table class="table table-bordered table-hover">
+            <tbody>
+            <tr>
+              <th>时间</th>
+              <th>管理者</th>
+              <th>操作对象</th>
+              <th>动作类型</th>
+              <th>更改字段</th>
+              <th>旧值 / 新值</th>
+            </tr>
+            <% @logs.each do |l| %>
+                <tr>
+                  <td><%= l.created_at %></td>
+                  <td><%= l.user.display_name %></td>
+                  <td><%= link_to l.manageable.to_s, l.manageable %></td>
+                  <td><%= l.action_type_name %></td>
+                  <td><%= l.field_changed %></td>
+                  <td><%= l.old_value %> / <%= l.new_value %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+          <%= render_will_paginate @logs, css_class: 'pagination-sm no-margin pull-right' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

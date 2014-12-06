@@ -7,7 +7,7 @@ class TopicsController < ApplicationController
     id = params[:id]
     page = current_page
     @topic = Topic.includes(:node).find(id)
-    @replies = @topic.show(page, valid_click_for_topic?(@topic.id))
+   @replies = @topic.show(page, valid_click_for_topic?(@topic.id))
 
     add_breadcrumb @topic.node.name, node_path(@topic.node.slug)
     add_breadcrumb @topic.title

@@ -43,7 +43,8 @@ class Topic < ActiveRecord::Base
   end
 
   def last_page
-    (self.replies_count - 1) / Topic.replies_per_page + 1
+    return (self.replies_count - 1) / Topic.replies_per_page + 1 if self.replies_count > 0
+    1
   end
 
   def show(page, valid_click_or_not)

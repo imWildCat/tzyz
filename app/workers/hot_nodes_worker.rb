@@ -9,7 +9,7 @@ class HotNodesWorker
     candidates.each do |c|
       count = Topic.where(:node => c).count.to_i
       statistics.push({
-          :node => c,
+          :nodes => c,
           :count => count,
                        })
     end
@@ -19,7 +19,7 @@ class HotNodesWorker
 
     hot_nodes = []
     statistics.each do |s|
-      hot_nodes.push s[:node]
+      hot_nodes.push s[:nodes]
     end
 
     Rails.cache.write('hot_nodes', hot_nodes)

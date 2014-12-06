@@ -1,0 +1,56 @@
+<section class="content-header">
+  <h1>
+    用户
+    <small>目前总数为 <%= User.count %> 个。</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> 管理面板</a></li>
+    <li>用户</li>
+    <li class="active">列表</li>
+  </ol>
+</section>
+
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">所有用户</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table class="table table-bordered table-hover">
+            <tbody>
+            <tr>
+              <th style="width: 10px">#</th>
+              <th>昵称</th>
+              <th>Email</th>
+              <th>用户组</th>
+              <th>注册时间</th>
+              <th>上次更新</th>
+              <th style="width: 50px">操作</th>
+            </tr>
+            <% @users.each do |u| %>
+                <tr>
+                  <td><%= u.id %>.</td>
+                  <td><%= link_to u.nickname, user_path(u) %></td>
+                  <td><%= u.email %></td>
+                  <td><%= u.group_name %></td>
+                  <td><%= u.created_at %></td>
+                  <td><%= timeago u.updated_at %></td>
+                  <td>
+                    <%= link_to '编辑', edit_cpanel_user_path(u) %>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+          <%= render_will_paginate @nodes, css_class: 'pagination-sm no-margin pull-right' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -9,9 +9,8 @@ class CreateUsers < ActiveRecord::Migration
 
       t.string :nickname, null: false, limit: 8
 
-
-      t.integer :group_id, null: false, limit: 3, default: 1, unsigned: true
-      t.integer :role_id, null: false, limit: 3, default: 1, unsigned: true
+      t.integer :group, null: false, limit: 2, default: 1
+      t.integer :role, null: false, limit: 2, default: 1
 
       t.integer :fortune, null: false, default: 0, unsigned: true
 

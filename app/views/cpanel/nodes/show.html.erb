@@ -1,11 +1,11 @@
 <section class="content-header">
   <h1>
-    节点分类
-    <small>目前总数为 <%= NodeCategory.count %> 个。</small>
+    节点
+    <small>目前总数为 <%= Node.count %> 个。</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> 管理面板</a></li>
-    <li class="active">节点分类</li>
+    <li class="active">节点</li>
   </ol>
 </section>
 
@@ -14,8 +14,8 @@
     <div class="col-md-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">所有节点分类</h3>
-          <%= button_to_new_object_path new_cpanel_node_category_path %>
+          <h3 class="box-title">所有节点</h3>
+          <%= button_to_new_object_path new_cpanel_node_path %>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -23,21 +23,23 @@
             <tbody>
             <tr>
               <th style="width: 10px">#</th>
-              <th>分类名称</th>
+              <th>节点名称</th>
               <th>slug</th>
+              <th>所属分类</th>
               <th>创建时间</th>
               <th>上次修改</th>
               <th style="width: 50px">操作</th>
             </tr>
-            <% @node_categories.each do |nc| %>
+            <% @nodes.each do |n| %>
                 <tr>
-                  <td><%= nc.id %>.</td>
-                  <td><%= link_to nc.name, node_category_path(nc.slug) %></td>
-                  <td><%= nc.slug %></td>
-                  <td><%= nc.created_at %></td>
-                  <td><%= timeago nc.updated_at %></td>
+                  <td><%= n.id %>.</td>
+                  <td><%= link_to n.name, node_path(n.slug) %></td>
+                  <td><%= n.slug %></td>
+                  <td><%= link_to n.node_category.name, edit_cpanel_node_category_path(n.node_category) %></td>
+                  <td><%= n.created_at %></td>
+                  <td><%= timeago n.updated_at %></td>
                   <td>
-                    <%= link_to '编辑', edit_cpanel_node_category_path(nc) %>
+                    <%= link_to '编辑', edit_cpanel_node_path(n) %>
                   </td>
                 </tr>
             <% end %>
@@ -46,7 +48,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix">
-          <%= render_will_paginate @node_categories, css_class:'pagination-sm no-margin pull-right' %>
+          <%= render_will_paginate @nodes, css_class: 'pagination-sm no-margin pull-right' %>
         </div>
       </div>
     </div>

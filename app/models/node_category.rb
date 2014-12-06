@@ -3,6 +3,9 @@ class NodeCategory < ActiveRecord::Base
   has_many :nodes
   has_many :management_histories, as: :manageable
 
+  validates :name, uniqueness: {case_sensitive: false}, presence: true
+  validates :slug, uniqueness: {case_sensitive: false}, presence: true
+
   def self.cached_cats
     Rails.cache.fetch('node_categories', expires_in: 6.hours) do
       NodeCategory.limit(11)

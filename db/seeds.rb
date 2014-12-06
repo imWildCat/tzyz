@@ -32,7 +32,7 @@ end
 
 if Rails.env == 'development'
   common_password = '123456'
-  admin = User.create! :nickname => '管理员', :email => 'admin@tzyz.com', :role_id => 1, :password => common_password, :password_confirmation => common_password, :confirmed_at => '2014-10-16 08:59:37', :fortune => 2000
+  admin = User.create! :nickname => '管理员', :email => 'admin@tzyz.com', :password => common_password, :password_confirmation => common_password, :confirmed_at => '2014-10-16 08:59:37', :fortune => 2000
 
   User.create(
       nickname: '李华',

@@ -5,6 +5,11 @@ class Node < ActiveRecord::Base
   belongs_to :node_category
 
   has_many :topics
+  has_many :management_histories, as: :manageable
+
+  validates :node_category_id, presence: true
+  validates :name, uniqueness: {case_sensitive: false}, presence: true
+  validates :slug, uniqueness: {case_sensitive: false}, presence: true
 
   def self.topics_per_page
     20

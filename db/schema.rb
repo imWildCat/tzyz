@@ -79,6 +79,9 @@ ActiveRecord::Schema.define(version: 20141204093125) do
     t.datetime "updated_at"
   end
 
+  add_index "node_categories", ["name"], name: "index_node_categories_on_name", unique: true, using: :btree
+  add_index "node_categories", ["slug"], name: "index_node_categories_on_slug", unique: true, using: :btree
+
   create_table "nodes", force: true do |t|
     t.integer  "node_category_id", limit: 4,                   null: false, unsigned: true
     t.string   "name",             limit: 15,                  null: false
@@ -173,8 +176,8 @@ ActiveRecord::Schema.define(version: 20141204093125) do
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "nickname",               limit: 8,                null: false
-    t.integer  "group_id",               limit: 3,   default: 1,  null: false, unsigned: true
-    t.integer  "role_id",                limit: 3,   default: 1,  null: false, unsigned: true
+    t.integer  "group",                  limit: 2,   default: 1,  null: false
+    t.integer  "role",                   limit: 2,   default: 1,  null: false
     t.integer  "fortune",                limit: 4,   default: 0,  null: false, unsigned: true
     t.integer  "topics_count",           limit: 4,   default: 0,  null: false, unsigned: true
     t.integer  "replies_count",          limit: 4,   default: 0,  null: false, unsigned: true

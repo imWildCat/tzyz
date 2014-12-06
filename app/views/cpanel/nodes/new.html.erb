@@ -1,12 +1,11 @@
 <section class="content-header">
   <h1>
-    编辑节点：<%= @node_category.name %>
-    <small>该分类下节点总数为 <%= @node_category.nodes.count %> 个。</small>
+    新增节点
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> 管理面板</a></li>
-    <li>节点分类</li>
-    <li class="active">编辑</li>
+    <li>节点</li>
+    <li class="active">新增</li>
   </ol>
 </section>
 
@@ -17,18 +16,21 @@
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    <%= simple_form_for @node_category,url:cpanel_node_category_path, html: {role: 'form'} do |f| %>
+    <%= simple_form_for @node, url: cpanel_nodes_path, html: {role: 'form'} do |f| %>
         <div class="box-body">
           <%= f.error_notification %>
           <div class="form-group">
-            <%= f.input :name, class: 'form-control', label: '节点分类名称' %>
+            <%= f.input :node_category_id, collection: NodeCategory.all, label: '节点分类' %>
+            </div>
+          <div class="form-group">
+            <%= f.input :name, class: 'form-control', label: '节点名称' %>
           </div>
           <div class="form-group">
             <%= f.input :slug, class: 'form-control' %>
           </div>
         </div>
         <div class="box-footer">
-          <%= f.submit '更新', class:'btn btn-primary' %>
+          <%= f.submit '新增', class: 'btn btn-primary' %>
         </div>
     <% end %>
   </div>

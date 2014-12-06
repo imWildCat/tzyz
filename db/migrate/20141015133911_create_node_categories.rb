@@ -6,5 +6,8 @@ class CreateNodeCategories < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :node_categories, :name, unique: true
+    add_index :node_categories, :slug, unique: true
   end
 end

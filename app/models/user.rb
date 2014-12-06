@@ -4,6 +4,19 @@ class User < ActiveRecord::Base
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
+  USER_GROUP = {
+      normal: 1,
+      moderator: 6, # Node manager
+      administrator: 9
+  }
+
+  USER_ROLE = {
+      newbie: 1
+  }
+
+  enum group: USER_GROUP
+  enum role: USER_ROLE
+
   # Relationships
   # - Message
   has_many :messages, foreign_key: 'receiver_id', dependent: :destroy, class_name: 'Message'
@@ -24,6 +37,8 @@ class User < ActiveRecord::Base
 
   has_many :fortune_alterations
 
+  has_many :management_histories, as: :manageable
+
   before_save do
     self.email = email.downcase
   end
@@ -35,7 +50,34 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
   validates :password, length: {minimum: 6}, if: :password_changed?
+  validates :group, presence: true
+  validates :role, presence: true
 
+  def self.group_name_for(group_key)
+    case group_key
+      when 'normal'
+        return '普通'
+      when 'moderator'
+        return 'Warden'
+      when 'administrator'
+        return 'Titan'
+      else
+        return '未知'
+    end
+  end
+
+  def group_name
+    User::group_name_for(group)
+  end
+
+  def role_name
+    case role
+      when 'newbie'
+        return '新人'
+      else
+        return '未知'
+    end
+  end
 
   def set_role(role)
     case role
@@ -58,8 +100,8 @@ class User < ActiveRecord::Base
 
   def recent_topics(page, per_page = 10) # With Caching
     Rails.cache.fetch("user_#{id}_topics_#{updated_at}_n_#{page}_p_#{per_page}", expires_in: 30.minutes) do
-      topics.order(updated_at: :desc).includes(:refresher, :node).paginate(page: page,
-                                                                           per_page: per_page)
+      topics.order(updated_at: :desc).includes(:refresher, :nodes).paginate(page: page,
+                                                                            per_page: per_page)
     end
   end
 

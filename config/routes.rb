@@ -50,8 +50,15 @@ Rails.application.routes.draw do
   # Control Panel
   namespace :cpanel do
     root to: 'home#index'
+    # NodeCategory
     resource :node_categories, only: [:show]
-    resources :node_categories, only: [:edit, :update]
+    resources :node_categories, only: [:edit, :update, :new, :create]
+    # Node
+    resource :nodes, only: [:show]
+    resources :nodes, only: [:edit, :update, :new, :create]
+    # User
+    resource :users, only: [:show]
+    resources :users, only: [:edit, :update]
   end
 
 

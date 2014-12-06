@@ -1,11 +1,10 @@
 <section class="content-header">
   <h1>
-    编辑节点：<%= @node_category.name %>
-    <small>该分类下节点总数为 <%= @node_category.nodes.count %> 个。</small>
+    编辑用户：<%= @user.display_name %>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> 管理面板</a></li>
-    <li>节点分类</li>
+    <li>用户</li>
     <li class="active">编辑</li>
   </ol>
 </section>
@@ -17,18 +16,21 @@
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    <%= simple_form_for @node_category,url:cpanel_node_category_path, html: {role: 'form'} do |f| %>
+    <%= simple_form_for @user, url: cpanel_user_path, html: {role: 'form'} do |f| %>
         <div class="box-body">
           <%= f.error_notification %>
           <div class="form-group">
-            <%= f.input :name, class: 'form-control', label: '节点分类名称' %>
+            <%= f.input :nickname, class: 'form-control', label: '昵称' %>
           </div>
           <div class="form-group">
-            <%= f.input :slug, class: 'form-control' %>
+            <%= f.input :email, class: 'form-control', label: 'Email' %>
+          </div>
+          <div class="form-group">
+            <%= f.input :group, collection: User.groups.map{ |k, v| [User.group_name_for(k), k]}, label: '用户组' %>
           </div>
         </div>
         <div class="box-footer">
-          <%= f.submit '更新', class:'btn btn-primary' %>
+          <%= f.submit '更新', class: 'btn btn-primary' %>
         </div>
     <% end %>
   </div>

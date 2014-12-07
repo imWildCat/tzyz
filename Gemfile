@@ -4,7 +4,7 @@ source 'https://rails-assets.org'
 ruby '2.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.0.rc1'
+gem 'rails', '~> 4.2.0.rc2'
 
 # Settings
 gem 'rails_config', '~> 0.4.2'

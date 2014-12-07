@@ -9,7 +9,13 @@ $dark-text-gray: #4d5256;
 $normal-boder: solid 1px #dddddd;
 
 body {
-//  background: #f0f0f0 asset_url("noise.gif") repeat -70% 0;
+  //  background: #f0f0f0 asset_url("noise.gif") repeat -70% 0;
+}
+
+.container {
+  @media (min-width: 1200px) {
+    width: 970px;
+  }
 }
 
 a {
@@ -36,6 +42,6 @@ a {
 }
 
 span.time {
-  color:#808080;
+  color: #808080;
 }
 

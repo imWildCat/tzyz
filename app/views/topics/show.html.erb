@@ -123,7 +123,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <%= will_paginate @replies, renderer: BootstrapPagination::Rails %>
+      <%= render_will_paginate @replies %>
     </div>
     <div class="col-md-12" id="reply-form">
       <div class="panel panel-success">

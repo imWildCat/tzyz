@@ -26,6 +26,10 @@ class RepliesController < ApplicationController
 
     if reply.save
       flash[:success] = '回复成功！'
+      # If new reply has a quoted_reply, and the authors of them are NOT the same, send notification
+      if reply.quoted_reply and (reply.author_id != reply.quoted_reply.author_id)
+        reply.notifications.create receiver: reply.quoted_reply.author, n_type: :reply_quoted
+      end
       redirect_to topic_path(id: topic.id, anchor: reply.reply_anchor, page: reply.reply_page)
     else
       flash[:error] = '未知错误。'

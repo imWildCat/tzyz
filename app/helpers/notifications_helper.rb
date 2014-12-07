@@ -12,7 +12,7 @@ module NotificationsHelper
 
   def notification_image(notification)
     case notification.n_type
-      when 'replied','at_in_reply'
+      when 'replied', 'at_in_reply'
         reply = notification.notifiable
         image_tag reply.author.avatar.url
       when 'at_in_topic'
@@ -59,6 +59,11 @@ module NotificationsHelper
         appreciation = notification.notifiable
         reply = appreciation.appreciative
         output = "#{link_to appreciation.user.display_name, appreciation.user} 感谢了您在主题 #{link_to(reply.topic.title, topic_path(reply.topic, anchor: reply.reply_anchor, page: reply.reply_page))} 中的回复"
+      when 'reply_quoted'
+        reply = notification.notifiable
+        output = "#{link_to(reply.author.nickname, reply.author)} 在主题
+                  #{link_to(reply.topic.title, topic_path(reply.topic, anchor: reply.reply_anchor, page: reply.reply_page))}
+                  中回复了你的发言"
       else
         output = "未知通知, Notification type: #{notification.n_type.to_s}, 请联系管理员，谢谢。"
     end
@@ -68,13 +73,14 @@ module NotificationsHelper
   def notification_content(notification)
     case notification.n_type
       when 'replied',
-           'at_in_reply',
-           'reply_deleted',
-           'at_in_topic',
-           'topic_locked'
+          'at_in_reply',
+          'reply_deleted',
+          'at_in_topic',
+          'topic_locked',
+          'reply_quoted'
         output = strip_and_cut notification.notifiable.content
       when 'topic_deleted',
-           'reply_deleted'
+          'reply_deleted'
         output = deleted_content strip_and_cut(notification.notifiable.content)
       when 'topic_appreciated', 'reply_appreciated'
         output = strip_and_cut notification.notifiable.appreciative.content
@@ -90,6 +96,7 @@ module NotificationsHelper
   protected
 
   SHORT_CONTENT_LENGTH = 140
+
   def strip_and_cut(content)
     striped_content = strip_tags content
     if striped_content.length <= SHORT_CONTENT_LENGTH

@@ -11,7 +11,8 @@ class Notification < ActiveRecord::Base
            user_welcome: 8,
            topic_favorited: 9,
            topic_appreciated: 10,
-           reply_appreciated: 11
+           reply_appreciated: 11,
+           reply_quoted: 12
   }
 
   enum n_type: TYPE

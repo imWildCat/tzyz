@@ -26,5 +26,5 @@
             unlock_token:
               invalid: "不正确，可能是因为您的解锁邮件链接存在问题，我们暂时无法解锁您的帐号。请重新发送解锁邮件。"
   will_paginate:
-    previous_label: "上一页"
-    next_label: "下一页"
+    previous_label: "<i class=\"fa fa-chevron-left\"></i>"
+    next_label: "<i class=\"fa fa-chevron-right\"></i>"

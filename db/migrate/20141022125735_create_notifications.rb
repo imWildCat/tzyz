@@ -15,5 +15,6 @@ class CreateNotifications < ActiveRecord::Migration
 
     add_index :notifications, :receiver_id
     add_index :notifications, :is_read
+    add_index :notifications, :deleted_at
   end
 end

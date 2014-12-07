@@ -28,10 +28,12 @@ ActiveRecord::Schema.define(version: 20141204093125) do
   add_index "appreciations", ["user_id"], name: "index_appreciations_on_user_id", using: :btree
 
   create_table "favorite_topics", force: true do |t|
-    t.integer "user_id",  limit: 4, null: false, unsigned: true
-    t.integer "topic_id", limit: 4, null: false, unsigned: true
+    t.integer  "user_id",    limit: 4, null: false, unsigned: true
+    t.integer  "topic_id",   limit: 4, null: false, unsigned: true
+    t.datetime "deleted_at"
   end
 
+  add_index "favorite_topics", ["deleted_at"], name: "index_favorite_topics_on_deleted_at", using: :btree
   add_index "favorite_topics", ["topic_id"], name: "index_favorite_topics_on_topic_id", using: :btree
   add_index "favorite_topics", ["user_id", "topic_id"], name: "index_favorite_topics_on_user_id_and_topic_id", unique: true, using: :btree
   add_index "favorite_topics", ["user_id"], name: "index_favorite_topics_on_user_id", using: :btree
@@ -108,6 +110,7 @@ ActiveRecord::Schema.define(version: 20141204093125) do
     t.datetime "deleted_at"
   end
 
+  add_index "notifications", ["deleted_at"], name: "index_notifications_on_deleted_at", using: :btree
   add_index "notifications", ["is_read"], name: "index_notifications_on_is_read", using: :btree
   add_index "notifications", ["receiver_id"], name: "index_notifications_on_receiver_id", using: :btree
 

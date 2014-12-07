@@ -33,6 +33,11 @@
 
 // olds
 .single-topic {
+
+  .highlight {
+    background-color: #FCF9DC;
+  }
+
   // For both topic and reply:
   .avatar {
     float: left;
@@ -157,7 +162,7 @@
     margin-top: 20px;
     .reply {
       clear: both;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       .right-column {
         margin-left: 55px;
         .meta {

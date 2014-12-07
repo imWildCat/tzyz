@@ -1,11 +1,23 @@
 class FavoriteTopic < ActiveRecord::Base
+  acts_as_paranoid
+
+  after_create :perform_new_fav_notification
   after_save :delete_cache_key, :refresh_topic_count
+  after_restore :delete_cache_key, :refresh_topic_count
   after_destroy :delete_cache_key, :refresh_topic_count
 
   belongs_to :topic
+  belongs_to :user
+  has_many :notifications, as: :notifiable
 
   def self.make(user: nil, topic: nil)
-    find_or_initialize_by(user_id: user.id, topic_id: topic.id).save
+    fav = with_deleted.find_or_initialize_by(user_id: user.id, topic_id: topic.id)
+    if fav.new_record?
+      fav.save
+    else
+      fav.restore
+    end
+    fav
   end
 
   def self.is_favorited(user: nil, topic: nil)
@@ -26,6 +38,13 @@ class FavoriteTopic < ActiveRecord::Base
   end
 
   protected
+
+  def perform_new_fav_notification
+    if self.user_id != self.topic.author_id
+      self.notifications.create(receiver_id: topic.author_id,
+                                n_type: :topic_favorited)
+    end
+  end
 
   def self.cache_key(user_id, topic_id)
     "is_favcorited_for_user_#{user_id}_topic_#{topic_id}"

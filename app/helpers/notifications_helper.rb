@@ -48,7 +48,17 @@ module NotificationsHelper
         output = "你的主题 #{link_to(topic.title, topic)} 已被管理员锁定"
       when 'user_welcome'
         output = "#{current_user.nickname}，感谢您注册 滕州一中校友会"
-      # when Notification::TYPE[:topic_limited]
+      when 'topic_favorited'
+        favorite = FavoriteTopic.with_deleted.find notification.notifiable_id
+        output = "#{favorite.user.display_name} 收藏了你的主题 #{link_to(favorite.topic.title, favorite.topic)}"
+      when 'topic_appreciated'
+        appreciation = notification.notifiable
+        topic = appreciation.appreciative
+        output = "#{link_to appreciation.user.display_name, appreciation.user} 感谢了您的主题 #{link_to(topic.title, topic)}"
+      when 'reply_appreciated'
+        appreciation = notification.notifiable
+        reply = appreciation.appreciative
+        output = "#{link_to appreciation.user.display_name, appreciation.user} 感谢了您在主题 #{link_to(reply.topic.title, topic_path(reply.topic, anchor: reply.reply_anchor, page: reply.reply_page))} 中的回复"
       else
         output = "未知通知, Notification type: #{notification.n_type.to_s}, 请联系管理员，谢谢。"
     end
@@ -57,16 +67,6 @@ module NotificationsHelper
 
   def notification_content(notification)
     case notification.n_type
-      # when Notification::TYPE[:replied],
-      #     Notification::TYPE[:at_in_reply],
-      #     Notification::TYPE[:reply_deleted]
-      #   reply = notification.notifiable
-      #   output = '<s>' + (strip_and_cut reply.content) +'</s>'
-      # when Notification::TYPE[:at_in_topic],
-      #     Notification::TYPE[:topic_deleted],
-      #     Notification::TYPE[:topic_locked]
-      #   topic = notification.notifiable
-      #   output = strip_and_cut topic.content
       when 'replied',
            'at_in_reply',
            'reply_deleted',
@@ -76,6 +76,8 @@ module NotificationsHelper
       when 'topic_deleted',
            'reply_deleted'
         output = deleted_content strip_and_cut(notification.notifiable.content)
+      when 'topic_appreciated', 'reply_appreciated'
+        output = strip_and_cut notification.notifiable.appreciative.content
       # when Notification::TYPE[:topic_limited]
       when 'user_welcome'
         output = '请遵守社区规范，希望您享受在这个社区的美好时光 : )'
@@ -93,11 +95,11 @@ module NotificationsHelper
     if striped_content.length <= SHORT_CONTENT_LENGTH
       striped_content
     else
-      striped_content[0..SHORT_CONTENT_LENGTH-1] + '...'
+      striped_content[0..SHORT_CONTENT_LENGTH-1] + ' ...'
     end
   end
 
-  def deleted_content content
+  def deleted_content(content)
     "<s>#{content}</s>"
   end
 end

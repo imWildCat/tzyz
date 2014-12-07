@@ -4,6 +4,7 @@
 
 ready = ->
   setUpQuotedReply()
+  handleAnchor()
 
 $(document).ready ready
 $(document).on 'page:load', ready
@@ -32,4 +33,6 @@ setUpQuotedReply = ->
     $('#reply-form .quoted-reply').hide()
     return false
 
-
+handleAnchor = ->
+  anchor = window.location.hash.substring(1)
+  $('#' + anchor).addClass 'highlight'

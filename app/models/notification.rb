@@ -8,7 +8,10 @@ class Notification < ActiveRecord::Base
            topic_deleted: 5,
            topic_locked: 6, # Cannot reply the topic
            topic_limited: 7, # Must logged in to read the topic
-           user_welcome: 8
+           user_welcome: 8,
+           topic_favorited: 9,
+           topic_appreciated: 10,
+           reply_appreciated: 11
   }
 
   enum n_type: TYPE

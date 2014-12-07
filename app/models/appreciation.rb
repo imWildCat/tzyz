@@ -1,11 +1,12 @@
 class Appreciation < ActiveRecord::Base
-  after_create :perform_appreciation_fortune_alterations
+  after_create :perform_appreciation_fortune_alterations, :perform_new_appreciation_notification
   after_save :delete_cache_key, :refresh_count
   after_destroy :delete_cache_key, :refresh_count
 
   belongs_to :user
   belongs_to :appreciative, polymorphic: true
   has_many :fortune_alterations, as: :fortune_alterable
+  has_many :notifications, as: :notifiable
 
   def self.make(user)
     appreciation = self.new(user_id: user.id)
@@ -50,6 +51,19 @@ class Appreciation < ActiveRecord::Base
     elsif appreciative_type == 'Reply'
       fortune_alterations.new(user_id: appreciative.author_id, reason: :reply_appreciated).save
       fortune_alterations.new(user_id: user_id, reason: :send_reply_appreciation).save
+    end
+  end
+
+  def perform_new_appreciation_notification
+    if self.user_id != self.appreciative.author_id
+      case self.appreciative_type
+        when 'Topic'
+          self.notifications.create(receiver_id: self.appreciative.author_id,
+                                    n_type: :topic_appreciated)
+        when 'Reply'
+          self.notifications.create(receiver_id: self.appreciative.author_id,
+                                    n_type: :reply_appreciated)
+      end
     end
   end
 end

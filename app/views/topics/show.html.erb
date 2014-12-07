@@ -39,7 +39,7 @@
         <div class="name"><%= link_to "#{@topic.author.nickname}", @topic.author %></div>
       </div>
     </div>
-    <div class="content pen"><%= @topic.content.html_safe %></div>
+    <div class="content"><%= @topic.content.html_safe %></div>
   </div>
 
   <div class="toolbar">
@@ -103,19 +103,19 @@
               </div>
               <% unless r.quoted_reply.nil? %>
                   <div class="quoted-reply">
-                    <blockquote class="pen">
+                    <blockquote>
                       <p class="quoted-reply-meta">
                         引用 <%= link_to r.quoted_reply.author.nickname, r.quoted_reply.author %>
                         在 <span class="time"><%= timeago(r.quoted_reply.created_at) %></span> 的回复:
                       </p>
 
-                      <div class="content pen">
+                      <div class="content">
                         <%= r.quoted_reply.content.html_safe %>
                       </div>
                     </blockquote>
                   </div>
               <% end %>
-              <div class="content pen"><%= r.content.html_safe %></div>
+              <div class="content"><%= r.content.html_safe %></div>
             </div>
         <% end %>
     <% end %>
@@ -146,14 +146,11 @@
             <hr/>
           </div>
 
-          <%= form_for(@topic.replies.new, url: topic_reply_index_path(@topic), html: {role: 'form', class:
-                                                 'pen-form'}) do |f| %>
+          <%= form_for(@topic.replies.new, url: topic_reply_index_path(@topic), html: {role: 'form', class: 'editor-form'}) do |f| %>
               <div class="form-group">
-                <div class="form-group">
-                  <div data-toggle="pen" data-placeholder="请输入回复内容..."></div>
-                  <input name="content" type="hidden" value=""/>
+                  <textarea class="simditor" autofocus></textarea>
+                  <input name="content" class="content" type="hidden" />
                   <input name="quoted_reply_id" type="hidden" value=""/>
-                </div>
                 <%= f.submit '回复', class: 'btn btn-success float-right' %>
               </div>
           <% end %>

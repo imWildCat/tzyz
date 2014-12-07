@@ -13,7 +13,7 @@ module ApplicationHelper
   end
 
   def sanitizer(html)
-    Sanitize.fragment(html, :elements => %w(div blockquote a h2 h3 br hr p ol ul li b i u img), :attributes => {'a' => %w(href), 'img' => %w(src)})
+    Sanitize.fragment(html, :elements => %w(div blockquote strike a h2 h3 br hr p ol ul li b i u img), :attributes => {'a' => %w(href), 'img' => %w(src), 'p' => %w(data-indent)})
   end
 
   def render_will_paginate(resources, css_class: '')

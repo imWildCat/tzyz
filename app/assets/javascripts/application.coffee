@@ -18,8 +18,8 @@
 #= require nprogress
 #= require nprogress-turbolinks
 #= require bootstrap
-#= require pen.js
-#= require pen/markdown
+#= require simple-module
+#= require simditor
 # File in project:
 #= require fortune_alterations
 #= require home
@@ -27,10 +27,10 @@
 #= require node_categories
 #= require nodes
 #= require notifications
-#= require pen_editor
 #= require registrations
 #= require replies
 #= require sessions
+#= require simditor_specified
 #= require topics
 #= require user_profile
 #= require users

@@ -43,7 +43,8 @@ gem 'paranoia', '~> 2.0.2'
 gem 'redis-rails', '~> 4.0.0'
 
 # Markdown editor
-gem 'rails-assets-pen', '~> 0.0.3'
+gem 'rails-assets-simple-module', '~> 2.0.4'
+gem 'rails-assets-simditor', '~> 2.0.3'
 # HTML and CSS sanitizer
 gem 'sanitize', '~> 3.0.3'
 

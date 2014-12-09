@@ -42,6 +42,11 @@ gem 'paranoia', '~> 2.0.2'
 # redis store for cache
 gem 'redis-rails', '~> 4.0.0'
 
+# redis-search
+gem 'ruby-pinyin', '~> 0.4.3'
+gem 'redis-search', '~> 0.9.7'
+gem 'rails-assets-jquery-textcomplete', '~> 0.3.4'
+
 # Markdown editor
 gem 'rails-assets-simple-module', '~> 2.0.4'
 gem 'rails-assets-simditor', '~> 2.0.3'
@@ -62,10 +67,8 @@ gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
-
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
-
 
 # Use puma as the app server
 gem 'puma', '2.6.0'

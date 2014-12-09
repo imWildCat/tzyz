@@ -14,6 +14,8 @@
 #= require jquery_ujs
 #= require jquery.timeago
 #= require jquery.timeago.settings
+#= require jquery.overlay.min
+#= require jquery-textcomplete
 #= require turbolinks
 #= require nprogress
 #= require nprogress-turbolinks
@@ -21,6 +23,7 @@
 #= require simple-module
 #= require simditor
 # File in project:
+#= require at_user
 #= require fortune_alterations
 #= require home
 #= require messages

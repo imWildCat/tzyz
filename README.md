@@ -7,6 +7,7 @@ This is the project of the official site of Alumni Association of Tengzhou No.1 
 2. We are using [redis](http://redis.io/) for cache, session and sidekiq. Please install [redis](http://redis.io/) and setup the configuration of redis in file( `config/secrets.yml` )
 3. Run sidekiq: `bundle exec sidekiq -C config/sidekiq.yml` (and you could view
 `http://localhost:3000/sidekiq/queues` to view the monitor)
+4. Regenerate index of *redis search*: `bundle exec rake redis_search:index`
 
 # Naming conventions
 - Node Categories: use plural for countable nouns, eg. schools, interests

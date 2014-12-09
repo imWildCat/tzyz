@@ -148,7 +148,7 @@
 
           <%= form_for(@topic.replies.new, url: topic_reply_index_path(@topic), html: {role: 'form', class: 'editor-form'}) do |f| %>
               <div class="form-group">
-                  <textarea class="simditor" autofocus></textarea>
+                  <textarea class="simditor enable-at-user" autofocus></textarea>
                   <input name="content" class="content" type="hidden" />
                   <input name="quoted_reply_id" type="hidden" value=""/>
               </div>

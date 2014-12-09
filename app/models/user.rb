@@ -1,4 +1,13 @@
 class User < ActiveRecord::Base
+  include Redis::Search
+
+  redis_search_index(
+      :title_field => :nickname,
+      :prefix_field_enable => true,
+      # :score_filed => :id,
+      :ext_fields => [:id]
+  )
+
   # Include default devise modules. Others available are:
   # :timeoutable and :omniauthable
   devise :confirmable, :database_authenticatable, :registerable,

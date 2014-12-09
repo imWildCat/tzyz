@@ -7,6 +7,9 @@ Rails.application.routes.draw do
                        sessions: :sessions
                    }
 
+  get 'quick_search/u' => 'quick_search#u', as: 'quick_search_user'
+
+
   # - Topics & Replies
   resources :topic, only: [:show, :create], controller: 'topics' do
     resources :reply, only: [:create], controller: 'replies' # may need to implement destroy later

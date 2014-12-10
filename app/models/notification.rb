@@ -2,8 +2,8 @@ class Notification < ActiveRecord::Base
   acts_as_paranoid
 
   TYPE = { replied: 1,
-           at_in_reply: 2,
-           at_in_topic: 3,
+           mentioned_in_reply: 2,
+           mentioned_in_topic: 3,
            reply_deleted: 4,
            topic_deleted: 5,
            topic_locked: 6, # Cannot reply the topic

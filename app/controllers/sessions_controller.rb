@@ -5,4 +5,14 @@ class SessionsController < Devise::SessionsController
     super
   end
 
+  def create
+    super
+    session[:user_id] = current_user.id
+  end
+
+  def destroy
+    super
+    session[:user_id] = nil
+  end
+
 end

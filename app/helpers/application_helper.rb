@@ -21,6 +21,16 @@ module ApplicationHelper
     will_paginate resources, renderer: BootstrapPagination::Rails, class: css_class
   end
 
+  def render_mentioned_users(content)
+    content = content.gsub(/@[\u4e00-\u9fa5\w]{1,20}\[\d{1,10}\]/) { |mention|
+      mentioned_user_id = /\[(\d{1,10})(\])/.match(mention)[1]
+      user = User.cached_info mentioned_user_id
+      return "@#{link_to user.display_name, user}".html_safe if user
+      mention
+    }
+    content.html_safe
+  end
+
   def count_or_none(count)
     if count > 0
       count

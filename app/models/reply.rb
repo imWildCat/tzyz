@@ -1,4 +1,5 @@
 class Reply < ActiveRecord::Base
+  include NotificationsHelper
 
   # Relationships
   belongs_to :topic
@@ -10,7 +11,8 @@ class Reply < ActiveRecord::Base
   # - Reply to
   belongs_to :quoted_reply, class_name: 'Reply'
 
-  after_create :topic_replies_count_plus, :perform_new_reply_fortune_alterations, :perform_new_reply_notification
+  after_create :topic_replies_count_plus, :perform_new_reply_fortune_alterations, :perform_new_reply_notification,
+               :perform_mention_user
 
   def is_appreciated_by_user(user)
     Rails.cache.fetch(Appreciation.build_cache_key(user_id: user.id, reply_id: self.id), expires_in: 7.days) do
@@ -27,6 +29,10 @@ class Reply < ActiveRecord::Base
   end
 
   protected
+  def perform_mention_user
+    generate_mention_user_notifications_for self
+  end
+
   def topic_replies_count_plus
     self.topic.replies_count += 1
     self.topic.refresher_id = self.author_id

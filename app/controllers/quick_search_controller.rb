@@ -7,5 +7,4 @@ class QuickSearchController < ApplicationController
     render :json => Redis::Search.query('User', params[:q])
   end
 
-
 end

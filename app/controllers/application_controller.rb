@@ -24,7 +24,8 @@ class ApplicationController < ActionController::Base
 
   protected
   def check_login
-    unless current_user
+    # User session[:user_id] to reduce SQL query
+    unless session[:user_id] or current_user
       flash[:warning] = '您必须登录后才能继续。'
       redirect_to new_user_session_path
     end

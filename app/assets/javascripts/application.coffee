@@ -14,7 +14,6 @@
 #= require jquery_ujs
 #= require jquery.timeago
 #= require jquery.timeago.settings
-#= require jquery.overlay.min
 #= require jquery-textcomplete
 #= require turbolinks
 #= require nprogress

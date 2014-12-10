@@ -114,7 +114,7 @@ class User < ActiveRecord::Base
   def recent_topics(page, per_page = 10) # With Caching
     Rails.cache.fetch("user_#{id}_topics_#{updated_at}_n_#{page}_p_#{per_page}", expires_in: 30.minutes) do
       topics.order(updated_at: :desc).includes(:refresher, :node).paginate(page: page,
-                                                                            per_page: per_page).to_a
+                                                                           per_page: per_page).to_a
     end
   end
 
@@ -152,6 +152,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.cached_info(user_id)
+    Rails.cache.fetch(User::info_cache_key(user_id)) do
+      includes(:user_profile, :user_avatar).find_by_id(user_id)
+    end
+  end
 
   # Magic properties - which mostly contain data with caching
 
@@ -227,6 +232,10 @@ class User < ActiveRecord::Base
   # def send_devise_notification(notification, *args)
   #     AccountMailer.send(notification, self, *args).deliver
   # end
+
+  def self.info_cache_key(user_id)
+    "user_#{user_id}_info"
+  end
 
   protected
   def send_welcome_notification

@@ -39,7 +39,7 @@
         <div class="name"><%= link_to "#{@topic.author.nickname}", @topic.author %></div>
       </div>
     </div>
-    <div class="content"><%= @topic.content.html_safe %></div>
+    <div class="content"><%= render_mentioned_users @topic.content %></div>
   </div>
 
   <div class="toolbar">
@@ -115,7 +115,7 @@
                     </blockquote>
                   </div>
               <% end %>
-              <div class="content"><%= r.content.html_safe %></div>
+              <div class="content"><%= render_mentioned_users r.content %></div>
             </div>
         <% end %>
     <% end %>

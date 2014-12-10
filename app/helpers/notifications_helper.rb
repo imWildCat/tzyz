@@ -1,21 +1,11 @@
 module NotificationsHelper
 
-  # TYPE = { replied: 1,
-  #          at_in_reply: 2,
-  #          at_in_topic: 3,
-  #          reply_deleted: 4,
-  #          topic_deleted: 5,
-  #          topic_locked: 6, # Cannot reply the topic
-  #          topic_limited: 7, # Must logged in to read the topic
-  #          user_welcome: 8
-  # }
-
   def notification_image(notification)
     case notification.n_type
-      when 'replied', 'at_in_reply'
+      when 'replied', 'mentioned_in_reply'
         reply = notification.notifiable
         image_tag reply.author.avatar.url
-      when 'at_in_topic'
+      when 'mentioned_in_topic'
         topic = notification.notifiable
         image_tag topic.author.avatar_url
       else
@@ -29,12 +19,12 @@ module NotificationsHelper
         reply = notification.notifiable
         output = "#{link_to(reply.author.nickname, reply.author)} 回复了你的主题：
                   #{link_to(reply.topic.title, topic_path(reply.topic, anchor: reply.reply_anchor, page: reply.reply_page))}"
-      when 'at_in_reply'
+      when 'mentioned_in_reply'
         reply = notification.notifiable
         output = "#{link_to(reply.author.nickname, reply.author)} 在
                   #{link_to(reply.topic.title, topic_path(reply.topic, anchor: reply.reply_anchor, page: reply.reply_page))}
                   主题的回复中提到了你"
-      when 'at_in_topic'
+      when 'mentioned_in_topic'
         topic = notification.notifiable
         output = "#{link_to(topic.author.nickname, topic.author)} 在主题 #{link_to(topic.title, topic)} 中提到了你"
       when 'reply_deleted'
@@ -73,9 +63,9 @@ module NotificationsHelper
   def notification_content(notification)
     case notification.n_type
       when 'replied',
-          'at_in_reply',
+          'mentioned_in_reply',
           'reply_deleted',
-          'at_in_topic',
+          'mentioned_in_topic',
           'topic_locked',
           'reply_quoted'
         output = strip_and_cut notification.notifiable.content
@@ -91,6 +81,22 @@ module NotificationsHelper
         output = ''
     end
     output.html_safe
+  end
+
+  def generate_mention_user_notifications_for(notifiable)
+    at_user_strings = notifiable.content.scan(/@[\u4e00-\u9fa5\w]{1,20}\[\d{1,10}\]/)
+    at_user_strings.each do |s|
+      mentioned_user_id = /\[(\d{1,10})(\])/.match(s)[1]
+      next if mentioned_user_id.to_i == notifiable.author_id
+      if User.where(id: mentioned_user_id).count > 0
+        if notifiable.class.name == 'Reply'
+          notifiable.notifications.create receiver_id: mentioned_user_id, n_type: :mentioned_in_reply
+        end
+        if notifiable.class.name == 'Topic'
+          notifiable.notifications.create receiver_id: mentioned_user_id, n_type: :mentioned_in_topic
+        end
+      end
+    end
   end
 
   protected

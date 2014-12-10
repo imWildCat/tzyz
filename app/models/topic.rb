@@ -1,4 +1,5 @@
 class Topic < ActiveRecord::Base
+  include NotificationsHelper
 
   TOPIC_STATUS = {
       deleted: -10,
@@ -46,7 +47,7 @@ class Topic < ActiveRecord::Base
     self.priority = Time.now
   end
 
-  after_create :perform_new_topic_fortune_alteration
+  after_create :perform_new_topic_fortune_alteration, :perform_mention_user
 
   def self.replies_per_page
     20
@@ -67,6 +68,10 @@ class Topic < ActiveRecord::Base
   # Returns nil if refresher not found.
   def refresher
     User.find_by_id(self.refresher_id)
+  end
+
+  def perform_mention_user
+    generate_mention_user_notifications_for self
   end
 
   def perform_new_topic_fortune_alteration

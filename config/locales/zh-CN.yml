@@ -11,6 +11,7 @@
             email:
               blank: Email 是必填的。
               invalid: Email 地址不合法。
+              taken: 该 Email 地址已被注册。
             password:
               blank: 密码不能为空。
               too_short: 密码太短，最少为6位。

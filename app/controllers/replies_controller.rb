@@ -1,12 +1,12 @@
 class RepliesController < ApplicationController
   include ApplicationHelper
 
+  before_action :check_login
+
   def create
     topic = Topic.find(params[:topic_id])
     content = sanitizer(params[:content])
     quoted_reply_id = params[:quoted_reply_id].to_i
-
-    check_login
 
     if content.to_s.blank?
       flash[:error] = '回复内容为空，请输入您的内容。'

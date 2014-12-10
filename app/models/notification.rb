@@ -26,7 +26,7 @@ class Notification < ActiveRecord::Base
 
   # Creation methods
   def self.create_user_welcome(user)
-    self.create(receiver: user, n_type: TYPE[:user_welcome])
+    self.create(receiver: user, n_type: :user_welcome)
   end
 
 

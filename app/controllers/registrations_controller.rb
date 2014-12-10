@@ -1,5 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  before_action :permit_nickname
+
   def new
     add_breadcrumb '注册'
     super
@@ -70,4 +72,9 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
 
+
+  private
+  def permit_nickname
+    devise_parameter_sanitizer.for(:sign_up) << :nickname
+  end
 end

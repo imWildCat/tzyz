@@ -9,4 +9,9 @@ module TopicsHelper
     true
     #need to add more
   end
+
+  def illegal_node
+    flash[:warning] = '请为主题选择一个节点。'
+    redirect_to new_topic_path
+  end
 end

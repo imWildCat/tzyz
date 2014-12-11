@@ -15,8 +15,16 @@ class TopicsController < ApplicationController
 
   def new
     return if not_login('您尚未登录，请登录后再发表主题。')
-    @node = Node.find_by_slug(params[:slug]) or not_found
-    add_breadcrumb @node.name, node_path(@node.slug)
+
+    if node = Node.find_by_slug(params[:slug])
+      @topic = node.topics.new
+      add_breadcrumb node.name, node_path(node.slug)
+    elsif params[:slug].nil?
+      @topic = Topic.new
+    else # illegal slug parameter, return 404
+      not_found
+    end
+
     add_breadcrumb '创建新话题'
   end
 
@@ -28,7 +36,7 @@ class TopicsController < ApplicationController
       flash[:error] = '标题不能为空。'
       return redirect_to :back
     end
-    node = Node.find_by_slug(t[:node_slug]) or not_found
+    node = Node.find_by_id(t[:node_id]) or return illegal_node
     topic = node.topics.new(title: t[:title], author_id: current_user.id, content: sanitizer(params[:content]))
 
     if topic.save

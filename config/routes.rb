@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
 
   # - Topics & Replies
-  resources :topic, only: [:show, :create], controller: 'topics' do
+  resources :topic, only: [:show, :new, :create], controller: 'topics' do
     resources :reply, only: [:create], controller: 'replies' # may need to implement destroy later
     # favorite
     resources :favorite_topic, only: [:create], controller: 'favorite_topics'
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   get 'node/:slug' => 'nodes#show', as: 'node'
-  get 'node/:slug/new' => 'topics#new', as: 'new_topic'
+  get 'node/:slug/new' => 'topics#new', as: 'new_node_topic'
 
 
   get 'user/:id' => 'user#show', as: 'user'

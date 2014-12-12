@@ -21,6 +21,7 @@
 #= require bootstrap
 #= require simple-module
 #= require simditor
+#= require chosen-jquery
 # File in project:
 #= require at_user
 #= require fortune_alterations

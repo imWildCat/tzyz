@@ -64,6 +64,9 @@ gem 'whenever', '~> 0.9.4', :require => false
 gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 'master'
 # gem 'simple_form'
 
+# Friendly select box
+gem 'chosen-rails', '~> 1.2.0'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 

@@ -216,10 +216,18 @@
 }
 
 // TopicsController#new
-#node-selector-container {
-  padding-right: 5px;
-}
-
-#topic-title-container {
-  padding-left: 5px;
+form#new_topic {
+  .chosen-container {
+    .chosen-search input{
+      outline: none;
+    }
+  }
+  @media (min-width: 768px) {
+    .node-selector-grid {
+      padding-right: 5px;
+    }
+    .topic-title-grid {
+      padding-left: 5px;
+    }
+  }
 }

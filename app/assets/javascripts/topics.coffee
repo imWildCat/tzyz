@@ -5,6 +5,7 @@
 ready = ->
   setUpQuotedReply()
   handleAnchor()
+  enableChosen()
 
 $(document).ready ready
 $(document).on 'page:load', ready
@@ -37,7 +38,7 @@ handleAnchor = ->
   anchor = window.location.hash.substring(1)
   $('#' + anchor).addClass 'highlight'
 
-$ ->
+enableChosen = ->
   # enable chosen for node select box
   $('.node-selector').chosen
     allow_single_deselect: true

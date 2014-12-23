@@ -2,6 +2,8 @@ class UserAvatar < ActiveRecord::Base
 
   belongs_to :owner, class_name: 'User', foreign_key: :owner_id, touch: true
 
+  after_save :clear_cache_avatar_url
+
   def url
     return Settings.paths.no_user_avatar unless is_enabled
     return ttk_url if !ttk_url.nil? && Settings.services.tietuku
@@ -24,4 +26,9 @@ class UserAvatar < ActiveRecord::Base
       save
     end
   end
+
+  def clear_cache_avatar_url
+    self.owner.delete_cached_avatar_url
+  end
+
 end

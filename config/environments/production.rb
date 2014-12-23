@@ -82,13 +82,14 @@ Rails.application.configure do
       user_name: 'tzyz_test_337@163.com',
       password: '123456q',
       authentication: 'plain',
-      enable_starttls_auto: false}
+      enable_starttls_auto: false
+  }
   config.action_mailer.default_url_options = {host: 'tengzhouyizhong.org', port: 80}
   # TODO: aysnc mail
   ################
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation cannot be found).
+  # the I18n.default_locale when a translation cannot be focund).
   config.i18n.fallbacks = true
 
   # Send deprecation notices to registered listeners.

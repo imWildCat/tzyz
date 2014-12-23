@@ -26,7 +26,7 @@ set :deploy_to, '/home/server_admin/tzyz_production'
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml config/newrelic.yml}
+set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml config/newrelic.yml config/environments/production.rb}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploadsexample}
@@ -73,6 +73,15 @@ namespace :db do
 end
 
 namespace :deploy do
+
+  desc 'Generate index for user quick searching'
+  task :redis_search_index do
+    on roles(:app) do
+      within "#{deploy_to}current" do
+        execute 'RAILS_ENV=production', :bundle, :exec, :rake, 'redis_search:index'
+      end
+    end
+  end
 
   desc 'Restart application'
   task :restart do

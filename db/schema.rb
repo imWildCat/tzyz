@@ -13,11 +13,11 @@
 
 ActiveRecord::Schema.define(version: 20141204093125) do
 
-  create_table "admin_action_reasons", force: true do |t|
+  create_table "admin_action_reasons", force: :cascade do |t|
     t.string "description", limit: 63
   end
 
-  create_table "appreciations", force: true do |t|
+  create_table "appreciations", force: :cascade do |t|
     t.integer "user_id",           limit: 4,  null: false, unsigned: true
     t.integer "appreciative_id",   limit: 4,  null: false, unsigned: true
     t.string  "appreciative_type", limit: 31, null: false
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20141204093125) do
   add_index "appreciations", ["user_id", "appreciative_id", "appreciative_type"], name: "unique_index", unique: true, using: :btree
   add_index "appreciations", ["user_id"], name: "index_appreciations_on_user_id", using: :btree
 
-  create_table "favorite_topics", force: true do |t|
+  create_table "favorite_topics", force: :cascade do |t|
     t.integer  "user_id",    limit: 4, null: false, unsigned: true
     t.integer  "topic_id",   limit: 4, null: false, unsigned: true
     t.datetime "deleted_at"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20141204093125) do
   add_index "favorite_topics", ["user_id", "topic_id"], name: "index_favorite_topics_on_user_id_and_topic_id", unique: true, using: :btree
   add_index "favorite_topics", ["user_id"], name: "index_favorite_topics_on_user_id", using: :btree
 
-  create_table "fortune_alterations", force: true do |t|
+  create_table "fortune_alterations", force: :cascade do |t|
     t.integer  "user_id",                limit: 4
     t.integer  "quantity",               limit: 4,  default: 0, null: false
     t.integer  "balance",                limit: 4,  default: 0, null: false
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20141204093125) do
 
   add_index "fortune_alterations", ["user_id"], name: "index_fortune_alterations_on_user_id", using: :btree
 
-  create_table "management_logs", force: true do |t|
+  create_table "management_logs", force: :cascade do |t|
     t.integer  "user_id",         limit: 4,   null: false, unsigned: true
     t.integer  "manageable_id",   limit: 4,                unsigned: true
     t.string   "manageable_type", limit: 31
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20141204093125) do
     t.datetime "created_at",                  null: false
   end
 
-  create_table "messages", force: true do |t|
+  create_table "messages", force: :cascade do |t|
     t.integer  "receiver_id", limit: 4,                                unsigned: true
     t.integer  "sender_id",   limit: 4,                                unsigned: true
     t.boolean  "is_read",     limit: 1,   default: false
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20141204093125) do
   add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id", using: :btree
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
-  create_table "node_categories", force: true do |t|
+  create_table "node_categories", force: :cascade do |t|
     t.string   "name",       limit: 15, null: false
     t.string   "slug",       limit: 31, null: false
     t.datetime "created_at"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20141204093125) do
   add_index "node_categories", ["name"], name: "index_node_categories_on_name", unique: true, using: :btree
   add_index "node_categories", ["slug"], name: "index_node_categories_on_slug", unique: true, using: :btree
 
-  create_table "nodes", force: true do |t|
+  create_table "nodes", force: :cascade do |t|
     t.integer  "node_category_id", limit: 4,                   null: false, unsigned: true
     t.string   "name",             limit: 15,                  null: false
     t.string   "slug",             limit: 31,                  null: false
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20141204093125) do
   add_index "nodes", ["name"], name: "index_nodes_on_name", unique: true, using: :btree
   add_index "nodes", ["slug"], name: "index_nodes_on_slug", unique: true, using: :btree
 
-  create_table "notifications", force: true do |t|
+  create_table "notifications", force: :cascade do |t|
     t.integer  "receiver_id",     limit: 4,                   null: false
     t.integer  "n_type",          limit: 3,                   null: false
     t.boolean  "is_read",         limit: 1,   default: false, null: false
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20141204093125) do
   add_index "notifications", ["is_read"], name: "index_notifications_on_is_read", using: :btree
   add_index "notifications", ["receiver_id"], name: "index_notifications_on_receiver_id", using: :btree
 
-  create_table "replies", force: true do |t|
+  create_table "replies", force: :cascade do |t|
     t.integer  "topic_id",            limit: 4,                 null: false, unsigned: true
     t.integer  "author_id",           limit: 4,                 null: false, unsigned: true
     t.integer  "quoted_reply_id",     limit: 4,                              unsigned: true
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20141204093125) do
   add_index "replies", ["author_id"], name: "index_replies_on_author_id", using: :btree
   add_index "replies", ["deleted_at"], name: "index_replies_on_deleted_at", using: :btree
 
-  create_table "topics", force: true do |t|
+  create_table "topics", force: :cascade do |t|
     t.integer  "node_id",             limit: 4,                 null: false, unsigned: true
     t.integer  "author_id",           limit: 4,                 null: false, unsigned: true
     t.integer  "status",              limit: 4,     default: 1, null: false
@@ -148,18 +148,18 @@ ActiveRecord::Schema.define(version: 20141204093125) do
   add_index "topics", ["priority"], name: "index_topics_on_priority", using: :btree
   add_index "topics", ["status"], name: "index_topics_on_status", using: :btree
 
-  create_table "user_avatars", primary_key: "owner_id", force: true do |t|
+  create_table "user_avatars", primary_key: "owner_id", force: :cascade do |t|
     t.boolean "is_enabled", limit: 1,   default: true, null: false
     t.string  "filename",   limit: 31
     t.string  "ttk_url",    limit: 255
   end
 
-  create_table "user_login_histories", force: true do |t|
+  create_table "user_login_histories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_profiles", primary_key: "owner_id", force: true do |t|
+  create_table "user_profiles", primary_key: "owner_id", force: :cascade do |t|
     t.string  "name",         limit: 15
     t.boolean "gender",       limit: 1
     t.string  "headline",     limit: 63
@@ -179,7 +179,7 @@ ActiveRecord::Schema.define(version: 20141204093125) do
     t.string  "introduction", limit: 255
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "nickname",               limit: 8,                null: false

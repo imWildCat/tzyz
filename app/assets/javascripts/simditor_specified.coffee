@@ -12,8 +12,13 @@ setRichTextSupport = ->
     # Enable/disable at_user feature
     editor.on 'focus', (e) ->
       $.enable_at_user()
+    # Control + Enter
+    form.on 'keydown', (e) ->
+      if (e.ctrlKey && e.keyCode == 13)
+        form.find('input[type="submit"]').click()
     # Handle submit action
     form.submit ->
+      form.find('[contenteditable="true"]').attr('contenteditable', 'false');
       form.find('input.content').val(editor.getValue())
       form.submit()
       return false

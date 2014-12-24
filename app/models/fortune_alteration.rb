@@ -46,6 +46,6 @@ class FortuneAlteration < ActiveRecord::Base
 
   # Create a random for daily login
   def daily_login
-    rand(20..60)
+    rand(20..100)
   end
 end

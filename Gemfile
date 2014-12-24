@@ -1,16 +1,17 @@
-#source 'https://rubygems.org'
-source 'https://ruby.taobao.org'
+source 'https://rubygems.org'
+# source 'https://ruby.taobao.org'
 source 'https://rails-assets.org'
 ruby '2.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.0.rc2'
+gem 'rails', '4.2.0'
 
 # Settings
 gem 'rails_config', '~> 0.4.2'
 
 gem 'rails-bootstrap', '~> 3.0.0.4'
-gem 'sass-rails', '~> 4.0.3'
+# gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', github: 'rails/sass-rails', branch: '4-0-stable'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 3.1.2'
@@ -61,7 +62,7 @@ gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'whenever', '~> 0.9.4', :require => false
 
 # Forms
-gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 'master'
+gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 'master', ref: 'd49263a069b44b84d295a8c5e0debff2dd26a077' # 7abd871b520b24d10d676338801f49004398acd4
 # gem 'simple_form'
 
 # Friendly select box

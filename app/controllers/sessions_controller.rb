@@ -8,6 +8,8 @@ class SessionsController < Devise::SessionsController
   def create
     super
     session[:user_id] = current_user.id
+    # generate login history
+    UserLoginHistory.create user_id: current_user.id, ip: request.remote_ip
   end
 
   def destroy

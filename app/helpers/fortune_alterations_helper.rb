@@ -41,7 +41,7 @@ module FortuneAlterationsHelper
       when 'send_reply_appreciation'
         return '发送对回复的感谢'
       when 'daily_login'
-        return '每日登录收益'
+        return '每日登录奖励'
       when 'new_user'
         return '新注册用户奖励'
       else

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get 'quick_search/u' => 'quick_search#u', as: 'quick_search_user'
 
-
+  get 'new_topic' => 'topics#new'
   # - Topics & Replies
   resources :topic, only: [:show, :new, :create], controller: 'topics' do
     resources :reply, only: [:create], controller: 'replies' # may need to implement destroy later
@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   scope :account do
     get 'favorites' => 'favorite_topics#show', as: 'account_favorite_topic'
     get 'fortune_alterations' => 'fortune_alterations#show'
+    get 'daily_award' => 'fortune_alterations#daily_award'
   end
 
   resource :notifications, only: :show

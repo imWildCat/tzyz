@@ -12,6 +12,32 @@ aside {
       border-bottom: #dddddd 2px solid;
     }
 
+    &.user-specified {
+      .avatar {
+        width: 100%;
+        text-align: center;
+        img {
+          border-radius: 5px;
+          max-width: 80px;
+          max-height: 80px;
+        }
+
+      }
+      .username {
+        text-align: center;
+      }
+
+      .meta {
+        text-align: center;
+        .fortune {
+          font-size: 12px;
+        }
+      }
+      .actions {
+        margin: 10px 0;
+      }
+    }
+
     &.hot-today {
       ul {
         list-style: none;

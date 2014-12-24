@@ -20,6 +20,7 @@
 #= require nprogress-turbolinks
 #= require bootstrap
 #= require simple-module
+#= require hotkeys
 #= require simditor
 #= require chosen-jquery
 # File in project:

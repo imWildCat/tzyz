@@ -46,6 +46,9 @@ class User < ActiveRecord::Base
 
   has_many :fortune_alterations
 
+  has_many :login_histories, dependent: :destroy, class_name: 'UserLoginHistory'
+  has_many :daily_logins, dependent: :destroy, class_name: 'UserDailyLogin'
+
   has_many :management_logs, as: :manageable
 
   before_save do
@@ -101,6 +104,10 @@ class User < ActiveRecord::Base
       else
         self.role_id = 1
     end
+  end
+
+  def admin?
+    group == 'administrator'
   end
 
   def password_changed?
@@ -214,6 +221,24 @@ class User < ActiveRecord::Base
     end
   end
 
+  def daily_awarded?
+    Rails.cache.fetch(User::daily_awarded_ck(self.id)) do
+      daily_login = UserDailyLogin.find_by user_id: self.id, day: UserDailyLogin::day_of_today
+      daily_login.nil? ? true : daily_login.is_awarded
+    end
+  end
+
+  def perform_daily_award
+    daily_login = daily_logins.find_by(day: UserDailyLogin::day_of_today)
+    if !daily_login.nil? and daily_login.is_awarded == false
+      alteration = fortune_alterations.create user: self, reason: :daily_login
+      daily_login.is_awarded = true
+      daily_login.save
+      return alteration
+    end
+    false
+  end
+
   # Caching clear methods
 
   def delete_cached_avatar_url
@@ -228,10 +253,18 @@ class User < ActiveRecord::Base
     Rails.cache.delete(unread_messages_count_cache_key)
   end
 
+  def clear_daily_awarded
+    Rails.cache.delete(User::daily_awarded_ck(self.id))
+  end
+
 
   # def send_devise_notification(notification, *args)
   #     AccountMailer.send(notification, self, *args).deliver
   # end
+
+  def self.daily_awarded_ck(user_id)
+    "user_#{user_id}_daily_awarded"
+  end
 
   def self.info_cache_key(user_id)
     "user_#{user_id}_info"

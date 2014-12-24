@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204093125) do
+ActiveRecord::Schema.define(version: 20141223142212) do
 
   create_table "admin_action_reasons", force: :cascade do |t|
     t.string "description", limit: 63
@@ -154,10 +154,23 @@ ActiveRecord::Schema.define(version: 20141204093125) do
     t.string  "ttk_url",    limit: 255
   end
 
-  create_table "user_login_histories", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "user_daily_logins", force: :cascade do |t|
+    t.integer "user_id",         limit: 4,                 null: false, unsigned: true
+    t.integer "day",             limit: 4,                 null: false, unsigned: true
+    t.integer "successive_days", limit: 4, default: 1,     null: false, unsigned: true
+    t.boolean "is_awarded",      limit: 1, default: false, null: false
   end
+
+  add_index "user_daily_logins", ["user_id", "day"], name: "index_user_daily_logins_on_user_id_and_day", unique: true, using: :btree
+  add_index "user_daily_logins", ["user_id"], name: "index_user_daily_logins_on_user_id", using: :btree
+
+  create_table "user_login_histories", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4,  null: false, unsigned: true
+    t.string   "ip",         limit: 16, null: false
+    t.datetime "created_at",            null: false
+  end
+
+  add_index "user_login_histories", ["user_id"], name: "index_user_login_histories_on_user_id", using: :btree
 
   create_table "user_profiles", primary_key: "owner_id", force: :cascade do |t|
     t.string  "name",         limit: 15

@@ -3,6 +3,8 @@ class TopicsController < ApplicationController
   include TopicsHelper
   include ApplicationHelper
 
+  before_action :check_login, only: [:new, :create]
+
   def show
     id = params[:id]
     page = current_page
@@ -14,22 +16,16 @@ class TopicsController < ApplicationController
   end
 
   def new
-    return if not_login('您尚未登录，请登录后再发表主题。')
-
     if node = Node.find_by_slug(params[:slug])
       @topic = node.topics.new
-      add_breadcrumb node.name, node_path(node.slug)
-    elsif params[:slug].nil?
+    else params[:slug].nil?
       @topic = Topic.new
-    else # illegal slug parameter, return 404
-      not_found
     end
 
     add_breadcrumb '创建新话题'
   end
 
   def create
-    return if not_login('您尚未登陆，请登陆后再发表回复。')
     t = params[:topic]
 
     if t[:title].blank?

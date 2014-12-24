@@ -1,3 +1,27 @@
+<% if current_user %>
+    <section class="user-specified">
+      <div>
+        <div class="avatar">
+          <a href="<%= user_path current_user %>">
+            <%= image_tag(current_user.avatar_url) %>
+          </a>
+        </div>
+      </div>
+      <p class="username"><%= link_to current_user.display_name, current_user %></p>
+
+      <div class="meta">
+        <p class="fortune"><a href="<%= fortune_alterations_path %>"><%= fortune_to_coins(current_user.fortune)
+        %></a></p>
+      </div>
+      <p class="actions">
+        <% unless current_user.daily_awarded? %>
+            <a type="button" class="btn btn-info btn-xs" href="<%= daily_award_path %>"><i class="fa fa-lightbulb-o"></i> 领取每日登录奖励</a>
+        <% end %>
+        <a type="button" class="btn btn-success btn-xs" href="<%= new_topic_path %>"><i class="fa fa-pencil-square-o"></i> 创建话题</a>
+      </p>
+    </section>
+<% end %>
+
 <section class="hot-today">
   <p class="section-title">本周热议</p>
   <ul>

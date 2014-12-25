@@ -20,7 +20,7 @@ GIT
       sprockets-rails (~> 2.0)
 
 GEM
-  remote: https://rubygems.org/
+  remote: https://ruby.taobao.org/
   remote: https://rails-assets.org/
   specs:
     actionmailer (4.2.0)

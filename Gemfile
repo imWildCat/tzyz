@@ -1,5 +1,12 @@
-source 'https://rubygems.org'
-# source 'https://ruby.taobao.org'
+# hostname
+hosts_using_taobao_gem = %w(cat-tzyz CatMBP.local)
+host = `hostname`.strip
+if hosts_using_taobao_gem.include? host
+  source 'https://ruby.taobao.org'
+else
+  source 'https://rubygems.org'
+end
+
 source 'https://rails-assets.org'
 ruby '2.1.3'
 

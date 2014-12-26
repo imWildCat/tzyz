@@ -11,7 +11,7 @@ set :rbenv_ruby, '2.1.3'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/home/server_admin/tzyz_production'
+set :deploy_to, '/home/root/tzyz_production'
 
 # Default value for :scm is :git
 # set :scm, :git

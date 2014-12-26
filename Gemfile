@@ -1,11 +1,4 @@
-# hostname
-hosts_using_taobao_gem = %w(cat-tzyz CatMBP.local)
-host = `hostname`.strip
-if hosts_using_taobao_gem.include? host
-  source 'https://ruby.taobao.org'
-else
-  source 'https://rubygems.org'
-end
+source 'https://ruby.taobao.org'
 
 source 'https://rails-assets.org'
 ruby '2.1.3'
@@ -79,7 +72,7 @@ gem 'chosen-rails', '~> 1.2.0'
 # gem 'therubyracer',  platforms: :ruby
 
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use puma as the app server
 gem 'puma', '2.6.0'

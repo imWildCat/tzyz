@@ -29,7 +29,7 @@ set :deploy_to, '/home/root/tzyz_production'
 set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml config/newrelic.yml config/environments/production.rb}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploadsexample}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/images}
 
 # Default value for default_env is {}
 set :default_env, {path: '$HOME/.rbenv/shims/:$PATH'}
@@ -65,7 +65,7 @@ namespace :db do
   desc 'Seed the database'
   task :seed do
     on roles(:app) do
-      within "#{deploy_to}current" do
+      within "#{deploy_to}/current" do
         execute 'RAILS_ENV=production', :bundle, :exec, :rake, 'db:seed'
       end
     end
@@ -77,7 +77,7 @@ namespace :deploy do
   desc 'Generate index for user quick searching'
   task :redis_search_index do
     on roles(:app) do
-      within "#{deploy_to}current" do
+      within "#{deploy_to}/current" do
         execute 'RAILS_ENV=production', :bundle, :exec, :rake, 'redis_search:index'
       end
     end

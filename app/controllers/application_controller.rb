@@ -32,6 +32,8 @@ class ApplicationController < ActionController::Base
   end
 
   def force_ssl_request
+    # There is not ssl certification with tzyzer.com, so no force_ssl
+    return true
     if request.ssl? or Rails.env.development? or request.post?
       return true
     elsif current_user or force_ssl_path?

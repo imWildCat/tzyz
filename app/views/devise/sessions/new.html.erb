@@ -9,12 +9,15 @@
           <%= f.input :email, required: true, autofocus: true %>
           <%= f.input :password, label: '密码', required: true %>
           <% # f.input :remember_me, label: '记住我', as: :boolean if devise_mapping.rememberable?  %>
+
           <div class="form-group">
             <label class="password required col-sm-3 control-label" for="social_login">
               社交登录</label>
 
             <div class="col-sm-9">
-              <a href="<%= user_omniauth_authorize_path('qq_connect') %>"><%= image_tag 'social_icons/rounded/qq_r.png', class: 'login-icon' %></a>
+              <a href="<%= user_omniauth_authorize_path('qq_connect') %>">
+                <%= image_tag 'http://qzonestyle.gtimg.cn/qzone/vas/opensns/res/img/Connect_logo_3.png' %>
+                <%#= image_tag 'social_icons/rounded/qq_r.png', class: 'login-icon' %></a>
             </div>
           </div>
 

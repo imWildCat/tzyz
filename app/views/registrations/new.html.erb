@@ -4,13 +4,25 @@
     <h3 class="panel-title">注册</h3>
   </div>
   <div class="panel-body">
-    <% test = resource %>
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal reg-form'}, wrapper: :horizontal_form) do |f| %>
         <%= f.error_notification %>
 
         <%= f.input :nickname, label: '昵称', required: true, input_html: {placeholder: '昵称必须为2~8位汉字、英文、数字，但不能以数字开头'} %>
         <%= f.input :email, required: true, input_html: {placeholder: 'Email 将作为您登录的帐号。'} %>
         <%= f.input :password, label: '密码', required: true, input_html: {placeholder: "至少 #{@minimum_password_length} 位"} %>
+
+        <% if session[:'devise.user_attributes'].nil? %>
+            <div class="form-group">
+              <label class="password required col-sm-3 control-label" for="social_login">
+                社交登录</label>
+
+              <div class="col-sm-9">
+                <a href="<%= user_omniauth_authorize_path('qq_connect') %>">
+                  <%= image_tag 'http://qzonestyle.gtimg.cn/qzone/vas/opensns/res/img/Connect_logo_3.png' %>
+                  <%#= image_tag 'social_icons/rounded/qq_r.png', class: 'login-icon' %></a>
+              </div>
+            </div>
+        <% end %>
 
         <div class="form-actions">
           <%= f.submit '注册', class: 'btn btn-success float-right', 'data-disable-with' => '正在注册...' %>

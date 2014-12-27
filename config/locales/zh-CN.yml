@@ -8,6 +8,7 @@
               blank: 昵称是必填的。
               too_short: 昵称太短，至少需要2个字符
               too_long: 昵称太长，最多8个字符
+              taken: 这个昵称已经被使用了。
             email:
               blank: Email 是必填的。
               invalid: Email 地址不合法。

@@ -4,8 +4,10 @@ Rails.application.routes.draw do
 
   devise_for :users, path: 'account', controllers: {
                        registrations: :registrations,
-                       sessions: :sessions
+                       sessions: :sessions,
+                       omniauth_callbacks: :'users/omniauth_callbacks'
                    }
+
 
   get 'quick_search/u' => 'quick_search#u', as: 'quick_search_user'
 

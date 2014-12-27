@@ -53,7 +53,8 @@ class ApplicationController < ActionController::Base
         request.path != new_user_confirmation_path and
         request.path != destroy_user_session_path and
         !request.xhr? and
-        !request.post?)
+        !request.post? and
+        request.path.start_with? '/account/auth/')
       store_location_for(:user, request.fullpath)
     end
   end

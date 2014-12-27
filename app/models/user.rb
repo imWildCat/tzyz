@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :timeoutable and :omniauthable
   devise :confirmable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :lockable
+         :recoverable, :rememberable, :trackable, :validatable, :lockable, :omniauthable, :omniauth_providers =>
+          [:qq_connect]
 
   USER_GROUP = {
       normal: 1,
@@ -23,10 +24,20 @@ class User < ActiveRecord::Base
       newbie: 1
   }
 
+  SOCIALS = {
+      qq_connect: 'QQ',
+      wechat: 'WeChat',
+      facebook: 'Facebook',
+      google_oauth2: 'Google',
+      linkedin: 'Linkedin'
+  }
+
   enum group: USER_GROUP
   enum role: USER_ROLE
 
   # Relationships
+  # - Authorization
+  has_many :authorizations
   # - Message
   has_many :messages, foreign_key: 'receiver_id', dependent: :destroy, class_name: 'Message'
   # has_many :received_messages, through: :messages, source: :receiver
@@ -67,6 +78,42 @@ class User < ActiveRecord::Base
 
   def to_s
     "用户：#{display_name}"
+  end
+
+  def self.from_omniauth(auth, current_user)
+    authorization = Authorization.where(:provider => auth.provider, :uid => auth.uid.to_s).first_or_initialize
+    authorization.update_attributes(
+        :token => auth.credentials.token,
+        :secret => auth.credentials.secret,
+        :image => auth.info.image)
+    # authorization.profile_page = auth.info.urls.first.last unless authorization.persisted?
+    if authorization.user.blank?
+      user = current_user.nil? ? User.where('email = ?', auth['info']['email']).first : current_user
+      if user.blank?
+        user = User.new
+        user.skip_confirmation!
+        user.password = Devise.friendly_token[0, 20]
+        user.fetch_details(auth)
+        user.save
+        # user.avatar.social_url = auth.info
+      end
+      authorization.user = user
+      authorization.save
+    end
+    [authorization.user, authorization]
+  end
+
+  def fetch_details(auth)
+    self.nickname = auth.info.name
+    self.email = auth.info.email unless auth.info.email.nil?
+  end
+
+  def confirmation_required?
+    false
+  end
+
+  def after_database_authentication
+    UserLoginHistory.create user_id: id, ip: current_sign_in_ip
   end
 
   def self.group_name_for(group_key)

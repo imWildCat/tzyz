@@ -6,7 +6,7 @@ class UserAvatar < ActiveRecord::Base
 
   def url
     return Settings.paths.no_user_avatar unless is_enabled
-    return ttk_url if !ttk_url.nil? && Settings.services.tietuku
+    return third_party_url unless third_party_url.nil?
     return Settings.paths.user_avatar + filename unless filename.nil?
     Settings.paths.no_user_avatar
   end

@@ -4,6 +4,7 @@
     <h3 class="panel-title">注册</h3>
   </div>
   <div class="panel-body">
+    <% test = resource %>
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal reg-form'}, wrapper: :horizontal_form) do |f| %>
         <%= f.error_notification %>
 

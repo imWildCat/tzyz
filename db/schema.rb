@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223142212) do
+ActiveRecord::Schema.define(version: 20141226154055) do
 
   create_table "admin_action_reasons", force: :cascade do |t|
     t.string "description", limit: 63
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 20141223142212) do
   add_index "appreciations", ["appreciative_id", "appreciative_type"], name: "index_appreciations_on_appreciative_id_and_appreciative_type", using: :btree
   add_index "appreciations", ["user_id", "appreciative_id", "appreciative_type"], name: "unique_index", unique: true, using: :btree
   add_index "appreciations", ["user_id"], name: "index_appreciations_on_user_id", using: :btree
+
+  create_table "authorizations", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.string   "provider",     limit: 31
+    t.string   "uid",          limit: 255
+    t.string   "image",        limit: 255
+    t.string   "token",        limit: 255
+    t.string   "secret",       limit: 255
+    t.string   "profile_page", limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "favorite_topics", force: :cascade do |t|
     t.integer  "user_id",    limit: 4, null: false, unsigned: true
@@ -149,9 +161,9 @@ ActiveRecord::Schema.define(version: 20141223142212) do
   add_index "topics", ["status"], name: "index_topics_on_status", using: :btree
 
   create_table "user_avatars", primary_key: "owner_id", force: :cascade do |t|
-    t.boolean "is_enabled", limit: 1,   default: true, null: false
-    t.string  "filename",   limit: 31
-    t.string  "ttk_url",    limit: 255
+    t.boolean "is_enabled",      limit: 1,   default: true, null: false
+    t.string  "filename",        limit: 31
+    t.string  "third_party_url", limit: 255
   end
 
   create_table "user_daily_logins", force: :cascade do |t|

@@ -20,12 +20,14 @@ class UserAvatarController < ApplicationController
     # Save filename to database
     filename = current_user.id.to_s + '_' + SecureRandom.hex(4) + '.' + extension
     current_user.avatar.filename = filename
+    current_user.avatar.third_party_url = nil # delete third party url
     current_user.avatar.save
 
     # Save file to disk
     require 'rake/file_utils'
     tmp = params[:avatar].tempfile
-    file = File.join('public/images/' + Settings.paths.user_avatar, filename)
+    newfile_path = Rails.root.to_s + '/public/images/' + Settings.paths.user_avatar
+    file = File.join(newfile_path, filename)
     FileUtils.cp tmp.path, file
     FileUtils.rm_rf tmp.path
 

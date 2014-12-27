@@ -9,7 +9,7 @@
           <span>回复了 <%= link_to r.author.nickname, r.author %> 创建的话题《<%= link_to r.topic.title, r.topic %>》：</span>
         </p>
         <blockquote>
-          <%= r.content %>
+          <%= render_mentioned_users r.content %>
         </blockquote>
         <hr />
       </div>

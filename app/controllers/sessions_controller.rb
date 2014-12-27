@@ -6,10 +6,18 @@ class SessionsController < Devise::SessionsController
   end
 
   def create
-    super
+    # super
+    self.resource = warden.authenticate!(auth_options)
+    set_flash_message(:notice, :signed_in) if is_flashing_format?
+    sign_in(resource_name, resource)
+    yield resource if block_given?
+
+    # super end
+
     session[:user_id] = current_user.id
     # generate login history
-    UserLoginHistory.create user_id: current_user.id, ip: request.remote_ip
+
+    redirect_to root_path
   end
 
   def destroy

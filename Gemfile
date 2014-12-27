@@ -1,4 +1,5 @@
-source 'https://ruby.taobao.org'
+# source 'https://ruby.taobao.org'
+source 'https://rubygems.org'
 
 source 'https://rails-assets.org'
 ruby '2.1.3'
@@ -85,7 +86,14 @@ gem 'devise', '~> 3.4.0'
 # Authorization System
 gem 'pundit', '~> 0.3.0'
 
+# Third parties login
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-oauth2', '~> 1.2.0'
+# gem 'omniauth-qq-oauth2', :git => 'git://github.com/yeetim/omniauth-qq-oauth2.git', :ref => '054d6'
+# gem 'omniauth-qq-oauth2', '0.4.0'
+
 gem 'adminlte-rails', '~> 1.3.3'
+
 
 group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -94,6 +102,9 @@ group :development, :test do
   gem 'ruby-debug-ide', '~> 0.4.22'
   gem 'debase'
   gem 'bullet', '~> 4.14.0'
+
+  # Footnote for debug
+  gem 'rails-footnotes', '~> 4.1.4'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

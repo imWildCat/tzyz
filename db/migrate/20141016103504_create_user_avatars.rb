@@ -8,7 +8,8 @@ class CreateUserAvatars < ActiveRecord::Migration
       t.primary_key :owner_id
       t.boolean :is_enabled, null: false, default: true
       t.string :filename, limit: 31
-      t.string :ttk_url
+      t.string :third_party_url
+
     end
   end
 end

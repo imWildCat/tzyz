@@ -35,7 +35,7 @@ zh-CN:
     registrations:
       user:
         destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
-        signed_up: "Welcome! You have signed up successfully."
+        signed_up: "注册成功，您已登录。"
         signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
         signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
         signed_up_but_unconfirmed: "一封确认邮件已经发送到了您的邮箱，请打开邮件内的链接以激活您的帐号。"

@@ -4,7 +4,16 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     add_breadcrumb '注册'
-    super
+
+    build_resource(session[:'devise.user_attributes'])
+    test = self.resource
+    puts self.resource
+
+    @validatable = devise_mapping.validatable?
+    if @validatable
+      @minimum_password_length = resource_class.password_length.min
+    end
+    respond_with self.resource
   end
 
   def create
@@ -18,7 +27,30 @@ class RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
         sign_up(resource_name, resource)
-        respond_with resource, location: after_sign_up_path_for(resource)
+
+        # Bind social login
+        auth = Authorization.find_by_id session[:auth_id]
+        puts auth
+        unless auth.nil?
+          auth.user_id = resource.id
+          auth.save
+        end
+
+        # Get avatar image url
+        resource.avatar.update_attributes(:third_party_url => auth.image ) unless auth.image.nil? or auth.image == ''
+
+        # Send email
+        EmailConfirmationWorker::perform_async resource.id
+
+        # Record login history
+        resource.after_database_authentication
+
+        # Clear session for `devise.user_attributes`
+        session[:'devise.user_attributes'] = nil
+
+
+        # respond_with resource, location: after_sign_up_path_for(resource) # Rediect loop
+        redirect_to root_path
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
         expire_data_after_sign_in!

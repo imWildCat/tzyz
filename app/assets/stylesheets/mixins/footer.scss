@@ -6,4 +6,10 @@
   .copyright {
     text-align: center;
   }
+  .beian {
+    @media screen and (max-width: 360px) {
+      display: block;
+      clear: both;
+    }
+  }
 }

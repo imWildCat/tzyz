@@ -113,7 +113,7 @@ class User < ActiveRecord::Base
   end
 
   def after_database_authentication
-    UserLoginHistory.create user_id: id, ip: current_sign_in_ip
+    UserLoginHistory.create user_id: id, ip: current_sign_in_ip || last_sign_in_ip || ''
   end
 
   def self.group_name_for(group_key)

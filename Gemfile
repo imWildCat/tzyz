@@ -94,6 +94,9 @@ gem 'pundit', '~> 0.3.0'
 # Third parties login
 gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-oauth2', '~> 1.2.0'
+gem 'omniauth-linkedin', '~> 0.2.0'
+gem 'omniauth-weibo-oauth2', '~> 0.4.0'
+gem 'omniauth-renren-oauth2', '~> 0.0.6'
 # gem 'omniauth-qq-oauth2', :git => 'git://github.com/yeetim/omniauth-qq-oauth2.git', :ref => '054d6'
 # gem 'omniauth-qq-oauth2', '0.4.0'
 

@@ -3,7 +3,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
     user, authorization = User.from_omniauth(env['omniauth.auth'], current_user)
     kind = User::SOCIALS[params[:action].to_sym]
-    if user.persisted?
+    if user != nil and user.persisted?
       sign_in user
       session[:user_id] = user.id
 
@@ -25,7 +25,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       session['devise.user_attributes'] = user.attributes
       session[:auth_id] = authorization.id
-      flash[:info] = "没有发现与此 #{kind} 关联的帐号，请您完善注册信息。若您已有帐号，可以通过 Email 登录。"
+      flash[:info] = "没有找到与此 #{kind} 关联的帐号，请您完善注册信息。若您已有帐号，可以通过 Email 登录。"
       redirect_to new_user_registration_url
     end
   end

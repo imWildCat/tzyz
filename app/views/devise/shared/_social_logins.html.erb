@@ -1,0 +1,23 @@
+<div class="form-group">
+  <label class="password required col-sm-3 control-label" for="social_login">
+    社交登录</label>
+
+  <div class="col-sm-9">
+    <a href="<%= user_omniauth_authorize_path('qq_connect') %>">
+      <%= image_tag 'http://qzonestyle.gtimg.cn/qzone/vas/opensns/res/img/Connect_logo_3.png' %>
+      <%#= image_tag 'social_icons/rounded/qq_r.png', class: 'login-icon' %>
+    </a>
+    <a href="<%= user_omniauth_authorize_path('wechat') %>">
+      <%= image_tag 'social_icons/rounded/wechat_r.png', class: 'login-icon' %>
+    </a>
+    <a href="<%= user_omniauth_authorize_path('linkedin') %>">
+      <%= image_tag 'social_icons/rounded/linkedin_r.png', class: 'login-icon' %>
+    </a>
+    <a href="<%= user_omniauth_authorize_path('weibo') %>">
+      <%= image_tag 'social_icons/rounded/weibo_r.png', class: 'login-icon' %>
+    </a>
+    <a href="<%= user_omniauth_authorize_path('renren') %>">
+      <%= image_tag 'social_icons/rounded/renren_r.png', class: 'login-icon' %>
+    </a>
+  </div>
+</div>

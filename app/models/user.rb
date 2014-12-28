@@ -9,10 +9,10 @@ class User < ActiveRecord::Base
   )
 
   # Include default devise modules. Others available are:
-  # :timeoutable and :omniauthable
+  # :timeoutable
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable, :omniauthable, :omniauth_providers =>
-          [:qq_connect]
+          [:qq_connect, :linkedin, :wechat, :weibo, :renren]
 
   USER_GROUP = {
       normal: 1,
@@ -26,10 +26,12 @@ class User < ActiveRecord::Base
 
   SOCIALS = {
       qq_connect: 'QQ',
-      wechat: 'WeChat',
+      wechat: '微信',
       facebook: 'Facebook',
       google_oauth2: 'Google',
-      linkedin: 'Linkedin'
+      linkedin: 'LinkedIn',
+      weibo: '微博',
+      renren: '人人'
   }
 
   enum group: USER_GROUP
@@ -89,18 +91,21 @@ class User < ActiveRecord::Base
     # authorization.profile_page = auth.info.urls.first.last unless authorization.persisted?
     if authorization.user.blank?
       user = current_user.nil? ? User.where('email = ?', auth['info']['email']).first : current_user
+      # do not create user directly if gets email
       if user.blank?
         user = User.new
         user.skip_confirmation!
         user.password = Devise.friendly_token[0, 20]
         user.fetch_details(auth)
-        user.save
+        # user.save
         # user.avatar.social_url = auth.info
       end
-      authorization.user = user
+      # authorization.user = user
       authorization.save
+    else
+      user = authorization.user
     end
-    [authorization.user, authorization]
+    [user, authorization]
   end
 
   def fetch_details(auth)

@@ -34,12 +34,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :user_profile, except: [:new, :show, :destroy], controller: :user_profile
+  resource :user_profile, only: [:edit ,:update], controller: :user_profile
   resource :user_avatar, only: :update, controller: :user_avatar
+
   scope :account do
     get 'favorites' => 'favorite_topics#show', as: 'account_favorite_topic'
     get 'fortune_alterations' => 'fortune_alterations#show'
     get 'daily_award' => 'fortune_alterations#daily_award'
+    delete 'authorization/:provider' => 'users/authorization#destroy', as: 'authorization'
   end
 
   resource :notifications, only: :show

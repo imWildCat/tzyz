@@ -85,6 +85,7 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth, current_user)
     authorization = Authorization.where(:provider => auth.provider, :uid => auth.uid.to_s).first_or_initialize
     authorization.update_attributes(
+        :name => auth.info.name,
         :token => auth.credentials.token,
         :secret => auth.credentials.secret,
         :image => auth.info.image)
@@ -101,6 +102,7 @@ class User < ActiveRecord::Base
         # user.avatar.social_url = auth.info
       end
       # authorization.user = user
+      authorization.user = user unless current_user.nil?
       authorization.save
     else
       user = authorization.user

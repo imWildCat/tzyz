@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20141226154055) do
     t.integer  "user_id",      limit: 4
     t.string   "provider",     limit: 31
     t.string   "uid",          limit: 255
+    t.string   "name",         limit: 63
     t.string   "image",        limit: 255
     t.string   "token",        limit: 255
     t.string   "secret",       limit: 255

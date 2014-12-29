@@ -8,10 +8,10 @@
         <div class="form-inputs">
           <%= f.input :name, label: '姓名' %>
 
-         <p class="gender">
-           <strong>性别: </strong>
-           <%= f.collection_radio_buttons :gender, [[false, '女'], [true, '男'], [nil, '保密']], :first, :last %>
-         </p>
+          <p class="gender">
+            <strong>性别: </strong>
+            <%= f.collection_radio_buttons :gender, [[false, '女'], [true, '男'], [nil, '保密']], :first, :last %>
+          </p>
 
           <%= f.input :headline, placeholder: '如 “医生，兼职摄影师，偶尔旅游”', label: '一句话介绍' %>
           <%= f.input :field, label: '所在行业' %>
@@ -122,11 +122,38 @@
     <div class="panel panel-info">
       <div class="panel-heading"><h3 class="panel-title">头像</h3></div>
       <div class="panel-body">
-        <%= image_tag current_user.avatar.url, style: 'width: 150px; height:150px;' %>
+        <div class="avatar">  <%= image_tag current_user.avatar.url %></div>
+
         <%= form_for :user_avatar, url: user_avatar_path, :html => {:multipart => true, method: :put} do |f| %>
             <%= file_field_tag 'avatar' %>
             <%= f.submit '修改头像', class: 'btn btn-primary float-right', style: 'margin-top: 30px;' %>
         <% end %>
+      </div>
+    </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading"><h3 class="panel-title">社交帐号绑定</h3></div>
+      <div class="panel-body">
+        <% logins_to_bind = %w(weibo linkedin renren) %>
+        <p><strong>已绑定：</strong></p>
+        <% @authorizations.each do |a| %>
+            <% logins_to_bind.delete a.provider %>
+            <p>
+              <%= image_tag "social_icons/rounded/#{a.provider}_r.png", class: 'login-icon' %>
+              <span> <%= a.name %></span>
+                (<%= link_to '解除', authorization_path(a.provider), method: :delete %>)
+            </p>
+        <% end %>
+        <% if @authorizations.count %>
+        您还没有绑定任何帐号。
+            <% end %>
+        <p><strong>可绑定：</strong></p>
+        <% logins_to_bind.each do |l| %>
+            <a href="<%= user_omniauth_authorize_path(l) %>">
+              <%= image_tag "social_icons/rounded/#{l}_r.png", class: 'login-icon' %>
+            </a>
+        <% end %>
+
       </div>
     </div>
 

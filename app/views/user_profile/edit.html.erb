@@ -144,7 +144,7 @@
                 (<%= link_to '解除', authorization_path(a.provider), method: :delete %>)
             </p>
         <% end %>
-        <% if @authorizations.count %>
+        <% if @authorizations.count == 0 %>
         您还没有绑定任何帐号。
             <% end %>
         <p><strong>可绑定：</strong></p>

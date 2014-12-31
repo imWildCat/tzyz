@@ -37,7 +37,7 @@ class RegistrationsController < Devise::RegistrationsController
         end
 
         # Get avatar image url
-        resource.avatar.update_attributes(:third_party_url => auth.image ) unless auth.image.nil? or auth.image == ''
+        resource.avatar.update_attributes(:third_party_url => auth.image ) unless auth.nil? or auth.image.nil? or auth.image == ''
 
         # Send email
         EmailConfirmationWorker::perform_async resource.id

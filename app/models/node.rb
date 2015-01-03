@@ -20,7 +20,7 @@ class Node < ActiveRecord::Base
   end
 
   def paginated_topics_for_page(page)
-    self.topics.order(updated_at:
+    self.topics.order(priority:
                           :desc).paginate(page: page,
                                           per_page: Node.topics_per_page)
   end

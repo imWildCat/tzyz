@@ -2,8 +2,8 @@ class HomeController < ApplicationController
   def index
     @node_categories = NodeCategory.cached_cats
 
-    @topics = Rails.cache.fetch('topic_list_index') do
-      Topic.limit(20).order('updated_at desc')
+    @topics = Rails.cache.fetch('topic_list_index', expires_in: 20.seconds) do
+      Topic.limit(20).order('priority desc')
     end
   end
 

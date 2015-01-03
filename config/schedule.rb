@@ -7,3 +7,8 @@ end
 every 1.day, :at => ['8:30 am', '12:30 pm', '16:30 pm', '20:30 pm'] do
   job 'HotTopicsWorker'
 end
+
+# Backup
+every 1.day, :at => ['1:30 am', '1:30 pm'] do
+  command 'backup perform -t tzyz'
+end

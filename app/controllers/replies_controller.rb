@@ -18,6 +18,21 @@ class RepliesController < ApplicationController
                       content: content)
     reply.position = topic.replies_count + 1
 
+    # handle priority
+    # TODO: find a more friendly way to sort the topics
+    if topic.created_at > 1.days.ago
+      topic.priority = Time.now
+    elsif topic.created_at > 3.days.ago
+      delta = (Time.now - topic.created_at) * 0.0009
+      # delta = 180 if delta > 180
+      topic.priority = Time.now - delta
+    elsif topic.created_at > 7.days.ago
+      delta = (Time.now - topic.created_at) * 0.0015
+      delta = 3600 if delta > 3600
+      topic.priority = Time.now - delta
+    end
+    topic.save
+
     # Handle quoted reply
     if quoted_reply_id > 0
       quoted_reply = Reply.find(quoted_reply_id)

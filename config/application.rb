@@ -31,7 +31,7 @@ module Tzyz
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = 'zh-CN'
 
-    config.authload_paths = %w(#{config.root}/app/omniauth/strategies)
+    config.autoload_paths += %w(#{config.root}/app/omniauth/strategies)
   end
 end
 

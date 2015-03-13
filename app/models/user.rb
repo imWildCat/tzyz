@@ -317,7 +317,7 @@ class User < ActiveRecord::Base
   # end
 
   def self.daily_awarded_ck(user_id)
-    "user_#{user_id}_daily_awarded"
+    "user_#{user_id}_daily_awarded_#{Date.today.strftime('%Y%m%d')}"
   end
 
   def self.info_cache_key(user_id)

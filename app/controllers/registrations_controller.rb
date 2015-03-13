@@ -6,7 +6,6 @@ class RegistrationsController < Devise::RegistrationsController
     add_breadcrumb '注册'
 
     build_resource(session[:'devise.user_attributes'])
-    test = self.resource
     puts self.resource
 
     @validatable = devise_mapping.validatable?

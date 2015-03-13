@@ -40,6 +40,9 @@ ActiveRecord::Schema.define(version: 20141226154055) do
     t.datetime "updated_at",               null: false
   end
 
+  add_index "authorizations", ["provider", "user_id"], name: "index_authorizations_on_provider_and_user_id", using: :btree
+  add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
+
   create_table "favorite_topics", force: :cascade do |t|
     t.integer  "user_id",    limit: 4, null: false, unsigned: true
     t.integer  "topic_id",   limit: 4, null: false, unsigned: true

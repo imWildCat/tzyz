@@ -22,8 +22,7 @@ class UserDailyLogin < ActiveRecord::Base
   end
 
   def self.day_of_today
-    timezone_now = Time.zone.now
-    timezone_now.year * 10000 + timezone_now.month * 100 + timezone_now.day
+    Date.today.strftime('%Y%m%d')
   end
 
   def self.day_of_yesterday

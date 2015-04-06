@@ -47,7 +47,7 @@ class Topic < ActiveRecord::Base
     self.priority = Time.now
   end
 
-  after_create :perform_new_topic_fortune_alteration, :perform_mention_user
+  after_create :perform_new_topic_fortune_alteration, :perform_mention_user, :perform_topic_count
 
   def self.replies_per_page
     20
@@ -60,7 +60,7 @@ class Topic < ActiveRecord::Base
   end
 
   def clicks_count_up
-    self.clicks_count += 1
+    self.click_count += 1
     self.save
   end
 
@@ -78,12 +78,17 @@ class Topic < ActiveRecord::Base
     fortune_alterations.new(user: author, reason: :new_topic).save
   end
 
+  def perform_topic_count
+    self.author.topic_count += 1
+    self.author.save
+  end
+
   def have_page?(page)
     page >= 1 and page <= self.last_page
   end
 
   def last_page
-    return (self.replies_count - 1) / Topic.replies_per_page + 1 if self.replies_count > 0
+    return (self.reply_count - 1) / Topic.replies_per_page + 1 if self.reply_count > 0
     1
   end
 

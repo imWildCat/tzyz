@@ -7,10 +7,10 @@ else
 end
 
 source 'https://rails-assets.org'
-ruby '2.1.3'
+ruby '2.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '~> 4.2.1'
 
 # Settings
 gem 'rails_config', '~> 0.4.2'
@@ -36,8 +36,10 @@ gem 'breadcrumbs_on_rails', '~> 2.3.0'
 # Google, YouTube, and Medium like slim progress bars
 gem 'nprogress-rails', '~> 0.1.6.3'
 
-# Use mysql as the database for Active Record
-gem 'mysql2', '~> 0.3.16'
+# Use postgresql as the database for Active Record
+# gem 'mysql2', '~> 0.3.16'
+
+gem 'pg', '~> 0.18.1'
 
 # ActiveRecord or Migration support
 gem 'activerecord-mysql-unsigned', '~> 0.3.1'

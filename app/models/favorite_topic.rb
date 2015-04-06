@@ -52,7 +52,7 @@ class FavoriteTopic < ActiveRecord::Base
 
   def refresh_topic_count
     topic = Topic.find topic_id
-    topic.favorites_count = FavoriteTopic::where('topic_id = ?', topic_id).count
+    topic.favorite_count = FavoriteTopic::where('topic_id = ?', topic_id).count
     topic.save
   end
 

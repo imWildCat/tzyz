@@ -7,10 +7,10 @@ class CreateTopics < ActiveRecord::Migration
       t.integer :status, null: false, default: 1
       t.integer :refresher_id, null: false, unsigned: true
       t.string  :title, null: false, limit: 127
-      t.integer :clicks_count, null: false, default: 0, unsigned: true
-      t.integer :replies_count, null: false, default: 0, unsigned: true
-      t.integer :favorites_count, null: false, default: 0, unsigned: true
-      t.integer :appreciations_count, null: false, default: 0, unsigned: true
+      t.integer :click_count, null: false, default: 0, unsigned: true
+      t.integer :reply_count, null: false, default: 0, unsigned: true
+      t.integer :favorite_count, null: false, default: 0, unsigned: true
+      t.integer :appreciation_count, null: false, default: 0, unsigned: true
       t.text    :content, null: false
       t.timestamps null: false
       t.datetime :priority, null: false

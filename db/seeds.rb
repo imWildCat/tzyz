@@ -23,7 +23,7 @@
 LOREM_IPSUM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae quam iaculis, hendrerit purus ac, aliquam velit. Duis et condimentum neque, vitae vehicula nisi. Fusce mollis ac quam a pharetra. Cras volutpat lectus id fringilla ultrices. Curabitur imperdiet turpis est. Morbi lobortis nisi justo, quis ornare urna viverra in. In.'
 
 # data = JSON.parse(File.read('db/data.json'))
-data = YAML::load_file('db/data.yml')
+data = YAML::load_file('db/data_seeds.yml')
 
 data['categories'].each do |c|
   cate = NodeCategory.create(c.slice('name', 'slug'))
@@ -60,7 +60,7 @@ if Rails.env == 'development'
     random_topic.replies.create(
         author: random_user,
         content: "Reply test! --- #{count}, this is a reply with quoted reply!",
-        position: random_topic.replies_count + 1,
+        position: random_topic.reply_count + 1,
     )
   end
 

@@ -27,11 +27,11 @@ class Appreciation < ActiveRecord::Base
   def refresh_count
     if appreciative_type == 'Topic' # Topic
       topic = Topic.find appreciative_id
-      topic.appreciations_count = topic.appreciations.count
+      topic.appreciation_count = topic.appreciations.count
       topic.save
     elsif appreciative_type == 'Reply' # Reply
       reply = Reply.find appreciative_id
-      reply.appreciations_count = reply.appreciations.count
+      reply.appreciation_count = reply.appreciations.count
       reply.save
     end
   end

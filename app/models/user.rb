@@ -278,7 +278,7 @@ class User < ActiveRecord::Base
   def daily_awarded?
     Rails.cache.fetch(User::daily_awarded_ck(self.id)) do
       daily_login = UserDailyLogin.find_by user_id: self.id, day: UserDailyLogin::day_of_today
-      daily_login.nil? ? true : daily_login.is_awarded
+      daily_login.nil? ? false : daily_login.is_awarded
     end
   end
 

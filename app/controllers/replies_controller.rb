@@ -16,7 +16,7 @@ class RepliesController < ApplicationController
 
     reply = Reply.new(topic_id: topic.id, author_id: current_user.id,
                       content: content)
-    reply.position = topic.replies_count + 1
+    reply.position = topic.reply_count + 1
 
     # handle priority
     # TODO: find a more friendly way to sort the topics

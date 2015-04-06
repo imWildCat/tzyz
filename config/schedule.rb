@@ -9,6 +9,7 @@ every 1.day, :at => ['8:30 am', '12:30 pm', '16:30 pm', '20:30 pm'] do
 end
 
 # Backup
-every 1.day, :at => ['1:30 am', '1:30 pm'] do
-  command 'backup perform -t tzyz'
-end
+# TODO: migrate to pgsql
+# every 1.day, :at => ['1:30 am', '1:30 pm'] do
+#   command 'backup perform -t tzyz'
+# end

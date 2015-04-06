@@ -39,7 +39,7 @@
                   %>
                   <td><%= link_to t.title, topic_path(t) %><%= title_plus %></td>
                   <td><%= link_to t.author.display_name, t.author %></td>
-                  <td><%= t.clicks_count %> / <%= t.replies_count %></td>
+                  <td><%= t.click_count %> / <%= t.reply_count %></td>
                   <td><%= t.created_at %></td>
                   <td><%= link_to t.refresher.display_name, t.refresher %> <<%= timeago t.updated_at %>></td>
                   <td>

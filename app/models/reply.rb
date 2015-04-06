@@ -12,7 +12,7 @@ class Reply < ActiveRecord::Base
   belongs_to :quoted_reply, class_name: 'Reply'
 
   after_create :topic_replies_count_plus, :perform_new_reply_fortune_alterations, :perform_new_reply_notification,
-               :perform_mention_user
+               :perform_mention_user, :perform_reply_count
 
   def is_appreciated_by_user(user)
     Rails.cache.fetch(Appreciation.build_cache_key(user_id: user.id, reply_id: self.id), expires_in: 7.days) do
@@ -34,7 +34,7 @@ class Reply < ActiveRecord::Base
   end
 
   def topic_replies_count_plus
-    self.topic.replies_count += 1
+    self.topic.reply_count += 1
     self.topic.refresher_id = self.author_id
     self.topic.save
   end
@@ -53,6 +53,11 @@ class Reply < ActiveRecord::Base
       self.notifications.create(receiver_id: topic.author_id,
                                 n_type: :replied)
     end
+  end
+
+  def perform_reply_count
+    self.author.reply_count += 1
+    self.author.save
   end
 
 end

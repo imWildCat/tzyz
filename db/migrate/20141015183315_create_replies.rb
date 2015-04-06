@@ -6,7 +6,7 @@ class CreateReplies < ActiveRecord::Migration
       t.belongs_to :quoted_reply, null: true, unsigned: true
       t.text :content, null: false
       t.integer :position, null: false, unsigned: true
-      t.integer :appreciations_count, null: false, default: 0, unsigned: true
+      t.integer :appreciation_count, null: false, default: 0, unsigned: true
       t.datetime :created_at, null: false
       t.datetime :deleted_at
     end

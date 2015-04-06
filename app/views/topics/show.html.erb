@@ -15,21 +15,21 @@
           </div>
           <div>
             <span class="glyphicon glyphicon-eye-open"></span>
-            <span class="item"><%= @topic.clicks_count %> <span class="note">次点击</span></span>
+            <span class="item"><%= @topic.click_count %> <span class="note">次点击</span></span>
           </div>
           <div>
             <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="item"><%= @topic.favorites_count %> <span class="note">人收藏</span></span>
+            <span class="item"><%= @topic.favorite_count %> <span class="note">人收藏</span></span>
           </div>
-          <% if @topic.appreciations_count != 0 %>
+          <% if @topic.appreciation_count != 0 %>
               <div>
                 <span class="glyphicon glyphicon-heart"></span>
-                <span class="item"><%= @topic.appreciations_count %> <span class="note">人感谢</span></span>
+                <span class="item"><%= @topic.appreciation_count %> <span class="note">人感谢</span></span>
               </div>
           <% end %>
         </div>
         <div class="line-2">
-          <span class="reply-count"><%= @topic.replies_count %></span>
+          <span class="reply-count"><%= @topic.reply_count %></span>
         </div>
       </div>
       <div class="author">
@@ -79,8 +79,8 @@
               <div class="meta">
                 <span class="author"><%= link_to "#{r.author.nickname}", r.author, class: 'name' %></span>
                 <span class="time"><%= timeago(r.created_at) %></span>
-                <% if r.appreciations_count > 0 %>
-                    <span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count"><%= r.appreciations_count %></span></span>
+                <% if r.appreciation_count > 0 %>
+                    <span class="appreciation"><span class="glyphicon glyphicon-heart"></span><span class="count"><%= r.appreciation_count %></span></span>
                     <% if reply_appreciated_by_current? r %>
                         <span class="appreciation-sent">已感谢</span>
                     <% end %>

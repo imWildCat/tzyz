@@ -36,3 +36,6 @@ public/images/avatars/*.gif
 
 # newrelic
 config/newrelic.yml
+
+# npm
+node_modules

@@ -4,7 +4,7 @@ lock '3.2.1'
 set :application, 'tzyz'
 set :repo_url, 'git://github.com/imWildCat/tzyz.git'
 
-set :rbenv_ruby, '2.1.3'
+set :rbenv_ruby, '2.2.1'
 
 # Default branch is :master
 

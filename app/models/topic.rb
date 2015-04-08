@@ -92,6 +92,12 @@ class Topic < ActiveRecord::Base
     1
   end
 
+  def self.list(page: 1, page_size: 20)
+        includes(:author, :refresher, :node)
+        .order(created_at: :desc)
+        .paginate(page: page, per_page: page_size)
+  end
+
   def show(page, valid_click_or_not)
     raise ActionController::RoutingError.new('Not Found') unless have_page?(page)
     clicks_count_up if valid_click_or_not

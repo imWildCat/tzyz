@@ -32,6 +32,9 @@ module Tzyz
     config.i18n.default_locale = 'zh-CN'
 
     config.autoload_paths += %w(#{config.root}/app/omniauth/strategies)
+
+    config.paths.add 'app/api', glob: '**/*.rb'
+    config.autoload_paths += Dir["#{Rails.root}/app/api/*"]
   end
 end
 

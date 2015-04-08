@@ -11,5 +11,8 @@ class HomeController < ApplicationController
 
   end
 
+  def api
+    add_breadcrumb 'API 参考'
+  end
 
 end

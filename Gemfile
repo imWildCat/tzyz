@@ -48,6 +48,11 @@ gem 'activerecord-mysql-unsigned', '~> 0.3.1'
 # There is many bugs in activerecord-mysql-unsigned, so don't use it
 gem 'paranoia', '~> 2.0.2'
 
+# api
+# gem 'rails-api', '~> 0.4.0'
+gem 'grape', '~> 0.11.0'
+gem 'grape-entity', '~> 0.4.5'
+
 # redis store for cache
 gem 'redis-rails', '~> 4.0.0'
 

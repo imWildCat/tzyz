@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
+
+  mount TzyzApiV1 => '/'
+
+
+  # olds
+
   root to: 'home#index'
   get 'home/about'
+  get 'api' => 'home#api'
 
   devise_for :users, path: 'account', controllers: {
                        registrations: :registrations,

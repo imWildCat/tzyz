@@ -82,6 +82,10 @@ class User < ActiveRecord::Base
     "用户：#{display_name}"
   end
 
+  def self.fetch(id: nil)
+    find(id)
+  end
+
   def self.from_omniauth(auth, current_user)
     authorization = Authorization.where(:provider => auth.provider, :uid => auth.uid.to_s).first_or_initialize
     authorization.update_attributes(

@@ -33,8 +33,13 @@ module Tzyz
 
     config.autoload_paths += %w(#{config.root}/app/omniauth/strategies)
 
+    # grape
     config.paths.add 'app/api', glob: '**/*.rb'
     config.autoload_paths += Dir["#{Rails.root}/app/api/*"]
+
+    # gulp
+    # config.assets.enabled = false
+
   end
 end
 

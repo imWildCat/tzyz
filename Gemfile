@@ -67,6 +67,8 @@ gem 'rails-assets-simditor', '~> 2.0.3'
 # HTML and CSS sanitizer
 gem 'sanitize', '~> 3.0.3'
 
+gem 'font-awesome-rails', '~> 4.3.0.0'
+
 # Background Task
 gem 'sidekiq', '~> 3.2.6'
 # sidekiq - Monitoring
@@ -119,7 +121,7 @@ group :development, :test do
   gem 'bullet', '~> 4.14.0'
 
   # Footnote for debug
-  gem 'rails-footnotes', '~> 4.1.4'
+  # gem 'rails-footnotes', '~> 4.1.4'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

@@ -1,0 +1,102 @@
+@import "../colors";
+
+#top-menu {
+  height: 50px;
+  background: #4285F4;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.50);
+
+  .wrapper {
+    margin: 0 auto;
+    max-width: 960px;
+  }
+
+  .brand {
+    float: left;
+    h1 {
+      margin-top: 8px;
+      color: $light-text-color;
+      font-size: 24px;
+      padding-left: 10px;
+      font-weight: normal;
+
+      @media screen and (max-width: 380px) {
+        margin-top: 14px;
+        font-size: 18px;
+      }
+    }
+  }
+
+  .menu {
+    margin-top: 0;
+    float: left;
+    color: $light-text-color;
+    padding-top: 8px;
+
+    @media screen and (max-width: 380px) {
+      padding-left: 0;
+    }
+
+    li {
+      position: relative;
+      display: inline-block;
+      padding: 10px 15px 16px 15px;
+      border-top: 0 solid transparent;
+      line-height: 1;
+      text-decoration: none;
+      font-size: 16px;
+
+      &.active {
+        //        border-bottom: 4px solid #0084b4; // twitter
+        box-shadow: 0em -4px 0 inset; // from semantic ui
+      }
+
+      &:hover {
+        box-shadow: 0em -4px 0 inset; // from semantic ui
+        transition: all .35s ease-in-out;
+        color: #ffffff;
+      }
+    }
+  }
+
+  .fa.icon {
+    font-size: 23px;
+    width: 30px;
+    height: 30px;
+    padding-top: 6px;
+    color: $light-text-color;
+    &:hover {
+      transition: all .35s ease-in-out;
+      color: #ffffff;
+    }
+  }
+
+  .search-field {
+    margin-top: 10px;
+    display: inline-block;
+    width: 200px;
+    height: 30px;
+    float: right;
+    background-color: #5D97F5;
+    border-radius: 2px;
+    margin-right: 30px;
+  }
+
+  .right-bar {
+    float: right;
+    height: 50px;
+
+    .item {
+      margin-right: 15px;
+
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin-top: 10px;
+      vertical-align: top;
+      color: $light-text-color;
+      position: relative;
+      text-decoration: none;
+    }
+
+  }
+}

@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
+  root to: 'web_app#index'
+
   mount TzyzApiV1 => '/'
 
 
   # olds
 
-  root to: 'home#index'
+  get 'home' => 'home#index'
   get 'home/about'
   get 'api' => 'home#api'
 

@@ -11,4 +11,4 @@ gulp.task("watch", function() {
     gulp.watch(["app/assets/javascripts/app/**/*.js", "!app/assets/javascripts/app/bundle.js", "app/assets/javascripts/app/**/*.jsx"], ["webpack"]);
 });
 
-gulp.task("default", ["watch"]);
+gulp.task("default", ["watch", "webpack"]);

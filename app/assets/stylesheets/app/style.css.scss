@@ -23,26 +23,27 @@ body {
 }
 
 .hidden-md {
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     display: none !important;
   }
 }
 
 .hidden-sm {
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     display: none !important;
   }
 }
 
-//.visible-md {
-//  display: none !important;
-//  @media screen and (max-width: 1024px) {
-//    display: inherit !important;
-//  }
-//}
-//
-//.hidden-xs {
-//  @media (max-width: 767px) {
-//    display: none !important;
-//  }
-//}
+.visible-md {
+  @media screen and (min-width: 1024px) {
+    display: none !important;
+  }
+}
+
+
+
+.visible-sm {
+  @media screen and (min-width: 768px) {
+    display: none !important;
+  }
+}

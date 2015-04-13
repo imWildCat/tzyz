@@ -3,6 +3,7 @@ var React = require('react');
 var Avatar = require('./avatar');
 var Badge = require('./badge');
 var SearchField = require('./search_field');
+var MobileButton = require('./mobile_button');
 
 var Colors = require('../colors');
 
@@ -16,6 +17,7 @@ var styles = {
 
 
 var TopMenu = React.createClass({
+
     render: function () {
         return (
             <nav id="top-menu">
@@ -39,7 +41,8 @@ var TopMenu = React.createClass({
                         </li>
                     </ul>
                     <ul className="right-bar" style={styles.rightBar}>
-                        <li className="item hidden-sm">
+                        <MobileButton {...this.props} />
+                        <li className="item hidden-md">
                             <i className="fa fa-users icon"></i>
                         </li>
                         <li className="item">

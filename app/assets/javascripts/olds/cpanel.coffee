@@ -1,5 +1,5 @@
 #
-#= require jquery
+#= require jquery.timeago.js
 #= require jquery_ujs
 #= require jquery.timeago
 #= require jquery.timeago.settings

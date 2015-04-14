@@ -1,0 +1,61 @@
+@import "app/colors";
+
+.top-menu {
+  height: 50px;
+  background: #4285F4;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.50);
+
+  .wrapper {
+    margin: 0 auto;
+    max-width: 960px;
+  }
+
+  .brand {
+    float: left;
+    h1 {
+      margin-top: 8px;
+      color: $light-text-color;
+      font-size: 24px;
+      padding-left: 10px;
+      font-weight: normal;
+
+      @media screen and (max-width: 380px) {
+        margin-top: 14px;
+        font-size: 18px;
+      }
+    }
+  }
+
+
+
+  .search-field {
+    margin-top: 10px;
+    display: inline-block;
+    width: 200px;
+    height: 30px;
+    float: right;
+    background-color: #5D97F5;
+    border-radius: 2px;
+    margin-right: 30px;
+  }
+
+}
+
+.top-menu-tool-bar {
+  height: 50px;
+  margin: 0;
+  padding: 0;
+
+  .item {
+    margin-right: 15px;
+
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    vertical-align: top;
+    color: $light-text-color;
+    position: relative;
+    text-decoration: none;
+  }
+}

@@ -24,20 +24,20 @@
 #= require simditor
 #= require chosen-jquery
 # File in project:
-#= require at_user
-#= require fortune_alterations
-#= require home
-#= require messages
-#= require node_categories
-#= require nodes
-#= require notifications
-#= require registrations
-#= require replies
-#= require sessions
-#= require simditor_specified
-#= require topics
-#= require user_profile
-#= require users
+#= require olds/at_user.js
+#= require olds/fortune_alterations.coffee
+#= require olds/home.coffee
+#= require olds/messages.coffee
+#= require olds/node_categories.coffee
+#= require olds/nodes.coffee
+#= require olds/notifications.coffee
+#= require olds/registrations.coffee
+#= require olds/replies.coffee
+#= require olds/sessions.coffee
+#= require olds/simditor_specified.coffee
+#= require olds/topics.coffee
+#= require olds/user_profile.coffee
+#= require olds/users.coffee
 #= require_self
 
 # nprogress

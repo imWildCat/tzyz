@@ -1,0 +1,33 @@
+@import "app/colors";
+
+.tab-menu {
+  margin: 0;
+  float: left;
+  color: $light-text-color;
+  padding: 8px 0 0 0;
+
+  @media screen and (max-width: 380px) {
+    padding-left: 0;
+  }
+
+  li {
+    position: relative;
+    display: inline-block;
+    padding: 10px 15px 16px 15px;
+    border-top: 0 solid transparent;
+    line-height: 1;
+    text-decoration: none;
+    font-size: 16px;
+
+    &.active {
+      //        border-bottom: 4px solid #0084b4; // twitter
+      box-shadow: 0em -4px 0 inset; // from semantic ui
+    }
+
+    &:hover {
+      box-shadow: 0em -4px 0 inset; // from semantic ui
+      transition: all .35s ease-in-out;
+      color: #ffffff;
+    }
+  }
+}

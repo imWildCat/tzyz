@@ -16,8 +16,13 @@ var ShouldShow = Reflux.createStore({
     init: function() {
     },
 
-    onToggle: function() {
-        _shouldShow = !_shouldShow;
+    onShowMenu: function() {
+        _shouldShow = true;
+        this.trigger(_shouldShow);
+    },
+
+    onHideMenu: function() {
+        _shouldShow = false;
         this.trigger(_shouldShow);
     }
 

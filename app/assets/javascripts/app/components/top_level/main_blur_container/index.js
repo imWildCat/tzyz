@@ -30,7 +30,7 @@ var MainBlurContainer = React.createClass({
 
     render: function() {
         return (
-            <BlurContainer id="main-blur-container" {...this.props} onClick={this.onContainerTouched}>
+            <BlurContainer id="main-blur-container" {...this.props}>
                 {this.props.children}
             </BlurContainer>
         )

@@ -1,19 +1,17 @@
 var React = require('react');
 var MobileMenuActions = require('../../../../actions/mobile_menu_actions');
-var MainBlurContainerActions = require('../../../../actions/blur_containers/main');
 
 var MobileButton = React.createClass({
 
     onButtonClick: function () {
-        //MobileMenuActions.toggle();
-        MainBlurContainerActions.performBlur();
+        MobileMenuActions.showMenu();
     },
 
     render: function () {
 
         return (
             <li className="item visible-md mobile-menu">
-                <i className="fa fa-bars icon" onClick={this.onButtonClick}></i>
+                <i className="fa fa-bars top-menu-icon" onTouchTap={this.onButtonClick}></i>
             </li>
         )
     }

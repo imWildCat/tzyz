@@ -1,0 +1,13 @@
+@import "app/colors";
+
+.fa.top-menu-icon {
+  font-size: 23px;
+  width: 30px;
+  height: 30px;
+  padding-top: 6px;
+  color: $button-normal-color;
+  &:hover {
+    transition: all .35s ease-in-out;
+    color: $button-normal-highlight-color;
+  }
+}

@@ -22,6 +22,14 @@ body {
   font-family: "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 
+// common:
+
+.float-right {
+  float: right;
+}
+
+// mobile:
+
 .hidden-md {
   @media screen and (max-width: 1023px) {
     display: none !important;

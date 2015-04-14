@@ -1,0 +1,13 @@
+.card {
+  background: #ECF1F8;
+  box-shadow: 5px 7px 10px 0 rgba(0, 0, 0, 0.50);
+  border-radius: 3px;
+
+  &.dialog {
+    width: 375px;
+
+    @media screen and (max-width: 767px) {
+      width: 100%;
+    }
+  }
+}

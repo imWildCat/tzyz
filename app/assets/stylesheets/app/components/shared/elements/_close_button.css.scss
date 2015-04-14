@@ -1,0 +1,9 @@
+@import "app/colors";
+
+.close-button {
+  color: $button-normal-color;
+  &:hover {
+    color: $button-normal-highlight-color;
+    transition: all .35s ease-in-out;
+  }
+}

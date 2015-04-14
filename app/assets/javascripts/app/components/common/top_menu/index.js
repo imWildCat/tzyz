@@ -1,61 +1,39 @@
 var React = require('react');
 
+var NavContainer = require('./nav_container');
 var Avatar = require('./avatar');
-var Badge = require('./badge');
 var SearchField = require('./search_field');
 var MobileButton = require('./mobile_button');
+var TabMenu = require('./tab_menu');
+var FriendButton = require('./friend_button');
+var NotificationButton = require('./notification_button');
 
 var Colors = require('../colors');
-
-var styles = {
-    rightBar: {
-        margin: 0,
-        padding: 0
-    },
-
-};
-
 
 var TopMenu = React.createClass({
 
     render: function () {
         return (
-            <nav id="top-menu">
-                <div className="wrapper">
-                    <i className="logo"></i>
-                    <div className="brand">
-                        <h1>滕州一中校友会</h1>
-                    </div>
-                    <ul className="menu hidden-sm">
-                        <li className="active">
-                            <a>社区</a>
-                        </li>
-                        <li>
-                            <a>节点</a>
-                        </li>
-                        <li>
-                            <a>活动</a>
-                        </li>
-                        <li>
-                            <a>关于</a>
-                        </li>
-                    </ul>
-                    <ul className="right-bar" style={styles.rightBar}>
-                        <MobileButton {...this.props} />
-                        <li className="item hidden-md">
-                            <i className="fa fa-users icon"></i>
-                        </li>
-                        <li className="item">
-                            <i className="fa fa-bell icon"></i>
-                            <Badge num="1" />
-                        </li>
-                        <li className="item">
-                            <Avatar url="/assets/no_avatar.png" />
-                        </li>
-                    </ul>
-                    <SearchField />
+            <NavContainer>
+                <i className="logo"></i>
+                <div className="brand">
+                    <h1>滕州一中校友会</h1>
                 </div>
-            </nav>
+                <TabMenu className="hidden-sm" style={{marginLeft: 30}} />
+                <ul className="top-menu-tool-bar float-right" style={{margin:0, padding: 0}}>
+                    <MobileButton {...this.props} />
+                    <li className="item hidden-md">
+                        <FriendButton />
+                    </li>
+                    <li className="item">
+                        <NotificationButton />
+                    </li>
+                    <li className="item">
+                        <Avatar url="/assets/no_avatar.png" />
+                    </li>
+                </ul>
+                <SearchField className="hidden-md" />
+            </NavContainer>
         )
     }
 });

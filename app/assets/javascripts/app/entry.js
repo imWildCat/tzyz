@@ -1,5 +1,8 @@
 var React = require('react');
 
+var injectTapEventPlugin = require("react-tap-event-plugin");
+injectTapEventPlugin();
+
 var TopMenu = require('./components/common/top_menu');
 var MobileMenu = require('./components/common/mobile_menu');
 

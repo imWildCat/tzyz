@@ -1,0 +1,32 @@
+{
+  "name": "tzyz",
+  "version": "1.1.0",
+  "description": "滕州一中校友会 - tzyz === This is the project of the official site of Alumni Association of Tengzhou No.1 High School, based on [Ruby on Rails](http://rubyonrails.org/).",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "6to5-core": "^3.6.5",
+    "6to5-loader": "^3.0.0",
+    "gulp": "^3.8.11",
+    "gulp-webpack": "^1.3.1",
+    "merge": "^1.2.0",
+    "react": "^0.13.1",
+    "react-tap-event-plugin": "^0.1.6",
+    "reflux": "^0.2.7",
+    "superagent": "^1.2.0",
+    "webpack": "^1.8.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imWildCat/tzyz.git"
+  },
+  "author": "WildCat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imWildCat/tzyz/issues"
+  },
+  "homepage": "https://github.com/imWildCat/tzyz"
+}

@@ -1,7 +1,7 @@
 var React = require('react');
 
 var NavContainer = require('./nav_container');
-var Avatar = require('./avatar');
+var Avatar = require('../../shared/elements/avatar');
 var SearchField = require('./search_field');
 var MobileButton = require('./mobile_button');
 var TabMenu = require('./tab_menu');
@@ -29,7 +29,7 @@ var TopMenu = React.createClass({
                         <NotificationButton />
                     </li>
                     <li className="item">
-                        <Avatar url="/assets/no_avatar.png" />
+                        <Avatar mode="small" url="/assets/no_avatar.png" />
                     </li>
                 </ul>
                 <SearchField className="hidden-md" />

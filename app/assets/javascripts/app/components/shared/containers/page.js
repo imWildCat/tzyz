@@ -5,22 +5,14 @@
 'use strict';
 
 var React = require('react');
-var Reflux = require('reflux');
 
-var Card = React.createClass({
-
-    propTypes: {
-      autoPadding: React.PropTypes.bool
-    },
+var Page = React.createClass({
 
     render: function() {
 
-        var className = 'card';
+        var className = 'page';
         if(this.props.className) {
             className += ' ' + this.props.className;
-        }
-        if(this.props.autoPadding) {
-            className += ' auto-padding';
         }
 
         return (
@@ -31,5 +23,4 @@ var Card = React.createClass({
     }
 });
 
-
-module.exports = Card;
+module.exports = Page;

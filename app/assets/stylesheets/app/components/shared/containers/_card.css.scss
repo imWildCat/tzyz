@@ -1,13 +1,18 @@
-.card {
-  background: #ECF1F8;
-  box-shadow: 5px 7px 10px 0 rgba(0, 0, 0, 0.50);
-  border-radius: 3px;
+@import "app/colors";
 
+.card {
+  background: $card-bg-color;
+  box-shadow: 5px 7px 5px 0 rgba(0, 0, 0, 0.12), 2px 2px 2px 0px rgba(0,0,0,0.24);
+  border-radius: 3px;
   &.dialog {
     width: 375px;
 
     @media screen and (max-width: 767px) {
       width: 100%;
     }
+  }
+
+  &.auto-padding {
+    padding: 16px;
   }
 }

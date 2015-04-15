@@ -50,19 +50,16 @@ Delegate.prototype = {
             next = request.post(this.url);
         }
 
-        request.set(this.headers);
-
         var self = this;
 
-        next.query(this.queries).send(this.sends).end(function (res) {
-            if (res.ok && res.body.status === 200) {
+        next.query(this.queries).send(this.sends).set(this.headers).end(function (error, response) {
+            if (response.ok && response.status === 200) {
                 if (self.thenCb != null) {
-                    self.thenCb(res);
+                    self.thenCb(response);
                 }
             } else {
                 if (self.errorCb != null) {
-
-                    self.errorCb(res);
+                    self.errorCb(error, response);
                 }
             }
         });

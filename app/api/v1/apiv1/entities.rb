@@ -5,12 +5,16 @@ module APIV1
     class UserAvatar < Grape::Entity
       expose :url do |model, opts|
         # http://stackoverflow.com/questions/19356935/host-and-port-in-a-grape-entity
-        "//#{opts[:env]['HTTP_HOST']}/images/avatar/#{model.url}"
+        if model.url.start_with? 'no_avatar'
+          "//#{opts[:env]['HTTP_HOST']}/assets/#{model.url}"
+        else
+          "//#{opts[:env]['HTTP_HOST']}/images/#{model.url}"
+        end
       end
     end
 
     class User < Grape::Entity
-      expose :id, :nickname, :group, :role, :topic_count, :reply_count, :created_at
+      expose :id, :nickname, :display_name, :group, :role, :topic_count, :reply_count, :created_at
       expose :avatar, using: Entities::UserAvatar
     end
 

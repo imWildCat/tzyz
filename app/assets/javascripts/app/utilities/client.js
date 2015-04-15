@@ -1,6 +1,6 @@
 var Networking = require('./networking');
 
-const BASE_URL = '//api/v1/';
+const BASE_URL = '/api/v1/';
 
 var Client = {
     get: function (uri) {
@@ -10,3 +10,5 @@ var Client = {
         return Networking.post(BASE_URL + uri);
     }
 };
+
+module.exports = Client;

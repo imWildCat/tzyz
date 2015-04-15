@@ -17,7 +17,7 @@ var NavContainer = require('../top_menu/nav_container');
 var TabMenu = require('../top_menu/tab_menu');
 var FriendButton = require('../top_menu/friend_button');
 var NotificationButton = require('../top_menu/notification_button');
-var Avatar = require('../top_menu/avatar');
+var Avatar = require('../../shared/elements/avatar');
 var SearchField = require('../top_menu/search_field');
 
 var MobileMenu = React.createClass({
@@ -71,7 +71,7 @@ var MobileMenu = React.createClass({
                                 <NotificationButton />
                             </li>
                             <li className="item hidden-sm">
-                                <Avatar url="/assets/no_avatar.png" />
+                                <Avatar mode="small" url="/assets/no_avatar.png" />
                             </li>
                         </ul>
                     </div>

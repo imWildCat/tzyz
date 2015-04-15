@@ -36,6 +36,14 @@ module APIV1
       expose :author, using: Entities::User
     end
 
+    class SiteHome < Grape::Entity
+      expose :topics, using: Entities::TopicInList
+      expose :hot_topics, using: Entities::TopicInList
+      expose :hot_nodes, using: Entities::Node
+      expose :new_nodes, using: Entities::Node
+      expose :statistics
+    end
+
 
   end
 end

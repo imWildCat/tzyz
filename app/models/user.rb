@@ -86,6 +86,12 @@ class User < ActiveRecord::Base
     find(id)
   end
 
+  def self.count_with_cache
+    Rails.cache.fetch('user_count', expires_in: 3.hours) do
+      User.count
+    end
+  end
+
   def self.from_omniauth(auth, current_user)
     authorization = Authorization.where(:provider => auth.provider, :uid => auth.uid.to_s).first_or_initialize
     authorization.update_attributes(

@@ -21,6 +21,12 @@ var TopicListRow = React.createClass({
 
         var topic = this.props.topic || {};
 
+        var shouldHideReplyCount = parseInt(topic.reply_count) === 0;
+        var replyCountStyle = {};
+        if(shouldHideReplyCount) {
+            replyCountStyle['display'] = 'none';
+        }
+
         return (
             <div {...this.props} className="row">
                 <div className="avatar-wrapper">
@@ -32,7 +38,7 @@ var TopicListRow = React.createClass({
                         <span className="node">{topic.node.name}</span>
                         <span className="author"><i className="fa fa-user"></i> {topic.author.display_name}</span>
                         <span className="time"><i className="fa fa-clock-o"></i> {moment(topic.created_at).fromNow()}</span>
-                        <span className="reply-count"><i className="fa fa-comments"></i> {topic.reply_count}</span>
+                        <span className="reply-count" style={replyCountStyle}><i className="fa fa-comments"></i> {topic.reply_count}</span>
                     </p>
 
                 </div>

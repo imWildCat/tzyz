@@ -17,10 +17,12 @@
 
 body {
   background-color: #bdd7e5;
+  color: #4A4A4A;
   margin: 0;
   padding: 0 0 20px 0;
   font-family: "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   font-size: 14px;
+  min-width: 300px;
 }
 
 // common:
@@ -48,8 +50,6 @@ body {
     display: none !important;
   }
 }
-
-
 
 .visible-sm {
   @media screen and (min-width: 768px) {

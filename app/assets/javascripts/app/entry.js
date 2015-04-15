@@ -10,7 +10,14 @@ var HomePage = require('./components/pages/home');
 
 var MainBlurContainer = require('./components/top_level/main_blur_container');
 
+var SiteNetworkingActions = require('./actions/networking/site');
+
 var App = React.createClass({
+
+    componentDidMount: function() {
+        SiteNetworkingActions.getInitialData();
+    },
+
     render: function () {
 
         return (

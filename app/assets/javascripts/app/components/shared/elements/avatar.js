@@ -23,8 +23,11 @@ var Avatar = React.createClass({
             case 'small':
                 className += ' small'; // 30px
                 break;
+            case 'tiny':
+                className += ' tiny'; // 24px
+                break;
             default:
-                // do nothing, default size is 40
+                // do nothing, default size is 40px * 40px
         }
 
         return (

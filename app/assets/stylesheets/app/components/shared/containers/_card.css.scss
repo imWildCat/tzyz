@@ -4,6 +4,7 @@
   background: $card-bg-color;
   box-shadow: 5px 7px 5px 0 rgba(0, 0, 0, 0.12), 2px 2px 2px 0px rgba(0,0,0,0.24);
   border-radius: 3px;
+  overflow: hidden;
   &.dialog {
     width: 375px;
 

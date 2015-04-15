@@ -1,0 +1,77 @@
+@import "app/colors";
+
+.side-bar {
+  section {
+    .card {
+      padding: 16px 0 16px 0;
+
+      .header {
+        border-bottom: 1px solid $border-bottom-color;
+
+        h2 {
+          font-size: 14px;
+          margin: 0 0 10px 16px;
+        }
+      }
+    }
+
+    &.nodes {
+
+      .left, .right {
+        float: left;
+        width: 50%;
+      }
+
+      .left {
+        .node-list {
+          margin-left: 16px;
+        }
+      }
+
+      .right {
+        .node-list {
+          text-align: right;
+          margin-right: 16px;
+        }
+      }
+
+      ol.node-list {
+        color: $secondary-text-color;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          margin-top: 10px;
+        }
+      }
+
+    }
+
+    &.statistics {
+      p {
+        margin: 0;
+      }
+      .left, .right {
+        float: left;
+        p {
+          margin-top: 10px;
+        }
+      }
+      .left {
+        width: 50px;
+        p {
+          margin-left: 16px;
+        }
+      }
+      .right {
+        margin-left: 5px;
+        width: auto;
+        font-size: 15px;
+        p {
+          color: $secondary-text-color;
+        }
+      }
+    }
+  }
+}

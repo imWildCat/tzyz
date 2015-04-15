@@ -21,7 +21,7 @@ var TopicList = React.createClass({
 
         var list = topicsArray.map(function (e) {
             return (
-                <TopicListRow topic={e} key={'news_' + e.id} />
+                <TopicListRow topic={e} key={'t_' + e.id} />
             );
         });
 

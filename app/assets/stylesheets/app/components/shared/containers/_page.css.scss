@@ -16,7 +16,17 @@
   }
 
   >.left-col {
-    width: 640px;
+    float: left;
+     width: 640px;
+     @media screen and (max-width: 767px) {
+       width: 100% !important;
+     }
+   }
+
+  >.right-col {
+    float: left;
+    margin-left: 20px;
+    width: 300px;
     @media screen and (max-width: 767px) {
       width: 100% !important;
     }

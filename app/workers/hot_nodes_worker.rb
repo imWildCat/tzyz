@@ -4,7 +4,7 @@ class HotNodesWorker
   sidekiq_options :queue => :statistics, :retry => 5
 
   def perform
-    candidates = Node.all
+    candidates = Node.includes(:node_category).all
     statistics = []
     candidates.each do |c|
       count = Topic.where(:node => c).count.to_i

@@ -6,18 +6,26 @@
 
 var React = require('react');
 
+var Card = require('./card');
+var SideMenu = require('../../common/side_bar');
+
 var Page = React.createClass({
 
-    render: function() {
+    render: function () {
 
         var className = 'page';
-        if(this.props.className) {
+        if (this.props.className) {
             className += ' ' + this.props.className;
         }
 
         return (
             <div {...this.props} className={className}>
+                <Card className="left-col" style={{/*marginTop: 20 */}}>
                 {this.props.children}
+                </Card>
+                <div className="right-col">
+                    <SideMenu />
+                </div>
             </div>
         )
     }

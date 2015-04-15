@@ -18,7 +18,6 @@ var HomePage = React.createClass({
     getInitialState: function() {
 
         TopicService.getDefaultList(1).then((res) => {
-            console.log(res.body);
             this.setState({topics: res.body});
         });
 
@@ -28,12 +27,9 @@ var HomePage = React.createClass({
     },
 
     render: function() {
-        console.log('render');
         return (
             <Page id="home-page">
-                <Card className="left-col" style={{/*marginTop: 20 */}}>
                     <TopicList topics={this.state.topics} />
-                </Card>
             </Page>
         )
     }

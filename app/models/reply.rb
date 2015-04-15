@@ -28,6 +28,12 @@ class Reply < ActiveRecord::Base
     (self.position - 1) / Topic.replies_per_page + 1
   end
 
+  def self.count_with_cache
+    Rails.cache.fetch('reply_count', expires_in: 3.hours) do
+      Reply.count
+    end
+  end
+
   protected
   def perform_mention_user
     generate_mention_user_notifications_for self

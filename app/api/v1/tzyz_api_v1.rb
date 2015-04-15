@@ -9,6 +9,7 @@ class TzyzApiV1 < Grape::API
 
   mount APIV1::Users
   mount APIV1::Topics
+  mount APIV1::Site
 
 
 end

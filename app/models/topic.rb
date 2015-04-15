@@ -92,10 +92,25 @@ class Topic < ActiveRecord::Base
     1
   end
 
+  def self.count_with_cache
+    Rails.cache.fetch('topic_count', expires_in: 3.hours) do
+      Topic.count
+    end
+  end
+
   def self.list(page: 1, page_size: 20)
         includes(:author, :refresher, :node)
         .order(created_at: :desc)
         .paginate(page: page, per_page: page_size)
+  end
+
+  def self.hots
+    hots = Rails.cache.read('hot_topics')
+    if hots.nil?
+      []
+    else
+      hots
+    end
   end
 
   def show(page, valid_click_or_not)

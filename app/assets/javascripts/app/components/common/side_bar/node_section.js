@@ -81,7 +81,7 @@ var NewNodeList = React.createClass({
     },
 
     getInitialState: function () {
-        return {nodes: []};
+        return {nodes: NewNodeStore.get()};
     },
 
     render: function () {

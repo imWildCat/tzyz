@@ -19,7 +19,6 @@ var HotTopicStore = Reflux.createStore({
     onUpdateInitialData: function(data) {
         _hotTopics = data.hot_topics;
         this.trigger(_hotTopics);
-        console.log(_hotTopics);
     },
 
     get: function() {

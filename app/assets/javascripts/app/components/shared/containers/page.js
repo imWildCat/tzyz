@@ -7,7 +7,7 @@
 var React = require('react');
 
 var Card = require('./card');
-var SideMenu = require('../../common/side_bar');
+var SideBar = require('../../common/side_bar');
 
 var Page = React.createClass({
 
@@ -24,7 +24,7 @@ var Page = React.createClass({
                 {this.props.children}
                 </Card>
                 <div className="right-col">
-                    <SideMenu />
+                    <SideBar />
                 </div>
             </div>
         )

@@ -19,7 +19,6 @@ var NewNodeStore = Reflux.createStore({
     onUpdateInitialData: function(data) {
         _newNodes = data.new_nodes;
         this.trigger(_newNodes);
-        console.log(_newNodes);
     },
 
     get: function() {

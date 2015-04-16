@@ -18,6 +18,5 @@ module.exports = SiteNetworkingActions;
 SiteNetworkingActions.getInitialData.listen(() => {
     SiteService.getInitialData().then((res) => {
         SiteNetworkingActions.updateInitialData(res.body);
-        console.log(res);
     });
 });

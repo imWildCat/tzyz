@@ -19,7 +19,6 @@ var HotNodeStore = Reflux.createStore({
     onUpdateInitialData: function(data) {
         _hotNodes = data.hot_nodes;
         this.trigger(_hotNodes);
-        console.log(_hotNodes);
     },
 
     get: function() {

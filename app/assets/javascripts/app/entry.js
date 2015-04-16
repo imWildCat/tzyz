@@ -14,7 +14,7 @@ var SiteNetworkingActions = require('./actions/networking/site');
 
 var App = React.createClass({
 
-    componentDidMount: function() {
+    componentWillMount: function() {
         SiteNetworkingActions.getInitialData();
     },
 

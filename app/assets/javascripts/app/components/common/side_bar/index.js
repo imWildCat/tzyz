@@ -15,7 +15,7 @@ var SideBar = React.createClass({
 
     render: function() {
         return (
-            <aside className="side-bar">
+            <aside {...this.props} className="side-bar">
                 <HotTopicSection />
                 <NodeSction />
                 <StatisticsSection />

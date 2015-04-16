@@ -7,7 +7,7 @@
 var Reflux = require('reflux');
 var SiteNetworkingActions = require('../../actions/networking/site');
 
-var _statistics = {};
+var _statistics = {user_count: '?', topic_count: '?', reply_count: '?'};
 
 var StatisticsStore = Reflux.createStore({
 
@@ -19,7 +19,6 @@ var StatisticsStore = Reflux.createStore({
     onUpdateInitialData: function(data) {
         _statistics = data.statistics;
         this.trigger(_statistics);
-        console.log(_statistics);
     },
 
     get: function() {

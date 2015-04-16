@@ -14,7 +14,7 @@ var Section = require('./section');
 var Statistics = React.createClass({
 
     getInitialState: function() {
-        return {statistics: {user_count: '?', topic_count: '?', reply_count: '?'}};
+        return {statistics: StatisticsStore.get()};
     },
 
     mixins: [

@@ -20,6 +20,8 @@ var NotificationButton = require('../top_menu/notification_button');
 var Avatar = require('../../shared/elements/avatar');
 var SearchField = require('../top_menu/search_field');
 
+var SideBar = require('../side_bar');
+
 var MobileMenu = React.createClass({
 
     mixins: [Reflux.ListenerMixin],
@@ -76,6 +78,8 @@ var MobileMenu = React.createClass({
                         </ul>
                     </div>
                 </NavContainer>
+
+                <SideBar style={{margin: '20px auto'}} />
             </DefaultMask>
         )
     }

@@ -43,7 +43,7 @@ var HotTopicSection = React.createClass({
     ],
 
     getInitialState: function () {
-        return { hotTopics: [] }
+        return { hotTopics: HotTopicStore.get() }
     },
 
     onStoreUpdate: function (hotTopics) {

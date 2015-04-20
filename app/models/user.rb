@@ -233,7 +233,12 @@ class User < ActiveRecord::Base
 
   def avatar_url
     Rails.cache.fetch(avatar_cache_key, expires_in: 1.days) do
-      avatar.url
+      url = avatar.url
+      if url.start_with? 'no_avatar'
+        "/assets/#{url}"
+      else
+        "/images/#{url}"
+      end
     end
   end
 

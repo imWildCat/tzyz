@@ -6,6 +6,7 @@
 
 var React = require('react');
 var Reflux = require('reflux');
+var { Link } = require('react-router');
 
 var HotNodeStore = require('../../../stores/site/hot_node');
 var NewNodeStore = require('../../../stores/site/new_node');
@@ -23,7 +24,7 @@ var Row = React.createClass({
 
         return (
             <li>
-                {node.name}
+                <Link to="nodeShow" params={{slug: node.slug}}> {node.name} </Link>
             </li>
         )
     }
@@ -60,7 +61,7 @@ var HotNodeList = React.createClass({
     },
 
     getInitialState: function () {
-        return {nodes: []};
+        return {nodes: HotNodeStore.get()};
     },
 
     render: function () {

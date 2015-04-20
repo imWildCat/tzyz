@@ -20,9 +20,9 @@ var Page = React.createClass({
 
         return (
             <div {...this.props} className={className}>
-                <Card className="left-col" style={{/*marginTop: 20 */}}>
+                <div className="left-col">
                 {this.props.children}
-                </Card>
+                </div>
                 <div className="right-col">
                     <SideBar />
                 </div>

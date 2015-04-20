@@ -11,10 +11,14 @@
     max-width: 960px;
   }
 
+  a {
+    color: $light-text-color;
+  }
+
   .brand {
     float: left;
     h1 {
-      margin-top: 8px;
+      margin: 8px 0 0 0;
       color: $light-text-color;
       font-size: 24px;
       padding-left: 10px;

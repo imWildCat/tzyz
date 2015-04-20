@@ -46,7 +46,7 @@ class Node < ActiveRecord::Base
   end
 
   def paginated_topics_for_page(page)
-    self.topics.order(priority:
+    self.topics.includes(:author, :refresher, :node).order(priority:
                           :desc).paginate(page: page,
                                           per_page: Node.topics_per_page)
   end

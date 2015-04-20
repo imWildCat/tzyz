@@ -9,8 +9,9 @@ module APIV1
       end
 
       get ':id' do
-        @topic = Topic.find(params[:id])
-        present @topic, with: Entities::TopicInList
+        topic = Topic.find(params[:id])
+        replies = topic.show(current_page, true)
+        present({topic: topic, replies: replies}, with: Entities::SingleTopic)
       end
 
     end

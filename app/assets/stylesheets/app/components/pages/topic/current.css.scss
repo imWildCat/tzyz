@@ -1,0 +1,77 @@
+@import "app/colors";
+
+#topic-show-page {
+  h1.title {
+    font-size: 20px;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+  }
+
+  .reply-row-wrapper {
+    margin: 16px 0 0 16px;
+    padding: 0 16px 16px 0;
+    border-bottom: 1px solid $border-bottom-color;
+  }
+
+  .row {
+    .avatar-wrapper {
+      width: 40px;
+      height: 40px;
+      float: left;
+    }
+    .content-wrapper {
+      margin-left: 50px;
+      width: auto;
+
+      .meta {
+        font-size: 12px;
+        color: $secondary-normal-color;
+        overflow: hidden;
+        .left {
+          //margin-right: 137px;
+          //width: auto;
+          float: left;
+          .author-name {
+            font-size: 14px;
+            color: $default-text-color;
+          }
+          .device {
+            .fa {
+              font-size: 18px;
+            }
+          }
+          .node-name {
+            &:before {
+              content: "·";
+              margin-right: 5px;
+            }
+          }
+          >span {
+            margin-left: 10px;
+            &:first-child {
+              margin-left: 0;
+            }
+          }
+        }
+        .right {
+          float:right;
+          color: $secondary-normal-color;
+          >span {
+            margin-right: 10px;
+            font-size: 12px;
+            &:last-child {
+              margin-right: 0;
+            }
+            i {
+              font-size: 16px;
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+
+      .content {
+      }
+    }
+  }
+}

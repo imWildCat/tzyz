@@ -12,16 +12,19 @@ var TopicListRow = require('./row');
 var TopicList = React.createClass({
 
     propTypes: {
-      topics: React.PropTypes.array
+        topics: React.PropTypes.array,
+        isNodePage: React.PropTypes.bool
     },
 
-    render: function() {
+    render: function () {
 
         var topicsArray = this.props.topics || [];
 
+        var self = this;
+
         var list = topicsArray.map(function (e) {
             return (
-                <TopicListRow topic={e} key={'t_' + e.id} />
+                <TopicListRow isNodePage={self.props.isNodePage} topic={e} key={'t_' + e.id}/>
             );
         });
 

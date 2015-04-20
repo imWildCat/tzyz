@@ -1,5 +1,7 @@
 var React = require('react');
 
+var { Link } = require('react-router');
+
 var NavContainer = require('./nav_container');
 var Avatar = require('../../shared/elements/avatar');
 var SearchField = require('./search_field');
@@ -16,10 +18,11 @@ var TopMenu = React.createClass({
         return (
             <NavContainer>
                 <i className="logo"></i>
+
                 <div className="brand">
-                    <h1>滕州一中校友会</h1>
+                    <h1><Link to="home"> 滕州一中校友会</Link></h1>
                 </div>
-                <TabMenu className="hidden-sm" style={{marginLeft: 30}} />
+                <TabMenu className="hidden-sm" style={{marginLeft: 30}}/>
                 <ul className="top-menu-tool-bar float-right" style={{margin:0, padding: 0}}>
                     <MobileButton {...this.props} />
                     <li className="item hidden-md">
@@ -29,10 +32,10 @@ var TopMenu = React.createClass({
                         <NotificationButton />
                     </li>
                     <li className="item">
-                        <Avatar mode="small" url="/assets/no_avatar.png" />
+                        <Avatar mode="small" url="/assets/no_avatar.png"/>
                     </li>
                 </ul>
-                <SearchField className="hidden-md" />
+                <SearchField className="hidden-md"/>
             </NavContainer>
         )
     }

@@ -56,6 +56,7 @@
         float: left;
         p {
           margin-top: 10px;
+          line-height: 21px;
         }
       }
       .left {
@@ -67,7 +68,6 @@
       .right {
         margin-left: 5px;
         width: auto;
-        font-size: 15px;
         p {
           color: $secondary-text-color;
         }

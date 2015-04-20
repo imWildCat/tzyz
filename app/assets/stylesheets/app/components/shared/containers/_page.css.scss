@@ -1,6 +1,7 @@
 .page {
 
   margin: 20px auto auto auto;
+  padding-bottom: 20px;
 
   @media screen and (min-width: 1024px) {
     width: 960px !important;
@@ -11,8 +12,9 @@
   }
 
   @media screen and (max-width: 767px) {
+    margin-top: 0;
+    padding-bottom: 0;
     width: 100%;
-    margin: 0;
   }
 
   >.left-col {

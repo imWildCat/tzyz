@@ -7,29 +7,33 @@
 var React = require('react');
 var Reflux = require('reflux');
 
-var Page = require('../../shared/containers/page');
 var Card = require('../../shared/containers/card');
+var Page = require('../../shared/containers/page');
 var TopicList = require('../../common/topic_list');
 
-var TopicService = require('../../../services/topic');
+var TopicListStore = require('../../../stores/site/topic_list');
 
 var HomePage = React.createClass({
 
-    getInitialState: function() {
+    mixins: [
+        Reflux.listenTo(TopicListStore, 'onStoreUpdate')
+    ],
 
-        TopicService.getDefaultList(1).then((res) => {
-            this.setState({topics: res.body});
-        });
+    getInitialState: function () {
 
         return {
-            topics: []
+            topics: TopicListStore.get()
         }
     },
 
-    render: function() {
+    onStoreUpdate: function(data) {
+        this.setState({topics: data});
+    },
+
+    render: function () {
         return (
             <Page id="home-page">
-                    <TopicList topics={this.state.topics} />
+                <Card><TopicList topics={this.state.topics}/></Card>
             </Page>
         )
     }

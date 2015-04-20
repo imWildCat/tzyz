@@ -24,7 +24,7 @@ var Row = React.createClass({
             <div className="row" style={{clear: 'both', padding: '10px 16px 10px 16px', borderBottom: '1px solid #dbdbdb'}}>
                 <div className="wrapper">
                     <div className="avatar-wrapper" style={{width: 24, height: 24, float: 'left'}}>
-                        <Avatar mode="tiny" url={topic.author.avatar.url} />
+                        <Avatar mode="tiny" url={topic.author.avatar_url} />
                     </div>
                     <div className="title" style={{marginLeft: 34, width: 'auto', minHeight: 24}}>
                         {topic.title}

@@ -8,6 +8,8 @@ class TzyzApiV1 < Grape::API
   content_type :json, 'application/json;charset=utf8'
 
   mount APIV1::Users
+  mount APIV1::Nodes
+
   mount APIV1::Topics
   mount APIV1::Site
 

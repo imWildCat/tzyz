@@ -39,13 +39,15 @@
         .node {
           background: #9BC784;
           border-radius: 3px;
-          padding: 0 4px 0 4px;
-          color: #FFFFFF;
+          padding: 0 2px 0 4px;
+          a {
+            color: #FFFFFF;
+          }
         }
 
         >span {
           margin-left: 10px;
-          &:first-child {
+          &:first-child, {
             margin-left: 0;
           }
 
@@ -56,6 +58,10 @@
       }
     }
 
-
+    &.in-node-page {
+      span.author {
+        margin-left: 0;
+      }
+    }
   }
 }

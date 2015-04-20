@@ -6,6 +6,7 @@
 
 var React = require('react');
 var Reflux = require('reflux');
+var { Link } = require('react-router');
 
 var moment = require('moment');
 
@@ -37,7 +38,10 @@ var TopicContentRow = React.createClass({
                     <span className="favorite-count"><i className="fa fa-star"></i>{data.favorite_count}</span>
                     <span className="appreciation-count"><i className="fa fa-heart"></i>{data.appreciation_count}</span>
                 </div>
-            nodeName = <span className="node-name">{data.node.name}</span>
+            nodeName =
+                <span className="node-name">
+                    <Link to="nodeShow" params={{slug: data.node.slug}}>{data.node.name}</Link>
+                </span>
         } else {
             rightMeta =
                 <div className="right">
@@ -55,7 +59,9 @@ var TopicContentRow = React.createClass({
                 <div className="content-wrapper">
                     <div className="meta">
                         <div className="left">
-                            <span className="author-name">{data.author.display_name}</span>
+                            <span className="author-name">
+                                <Link to="userShow" params={{id: data.author.id}}>{data.author.display_name}</Link>
+                            </span>
                             <span className="device"><i className="fa fa-mobile"></i></span>
                             <span className="time">{moment(data.created_at).fromNow()}</span>
                             {nodeName}

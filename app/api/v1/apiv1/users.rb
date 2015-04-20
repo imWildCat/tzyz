@@ -2,8 +2,8 @@ module APIV1
   class Users < Grape::API
 
     desc 'user'
-    resource 'user/:id' do
-      get do
+    resource 'users' do
+      get ':id' do
         @user = User.fetch id: params[:id]
         present @user, with: Entities::User
       end

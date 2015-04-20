@@ -6,7 +6,6 @@
 
 var React = require('react');
 var Reflux = require('reflux');
-
 var { Link } = require('react-router');
 
 var Avatar = require('../../shared/elements/avatar');
@@ -54,7 +53,9 @@ var TopicListRow = React.createClass({
 
                     <p className="labels">
                         {nodeSpan}
-                        <span className="author"><i className="fa fa-user"></i> {topic.author.display_name}</span>
+                        <span className="author"><i className="fa fa-user"></i>
+                            <Link to="userShow" params={{id: topic.author.id}}>{topic.author.display_name}</Link>
+                        </span>
                         <span className="time"><i
                             className="fa fa-clock-o"></i> {moment(topic.created_at).fromNow()}</span>
                         <span className="reply-count" style={replyCountStyle}><i

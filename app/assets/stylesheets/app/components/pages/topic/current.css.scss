@@ -31,9 +31,14 @@
           //margin-right: 137px;
           //width: auto;
           float: left;
+          a {
+            color: $secondary-normal-color;
+          }
           .author-name {
             font-size: 14px;
-            color: $default-text-color;
+            a {
+              color: $default-text-color;
+            }
           }
           .device {
             .fa {

@@ -11,6 +11,7 @@ var MobileMenu = require('./components/common/mobile_menu');
 var HomePage = require('./components/pages/home');
 var TopicShowPage = require('./components/pages/topic/show');
 var NodeShowPage = require('./components/pages/node/show');
+var UserShowPage = require('./components/pages/user/show');
 
 var MainBlurContainer = require('./components/top_level/main_blur_container');
 
@@ -45,6 +46,7 @@ var routes = (
         <DefaultRoute name="home" handler={HomePage}/>
         <Route name="topicShow" path="topic/:id" handler={TopicShowPage} />
         <Route name="nodeShow" path="node/:slug" handler={NodeShowPage} onEnter={nodeShowPageTransitionHandler} />
+        <Route name="userShow" path="user/:id" handler={UserShowPage} />
     </Route>
 );
 

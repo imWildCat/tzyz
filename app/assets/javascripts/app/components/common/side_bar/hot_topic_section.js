@@ -6,6 +6,7 @@
 
 var React = require('react');
 var Reflux = require('reflux');
+var { Link } = require('react-router');
 
 var HotTopicStore = require('../../../stores/site/hot_topic');
 
@@ -27,7 +28,7 @@ var Row = React.createClass({
                         <Avatar mode="tiny" url={topic.author.avatar_url} />
                     </div>
                     <div className="title" style={{marginLeft: 34, width: 'auto', minHeight: 24}}>
-                        {topic.title}
+                        <Link to="topicShow" params={{id: topic.id}}> {topic.title} </Link>
                     </div>
                 </div>
             </div>

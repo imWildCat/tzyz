@@ -29,7 +29,7 @@ require 'whenever/capistrano'
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 
-invoke :production
+# invoke :production
 
 
 # 1. If you meet Error installing mysql2: Failed to build gem native extension, please see:

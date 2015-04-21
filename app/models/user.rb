@@ -204,11 +204,13 @@ class User < ActiveRecord::Base
   end
 
   def profile
-    if user_profile.nil?
-      build_user_profile.save
-      user_profile
-    else
-      user_profile
+    Rails.cache.fetch(profile_cache_key, expires_in: 6.hours) do
+      if user_profile.nil?
+        build_user_profile.save
+        user_profile
+      else
+        user_profile
+      end
     end
   end
 
@@ -310,6 +312,10 @@ class User < ActiveRecord::Base
 
   # Caching clear methods
 
+  def delete_cached_profile
+    Rails.cache.delete profile_cache_key
+  end
+
   def delete_cached_avatar_url
     Rails.cache.delete(avatar_cache_key)
   end
@@ -351,6 +357,10 @@ class User < ActiveRecord::Base
   private
 
   # Caching keys
+  def profile_cache_key
+    "#{cache_key}_profile"
+  end
+
   def avatar_cache_key
     "user_#{id}_avatar_url"
   end

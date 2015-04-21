@@ -1,0 +1,24 @@
+#user-show-page {
+  .card.user-card {
+    .avatar-wrapper {
+      padding: 16px 0 16px 16px;
+      width: 60px;
+      height: 60px;
+      float: left;
+    }
+
+    .info-wrapper {
+      width: auto;
+      margin-left: 91px;
+      .username {
+        display: inline-block;
+        margin-top: 23px;
+        font-size: 20px;
+        font-weight: 300;
+      }
+      .headline {
+        font-size: 16px;
+      }
+    }
+  }
+}

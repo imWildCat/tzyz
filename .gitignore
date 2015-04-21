@@ -39,6 +39,7 @@ config/newrelic.yml
 
 # npm
 node_modules
+npm-debug.log
 
 # geneated js
 app/assets/javascripts/app/bundle.js

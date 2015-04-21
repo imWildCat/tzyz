@@ -25,8 +25,17 @@ var NodeShowPage = React.createClass({
     ],
 
     componentWillMount: function () {
-        var { slug } = this.context.router.getCurrentParams();
+        this.requestData();
+    },
 
+    componentWillReceiveProps: function (nextProps) {
+        // This method is not called for the initial render.
+        // Ref: http://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops
+        this.requestData();
+    },
+
+    requestData: function() {
+        var { slug } = this.context.router.getCurrentParams();
         NodeNetworkingActions.getSingle(slug, 1);
     },
 
@@ -42,7 +51,7 @@ var NodeShowPage = React.createClass({
         return (
             <Page id="node-page">
                 <Card autoPadding={true} style={{marginBottom: 20}}>
-                    <h3 style={{margin: 0}}>{this.state.node.name}</h3>
+                    <h3 style={{margin: 0, fontSize: 20}}>{this.state.node.name}</h3>
                 </Card>
                 <Card><TopicList isNodePage={true} topics={this.state.topics}/></Card>
             </Page>

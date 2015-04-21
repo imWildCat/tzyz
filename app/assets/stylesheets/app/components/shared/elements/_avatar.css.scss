@@ -13,4 +13,10 @@
     height: 24px;
     border-radius: 3px;
   }
+
+  &.big {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+  }
 }

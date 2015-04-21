@@ -26,6 +26,9 @@ var Avatar = React.createClass({
             case 'tiny':
                 className += ' tiny'; // 24px
                 break;
+            case 'big':
+                className += ' big'; // 60px rounded
+                break;
             default:
                 // do nothing, default size is 40px * 40px
         }
@@ -35,6 +38,5 @@ var Avatar = React.createClass({
         )
     }
 });
-
 
 module.exports = Avatar;

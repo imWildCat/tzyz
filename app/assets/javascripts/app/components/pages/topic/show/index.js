@@ -26,8 +26,15 @@ var TopicShowPage = React.createClass({
     ],
 
     componentWillMount: function () {
-        var { id } = this.context.router.getCurrentParams();
+        this.requestData();
+    },
 
+    componentWillReceiveProps: function (nextProps) {
+        this.requestData();
+    },
+
+    requestData: function () {
+        var { id } = this.context.router.getCurrentParams();
         TopicNetworkingActions.getSingle(id, 1);
     },
 
@@ -45,12 +52,12 @@ var TopicShowPage = React.createClass({
 
         var topicContent = <div></div>;
         if (topic.title) {
-            topicContent =  <TopicContentRow data={topic} isTopic={true} />
+            topicContent = <TopicContentRow data={topic} isTopic={true} />
         }
 
         var replyList = this.state.replies.map((r) => {
             return (
-                <div className="reply-row-wrapper">
+                <div className="reply-row-wrapper" key={'r_'+r.id}>
                     <TopicContentRow data={r} isTopic={false} />
                 </div>
             )

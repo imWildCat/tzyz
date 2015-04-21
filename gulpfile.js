@@ -1,14 +1,35 @@
 var gulp = require('gulp'),
-    webpack = require('gulp-webpack');
+    //sourcemaps = require('gulp-sourcemaps'),
+    livereload = require('gulp-livereload');
+var browserify = require('browserify');
+var watchify = require('watchify');
+var reactify = require('reactify');
+var to5ify = require('6to5ify');
+var source = require('vinyl-source-stream');
 
-gulp.task("webpack", function() {
-    return gulp.src("app/assets/javascripts/app/entry.js")
-        .pipe(webpack(require("./config/webpack.config.js")))
-        .pipe(gulp.dest("app/assets/javascripts/app"));
+// TODO: add production config
+// FIXME: sourcemap not working correctly
+
+gulp.task("watch", function () {
+    livereload.listen();
+
+    var watcher = watchify(browserify({
+        entries: ['./app/assets/javascripts/app/entry.js'],
+        transform: [reactify],
+        debug: true,
+        cache: {}, packageCache: {}, fullPaths: true
+    }));
+
+    watcher.on('update', function () {
+        watcher.transform(to5ify).bundle()
+            .pipe(source('bundle.js'))
+            .pipe(gulp.dest('./app/assets/javascripts/app'))
+            .pipe(livereload());
+        console.log('Updated');
+    }).transform(to5ify).bundle()
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest('./app/assets/javascripts/app'))
+        .pipe(livereload());
 });
 
-gulp.task("watch", function() {
-    gulp.watch(["app/assets/javascripts/app/**/*.js", "!app/assets/javascripts/app/bundle.js", "app/assets/javascripts/app/**/*.jsx"], ["webpack"]);
-});
-
-gulp.task("default", ["watch", "webpack"]);
+gulp.task('default', ['watch']);

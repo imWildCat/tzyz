@@ -17,7 +17,7 @@ var MainBlurContainer = require('./components/top_level/main_blur_container');
 
 var SiteNetworkingActions = require('./actions/networking/site');
 
-var App = React.createClass({
+var App = React.createClass({displayName: "App",
 
     componentWillMount: function() {
         SiteNetworkingActions.getInitialData();
@@ -26,15 +26,15 @@ var App = React.createClass({
     render: function () {
 
         return (
-            <div>
-                <MainBlurContainer>
-                    <TopMenu />
+            React.createElement("div", null, 
+                React.createElement(MainBlurContainer, null, 
+                    React.createElement(TopMenu, null), 
 
-                    <RouteHandler/>
+                    React.createElement(RouteHandler, null)
 
-                </MainBlurContainer>
-                <MobileMenu />
-            </div>
+                ), 
+                React.createElement(MobileMenu, null)
+            )
         )
     }
 });
@@ -42,12 +42,12 @@ var App = React.createClass({
 
 
 var routes = (
-    <Route name="app" path="/" handler={App}>
-        <DefaultRoute name="home" handler={HomePage}/>
-        <Route name="topicShow" path="topic/:id" handler={TopicShowPage} />
-        <Route name="nodeShow" path="node/:slug" handler={NodeShowPage} onEnter={nodeShowPageTransitionHandler} />
-        <Route name="userShow" path="user/:id" handler={UserShowPage} />
-    </Route>
+    React.createElement(Route, {name: "app", path: "/", handler: App}, 
+        React.createElement(DefaultRoute, {name: "home", handler: HomePage}), 
+        React.createElement(Route, {name: "topicShow", path: "topic/:id", handler: TopicShowPage}), 
+        React.createElement(Route, {name: "nodeShow", path: "node/:slug", handler: NodeShowPage, onEnter: nodeShowPageTransitionHandler}), 
+        React.createElement(Route, {name: "userShow", path: "user/:id", handler: UserShowPage})
+    )
 );
 
 var nodeShowPageTransitionHandler = function(transition) {
@@ -56,5 +56,8 @@ var nodeShowPageTransitionHandler = function(transition) {
 }
 
 Router.run(routes, function(Handler) {
-    React.render(<Handler />, document.body);
+    React.render(React.createElement(Handler, null), document.body);
 });
+
+//# sourceMappingURL=entry.js.map
+//# sourceMappingURL=entry.js.map

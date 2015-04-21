@@ -17,47 +17,42 @@ var MainBlurContainer = require('./components/top_level/main_blur_container');
 
 var SiteNetworkingActions = require('./actions/networking/site');
 
-var App = React.createClass({displayName: "App",
+var App = React.createClass({
 
-    componentWillMount: function() {
+    componentWillMount: function () {
         SiteNetworkingActions.getInitialData();
     },
 
     render: function () {
 
         return (
-            React.createElement("div", null, 
-                React.createElement(MainBlurContainer, null, 
-                    React.createElement(TopMenu, null), 
+            <div>
+                <MainBlurContainer>
+                    <TopMenu />
 
-                    React.createElement(RouteHandler, null)
+                    <RouteHandler/>
 
-                ), 
-                React.createElement(MobileMenu, null)
-            )
+                    <div className="footer"
+                         style={{paddingTop: 16, clear: 'both',width: '100%',height: 25, fontSize: 12, textAlign: 'center'}}>
+                        Copyright © 2015 滕州一中校友会 1.1 Alpha
+                    </div>
+                </MainBlurContainer>
+                <MobileMenu />
+            </div>
         )
     }
 });
 
-
-
 var routes = (
-    React.createElement(Route, {name: "app", path: "/", handler: App}, 
-        React.createElement(DefaultRoute, {name: "home", handler: HomePage}), 
-        React.createElement(Route, {name: "topicShow", path: "topic/:id", handler: TopicShowPage}), 
-        React.createElement(Route, {name: "nodeShow", path: "node/:slug", handler: NodeShowPage, onEnter: nodeShowPageTransitionHandler}), 
-        React.createElement(Route, {name: "userShow", path: "user/:id", handler: UserShowPage})
-    )
+    <Route name="app" path="/" handler={App}>
+        <DefaultRoute name="home" handler={HomePage}/>
+        <Route name="topicShow" path="topic/:id" handler={TopicShowPage}/>
+        <Route name="nodeShow" path="node/:slug" handler={NodeShowPage}/>
+        <Route name="userShow" path="user/:id" handler={UserShowPage}/>
+    </Route>
 );
 
-var nodeShowPageTransitionHandler = function(transition) {
-    // could also check transition.path
-    console.log('show');
-}
 
-Router.run(routes, function(Handler) {
-    React.render(React.createElement(Handler, null), document.body);
+Router.run(routes, function (Handler) {
+    React.render(<Handler />, document.body);
 });
-
-//# sourceMappingURL=entry.js.map
-//# sourceMappingURL=entry.js.map

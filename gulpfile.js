@@ -2,9 +2,9 @@ var gulp = require('gulp'),
     //sourcemaps = require('gulp-sourcemaps'),
     livereload = require('gulp-livereload');
 var browserify = require('browserify');
+var babelify = require("babelify");
 var watchify = require('watchify');
 var reactify = require('reactify');
-var to5ify = require('6to5ify');
 var source = require('vinyl-source-stream');
 
 // TODO: add production config
@@ -15,21 +15,20 @@ gulp.task("watch", function () {
 
     var watcher = watchify(browserify({
         entries: ['./app/assets/javascripts/app/entry.js'],
-        transform: [reactify],
+        transform: [babelify, reactify],
         debug: true,
         cache: {}, packageCache: {}, fullPaths: true
     }));
 
     watcher.on('update', function () {
-        watcher.transform(to5ify).bundle()
+        watcher.bundle()
             .pipe(source('bundle.js'))
             .pipe(gulp.dest('./app/assets/javascripts/app'))
             .pipe(livereload());
         console.log('Updated');
-    }).transform(to5ify).bundle()
+    }).bundle()
         .pipe(source('bundle.js'))
-        .pipe(gulp.dest('./app/assets/javascripts/app'))
-        .pipe(livereload());
+        .pipe(gulp.dest('./app/assets/javascripts/app')).pipe(livereload());
 });
 
 gulp.task('default', ['watch']);

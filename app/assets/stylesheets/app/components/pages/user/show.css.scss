@@ -1,23 +1,73 @@
+@import "app/mixins/common";
+
 #user-show-page {
   .card.user-card {
-    .avatar-wrapper {
-      padding: 16px 0 16px 16px;
-      width: 60px;
-      height: 60px;
-      float: left;
+    .header {
+      margin-top: 16px;
+      padding: 0 16px 0 16px;
+      border-bottom: 1px solid $border-bottom-color;
+      .avatar-wrapper {
+        width: 60px;
+        height: 60px;
+        float: left;
+      }
+
+      .info-wrapper {
+        width: auto;
+        margin-left: 76px;
+
+        .username {
+          margin-top: 12px;
+          font-size: 20px;
+          font-weight: 300;
+        }
+        .headline {
+          color: $secondary-text-color;
+          font-size: 16px;
+          padding-bottom: 16px;
+          min-height: 24px;
+        }
+
+        .actions {
+          display: inline-block;
+          float: right;
+          > span {
+            color: $secondary-normal-color;
+            margin-left: 10px;
+            .fa {
+              font-size: 15px;
+              @include secondary-normal-action-element();
+            }
+          }
+        }
+      }
     }
 
-    .info-wrapper {
-      width: auto;
-      margin-left: 91px;
-      .username {
-        display: inline-block;
-        margin-top: 23px;
-        font-size: 20px;
-        font-weight: 300;
+    .content-wrapper {
+      padding: 16px;
+
+      .tab-menu {
+        display: block;
+        color: $less-secondary-text-color;
+        .active, li:hover {
+          color: $secondary-normal-highlight-color;
+        }
       }
-      .headline {
-        font-size: 16px;
+
+      .tab-container {
+        padding-top: 10px;
+        clear:both;
+
+        table.user-profile-content {
+          tr {
+            line-height: 25px;
+            th {
+              color: $less-secondary-text-color;
+              text-align: right;
+              width: 60px;
+            }
+          }
+        }
       }
     }
   }

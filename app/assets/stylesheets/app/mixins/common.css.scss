@@ -1,0 +1,31 @@
+// Colors:
+
+$default-text-color: #4A4A4A;
+$light-text-color: #F2F2F2;
+$secondary-text-color: #656565;
+$less-secondary-text-color: #9B9B9B;
+$secondary-normal-color: #C2CCD2;
+$secondary-normal-highlight-color: #8C9498;
+
+$button-normal-color: #E3E3E3;
+$button-normal-highlight-color: #ffffff;
+
+$card-bg-color: #FDFDFD;
+
+$normal-border-color: #DBDBDB;
+$border-bottom-color: $normal-border-color;
+
+// Border:
+$normal-border-bottom: 1px solid $border-bottom-color;
+
+// Transition:
+$normal-transition:  all .35s ease-in-out;
+
+//
+@mixin secondary-normal-action-element() {
+  color: $secondary-normal-color;
+  &:hover {
+    color: $secondary-normal-highlight-color;
+    transition: $normal-transition;
+  }
+}

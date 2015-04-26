@@ -4,9 +4,7 @@ Rails.application.routes.draw do
 
   mount TzyzApiV1 => '/'
 
-
   # olds
-
   get 'home' => 'home#index'
   get 'home/about'
   get 'api' => 'home#api'

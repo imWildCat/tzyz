@@ -133,5 +133,6 @@ namespace :assets do
   # end
 
   after 'deploy:updated', 'assets:gulp_publish'
+  # after 'deploy:updated', 'assets:gulp_publish'
   # after 'deploy:updated', 'assets:gulp_manifest'
 end

@@ -11,10 +11,11 @@ module APIV1
 
         present({topics: topics, hot_topics: hot_topics,
                  hot_nodes: hot_nodes, new_nodes: new_nodes,
+                 current_user: current_user,
                  statistics: {
                      user_count: User.count_with_cache,
                      topic_count: Topic.count_with_cache,
-                     reply_count: Reply.count_with_cache
+                     reply_count: Reply.count_with_cache,
                  }}, with: Entities::SiteHome)
       end
     end

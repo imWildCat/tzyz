@@ -1,12 +1,15 @@
 class User < ActiveRecord::Base
-  include Redis::Search
-
-  redis_search_index(
-      :title_field => :nickname,
-      :prefix_field_enable => true,
-      # :score_filed => :id,
-      :ext_fields => [:id]
-  )
+  # Include default devise modules.
+  devise :database_authenticatable, :registerable,
+          :recoverable, :rememberable, :trackable, :validatable,
+          :confirmable, :omniauthable
+  # include Redis::Search
+  # redis_search_index(
+  #     :title_field => :nickname,
+  #     :prefix_field_enable => true,
+  #     # :score_filed => :id,
+  #     :ext_fields => [:id]
+  # )
 
   # Include default devise modules. Others available are:
   # :timeoutable
@@ -84,6 +87,13 @@ class User < ActiveRecord::Base
 
   def self.fetch(id: nil)
     find(id)
+  end
+
+  # auth for API
+  # Ref: http://stackoverflow.com/questions/6724494/i-need-to-authenticate-a-user-directly-in-the-console-under-devise-how-can-i-do
+  def self.authenticate(account: '', password: '')
+    user = User.find_for_authentication(:email => account)
+    user.valid_password?(password) ? user : nil
   end
 
   def self.count_with_cache

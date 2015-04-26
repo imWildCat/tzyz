@@ -53,6 +53,10 @@ gem 'paranoia', '~> 2.0.2'
 gem 'grape', '~> 0.11.0'
 gem 'grape-entity', '~> 0.4.5'
 
+# auth: use token
+# gem 'doorkeeper', '~> 2.2.0'
+# gem 'rack-oauth2', '~> 1.1.1'
+
 # redis store for cache
 gem 'redis-rails', '~> 4.0.0'
 

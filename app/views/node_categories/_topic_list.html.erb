@@ -2,7 +2,7 @@
       <% @topics.each do |t| %>
           <div class="thread">
             <div class="avatar">
-              <%= image_tag(t.author.avatar_url, alt: 'avatar') %>
+              <img src="<%= t.author.avatar_url %>" />
             </div>
             <div class="meta">
               <div class="reply-count">

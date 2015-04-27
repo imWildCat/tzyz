@@ -38,8 +38,13 @@ var Avatar = React.createClass({
             onTouchTap = this.props.onTouchTap;
         }
 
+        var url = this.props.url;
+        if (url.indexOf('/assets/no_avatar.png') == 0) {
+            url = '//ww3.sinaimg.cn/large/7deee1d1tw1erkiilrqamj205k05kmwy.jpg';
+        }
+
         return (
-            <img  onTouchTap={onTouchTap} src={this.props.url} className={className} alt="avatar" />
+            <img  onTouchTap={onTouchTap} src={url} className={className} alt="avatar" />
         )
     }
 });

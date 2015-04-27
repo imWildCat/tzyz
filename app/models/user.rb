@@ -93,7 +93,17 @@ class User < ActiveRecord::Base
   # Ref: http://stackoverflow.com/questions/6724494/i-need-to-authenticate-a-user-directly-in-the-console-under-devise-how-can-i-do
   def self.authenticate(account: '', password: '')
     user = User.find_for_authentication(:email => account)
-    user.valid_password?(password) ? user : nil
+    is_valid = user.valid_password?(password)
+
+    # lock
+
+    # Plus failed_attempts while password is wrong
+    unless is_valid
+      user.failed_attempts += 1
+      user.save
+    end
+
+    is_valid ? user : nil
   end
 
   def self.count_with_cache

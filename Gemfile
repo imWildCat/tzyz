@@ -144,6 +144,7 @@ group :development, :test do
   gem 'capistrano-bundler', '~> 1.1.3'
   gem 'capistrano3-puma', '~> 0.8.3'
   gem 'capistrano-sidekiq', '~> 0.3.8'
+  gem 'capistrano-gulp', '~> 0.0.1'
 
 end
 

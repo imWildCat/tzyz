@@ -10,14 +10,20 @@ var FlatButton = require('./flat_button');
 
 var CloseButton = React.createClass({
 
-    //propTypes: {
-    //    iconClassName: React.Prototype.string
-    //},
+    propTypes: {
+        mode: React.PropTypes.string // enum: [light, dark]
+    },
 
     render: function () {
+
+        var className = 'fa fa-times close-button';
+        if(this.props.mode === 'dark') {
+            className += ' dark'
+        }
+
         return (
             <FlatButton {...this.props}>
-                <i className="fa fa-times close-button"></i>
+                <i className={className}></i>
             </FlatButton>
         )
     }

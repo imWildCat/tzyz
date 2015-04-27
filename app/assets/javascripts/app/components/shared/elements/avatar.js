@@ -33,8 +33,13 @@ var Avatar = React.createClass({
                 // do nothing, default size is 40px * 40px
         }
 
+        var onTouchTap = null;
+        if (this.props.onTouchTap) {
+            onTouchTap = this.props.onTouchTap;
+        }
+
         return (
-            <img src={this.props.url} className={className} alt="avatar" />
+            <img  onTouchTap={onTouchTap} src={this.props.url} className={className} alt="avatar" />
         )
     }
 });

@@ -62,5 +62,13 @@
     color: $light-text-color;
     position: relative;
     text-decoration: none;
+
+    &.text {
+      width: 32px;
+      padding-top: 3px;
+      a {
+        font-size: 16px;
+      }
+    }
   }
 }

@@ -15,9 +15,7 @@ var CloseButton = require('../../shared/elements/close_button');
 
 var NavContainer = require('../top_menu/nav_container');
 var TabMenu = require('../top_menu/tab_menu');
-var FriendButton = require('../top_menu/friend_button');
-var NotificationButton = require('../top_menu/notification_button');
-var Avatar = require('../../shared/elements/avatar');
+var ToolBar = require('../top_menu/tool_bar');
 var SearchField = require('../top_menu/search_field');
 
 var SideBar = require('../side_bar');
@@ -65,17 +63,7 @@ var MobileMenu = React.createClass({
                     <TabMenu className="visible-sm" />
                     <div style={{clear: 'both', paddingLeft: 10, paddingRight: 10}}>
                         <SearchField style={{float: 'left'}} />
-                        <ul className="top-menu-tool-bar">
-                            <li className="item">
-                                <FriendButton />
-                            </li>
-                            <li className="item hidden-sm">
-                                <NotificationButton />
-                            </li>
-                            <li className="item hidden-sm">
-                                <Avatar mode="small" url="/assets/no_avatar.png" />
-                            </li>
-                        </ul>
+                        <ToolBar isMobile={true} />
                     </div>
                 </NavContainer>
 

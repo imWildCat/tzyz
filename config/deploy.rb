@@ -40,6 +40,10 @@ set :default_env, {path: '$HOME/.rbenv/shims/:$PATH'}
 # Whenever
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 
+# gulp
+set :gulp_tasks, 'deploy'
+before 'deploy:compile_assets', 'gulp'
+
 namespace :worker do
 
   desc 'Run Hot Nodes worker'
@@ -116,23 +120,39 @@ namespace :deploy do
 
 end
 
-namespace :assets do
-  desc 'Publish assets'
-  task :gulp_publish do
-    run_locally do
-      execute "script/precompile.sh #{fetch(:current_revision)} #{fetch(:stage)}"
+# namespace :assets do
+#   desc 'Publish assets'
+#   task :gulp_publish do
+#     run_locally do
+#       execute "script/precompile.sh #{fetch(:current_revision)} #{fetch(:stage)}"
+#     end
+#   end
+#
+#   # desc 'Transfer asset manifest'
+#   # task :gulp_manifest do
+#   #   on roles(:all) do
+#   #     # All roles need to be able to link to assets
+#   #     upload! StringIO.new(File.read('public/assets/production/rev-manifest.json')), "#{release_path.to_s}/rev-manifest.json"
+#   #   end
+#   # end
+#
+#   after 'deploy:updated', 'assets:gulp_publish'
+#   # after 'deploy:updated', 'assets:gulp_publish'
+#   # after 'deploy:updated', 'assets:gulp_manifest'
+# end
+
+namespace :npm do
+  desc 'npm install gulp'
+  task :install do
+    on roles(:app) do
+      within release_path do
+        execute "cd #{release_path}; npm install"
+      end
     end
+    # run_locally do
+    #
+    # end
   end
 
-  # desc 'Transfer asset manifest'
-  # task :gulp_manifest do
-  #   on roles(:all) do
-  #     # All roles need to be able to link to assets
-  #     upload! StringIO.new(File.read('public/assets/production/rev-manifest.json')), "#{release_path.to_s}/rev-manifest.json"
-  #   end
-  # end
-
-  after 'deploy:updated', 'assets:gulp_publish'
-  # after 'deploy:updated', 'assets:gulp_publish'
-  # after 'deploy:updated', 'assets:gulp_manifest'
+  before 'gulp', 'npm:install'
 end

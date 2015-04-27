@@ -67,7 +67,7 @@ module APIV1
       expose :hot_topics, using: Entities::TopicInList
       expose :hot_nodes, using: Entities::Node
       expose :new_nodes, using: Entities::Node
-      expose :current_user
+      expose :current_user, using: Entities::User
       expose :statistics
     end
 

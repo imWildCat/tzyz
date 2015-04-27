@@ -31,4 +31,17 @@ gulp.task("watch", function () {
         .pipe(gulp.dest('./app/assets/javascripts/app')).pipe(livereload());
 });
 
+gulp.task('deploy', function() {
+    browserify({
+        entries: ['./app/assets/javascripts/app/entry.js'],
+        transform: [babelify, reactify],
+        debug: true,
+        cache: {}, packageCache: {}, fullPaths: true
+    }).bundle()
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest('./app/assets/javascripts/app'))
+        .pipe(livereload());
+    console.log('gulp deploy successfully!');
+});
+
 gulp.task('default', ['watch']);

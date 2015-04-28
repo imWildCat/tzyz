@@ -12,14 +12,12 @@ var {
     TextField
     } = require('material-ui');
 
-var LoginDialogStore = require('../../../stores/login_dialog');
+var LoginDialogStore = require('../../../../stores/login_dialog');
 
-var SessionService = require('../../../services/session');
+var AccountService = require('../../../../services/account');
 
-var GlobalSnackbarActions = require('../../../actions/global_snackbar');
-var SiteNetworkingActions = require('../../../actions/networking/site');
-
-var DefaultMask = require('../../shared/default_mask');
+var GlobalSnackbarActions = require('../../../../actions/global_snackbar');
+var SiteNetworkingActions = require('../../../../actions/networking/site');
 
 
 var LoginDialog = React.createClass({
@@ -42,7 +40,7 @@ var LoginDialog = React.createClass({
     //},
 
     onLoginButtonTouch: function () {
-        SessionService.login(this.refs.accountField.getValue(), this.refs.passwordField.getValue()).then((res, error) => {
+        AccountService.login(this.refs.accountField.getValue(), this.refs.passwordField.getValue()).then((res, error) => {
 
             GlobalSnackbarActions.show('登录成功！');
             SiteNetworkingActions.getInitialData();
@@ -54,7 +52,7 @@ var LoginDialog = React.createClass({
     },
 
     onCancelButtonTouch: function () {
-
+        this.refs.dialog.dismiss();
     },
 
     render: function () {
@@ -63,6 +61,7 @@ var LoginDialog = React.createClass({
             <FlatButton
                 key="cancel"
                 label="取消"
+                onTouchTap={this.onCancelButtonTouch}
                 secondary={true}/>,
             <FlatButton
                 key="submit"

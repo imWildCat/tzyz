@@ -24,10 +24,33 @@ module APIV1
         end
       end
 
-      get :logout do
+      post :logout do
         authenticate!
         warden.logout
-        {}
+        {result: true}
+      end
+
+      post :reg do
+        new_user = User.new
+        new_user.nickname = params[:nickname]
+        new_user.password = params[:password]
+        new_user.email = params[:email]
+
+        if new_user.valid?
+          new_user.save
+
+          # send email
+          EmailConfirmationWorker::perform_async new_user.id
+
+          # sign in
+          warden.set_user new_user
+
+          {
+              current_user: new_user
+          }
+        else
+          error_response! message: new_user.errors.messages.first.second.first.to_s
+        end
       end
     end
 

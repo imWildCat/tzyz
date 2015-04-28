@@ -13,6 +13,8 @@ var NotificationButton = require('./notification_button');
 var Avatar = require('../../shared/elements/avatar');
 
 var LoginDialogActions = require('../../../actions/login_dialog');
+var RegDialogActions = require('../../../actions/reg_dialog');
+var LeftNavMenuActions = require('../../../actions/left_nav_menu');
 var SessionUserStore = require('../../../stores/site/session_user');
 
 var ToolBar = React.createClass({
@@ -42,10 +44,11 @@ var ToolBar = React.createClass({
     },
 
     onRegButtonTouch: function () {
+        RegDialogActions.show();
     },
 
     onAvatarTouch: function () {
-
+        LeftNavMenuActions.toggle();
     },
 
     render: function () {

@@ -18,6 +18,10 @@
 
 @import "mixins/common";
 
+html {
+  background-color: #bdd7e5;
+}
+
 body {
   background-color: #bdd7e5;
   color: $default-text-color;

@@ -19,6 +19,18 @@
       }
     }
 
+    &.hot-topics {
+      .row {
+        clear: both;
+        padding: 10px 16px 10px 16px;
+        border-bottom: 1px solid $border-bottom-color;
+        &:last-child {
+          padding-bottom: 0;
+          border-bottom: none;
+        }
+      }
+    }
+
     &.nodes {
 
       .left, .right {

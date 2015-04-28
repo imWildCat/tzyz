@@ -3,17 +3,22 @@ module APIV1
 
     desc 'accounts'
     resource 'accounts' do
-      get :login do
+      post :login do
         # TODO: lockable is disabled. Find a way to implemnt it
         unless current_user
           account = params[:account]
           password = params[:password]
 
           valid_user = User.authenticate(account: account, password: password)
-          warden.set_user valid_user
-          {
-              current_user: current_user
-          }
+          if valid_user
+            warden.set_user valid_user
+            {
+                current_user: current_user
+            }
+          else
+            error_response! message: '用户名或密码错误。'
+          end
+
         else
           error_response! message: '您已登录。'
         end

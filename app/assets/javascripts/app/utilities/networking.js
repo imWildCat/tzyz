@@ -2,6 +2,8 @@
 
 var request = require('superagent');
 
+var GlobalSnackbarActions = require('../actions/global_snackbar');
+
 var Delegate = function () {
     this.thenCb = null;
     this.errorCb = null;
@@ -32,6 +34,7 @@ Delegate.prototype = {
     post: function (url) {
         this.url = url;
         this.method = 'post';
+        this.headers['Content-Type'] = 'application/x-www-form-urlencoded';
         return this;
     },
     set: function(key, value) {
@@ -53,13 +56,23 @@ Delegate.prototype = {
         var self = this;
 
         next.query(this.queries).send(this.sends).set(this.headers).end(function (error, response) {
-            if (response.ok && response.status === 200) {
+            if(typeof response === 'undefined') {
+                GlobalSnackbarActions.show('网络错误，加载失败。');
+                return;
+            }
+
+            if (response.body.error_code == null && response.ok) {
                 if (self.thenCb != null) {
                     self.thenCb(response);
                 }
             } else {
                 if (self.errorCb != null) {
                     self.errorCb(error, response);
+                }
+                if (response.body.error_message != null) {
+                    GlobalSnackbarActions.show(response.body.error_message);
+                } else {
+                    GlobalSnackbarActions.show('网络错误，加载失败。');
                 }
             }
         });

@@ -22,7 +22,7 @@ var Row = React.createClass({
     render: function () {
         var topic = this.props.topic;
         return (
-            <div className="row" style={{clear: 'both', padding: '10px 16px 10px 16px', borderBottom: '1px solid #dbdbdb'}}>
+            <div className="row">
                 <div className="wrapper">
                     <div className="avatar-wrapper" style={{width: 24, height: 24, float: 'left'}}>
                         <Avatar mode="tiny" url={topic.author.avatar_url} />
@@ -62,7 +62,7 @@ var HotTopicSection = React.createClass({
         });
 
         return (
-            <Section header={header}>
+            <Section className="hot-topics" header={header}>
                 {list}
             </Section>
         )

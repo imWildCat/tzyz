@@ -8,6 +8,7 @@ injectTapEventPlugin(); // for mobile device
 var TopMenu = require('./components/common/top_menu');
 var MobileMenu = require('./components/common/mobile_menu');
 var LoginDialog = require('./components/top_level/login_dialog');
+var GlobalSnackbar = require('./components/top_level/global_snackbar');
 
 var HomePage = require('./components/pages/home');
 var TopicShowPage = require('./components/pages/topic/show');
@@ -34,12 +35,13 @@ var App = React.createClass({
                     <RouteHandler/>
 
                     <div className="footer"
-                         style={{paddingTop: 16, clear: 'both',width: '100%',height: 25, fontSize: 12, textAlign: 'center'}}>
+                         style={{paddingTop: 16, clear: 'both',width: '100%',height: 40, fontSize: 12, textAlign: 'center'}}>
                         Copyright © 2015 滕州一中校友会 1.1 Alpha
                     </div>
                 </MainBlurContainer>
                 <MobileMenu />
                 <LoginDialog />
+                <GlobalSnackbar />
             </div>
         )
     }

@@ -22,7 +22,7 @@ module APIV1
     # error
 
     def error_response!(code: 200, message: 'Error.')
-      error!({ :error_code => code, :error_message => message }, 401)
+      error!({ :error_code => code, :error_message => message }, code)
     end
 
     def error_forbidden

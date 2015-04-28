@@ -42,7 +42,6 @@ var ToolBar = React.createClass({
     },
 
     onRegButtonTouch: function () {
-
     },
 
     onAvatarTouch: function () {
@@ -82,7 +81,7 @@ var ToolBar = React.createClass({
         } else {
             regButton =
                 <li className="item text">
-                    <a>注册</a>
+                    <a onTouchTap={this.onRegButtonTouch}>注册</a>
                 </li>;
             loginButton =
                 <li className="item text">

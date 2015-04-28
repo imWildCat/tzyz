@@ -12,6 +12,7 @@
  *
  *= require font-awesome
  *= require_tree ./components
+ *= require_tree ./material_ui
  *= require_self
  */
 
@@ -25,6 +26,7 @@ body {
   font-family: "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   font-size: 14px;
   min-width: 300px;
+  height: initial;
 }
 
 // common:

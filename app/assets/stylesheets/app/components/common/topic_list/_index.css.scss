@@ -29,6 +29,13 @@
         font-weight: normal;
         word-wrap: normal;
         margin: 0;
+        padding-top: 0;
+      }
+
+      // material-ui fix
+      p {
+        line-height: inherit;
+        padding-top: 0;
       }
 
       .labels {
@@ -42,6 +49,7 @@
           padding: 0 1px 0 5px;
           a {
             color: #FFFFFF;
+            font-weight: bold;
           }
         }
 

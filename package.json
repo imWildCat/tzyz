@@ -7,6 +7,7 @@
     "babelify": "^6.0.2",
     "browserify": "^9.0.8",
     "gulp": "^3.8.11",
+    "material-ui": "^0.7.5",
     "merge": "^1.2.0",
     "moment": "^2.10.2",
     "react": "^0.13.1",

@@ -88,7 +88,8 @@ gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 
 gem 'chosen-rails', '~> 1.2.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
+gem 'less-rails', '~> 2.7.0'
+gem 'therubyracer',  platforms: :ruby
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc

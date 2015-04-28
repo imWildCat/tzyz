@@ -7,6 +7,7 @@ injectTapEventPlugin(); // for mobile device
 
 var TopMenu = require('./components/common/top_menu');
 var MobileMenu = require('./components/common/mobile_menu');
+var LoginDialog = require('./components/top_level/login_dialog');
 
 var HomePage = require('./components/pages/home');
 var TopicShowPage = require('./components/pages/topic/show');
@@ -38,6 +39,7 @@ var App = React.createClass({
                     </div>
                 </MainBlurContainer>
                 <MobileMenu />
+                <LoginDialog />
             </div>
         )
     }

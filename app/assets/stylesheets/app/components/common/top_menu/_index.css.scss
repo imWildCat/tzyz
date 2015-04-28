@@ -18,11 +18,12 @@
   .brand {
     float: left;
     h1 {
-      margin: 8px 0 0 0;
+      margin: 15px 0 0 0;
       color: $light-text-color;
       font-size: 24px;
       padding-left: 10px;
       font-weight: normal;
+      line-height: inherit;
 
       @media screen and (max-width: 380px) {
         margin-top: 14px;

@@ -4,6 +4,7 @@ module APIV1
     desc 'accounts'
     resource 'accounts' do
       get :login do
+        # TODO: lockable is disabled. Find a way to implemnt it
         unless current_user
           account = params[:account]
           password = params[:password]

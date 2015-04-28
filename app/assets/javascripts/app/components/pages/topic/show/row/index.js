@@ -68,8 +68,7 @@ var TopicContentRow = React.createClass({
                         </div>
                         {rightMeta}
                     </div>
-                    <div className="content">
-                        {data.content}
+                    <div className="content" dangerouslySetInnerHTML={{__html: data.content}}>
                     </div>
                 </div>
             </div>

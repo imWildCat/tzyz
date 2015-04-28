@@ -41,7 +41,7 @@ set :default_env, {path: '$HOME/.rbenv/shims/:$PATH'}
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 
 # gulp
-set :gulp_tasks, 'deploy'
+set :gulp_tasks, ' deploy'
 before 'deploy:compile_assets', 'gulp'
 
 namespace :worker do

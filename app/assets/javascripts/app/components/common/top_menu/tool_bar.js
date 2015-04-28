@@ -12,6 +12,7 @@ var FriendButton = require('./friend_button');
 var NotificationButton = require('./notification_button');
 var Avatar = require('../../shared/elements/avatar');
 
+var LoginDialogActions = require('../../../actions/login_dialog');
 var SessionUserStore = require('../../../stores/site/session_user');
 
 var ToolBar = React.createClass({
@@ -37,7 +38,7 @@ var ToolBar = React.createClass({
     },
 
     onLoginButtonTouch: function () {
-        console.log(1);
+        LoginDialogActions.show();
     },
 
     onRegButtonTouch: function () {

@@ -10,6 +10,7 @@ var Reflux = require('reflux');
 var RegDialog = require('./reg_dialog');
 var LoginDialog = require('./login_dialog');
 var LogoutConfirmationDialog = require('./logout_confirmation');
+var CreateTopicDialog = require('./create_topic_dialog');
 
 var Dialogs = React.createClass({
 
@@ -19,6 +20,7 @@ var Dialogs = React.createClass({
                 <RegDialog />
                 <LoginDialog />
                 <LogoutConfirmationDialog />
+                <CreateTopicDialog />
             </div>
         )
     }

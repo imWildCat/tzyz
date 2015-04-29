@@ -29,3 +29,9 @@ $normal-transition:  all .35s ease-in-out;
     transition: $normal-transition;
   }
 }
+
+// width
+$sm-max: 767px;
+$md-min: 768px;
+$md-max: 1023px;
+$lg-min: 1024px;

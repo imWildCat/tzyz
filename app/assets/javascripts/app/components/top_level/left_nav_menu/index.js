@@ -24,6 +24,7 @@ var LeftNavMenu = React.createClass({
     },
 
     onNavChange: function (e, selectedIndex, menuItem) {
+        //this.refs.nav.toggle();
         switch (selectedIndex) {
             case 0:
                 LogoutConfirmationDialogActions.show();
@@ -32,6 +33,10 @@ var LeftNavMenu = React.createClass({
                 return;
         }
     },
+
+    //componentDidMount: function() {
+    //  this.refs.nav.toggle();
+    //},
 
     render: function () {
 
@@ -57,8 +62,8 @@ var LeftNavMenu = React.createClass({
             //}
         ];
 
-        return (
-            <LeftNav ref="nav" docked={false} menuItems={menuItems} onChange={this.onNavChange}/>
+        return ( 
+            <LeftNav ref="nav" isInitiallyOpen={false} docked={false} menuItems={menuItems} onChange={this.onNavChange}/>
         )
     }
 });

@@ -41,5 +41,6 @@ config/newrelic.yml
 node_modules
 npm-debug.log
 
-# geneated js
+# geneated js and css
 app/assets/javascripts/app/bundle.js
+app/assets/stylesheets/app/material_ui/entry.css

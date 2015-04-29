@@ -1,0 +1,23 @@
+@import "app/mixins/common";
+
+.mui-floating-action-button-icon.fa.fa-pencil-square-o.mui-font-icon {
+  margin-left: 5px;
+  margin-top: 2px;
+}
+
+.create-topic.mui-floating-action-button {
+
+  @media screen and (min-width: $md-min) {
+    position: fixed;
+    top: 75px;
+    right: 16px;
+  }
+
+  @media screen and (max-width: $sm-max) {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+  }
+
+
+}

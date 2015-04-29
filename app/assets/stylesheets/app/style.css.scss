@@ -11,8 +11,8 @@
  * file per style scope.
  *
  *= require font-awesome
+ *= require ./material_ui/entry.css
  *= require_tree ./components
- *= require_tree ./material_ui
  *= require_self
  */
 

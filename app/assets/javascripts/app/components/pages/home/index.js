@@ -10,6 +10,7 @@ var Reflux = require('reflux');
 var Card = require('../../shared/containers/card');
 var Page = require('../../shared/containers/page');
 var TopicList = require('../../common/topic_list');
+var CreateTopicButton = require('../../top_level/create_topic_button');
 
 var TopicListStore = require('../../../stores/site/topic_list');
 
@@ -34,6 +35,7 @@ var HomePage = React.createClass({
         return (
             <Page id="home-page">
                 <Card><TopicList topics={this.state.topics}/></Card>
+                <CreateTopicButton />
             </Page>
         )
     }

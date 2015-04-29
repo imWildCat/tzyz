@@ -40,7 +40,6 @@ module Tzyz
     # gulp
     # config.assets.enabled = false
 
-    config.less.paths << "#{Rails.root}/node_modules/material-ui/src/less/"
   end
 end
 

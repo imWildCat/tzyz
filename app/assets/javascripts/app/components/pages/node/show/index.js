@@ -10,6 +10,8 @@ var Reflux = require('reflux');
 var Card = require('../../../shared/containers/card');
 var Page = require('../../../shared/containers/page');
 var TopicList = require('../../../common/topic_list');
+var CreateTopicButton = require('../../../top_level/create_topic_button');
+
 
 var NodeNetworkingActions = require('../../../../actions/networking/node');
 var CurrentNodeStore = require('../../../../stores/node/current');
@@ -54,6 +56,7 @@ var NodeShowPage = React.createClass({
                     <h3 style={{margin: 0, fontSize: 20, paddingTop: 0}}>{this.state.node.name}</h3>
                 </Card>
                 <Card><TopicList isNodePage={true} topics={this.state.topics}/></Card>
+                <CreateTopicButton />
             </Page>
         )
     }

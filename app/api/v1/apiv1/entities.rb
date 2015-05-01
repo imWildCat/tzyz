@@ -29,7 +29,13 @@ module APIV1
     end
 
     class Node < Grape::Entity
-      expose :id, :node_category_id, :name, :slug, :description, :min_group, :min_role
+      expose :id, :name, :slug, :description, :min_role
+      # expose :node_category_id, :min_group,
+    end
+
+    class NodeCategory < Grape::Entity
+      expose :id, :name, :slug
+      expose :nodes, using: Entities::Node
     end
 
     class TopicInList < Grape::Entity

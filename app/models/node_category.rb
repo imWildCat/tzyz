@@ -20,6 +20,12 @@ class NodeCategory < ActiveRecord::Base
     Topic.where(:node => nodes).order(updated_at: :desc).paginate(page: page, per_page: per_page)
   end
 
+  def self.fetch_list
+    Rails.cache.fetch('node_category_list', expires_in: 1.hour) do
+      includes(:nodes).all
+    end
+  end
+
   # No use
   # def node_ids(cache: 6.hours)
   #   Rails.cache.fetch("node_category_#{id}_ids", expries_in: cache) do

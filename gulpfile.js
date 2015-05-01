@@ -57,4 +57,4 @@ gulp.task('deploy_js', function () {
 
 gulp.task('deploy', ['deploy_js', 'mui_css']);
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch', 'mui_css']);

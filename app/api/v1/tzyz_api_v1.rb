@@ -11,6 +11,7 @@ class TzyzApiV1 < Grape::API
   mount APIV1::Accounts
   mount APIV1::Users
   mount APIV1::Nodes
+  mount APIV1::NodeCategories
 
   mount APIV1::Topics
   mount APIV1::Site

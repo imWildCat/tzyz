@@ -100,7 +100,7 @@ class Topic < ActiveRecord::Base
 
   def self.list(page: 1, page_size: 20)
         includes(:author, :refresher, :node)
-        .order(created_at: :desc)
+        .order(priority: :desc)
         .paginate(page: page, per_page: page_size)
   end
 

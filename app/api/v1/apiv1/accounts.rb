@@ -31,6 +31,9 @@ module APIV1
       end
 
       post :reg do
+        unless current_user.nil?
+          error_response! message: '您已登录。'
+        end
         new_user = User.new
         new_user.nickname = params[:nickname]
         new_user.password = params[:password]

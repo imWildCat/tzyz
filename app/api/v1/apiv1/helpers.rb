@@ -43,5 +43,12 @@ module APIV1
       error_response!(code: 401, message: '您尚未登录。') unless current_user
     end
 
+    # content helper
+    def sanitizer(html)
+      crlf = /(\r\n|\n\r|\r|\n)/
+      html = html.gsub(crlf, '<br>') # handle \n
+      Sanitize.fragment(html, :elements => %w(div blockquote strike a h2 h3 br hr p ol ul li b i u img), :attributes => {'a' => %w(href), 'img' => %w(src), 'p' => %w(data-indent)})
+    end
+
   end
 end

@@ -14,6 +14,10 @@ var Chosen = require('../../../shared/elements/chosen');
 
 var NodeChosen = React.createClass({
 
+    Prototype: {
+        onChange: React.PropTypes.func
+    },
+
     mixins: [
             Reflux.listenTo(NodeCategoryStore, 'onStoreUpdate')
     ],
@@ -35,7 +39,8 @@ var NodeChosen = React.createClass({
     },
 
     onChange: function (a, b, c) {
-        console.log({a: a, b: b, c: c});
+        var nodeID = parseInt(b.selected);
+        this.props.onChange && this.props.onChange(nodeID);
     },
 
     render: function () {
@@ -57,7 +62,7 @@ var NodeChosen = React.createClass({
 
 
         return (
-            <Chosen onChange={this.onChange} noResultsText="未找到相关节点">
+            <Chosen width={25} onChange={this.onChange} noResultsText="未找到相关节点">
                 <option value="0">选择节点</option>
                 {options}
             </Chosen>

@@ -1,19 +1,13 @@
 /**
- * Created by WildCat on 29/04/15, all rights reserved.
+ * Created by WildCat on 02/05/15, all rights reserved.
  */
 
 'use strict';
 
 var React = require('react');
 var Reflux = require('reflux');
+
 var Navigation = require('react-router').Navigation;
-
-var TopicService = require('../../../../services/topic');
-
-//var Chosen = require('../../../shared/elements/chosen');
-var NodeChosen = require('./node_chosen');
-
-var CreateTopicDialogStore = require('../../../../stores/dialogs/create_topic');
 
 var {
     Dialog,
@@ -21,21 +15,34 @@ var {
     TextField
     } = require('material-ui');
 
+var CreateReplyDialogStore = require('../../../../stores/dialogs/create_reply');
+var CurrentTopicStore = require('../../../../stores/topic/current');
+
+var TopicService = require('../../../../services/topic');
+
+var TopicNetworkingActions = require('../../../../actions/networking/topic');
 var GlobalSnackbarActions = require('../../../../actions/global_snackbar');
 
-var CreateTopicDialog = React.createClass({
+var CreateReplyDialog = React.createClass({
 
     mixins: [
-        Reflux.listenTo(CreateTopicDialogStore, 'onStoreUpdate'),
+        Reflux.listenTo(CreateReplyDialogStore, 'onStoreUpdate'),
+        Reflux.listenTo(CurrentTopicStore, 'onTopicStoreUpdate'),
         Navigation
     ],
 
-    onNodeChosenChange: function (id) {
-        this.props.nodeID = id;
+    getInitialState: function () {
+        return {topic: {id: 0}}
     },
 
-    onStoreUpdate: function (nodeData) {
+    onStoreUpdate: function () {
         this.refs.dialog.show();
+    },
+
+    onTopicStoreUpdate: function (data) {
+        this.setState({
+            topic: data.topic
+        });
     },
 
     onCancelButtonTouch: function () {
@@ -43,18 +50,19 @@ var CreateTopicDialog = React.createClass({
     },
 
     onSubmitButtonTouch: function () {
-        TopicService.createTopic(this.props.nodeID,
-            this.refs.titleField.getValue(),
-            this.refs.contentField.getValue()).then((res) => {
-                this.context.router.transitionTo('topicShow', {id: res.body.topic_id});
+        TopicService.createReply(
+            this.state.topic.id,
+            this.refs.contentField.getValue(),
+            null // TODO: implement quoted reply
+        ).then((res) => {
+                GlobalSnackbarActions.show('回复成功。');
                 this.refs.dialog.dismiss();
-                GlobalSnackbarActions.show('主题发布成功。');
+                this.refs.contentField.clearValue()
+                TopicNetworkingActions.getSingle(this.state.topic.id, 1);
             });
     },
 
-
     render: function () {
-
         var customActions = [
             <FlatButton
                 key="cancel"
@@ -72,25 +80,19 @@ var CreateTopicDialog = React.createClass({
             <Dialog
                 className="create-topic"
                 ref="dialog"
-                title="创建话题"
+                title="创建回复"
                 actions={customActions}>
 
-                <NodeChosen onChange={this.onNodeChosenChange}/>
-
-                <div>
-                    <TextField
-                        ref="titleField"
-                        floatingLabelText="标题"/>
-                </div>
                 <div>
                     <TextField
                         ref="contentField"
                         floatingLabelText="内容"
                         multiLine={true}/>
                 </div>
+
             </Dialog>
         )
     }
 });
 
-module.exports = CreateTopicDialog;
+module.exports = CreateReplyDialog;

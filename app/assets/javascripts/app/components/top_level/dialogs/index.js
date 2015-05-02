@@ -11,6 +11,7 @@ var RegDialog = require('./reg_dialog');
 var LoginDialog = require('./login_dialog');
 var LogoutConfirmationDialog = require('./logout_confirmation');
 var CreateTopicDialog = require('./create_topic_dialog');
+var CreateReplyDialog = require('./create_reply_dialog');
 
 var Dialogs = React.createClass({
 
@@ -21,6 +22,7 @@ var Dialogs = React.createClass({
                 <LoginDialog />
                 <LogoutConfirmationDialog />
                 <CreateTopicDialog />
+                <CreateReplyDialog />
             </div>
         )
     }

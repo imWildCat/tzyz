@@ -13,6 +13,8 @@ var CurrentTopicStore = require('../../../../stores/topic/current');
 var Page = require('../../../shared/containers/page');
 var Card = require('../../../shared/containers/card');
 
+var CreateReplyButton = require('../../../top_level/create_reply_button');
+
 var TopicContentRow = require('./row');
 
 var TopicShowPage = React.createClass({
@@ -72,6 +74,7 @@ var TopicShowPage = React.createClass({
                 <Card style={{marginTop: 20}}>
                     {replyList}
                 </Card>
+                <CreateReplyButton />
             </Page>
         )
     }

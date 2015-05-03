@@ -5,6 +5,9 @@ var { Route, Redirect, RouteHandler, Link, DefaultRoute } = Router;
 var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin(); // for mobile device
 
+// inject zh-cn language
+var momentZhCn = require('moment/locale/zh-cn');
+
 var TopMenu = require('./components/common/top_menu');
 var MobileMenu = require('./components/common/mobile_menu');
 var Dialogs = require('./components/top_level/dialogs');
@@ -15,6 +18,7 @@ var HomePage = require('./components/pages/home');
 var TopicShowPage = require('./components/pages/topic/show');
 var NodeShowPage = require('./components/pages/node/show');
 var UserShowPage = require('./components/pages/user/show');
+var NotificationPage = require('./components/pages/notification');
 
 var MainBlurContainer = require('./components/top_level/main_blur_container');
 
@@ -55,6 +59,7 @@ var routes = (
         <Route name="topicShow" path="topic/:id" handler={TopicShowPage}/>
         <Route name="nodeShow" path="node/:slug" handler={NodeShowPage}/>
         <Route name="userShow" path="user/:id" handler={UserShowPage}/>
+        <Route name="notifications" path="notifications" handler={NotificationPage}/>
     </Route>
 );
 

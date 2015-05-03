@@ -58,6 +58,13 @@ module APIV1
       expose :quoted_reply, using: Entities::Reply
     end
 
+    class ReplyWithTopic < Grape::Entity
+      expose :id, :content, :position, :appreciation_count, :created_at
+      expose :author, using: Entities::UserInList
+      expose :quoted_reply, using: Entities::Reply
+      expose :topic, using: Entities::TopicInList
+    end
+
     class SingleNode < Grape::Entity
       expose :node, using: Entities::Node
       expose :topics, using: Entities::Topic
@@ -67,6 +74,85 @@ module APIV1
       expose :topic, using: Entities::Topic
       expose :replies, using: Entities::Reply
     end
+
+    # class Appreciation < Grape::Entity
+    #   expose :id
+    #   expose :user, using: Entities::UserInList
+    #   expose :topic, using: Entities::TopicInList,
+    #          if: lambda { |status, options|
+    #                  status.appreciative_type == 'Topic' } do |status, options|
+    #     status.appreciative
+    #   end
+    #
+    #   expose :reply, using: Entities::ReplyWithTopic,
+    #          if: lambda { |status, options|
+    #            status.appreciative_type == 'Reply' } do |status, options|
+    #     status.appreciative
+    #   end
+    # end
+
+    class Notification < Grape::Entity
+      expose :id, :n_type, :is_read, :reason_id, :created_at
+
+      expose :related_content do |status, options|
+        if status.notifiable_type == 'Topic' or status.notifiable_type == 'Reply'
+          status.notifiable.content
+        elsif status.notifiable_type == 'Appreciation'
+          status.notifiable.appreciative.content
+        elsif status.n_type == 'user_welcome'
+          '请遵守社区规范，希望您享受在这个社区的美好时光 : )'
+        else
+          ''
+        end
+      end
+
+      expose :related_topic, using: Entities::TopicInList do |status, options|
+        if status.notifiable_type == 'Topic'
+          status.notifiable
+        elsif status.notifiable_type == 'Reply'
+          status.notifiable.topic
+        elsif status.notifiable_type == 'Appreciation'
+          if status.notifiable.appreciative_type == 'Topic'
+            status.notifiable.appreciative
+          elsif status.notifiable.appreciative_type == 'Reply'
+            status.notifiable.appreciative.topic
+          end
+        else
+          nil
+        end
+      end
+
+      expose :related_user, using: Entities::UserInList do |status, options|
+        if status.notifiable_type == 'Topic' or status.notifiable_type == 'Reply'
+          status.notifiable.author
+        elsif status.notifiable_type == 'Appreciation'
+          status.notifiable.user
+        else
+          nil
+        end
+      end
+
+
+      # expose :topic, using: Entities::TopicInList,
+      #        if: lambda { |status, options|
+      #          status.notifiable_type == 'Topic' } do |status, options|
+      #   status.notifiable
+      # end
+      #
+      # expose :reply, using: Entities::ReplyWithTopic,
+      #        if: lambda { |status, options|
+      #          status.notifiable_type == 'Reply' } do |status, options|
+      #   status.notifiable
+      # end
+      #
+      # expose :appreciation, using: Entities::Appreciation,
+      #        if: lambda { |status, options|
+      #          status.notifiable_type == 'Appreciation' } do |status, options|
+      #   status.notifiable
+      # end
+
+    end
+
 
     class SiteHome < Grape::Entity
       expose :topics, using: Entities::TopicInList

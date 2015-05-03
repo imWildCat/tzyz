@@ -1,0 +1,48 @@
+@import "app/mixins/common";
+
+#notification-page {
+  .meta {
+    clear: both;
+    padding: 16px;
+    border-bottom: $normal-border-bottom;
+    overflow: hidden;
+
+    .avatar {
+      float: left;
+    }
+
+    p {
+      width: auto;
+      margin-left: 76px;
+      font-size: 20px;
+    }
+  }
+
+  .notification-row {
+    padding: 16px 16px 16px 0;
+    margin-left: 16px;
+    border-bottom: $normal-border-bottom;
+    clear: both;
+
+    .avatar-wrapper {
+      float: left;
+      width: 40px;
+    }
+
+    .content-wrapper {
+      margin-left: 50px;
+      min-height: 40px;
+      width: auto;
+
+      .time {
+        color: $secondary-text-color;
+        font-size: 12px;
+      }
+
+      .meta-info {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}

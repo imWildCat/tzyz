@@ -26,6 +26,9 @@ var Avatar = React.createClass({
             case 'tiny':
                 className += ' tiny'; // 24px
                 break;
+            case 'medium':
+                className += ' medium'; // 40px with corner-radius: 5
+                break;
             case 'big':
                 className += ' big'; // 60px rounded
                 break;

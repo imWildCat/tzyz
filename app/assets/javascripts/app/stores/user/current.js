@@ -19,6 +19,10 @@ var CurrentUserStore = Reflux.createStore({
     onReceivedSingle: function (data) {
         _user = data;
         this.trigger(_user);
+    },
+
+    get: function() {
+        return _user;
     }
 
 });

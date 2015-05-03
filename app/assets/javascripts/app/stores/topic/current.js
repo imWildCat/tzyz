@@ -19,6 +19,10 @@ var CurrentTopicStore = Reflux.createStore({
     onReceivedSingle: function (data) {
         _topic = data;
         this.trigger(_topic);
+    },
+
+    get: function() {
+        return _topic;
     }
 
 });

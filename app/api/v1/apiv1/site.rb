@@ -4,10 +4,12 @@ module APIV1
     desc 'site'
     resource 'site/init' do
       get do
-        topics = Topic.list
+        topics = Topic.list page: current_page
         hot_topics = Topic.hots
         hot_nodes = Node.hots
         new_nodes = Node.news
+
+        page_headers! topics
 
         present({topics: topics, hot_topics: hot_topics,
                  hot_nodes: hot_nodes, new_nodes: new_nodes,

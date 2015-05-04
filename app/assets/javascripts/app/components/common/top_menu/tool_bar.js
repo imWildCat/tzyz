@@ -70,7 +70,7 @@ var ToolBar = React.createClass({
 
         if (this.state.sessionUser) {
             friendButton =
-                <li className={friendButtonClassName}>
+                <li className={friendButtonClassName} style={{ display: 'none' }}>
                     <FriendButton />
                 </li>;
             notificationButton =

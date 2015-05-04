@@ -14,6 +14,11 @@ module APIV1
       20
     end
 
+    def page_headers!(data)
+      header 'current_page', data.current_page
+      header 'total_pages', data.total_pages
+    end
+
     def page_size
       size = params[:size].to_i
       [size.zero? ? default_page_size : size, max_page_size].min

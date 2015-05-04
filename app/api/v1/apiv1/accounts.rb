@@ -55,6 +55,14 @@ module APIV1
           error_response! message: new_user.errors.messages.first.second.first.to_s
         end
       end
+
+      desc 'fortune_alterations' # param: :page
+      get :fortune_alterations do
+        fortune_alterations = current_user.recent_fortune_alterations(current_page)
+        page_headers! fortune_alterations
+        present fortune_alterations, with: Entities::FortuneAlterations
+      end
+
     end
 
   end

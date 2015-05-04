@@ -6,6 +6,7 @@ module APIV1
       get ':slug' do
         node = Node.find_by_slug(params[:slug]) or not_found
         topics = node.paginated_topics_for_page(current_page)
+        page_headers! topics
         present({topics: topics, node: node}, with: Entities::SingleNode)
       end
 

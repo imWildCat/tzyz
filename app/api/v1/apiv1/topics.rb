@@ -5,6 +5,7 @@ module APIV1
     resources :topics do
       get :list do
         @topics = Topic.list(page: current_page, page_size: page_size)
+        page_headers! @topics
         present @topics, with: Entities::TopicInList
       end
 

@@ -14,8 +14,8 @@ var SessionUserStore = require('../../../stores/site/session_user');
 
 var Page = require('../../shared/containers/page');
 var Card = require('../../shared/containers/card');
-var Avatar = require('../../shared/elements/avatar');
 
+var UserMeta = require('../../shared/elements/user_meta');
 var NotificationRow = require('./row');
 
 var NotificationPage = React.createClass({
@@ -55,12 +55,7 @@ var NotificationPage = React.createClass({
         return (
             <Page id="notification-page">
                 <Card>
-                    <div className="meta">
-                        <Avatar mode="big" url={ avatarURL } />
-
-                        <p>通知中心</p>
-                    </div>
-
+                    <UserMeta title="通知中心" />
                     {nList}
                 </Card>
             </Page>

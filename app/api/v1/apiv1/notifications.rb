@@ -6,7 +6,9 @@ module APIV1
       get :list do
         authenticate!
         # TODO: the order might be confusing
-        present current_user.unread_notifications(current_page), with: Entities::Notification
+        notifications = current_user.unread_notifications(current_page)
+        page_headers! notifications
+        present notifications, with: Entities::Notification
       end
     end
   end

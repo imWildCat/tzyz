@@ -1,22 +1,6 @@
 @import "app/mixins/common";
 
 #notification-page {
-  .meta {
-    clear: both;
-    padding: 16px;
-    border-bottom: $normal-border-bottom;
-    overflow: hidden;
-
-    .avatar {
-      float: left;
-    }
-
-    p {
-      width: auto;
-      margin-left: 76px;
-      font-size: 20px;
-    }
-  }
 
   .notification-row {
     padding: 16px 16px 16px 0;

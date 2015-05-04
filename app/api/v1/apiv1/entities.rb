@@ -153,6 +153,10 @@ module APIV1
 
     end
 
+    class FortuneAlterations < Grape::Entity
+      expose :quantity, :balance, :reason, :created_at
+    end
+
 
     class SiteHome < Grape::Entity
       expose :topics, using: Entities::TopicInList

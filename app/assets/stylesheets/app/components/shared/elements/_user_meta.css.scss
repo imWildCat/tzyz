@@ -1,0 +1,18 @@
+@import "app/mixins/common";
+
+.user-meta {
+  clear: both;
+  padding: 16px;
+  border-bottom: $normal-border-bottom;
+  overflow: hidden;
+
+  .avatar {
+    float: left;
+  }
+
+  p {
+    width: auto;
+    margin-left: 76px;
+    font-size: 20px;
+  }
+}

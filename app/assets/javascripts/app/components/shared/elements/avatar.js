@@ -42,9 +42,10 @@ var Avatar = React.createClass({
         }
 
         var url = this.props.url;
-        if (url.indexOf('/assets/no_avatar.png') == 0) {
+        if (!url || url.indexOf('/assets/no_avatar.png') == 0) {
             url = '//ww3.sinaimg.cn/large/7deee1d1tw1erkiilrqamj205k05kmwy.jpg';
         }
+
 
         return (
             <img  onTouchTap={onTouchTap} src={url} className={className} alt="avatar" />

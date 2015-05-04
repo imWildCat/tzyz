@@ -50,8 +50,7 @@ gulp.task('deploy_js', function () {
         cache: {}, packageCache: {}, fullPaths: true
     }).bundle()
         .pipe(source('bundle.js'))
-        .pipe(gulp.dest('./app/assets/javascripts/app'))
-        .pipe(livereload());
+        .pipe(gulp.dest('./app/assets/javascripts/app'));
     console.log('gulp deploy js successfully!');
 });
 

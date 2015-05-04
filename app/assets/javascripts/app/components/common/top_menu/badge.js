@@ -1,19 +1,8 @@
 var React = require('react');
+var Reflux = require('reflux');
+var UnreadNotificationStore = require('../../../stores/site/unread_notification');
 
 var style = {
-    div: {
-        width: 15,
-        height: 15,
-        display: 'inline-block',
-        backgroundColor: '#E74C3C',
-        fontSize: 11,
-        //fontWeight: 'bold',
-        borderRadius: 8,
-        textAlign: 'center',
-        position: 'relative',
-        top: -33,
-        left: 12
-    },
     span: {
         display: 'block',
         marginTop: -2
@@ -21,10 +10,32 @@ var style = {
 };
 
 var Badge = React.createClass({
+
+    //propTypes: {
+    //    num: React.PropTypes.number
+    //},
+
+    mixins: [
+        Reflux.listenTo(UnreadNotificationStore, 'onStoreUpdate')
+    ],
+
+    getInitialState: function () {
+        return {num: UnreadNotificationStore.getCount()}
+    },
+
+    onStoreUpdate: function (newCount) {
+        this.setState({num: newCount});
+    },
+
     render: function () {
+        var className = 'badge';
+        if (this.state.num < 1) {
+            className += ' hidden';
+        }
+
         return (
-            <div style={style.div}>
-            <span style={style.span}>{this.props.num}</span>
+            <div className={className} style={style.div}>
+                <span style={style.span}>{this.state.num}</span>
             </div>
         )
     }

@@ -3,6 +3,7 @@
 var request = require('superagent');
 
 var GlobalSnackbarActions = require('../actions/global_snackbar');
+var UnreadNotificationActions = require('../actions/unread_notification');
 
 var Delegate = function () {
     this.thenCb = null;
@@ -60,6 +61,8 @@ Delegate.prototype = {
                 GlobalSnackbarActions.show('网络错误，加载失败。');
                 return;
             }
+
+            UnreadNotificationActions.countUpdate(response.headers.n_count);
 
             if (response.body.error_code == null && response.ok) {
                 if (self.thenCb != null) {

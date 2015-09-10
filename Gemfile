@@ -1,16 +1,10 @@
-hosts_using_original_gem = %w(CatMBP.local)
-host = `hostname`.strip
-if hosts_using_original_gem.include? host
-  source 'https://rubygems.org'
-else
-  source 'https://ruby.taobao.org'
-end
+source 'https://rubygems.org'
+# source 'https://rails-assets.org'
 
-source 'https://rails-assets.org'
-ruby '2.2.1'
+ruby '2.2.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.1'
+gem 'rails', '~> 4.2.4'
 
 # Settings
 gem 'rails_config', '~> 0.4.2'
@@ -39,7 +33,7 @@ gem 'nprogress-rails', '~> 0.1.6.3'
 # Use postgresql as the database for Active Record
 # gem 'mysql2', '~> 0.3.16'
 
-gem 'pg', '~> 0.18.1'
+gem 'pg', '~> 0.18.3'
 
 # ActiveRecord or Migration support
 # gem 'activerecord-mysql-unsigned', '~> 0.3.1'
@@ -63,11 +57,11 @@ gem 'redis-rails', '~> 4.0.0'
 # redis-search
 gem 'ruby-pinyin', '~> 0.4.3'
 gem 'redis-search', '~> 0.9.7'
-gem 'rails-assets-jquery-textcomplete', '~> 0.3.4'
-
-# Markdown editor
-gem 'rails-assets-simple-module', '~> 2.0.4'
-gem 'rails-assets-simditor', '~> 2.0.3'
+# gem 'rails-assets-jquery-textcomplete', '~> 0.3.4'
+#
+# # Markdown editor
+# gem 'rails-assets-simple-module', '~> 2.0.4'
+# gem 'rails-assets-simditor', '~> 2.0.3'
 # HTML and CSS sanitizer
 gem 'sanitize', '~> 3.0.3'
 

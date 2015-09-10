@@ -84,7 +84,7 @@ Rails.application.configure do
       authentication: 'plain',
       enable_starttls_auto: false
   }
-  config.action_mailer.default_url_options = {host: 'tengzhouyizhong.org', port: 80}
+  config.action_mailer.default_url_options = {host: 'tzyzer.com', port: 80}
   # TODO: aysnc mail
   ################
 

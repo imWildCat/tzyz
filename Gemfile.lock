@@ -372,6 +372,9 @@ GEM
     will_paginate (3.0.7)
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
+    yaml_db (0.3.0)
+      rails (>= 3.0, < 4.3)
+      rake (>= 0.8.7)
 
 PLATFORMS
   ruby
@@ -433,6 +436,7 @@ DEPENDENCIES
   web-console (~> 2.0)
   whenever (~> 0.9.4)
   will_paginate-bootstrap (= 1.0.1)
+  yaml_db
 
 BUNDLED WITH
    1.10.6

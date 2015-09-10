@@ -8,9 +8,9 @@ var definePlugin = new webpack.DefinePlugin({
 
 module.exports = {
     //context: __dirname,
-    entry: './app/assets/javascripts/app/entry.js',
+    entry: './frontend/entry.js',
     output: {
-        path: './app/assets/javascripts/app',
+        path: './app/assets/javascripts/app/build',
         filename: 'bundle.js',
         //devtoolModuleFilenameTemplate: '[resourcePath]',
         //devtoolFallbackModuleFilenameTemplate: '[resourcePath]?[hash]'

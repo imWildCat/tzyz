@@ -14,4 +14,4 @@
 //= require jquery_ujs
 //= require chosen-jquery
 //= require turbolinks
-//= require ./bundle
+//= require ./build/bundle

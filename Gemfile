@@ -35,6 +35,8 @@ gem 'nprogress-rails', '~> 0.1.6.3'
 
 gem 'pg', '~> 0.18.3'
 
+gem 'yaml_db'
+
 # ActiveRecord or Migration support
 # gem 'activerecord-mysql-unsigned', '~> 0.3.1'
 

@@ -42,5 +42,4 @@ node_modules
 npm-debug.log
 
 # geneated js and css
-app/assets/javascripts/app/bundle.js
-app/assets/stylesheets/app/material_ui/entry.css
+app/assets/javascripts/app/build/

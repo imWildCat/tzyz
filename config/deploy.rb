@@ -1,10 +1,10 @@
 # config valid only for Capistrano 3.1
-lock '3.2.1'
+lock '3.4.0'
 
 set :application, 'tzyz'
 set :repo_url, 'git://github.com/imWildCat/tzyz.git'
 
-set :rbenv_ruby, '2.2.1'
+set :rbenv_ruby, '2.2.2'
 
 # Default branch is :master
 
@@ -26,10 +26,10 @@ set :deploy_to, '/home/root/tzyz_production'
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml config/newrelic.yml config/environments/production.rb}
+set :linked_files, %w{config/database.yml config/secrets.yml config/environments/production.rb}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/images}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/images node_modules}
 
 # Default value for default_env is {}
 set :default_env, {path: '$HOME/.rbenv/shims/:$PATH'}
@@ -40,9 +40,8 @@ set :default_env, {path: '$HOME/.rbenv/shims/:$PATH'}
 # Whenever
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 
-# gulp
-set :gulp_tasks, ' deploy'
-before 'deploy:compile_assets', 'gulp'
+
+before 'deploy:compile_assets', 'npm:install'
 
 namespace :worker do
 
@@ -142,11 +141,11 @@ end
 # end
 
 namespace :npm do
-  desc 'npm install gulp'
+  desc 'npm install'
   task :install do
     on roles(:app) do
       within release_path do
-        execute "cd #{release_path}; npm install"
+        execute "cd #{release_path}; npm install; BUILD_DEV=0 BUILD_PRERELEASE=0 webpack -p"
       end
     end
     # run_locally do
@@ -154,5 +153,4 @@ namespace :npm do
     # end
   end
 
-  before 'gulp', 'npm:install'
 end

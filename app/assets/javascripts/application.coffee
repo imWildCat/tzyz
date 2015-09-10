@@ -14,14 +14,11 @@
 #= require jquery_ujs
 #= require jquery.timeago
 #= require jquery.timeago.settings
-#= require jquery-textcomplete
 #= require turbolinks
 #= require nprogress
 #= require nprogress-turbolinks
 #= require bootstrap
-#= require simple-module
 #= require hotkeys
-#= require simditor
 #= require chosen-jquery
 # File in project:
 #= require olds/at_user.js

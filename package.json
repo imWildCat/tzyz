@@ -2,15 +2,9 @@
   "name": "tzyz",
   "version": "1.1.0",
   "description": "滕州一中校友会 - tzyz === This is the project of the official site of Alumni Association of Tengzhou No.1 High School, based on [Ruby on Rails](http://rubyonrails.org/).",
-  "main": "gulpfile.js",
+  "main": "webpack.config.js",
   "dependencies": {
-    "babelify": "^6.0.2",
-    "browserify": "^9.0.8",
-    "gulp": "^3.8.11",
-    "gulp-autoprefixer": "^2.2.0",
-    "gulp-less": "^3.0.3",
-    "gulp-sourcemaps": "^1.5.2",
-    "material-ui": "^0.7.5",
+    "material-ui": "^0.11.0",
     "merge": "^1.2.0",
     "moment": "^2.10.2",
     "react": "^0.13.1",
@@ -18,13 +12,14 @@
     "react-tap-event-plugin": "^0.1.6",
     "reactify": "^1.1.0",
     "reflux": "^0.2.7",
-    "superagent": "^1.2.0",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.1.2"
+    "superagent": "^1.2.0"
   },
   "devDependencies": {
-    "gulp-livereload": "^3.8.0",
-    "gulp-sourcemaps": "^1.5.2"
+    "babel-core": "^5.8.23",
+    "babel-loader": "^5.3.2",
+    "react-hot-loader": "^1.2.9",
+    "webpack": "^1.12.1",
+    "webpack-dev-server": "^1.10.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

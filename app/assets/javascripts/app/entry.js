@@ -24,10 +24,20 @@ var MainBlurContainer = require('./components/top_level/main_blur_container');
 
 var SiteNetworkingActions = require('./actions/networking/site');
 
+var mui = require('material-ui');
+let ThemeManager = new mui.Styles.ThemeManager();
+ThemeManager.setTheme(ThemeManager.types.LIGHT);
+
 var App = React.createClass({
 
     componentWillMount: function () {
         SiteNetworkingActions.getInitialData();
+    },
+
+    getChildContext: function () {
+        return {
+            muiTheme: ThemeManager.getCurrentTheme()
+        }
     },
 
     render: function () {
@@ -52,6 +62,10 @@ var App = React.createClass({
         )
     }
 });
+
+App.childContextTypes = {
+    muiTheme: React.PropTypes.object
+};
 
 var routes = (
     <Route name="app" path="/" handler={App}>
